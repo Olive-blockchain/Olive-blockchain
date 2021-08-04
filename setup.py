@@ -2,9 +2,9 @@ from setuptools import setup
 
 dependencies = [
     "blspy==1.0.4",  # Signature library
-    "chiavdf==1.0.2",  # timelord and vdf verification
-    "chiabip158==1.0",  # bip158-style wallet filters
-    "chiapos==1.0.3",  # proof of space
+    "olivevdf==1.0.2",  # timelord and vdf verification
+    "olivebip158==1.0",  # bip158-style wallet filters
+    "olivepos==1.0.3",  # proof of space
     "clvm==0.9.7",
     "clvm_rs==0.1.8",
     "clvm_tools==0.4.3",
@@ -19,7 +19,7 @@ dependencies = [
     #  "keyrings.cryptfile==1.3.8",  # Secure storage for keys on Linux (Will be replaced)
     #  See https://github.com/frispete/keyrings.cryptfile/issues/15
     "PyYAML==5.4.1",  # Used for config file format
-    "setproctitle==1.2.2",  # Gives the chia processes readable names
+    "setproctitle==1.2.2",  # Gives the olive processes readable names
     "sortedcontainers==2.3.0",  # For maintaining sorted mempools
     "websockets==8.1.0",  # For use in wallet RPC and electron UI
     "click==7.1.2",  # For the CLI
@@ -41,14 +41,14 @@ dev_dependencies = [
 ]
 
 kwargs = dict(
-    name="chia-blockchain",
+    name="olive-blockchain",
     author="Mariano Sorgente",
-    author_email="mariano@chia.net",
-    description="Chia blockchain full node, farmer, timelord, and wallet.",
-    url="https://chia.net/",
+    author_email="mariano@olive.net",
+    description="Olive blockchain full node, farmer, timelord, and wallet.",
+    url="https://olive.net/",
     license="Apache License",
     python_requires=">=3.7, <4",
-    keywords="chia blockchain node",
+    keywords="olive blockchain node",
     install_requires=dependencies,
     setup_requires=["setuptools_scm"],
     extras_require=dict(
@@ -58,54 +58,54 @@ kwargs = dict(
     ),
     packages=[
         "build_scripts",
-        "chia",
-        "chia.cmds",
-        "chia.clvm",
-        "chia.consensus",
-        "chia.daemon",
-        "chia.full_node",
-        "chia.timelord",
-        "chia.farmer",
-        "chia.harvester",
-        "chia.introducer",
-        "chia.plotting",
-        "chia.pools",
-        "chia.protocols",
-        "chia.rpc",
-        "chia.server",
-        "chia.simulator",
-        "chia.types.blockchain_format",
-        "chia.types",
-        "chia.util",
-        "chia.wallet",
-        "chia.wallet.puzzles",
-        "chia.wallet.rl_wallet",
-        "chia.wallet.cc_wallet",
-        "chia.wallet.did_wallet",
-        "chia.wallet.settings",
-        "chia.wallet.trading",
-        "chia.wallet.util",
-        "chia.ssl",
+        "olive",
+        "olive.cmds",
+        "olive.clvm",
+        "olive.consensus",
+        "olive.daemon",
+        "olive.full_node",
+        "olive.timelord",
+        "olive.farmer",
+        "olive.harvester",
+        "olive.introducer",
+        "olive.plotting",
+        "olive.pools",
+        "olive.protocols",
+        "olive.rpc",
+        "olive.server",
+        "olive.simulator",
+        "olive.types.blockchain_format",
+        "olive.types",
+        "olive.util",
+        "olive.wallet",
+        "olive.wallet.puzzles",
+        "olive.wallet.rl_wallet",
+        "olive.wallet.cc_wallet",
+        "olive.wallet.did_wallet",
+        "olive.wallet.settings",
+        "olive.wallet.trading",
+        "olive.wallet.util",
+        "olive.ssl",
         "mozilla-ca",
     ],
     entry_points={
         "console_scripts": [
-            "chia = chia.cmds.chia:main",
-            "chia_wallet = chia.server.start_wallet:main",
-            "chia_full_node = chia.server.start_full_node:main",
-            "chia_harvester = chia.server.start_harvester:main",
-            "chia_farmer = chia.server.start_farmer:main",
-            "chia_introducer = chia.server.start_introducer:main",
-            "chia_timelord = chia.server.start_timelord:main",
-            "chia_timelord_launcher = chia.timelord.timelord_launcher:main",
-            "chia_full_node_simulator = chia.simulator.start_simulator:main",
+            "olive = olive.cmds.olive:main",
+            "olive_wallet = olive.server.start_wallet:main",
+            "olive_full_node = olive.server.start_full_node:main",
+            "olive_harvester = olive.server.start_harvester:main",
+            "olive_farmer = olive.server.start_farmer:main",
+            "olive_introducer = olive.server.start_introducer:main",
+            "olive_timelord = olive.server.start_timelord:main",
+            "olive_timelord_launcher = olive.timelord.timelord_launcher:main",
+            "olive_full_node_simulator = olive.simulator.start_simulator:main",
         ]
     },
     package_data={
-        "chia": ["pyinstaller.spec"],
+        "olive": ["pyinstaller.spec"],
         "": ["*.clvm", "*.clvm.hex", "*.clib", "*.clinc", "*.clsp"],
-        "chia.util": ["initial-*.yaml", "english.txt"],
-        "chia.ssl": ["chia_ca.crt", "chia_ca.key", "dst_root_ca.pem"],
+        "olive.util": ["initial-*.yaml", "english.txt"],
+        "olive.ssl": ["olive_ca.crt", "olive_ca.key", "dst_root_ca.pem"],
         "mozilla-ca": ["cacert.pem"],
     },
     use_scm_version={"fallback_version": "unknown-no-.git-directory"},

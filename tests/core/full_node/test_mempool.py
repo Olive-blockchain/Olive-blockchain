@@ -7,38 +7,38 @@ import pytest
 from clvm import SExp
 from clvm.EvalError import EvalError
 
-import chia.server.ws_connection as ws
+import olive.server.ws_connection as ws
 
-from chia.full_node.mempool import Mempool
-from chia.full_node.full_node_api import FullNodeAPI
-from chia.protocols import full_node_protocol
-from chia.simulator.simulator_protocol import FarmNewBlockProtocol
-from chia.types.announcement import Announcement
-from chia.types.blockchain_format.coin import Coin
-from chia.types.coin_spend import CoinSpend
-from chia.types.condition_opcodes import ConditionOpcode
-from chia.types.condition_with_args import ConditionWithArgs
-from chia.types.spend_bundle import SpendBundle
-from chia.util.clvm import int_to_bytes
-from chia.util.condition_tools import conditions_for_solution
-from chia.util.errors import Err, ValidationError
-from chia.util.ints import uint64
-from chia.util.hash import std_hash
-from chia.types.mempool_inclusion_status import MempoolInclusionStatus
-from chia.util.api_decorators import api_request, peer_required, bytes_required
-from chia.full_node.mempool_check_conditions import parse_condition_args
+from olive.full_node.mempool import Mempool
+from olive.full_node.full_node_api import FullNodeAPI
+from olive.protocols import full_node_protocol
+from olive.simulator.simulator_protocol import FarmNewBlockProtocol
+from olive.types.announcement import Announcement
+from olive.types.blockchain_format.coin import Coin
+from olive.types.coin_spend import CoinSpend
+from olive.types.condition_opcodes import ConditionOpcode
+from olive.types.condition_with_args import ConditionWithArgs
+from olive.types.spend_bundle import SpendBundle
+from olive.util.clvm import int_to_bytes
+from olive.util.condition_tools import conditions_for_solution
+from olive.util.errors import Err, ValidationError
+from olive.util.ints import uint64
+from olive.util.hash import std_hash
+from olive.types.mempool_inclusion_status import MempoolInclusionStatus
+from olive.util.api_decorators import api_request, peer_required, bytes_required
+from olive.full_node.mempool_check_conditions import parse_condition_args
 
 from tests.connection_utils import connect_and_get_peer
 from tests.core.node_height import node_height_at_least
 from tests.setup_nodes import bt, setup_simulators_and_wallets
 from tests.time_out_assert import time_out_assert
-from chia.types.blockchain_format.program import Program, INFINITE_COST
-from chia.consensus.condition_costs import ConditionCost
-from chia.consensus.cost_calculator import NPCResult
-from chia.types.blockchain_format.program import SerializedProgram
+from olive.types.blockchain_format.program import Program, INFINITE_COST
+from olive.consensus.condition_costs import ConditionCost
+from olive.consensus.cost_calculator import NPCResult
+from olive.types.blockchain_format.program import SerializedProgram
 from clvm_tools import binutils
-from chia.types.generator_types import BlockGenerator
-from chia.full_node.mempool_check_conditions import get_name_puzzle_conditions
+from olive.types.generator_types import BlockGenerator
+from olive.full_node.mempool_check_conditions import get_name_puzzle_conditions
 from clvm.casts import int_from_bytes
 
 BURN_PUZZLE_HASH = b"0" * 32
@@ -117,7 +117,7 @@ class TestMempool:
 async def respond_transaction(
     node: FullNodeAPI,
     tx: full_node_protocol.RespondTransaction,
-    peer: ws.WSChiaConnection,
+    peer: ws.WSOliveConnection,
     tx_bytes: bytes = b"",
     test: bool = False,
 ) -> Tuple[MempoolInclusionStatus, Optional[Err]]:
