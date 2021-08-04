@@ -71,24 +71,24 @@ network_overrides: &network_overrides
       DIFFICULTY_STARTING: 30
   config:
     mainnet:
-      address_prefix: "xch"
-      default_full_node_port: 8444
+      address_prefix: "xol"
+      default_full_node_port: 10111
     testnet0:
-      address_prefix: "txch"
+      address_prefix: "txol"
     testnet1:
-      address_prefix: "txch"
+      address_prefix: "txol"
     testnet2:
-      address_prefix: "txch"
+      address_prefix: "txol"
     testnet3:
-      address_prefix: "txch"
+      address_prefix: "txol"
     testnet4:
-      address_prefix: "txch"
+      address_prefix: "txol"
     testnet7:
-      address_prefix: "txch"
-      default_full_node_port: 58444
+      address_prefix: "txol"
+      default_full_node_port: 510111
 
 selected_network: &selected_network "mainnet"
-ALERTS_URL: https://download.chia.net/notify/mainnet_alert.txt
+ALERTS_URL: https://download.olive.net/notify/mainnet_alert.txt
 CHIA_ALERTS_PUBKEY: 89b7fd87cb56e926ecefb879a29aae308be01f31980569f6a75a69d2a9a69daefd71fb778d865f7c50d6c967e3025937
 
 # public ssl ca is included in source code
@@ -97,9 +97,9 @@ private_ssl_ca:
   crt: "config/ssl/ca/private_ca.crt"
   key: "config/ssl/ca/private_ca.key"
 
-chia_ssl_ca:
-  crt: "config/ssl/ca/chia_ca.crt"
-  key: "config/ssl/ca/chia_ca.key"
+olive_ssl_ca:
+  crt: "config/ssl/ca/olive_ca.crt"
+  key: "config/ssl/ca/olive_ca.key"
 
 
 daemon_ssl:
@@ -145,13 +145,13 @@ harvester:
     crt: "config/ssl/ca/private_ca.crt"
     key: "config/ssl/ca/private_ca.key"
 
-  chia_ssl_ca:
-    crt: "config/ssl/ca/chia_ca.crt"
-    key: "config/ssl/ca/chia_ca.key"
+  olive_ssl_ca:
+    crt: "config/ssl/ca/olive_ca.crt"
+    key: "config/ssl/ca/olive_ca.key"
 
 pool:
   # Replace this with a real puzzle hash
-  # xch_target_address: txch102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
+  # xol_target_address: txol102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
   logging: *logging
   network_overrides: *network_overrides
   selected_network: *selected_network
@@ -163,7 +163,7 @@ farmer:
   # The farmer will attempt to connect to this full node and harvester
   full_node_peer:
     host: *self_hostname
-    port: 8444
+    port: 10111
   harvester_peer:
     host: *self_hostname
     port: 8448
@@ -171,7 +171,7 @@ farmer:
   pool_public_keys: []
 
   # Replace this with a real puzzle hash
-  # xch_target_address: txch102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
+  # xol_target_address: txol102gkhhzs60grx7cfnpng5n6rjecr89r86l5s8xux2za8k820cxsq64ssdg
 
   # If True, starts an RPC server at the following port
   start_rpc_server: True
@@ -212,7 +212,7 @@ timelord:
       - 150000
   full_node_peer:
       host: *self_hostname
-      port: 8444
+      port: 10111
   # Maximum number of seconds allowed for a client to reconnect to the server.
   max_connection_time: 60
   # The ip and port where the TCP clients will connect.
@@ -247,7 +247,7 @@ timelord:
 
 full_node:
   # The full node server (if run) will run on this port
-  port: 8444
+  port: 10111
 
   # Run multiple nodes with different databases by changing the database_path
   database_path: db/blockchain_v1_CHALLENGE.sqlite
@@ -296,13 +296,13 @@ full_node:
   weight_proof_timeout: 360
 
   # when enabled, the full node will print a pstats profile to the root_dir/profile every second
-  # analyze with chia/utils/profiler.py
+  # analyze with olive/utils/profiler.py
   enable_profiler: False
 
   # List of trusted DNS seeders to bootstrap from.
   # If you modify this, please change the hardcode as well from FullNode.set_server()
   dns_servers:
-    - "dns-introducer.chia.net"
+    - "dns-introducer.olive.net"
   farmer_peer:
       host: *self_hostname
       port: 8447
@@ -310,8 +310,8 @@ full_node:
       host: *self_hostname
       port: 8446
   introducer_peer:
-      host: introducer.chia.net  # Chia AWS introducer IPv4/IPv6
-      port: 8444
+      host: introducer.olive.net  # Olive AWS introducer IPv4/IPv6
+      port: 10111
   wallet_peer:
     host: *self_hostname
     port: 8449
@@ -377,7 +377,7 @@ wallet:
 
   full_node_peer:
     host: *self_hostname
-    port: 8444
+    port: 10111
 
   testing: False
   database_path: wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite
@@ -394,8 +394,8 @@ wallet:
   recent_peer_threshold: 6000
 
   introducer_peer:
-    host: introducer.chia.net # Chia AWS introducer IPv4/IPv6
-    port: 8444
+    host: introducer.olive.net # Olive AWS introducer IPv4/IPv6
+    port: 10111
 
   ssl:
     private_crt:  "config/ssl/wallet/private_wallet.crt"

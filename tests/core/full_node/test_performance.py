@@ -9,14 +9,14 @@ from typing import Dict
 import pytest
 import cProfile
 
-from chia.consensus.block_record import BlockRecord
-from chia.full_node.full_node_api import FullNodeAPI
-from chia.protocols import full_node_protocol as fnp
-from chia.types.condition_opcodes import ConditionOpcode
-from chia.types.condition_with_args import ConditionWithArgs
-from chia.types.unfinished_block import UnfinishedBlock
-from chia.util.clvm import int_to_bytes
-from chia.util.ints import uint64
+from olive.consensus.block_record import BlockRecord
+from olive.full_node.full_node_api import FullNodeAPI
+from olive.protocols import full_node_protocol as fnp
+from olive.types.condition_opcodes import ConditionOpcode
+from olive.types.condition_with_args import ConditionWithArgs
+from olive.types.unfinished_block import UnfinishedBlock
+from olive.util.clvm import int_to_bytes
+from olive.util.ints import uint64
 from tests.wallet_tools import WalletTool
 from tests.core.fixtures import empty_blockchain  # noqa: F401
 

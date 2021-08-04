@@ -3,17 +3,17 @@ import asyncio
 from blspy import G2Element
 from clvm_tools import binutils
 
-from chia.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
-from chia.rpc.full_node_rpc_client import FullNodeRpcClient
-from chia.types.blockchain_format.program import Program
-from chia.types.coin_spend import CoinSpend
-from chia.types.condition_opcodes import ConditionOpcode
-from chia.types.spend_bundle import SpendBundle
-from chia.util.bech32m import decode_puzzle_hash
-from chia.util.condition_tools import parse_sexp_to_conditions
-from chia.util.config import load_config
-from chia.util.default_root import DEFAULT_ROOT_PATH
-from chia.util.ints import uint32, uint16
+from olive.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
+from olive.rpc.full_node_rpc_client import FullNodeRpcClient
+from olive.types.blockchain_format.program import Program
+from olive.types.coin_spend import CoinSpend
+from olive.types.condition_opcodes import ConditionOpcode
+from olive.types.spend_bundle import SpendBundle
+from olive.util.bech32m import decode_puzzle_hash
+from olive.util.condition_tools import parse_sexp_to_conditions
+from olive.util.config import load_config
+from olive.util.default_root import DEFAULT_ROOT_PATH
+from olive.util.ints import uint32, uint16
 
 
 def print_conditions(spend_bundle: SpendBundle):
@@ -43,8 +43,8 @@ async def main() -> None:
         print(farmer_prefarm.amount, farmer_amounts)
         assert farmer_amounts == farmer_prefarm.amount // 2
         assert pool_amounts == pool_prefarm.amount // 2
-        address1 = "xch1rdatypul5c642jkeh4yp933zu3hw8vv8tfup8ta6zfampnyhjnusxdgns6"  # Key 1
-        address2 = "xch1duvy5ur5eyj7lp5geetfg84cj2d7xgpxt7pya3lr2y6ke3696w9qvda66e"  # Key 2
+        address1 = "xol1rdatypul5c642jkeh4yp933zu3hw8vv8tfup8ta6zfampnyhjnusxdgns6"  # Key 1
+        address2 = "xol1duvy5ur5eyj7lp5geetfg84cj2d7xgpxt7pya3lr2y6ke3696w9qvda66e"  # Key 2
 
         ph1 = decode_puzzle_hash(address1)
         ph2 = decode_puzzle_hash(address2)

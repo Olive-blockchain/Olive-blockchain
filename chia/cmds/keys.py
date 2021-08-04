@@ -9,7 +9,7 @@ def keys_cmd(ctx: click.Context):
 
     root_path: Path = ctx.obj["root_path"]
     if not root_path.is_dir():
-        raise RuntimeError("Please initialize (or migrate) your config directory with chia init")
+        raise RuntimeError("Please initialize (or migrate) your config directory with olive init")
 
 
 @keys_cmd.command("generate", short_help="Generates and adds a key to keychain")
@@ -100,7 +100,7 @@ def generate_and_print_cmd():
     type=int,
     required=True,
 )
-@click.option("--hd_path", "-t", help="Enter the HD path in the form 'm/12381/8444/n/n'", type=str, required=True)
+@click.option("--hd_path", "-t", help="Enter the HD path in the form 'm/12381/10111/n/n'", type=str, required=True)
 def sign_cmd(message: str, fingerprint: int, hd_path: str):
     from .keys_funcs import sign
 
