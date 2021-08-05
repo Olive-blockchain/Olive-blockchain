@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -euo pipefail
+
 pip install setuptools_scm
 # The environment variable OLIVE_INSTALLER_VERSION needs to be defined.
 # If the env variable NOTARIZE and the username and password variables are
@@ -21,8 +24,19 @@ echo "Create dist/"
 sudo rm -rf dist
 mkdir dist
 
+echo "Install pyinstaller and build bootloaders for M1"
+#pip install pyinstaller==4.3
+# Once there is a 4.4, we can clone that tag and build that
+# M1 support isn't in a tag yet.
+# Alternatively, if the m1 bootloaders are distributed with pip in the future, can just use those
+git clone https://github.com/pyinstaller/pyinstaller.git
+cd pyinstaller/bootloader
+git checkout ab81fe39b11bc12216f86e85fb899ff13379c069
+python ./waf all
+pip install ..
+cd ../..
+
 echo "Create executables with pyinstaller"
-pip install pyinstaller==4.2
 SPEC_FILE=$(python -c 'import olive; print(olive.PYINSTALLER_SPEC_PATH)')
 pyinstaller --log-level=INFO "$SPEC_FILE"
 LAST_EXIT_CODE=$?
@@ -54,7 +68,7 @@ if [ "$LAST_EXIT_CODE" -ne 0 ]; then
 fi
 
 if [ "$NOTARIZE" ]; then
-  electron-osx-sign Olive-darwin-x64/Olive.app --platform=darwin \
+  electron-osx-sign Olive-darwin-arm64/Olive.app --platform=darwin \
   --hardened-runtime=true --provisioning-profile=oliveblockchain.provisionprofile \
   --entitlements=entitlements.mac.plist --entitlements-inherit=entitlements.mac.plist \
   --no-gatekeeper-assess
@@ -65,19 +79,21 @@ if [ "$LAST_EXIT_CODE" -ne 0 ]; then
 	exit $LAST_EXIT_CODE
 fi
 
-mv Olive-darwin-x64 ../build_scripts/dist/
+mv Olive-darwin-arm64 ../build_scripts/dist/
 cd ../build_scripts || exit
 
-DMG_NAME="Olive-$OLIVE_INSTALLER_VERSION.dmg"
+DMG_NAME="Olive-$OLIVE_INSTALLER_VERSION-arm64.dmg"
 echo "Create $DMG_NAME"
 mkdir final_installer
-electron-installer-dmg dist/Olive-darwin-x64/Olive.app Olive-$OLIVE_INSTALLER_VERSION \
+electron-installer-dmg dist/Olive-darwin-arm64/Olive.app Olive-$OLIVE_INSTALLER_VERSION-arm64 \
 --overwrite --out final_installer
 LAST_EXIT_CODE=$?
 if [ "$LAST_EXIT_CODE" -ne 0 ]; then
 	echo >&2 "electron-installer-dmg failed!"
 	exit $LAST_EXIT_CODE
 fi
+
+ls -lh final_installer
 
 if [ "$NOTARIZE" ]; then
 	echo "Notarize $DMG_NAME on ci"

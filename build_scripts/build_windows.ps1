@@ -10,8 +10,9 @@ git status
 Write-Output "   ---"
 Write-Output "curl miniupnpc"
 Write-Output "   ---"
-Invoke-WebRequest -Uri "https://pypi.chia.net/simple/miniupnpc/miniupnpc-2.1-cp37-cp37m-win_amd64.whl" -OutFile "miniupnpc-2.1-cp37-cp37m-win_amd64.whl"
-Write-Output "Using win_amd64 python 3.7 wheel from https://github.com/miniupnp/miniupnp/pull/475 (2.2.0-RC1)"
+Invoke-WebRequest -Uri "https://pypi.olive.net/simple/miniupnpc/miniupnpc-2.2.2-cp39-cp39-win_amd64.whl" -OutFile "miniupnpc-2.2.2-cp39-cp39-win_amd64.whl"
+Write-Output "Using win_amd64 python 3.9 wheel from https://github.com/miniupnp/miniupnp/pull/475 (2.2.0-RC1)"
+Write-Output "Actual build from https://github.com/miniupnp/miniupnp/commit/7783ac1545f70e3341da5866069bde88244dd848"
 If ($LastExitCode -gt 0){
     Throw "Failed to download miniupnpc!"
 }
@@ -22,7 +23,7 @@ else
 }
 
 Write-Output "   ---"
-Write-Output "Create venv - python3.7 or 3.8 is required in PATH"
+Write-Output "Create venv - python3.9 is required in PATH"
 Write-Output "   ---"
 python -m venv venv
 . .\venv\Scripts\Activate.ps1
@@ -33,24 +34,24 @@ pip install pyinstaller==4.2
 pip install setuptools_scm
 
 Write-Output "   ---"
-Write-Output "Get FLAX_INSTALLER_VERSION"
-# The environment variable FLAX_INSTALLER_VERSION needs to be defined
-$env:FLAX_INSTALLER_VERSION = python .\build_scripts\installer-version.py -win
+Write-Output "Get OLIVE_INSTALLER_VERSION"
+# The environment variable OLIVE_INSTALLER_VERSION needs to be defined
+$env:OLIVE_INSTALLER_VERSION = python .\build_scripts\installer-version.py -win
 
-if (-not (Test-Path env:FLAX_INSTALLER_VERSION)) {
-  $env:FLAX_INSTALLER_VERSION = '0.0.0'
-  Write-Output "WARNING: No environment variable FLAX_INSTALLER_VERSION set. Using 0.0.0"
+if (-not (Test-Path env:OLIVE_INSTALLER_VERSION)) {
+  $env:OLIVE_INSTALLER_VERSION = '0.0.0'
+  Write-Output "WARNING: No environment variable OLIVE_INSTALLER_VERSION set. Using 0.0.0"
   }
-Write-Output "Flax Version is: $env:FLAX_INSTALLER_VERSION"
+Write-Output "Olive Version is: $env:OLIVE_INSTALLER_VERSION"
 Write-Output "   ---"
 
 Write-Output "   ---"
-Write-Output "Build flax-blockchain wheels"
+Write-Output "Build olive-blockchain wheels"
 Write-Output "   ---"
-pip wheel --use-pep517 --extra-index-url https://pypi.chia.net/simple/ -f . --wheel-dir=.\build_scripts\win_build .
+pip wheel --use-pep517 --extra-index-url https://pypi.olive.net/simple/ -f . --wheel-dir=.\build_scripts\win_build .
 
 Write-Output "   ---"
-Write-Output "Install flax-blockchain wheels into venv with pip"
+Write-Output "Install olive-blockchain wheels into venv with pip"
 Write-Output "   ---"
 
 Write-Output "pip install miniupnpc"
@@ -59,26 +60,27 @@ pip install --no-index --find-links=.\win_build\ miniupnpc
 # Write-Output "pip install setproctitle"
 # pip install setproctitle==1.2.2
 
-Write-Output "pip install flax-blockchain"
-pip install --no-index --find-links=.\win_build\ flax-blockchain
+Write-Output "pip install olive-blockchain"
+pip install --no-index --find-links=.\win_build\ olive-blockchain
 
 Write-Output "   ---"
-Write-Output "Use pyinstaller to create flax .exe's"
+Write-Output "Use pyinstaller to create olive .exe's"
 Write-Output "   ---"
-$SPEC_FILE = (python -c 'import flax; print(flax.PYINSTALLER_SPEC_PATH)') -join "`n"
+$SPEC_FILE = (python -c 'import olive; print(olive.PYINSTALLER_SPEC_PATH)') -join "`n"
 pyinstaller --log-level INFO $SPEC_FILE
 
 Write-Output "   ---"
-Write-Output "Copy flax executables to flax-blockchain-gui\"
+Write-Output "Copy olive executables to olive-blockchain-gui\"
 Write-Output "   ---"
-Copy-Item "dist\daemon" -Destination "..\flax-blockchain-gui\" -Recurse
-Set-Location -Path "..\flax-blockchain-gui" -PassThru
+Copy-Item "dist\daemon" -Destination "..\olive-blockchain-gui\" -Recurse
+Set-Location -Path "..\olive-blockchain-gui" -PassThru
 
 git status
 
 Write-Output "   ---"
 Write-Output "Prepare Electron packager"
 Write-Output "   ---"
+$Env:NODE_OPTIONS = "--max-old-space-size=3000"
 npm install --save-dev electron-winstaller
 npm install -g electron-packager
 npm install
@@ -95,19 +97,19 @@ If ($LastExitCode -gt 0){
 }
 
 Write-Output "   ---"
-Write-Output "Increase the stack for flax command for (flax plots create) chiapos limitations"
+Write-Output "Increase the stack for olive command for (olive plots create) olivepos limitations"
 # editbin.exe needs to be in the path
-editbin.exe /STACK:8000000 daemon\flax.exe
+editbin.exe /STACK:8000000 daemon\olive.exe
 Write-Output "   ---"
 
-$packageVersion = "$env:FLAX_INSTALLER_VERSION"
-$packageName = "Flax-$packageVersion"
+$packageVersion = "$env:OLIVE_INSTALLER_VERSION"
+$packageName = "Olive-$packageVersion"
 
 Write-Output "packageName is $packageName"
 
 Write-Output "   ---"
 Write-Output "electron-packager"
-electron-packager . Flax --asar.unpack="**\daemon\**" --overwrite --icon=.\src\assets\img\flax.ico --app-version=$packageVersion
+electron-packager . Olive --asar.unpack="**\daemon\**" --overwrite --icon=.\src\assets\img\olive.ico --app-version=$packageVersion
 Write-Output "   ---"
 
 Write-Output "   ---"
@@ -121,8 +123,8 @@ If ($env:HAS_SECRET) {
    Write-Output "   ---"
    Write-Output "Add timestamp and verify signature"
    Write-Output "   ---"
-   signtool.exe timestamp /v /t http://timestamp.comodoca.com/ .\release-builds\windows-installer\FlaxSetup-$packageVersion.exe
-   signtool.exe verify /v /pa .\release-builds\windows-installer\FlaxSetup-$packageVersion.exe
+   signtool.exe timestamp /v /t http://timestamp.comodoca.com/ .\release-builds\windows-installer\OliveSetup-$packageVersion.exe
+   signtool.exe verify /v /pa .\release-builds\windows-installer\OliveSetup-$packageVersion.exe
    }   Else    {
    Write-Output "Skipping timestamp and verify signatures - no authorization to install certificates"
 }
