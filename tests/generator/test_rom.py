@@ -1,23 +1,24 @@
+from unittest import TestCase
+
 from clvm_tools import binutils
 from clvm_tools.clvmc import compile_clvm_text
 
-from olive.full_node.generator import run_generator
-from olive.full_node.mempool_check_conditions import get_name_puzzle_conditions
-from olive.types.blockchain_format.program import Program, SerializedProgram
-from olive.types.blockchain_format.sized_bytes import bytes32
-from olive.types.condition_with_args import ConditionWithArgs
-from olive.types.name_puzzle_condition import NPC
-from olive.types.generator_types import BlockGenerator, GeneratorArg
-from olive.util.clvm import int_to_bytes
-from olive.util.condition_tools import ConditionOpcode
-from olive.util.ints import uint32
-from olive.wallet.puzzles.load_clvm import load_clvm
+from flax.full_node.generator import run_generator
+from flax.full_node.mempool_check_conditions import get_name_puzzle_conditions
+from flax.types.blockchain_format.program import Program, SerializedProgram
+from flax.types.blockchain_format.sized_bytes import bytes32
+from flax.types.condition_with_args import ConditionWithArgs
+from flax.types.name_puzzle_condition import NPC
+from flax.types.generator_types import BlockGenerator, GeneratorArg
+from flax.util.clvm import int_to_bytes
+from flax.util.condition_tools import ConditionOpcode
+from flax.util.ints import uint32
+from flax.wallet.puzzles.load_clvm import load_clvm
 
 MAX_COST = int(1e15)
-COST_PER_BYTE = int(12000)
 
 
-DESERIALIZE_MOD = load_clvm("olivelisp_deserialisation.clvm", package_or_requirement="olive.wallet.puzzles")
+DESERIALIZE_MOD = load_clvm("flaxlisp_deserialisation.clvm", package_or_requirement="flax.wallet.puzzles")
 
 
 GENERATOR_CODE = """
@@ -82,7 +83,7 @@ EXPECTED_OUTPUT = (
 )
 
 
-class TestROM:
+class TestROM(TestCase):
     def test_rom_inputs(self):
         # this test checks that the generator just works
         # It's useful for debugging the generator prior to having the ROM invoke it.
@@ -100,7 +101,7 @@ class TestROM:
         cost, r = run_generator(gen, max_cost=MAX_COST)
         print(r)
 
-        npc_result = get_name_puzzle_conditions(gen, max_cost=MAX_COST, cost_per_byte=COST_PER_BYTE, safe_mode=False)
+        npc_result = get_name_puzzle_conditions(gen, max_cost=MAX_COST, safe_mode=False)
         assert npc_result.error is None
         assert npc_result.clvm_cost == EXPECTED_COST
         cond_1 = ConditionWithArgs(ConditionOpcode.CREATE_COIN, [bytes([0] * 31 + [1]), int_to_bytes(500)])
@@ -124,7 +125,7 @@ class TestROM:
         coin_spends = r.first()
         for coin_spend in coin_spends.as_iter():
             extra_data = coin_spend.rest().rest().rest().rest()
-            assert extra_data.as_atom_list() == b"extra data for coin".split()
+            self.assertEqual(extra_data.as_atom_list(), b"extra data for coin".split())
 
     def test_block_extras(self):
         # the ROM supports extra data after the coin spend list. This test checks that it actually gets passed through
@@ -132,4 +133,4 @@ class TestROM:
         gen = block_generator()
         cost, r = run_generator(gen, max_cost=MAX_COST)
         extra_block_data = r.rest()
-        assert extra_block_data.as_atom_list() == b"extra data for block".split()
+        self.assertEqual(extra_block_data.as_atom_list(), b"extra data for block".split())

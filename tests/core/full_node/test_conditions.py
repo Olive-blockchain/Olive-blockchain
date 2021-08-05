@@ -6,7 +6,7 @@ or that they're failing for the right reason when they're invalid.
 import logging
 import time
 
-from typing import List, Optional, Tuple
+from typing import List, Optional
 
 import pytest
 
@@ -14,18 +14,16 @@ from blspy import G2Element
 
 from clvm_tools.binutils import assemble
 
-from olive.consensus.blockchain import ReceiveBlockResult
-from olive.consensus.constants import ConsensusConstants
-from olive.types.announcement import Announcement
-from olive.types.blockchain_format.program import Program
-from olive.types.coin_record import CoinRecord
-from olive.types.coin_spend import CoinSpend
-from olive.types.condition_opcodes import ConditionOpcode
-from olive.types.full_block import FullBlock
-from olive.types.spend_bundle import SpendBundle
-from tests.block_tools import BlockTools, test_constants
-from olive.util.errors import Err
-from olive.util.ints import uint32
+from flax.consensus.blockchain import ReceiveBlockResult
+from flax.consensus.constants import ConsensusConstants
+from flax.types.announcement import Announcement
+from flax.types.blockchain_format.program import Program
+from flax.types.coin_solution import CoinSolution
+from flax.types.condition_opcodes import ConditionOpcode
+from flax.types.full_block import FullBlock
+from flax.types.spend_bundle import SpendBundle
+from flax.util.block_tools import BlockTools, test_constants
+from flax.util.errors import Err
 
 from .ram_db import create_ram_blockchain
 
@@ -58,7 +56,7 @@ async def check_spend_bundle_validity(
     blocks: List[FullBlock],
     spend_bundle: SpendBundle,
     expected_err: Optional[Err] = None,
-) -> Tuple[List[CoinRecord], List[CoinRecord]]:
+):
     """
     This test helper create an extra block after the given blocks that contains the given
     `SpendBundle`, and then invokes `receive_block` to ensure that it's accepted (if `expected_err=None`)
@@ -80,13 +78,6 @@ async def check_spend_bundle_validity(
 
         received_block_result, err, fork_height = await blockchain.receive_block(newest_block)
 
-        if fork_height:
-            coins_added = await blockchain.coin_store.get_coins_added_at_height(uint32(fork_height + 1))
-            coins_removed = await blockchain.coin_store.get_coins_removed_at_height(uint32(fork_height + 1))
-        else:
-            coins_added = []
-            coins_removed = []
-
         if expected_err is None:
             assert err is None
             assert received_block_result == ReceiveBlockResult.NEW_PEAK
@@ -95,9 +86,6 @@ async def check_spend_bundle_validity(
             assert err == expected_err
             assert received_block_result == ReceiveBlockResult.INVALID_BLOCK
             assert fork_height is None
-
-        return coins_added, coins_removed
-
     finally:
         # if we don't close the connection, the test process doesn't exit cleanly
         await connection.close()
@@ -112,8 +100,8 @@ async def check_conditions(
     blocks = initial_blocks()
     coin = list(blocks[spend_reward_index].get_included_reward_coins())[0]
 
-    coin_spend = CoinSpend(coin, EASY_PUZZLE, condition_solution)
-    spend_bundle = SpendBundle([coin_spend], G2Element())
+    coin_solution = CoinSolution(coin, EASY_PUZZLE, condition_solution)
+    spend_bundle = SpendBundle([coin_solution], G2Element())
 
     # now let's try to create a block with the spend bundle and ensure that it doesn't validate
 

@@ -1,15 +1,15 @@
 from typing import List, Tuple
 
-from olive.full_node.mempool_check_conditions import get_name_puzzle_conditions
-from olive.types.blockchain_format.coin import Coin
-from olive.types.blockchain_format.sized_bytes import bytes32
-from olive.types.full_block import FullBlock
-from olive.types.generator_types import BlockGenerator
-from olive.util.generator_tools import additions_for_npc
+from flax.full_node.mempool_check_conditions import get_name_puzzle_conditions
+from flax.types.blockchain_format.coin import Coin
+from flax.types.blockchain_format.sized_bytes import bytes32
+from flax.types.full_block import FullBlock
+from flax.types.generator_types import BlockGenerator
+from flax.util.generator_tools import additions_for_npc
 
 
 def run_and_get_removals_and_additions(
-    block: FullBlock, max_cost: int, cost_per_byte: int, safe_mode=False
+    block: FullBlock, max_cost: int, safe_mode=False
 ) -> Tuple[List[bytes32], List[Coin]]:
     removals: List[bytes32] = []
     additions: List[Coin] = []
@@ -19,9 +19,7 @@ def run_and_get_removals_and_additions(
         return [], []
 
     if block.transactions_generator is not None:
-        npc_result = get_name_puzzle_conditions(
-            BlockGenerator(block.transactions_generator, []), max_cost, cost_per_byte=cost_per_byte, safe_mode=safe_mode
-        )
+        npc_result = get_name_puzzle_conditions(BlockGenerator(block.transactions_generator, []), max_cost, safe_mode)
         # build removals list
         for npc in npc_result.npc_list:
             removals.append(npc.coin_name)
