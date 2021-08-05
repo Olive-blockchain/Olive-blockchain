@@ -4,14 +4,14 @@ from secrets import token_bytes
 from blspy import AugSchemeMPL, PrivateKey
 from clvm_tools import binutils
 
-from flax.consensus.default_constants import DEFAULT_CONSTANTS
-from flax.types.blockchain_format.program import Program, INFINITE_COST
-from flax.types.condition_opcodes import ConditionOpcode
-from flax.types.condition_with_args import ConditionWithArgs
-from flax.util.ints import uint32
-from flax.util.wallet_tools import WalletTool
-from flax.wallet.derive_keys import master_sk_to_wallet_sk
-from flax.wallet.puzzles.p2_delegated_puzzle import puzzle_for_pk
+from olive.consensus.default_constants import DEFAULT_CONSTANTS
+from olive.types.blockchain_format.program import Program, INFINITE_COST
+from olive.types.condition_opcodes import ConditionOpcode
+from olive.types.condition_with_args import ConditionWithArgs
+from olive.util.ints import uint32
+from tests.wallet_tools import WalletTool
+from olive.wallet.derive_keys import master_sk_to_wallet_sk
+from olive.wallet.puzzles.p2_delegated_puzzle import puzzle_for_pk
 
 
 def float_to_str(f):
@@ -29,7 +29,7 @@ def float_to_str(f):
     return float_string
 
 
-def run_and_return_cost_time(flaxlisp):
+def run_and_return_cost_time(olivelisp):
 
     start = time.time()
     clvm_loop = "((c (q ((c (f (a)) (c (f (a)) (c (f (r (a))) (c (f (r (r (a))))"
@@ -37,7 +37,7 @@ def run_and_return_cost_time(flaxlisp):
     " (c (- (f (r (a))) (q 1)) (c (f (r (r (a)))) (q ()))))))"
     " ((c (f (r (r (a)))) (q ()))))) (q (q ()))) (a)))) (a))))"
     loop_program = Program.to(binutils.assemble(clvm_loop))
-    clvm_loop_solution = f"(1000 {flaxlisp})"
+    clvm_loop_solution = f"(1000 {olivelisp})"
     solution_program = Program.to(binutils.assemble(clvm_loop_solution))
 
     cost, sexp = loop_program.run_with_cost(solution_program, INFINITE_COST)

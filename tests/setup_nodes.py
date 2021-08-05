@@ -4,24 +4,24 @@ import signal
 from secrets import token_bytes
 from typing import Dict, List, Optional
 
-from flax.consensus.constants import ConsensusConstants
-from flax.daemon.server import WebSocketServer, create_server_for_daemon, daemon_launch_lock_path, singleton
-from flax.full_node.full_node_api import FullNodeAPI
-from flax.server.start_farmer import service_kwargs_for_farmer
-from flax.server.start_full_node import service_kwargs_for_full_node
-from flax.server.start_harvester import service_kwargs_for_harvester
-from flax.server.start_introducer import service_kwargs_for_introducer
-from flax.server.start_service import Service
-from flax.server.start_timelord import service_kwargs_for_timelord
-from flax.server.start_wallet import service_kwargs_for_wallet
-from flax.simulator.start_simulator import service_kwargs_for_full_node_simulator
-from flax.timelord.timelord_launcher import kill_processes, spawn_process
-from flax.types.peer_info import PeerInfo
-from flax.util.bech32m import encode_puzzle_hash
-from flax.util.block_tools import BlockTools, test_constants
-from flax.util.hash import std_hash
-from flax.util.ints import uint16, uint32
-from flax.util.keychain import Keychain, bytes_to_mnemonic
+from olive.consensus.constants import ConsensusConstants
+from olive.daemon.server import WebSocketServer, create_server_for_daemon, daemon_launch_lock_path, singleton
+from olive.full_node.full_node_api import FullNodeAPI
+from olive.server.start_farmer import service_kwargs_for_farmer
+from olive.server.start_full_node import service_kwargs_for_full_node
+from olive.server.start_harvester import service_kwargs_for_harvester
+from olive.server.start_introducer import service_kwargs_for_introducer
+from olive.server.start_service import Service
+from olive.server.start_timelord import service_kwargs_for_timelord
+from olive.server.start_wallet import service_kwargs_for_wallet
+from olive.simulator.start_simulator import service_kwargs_for_full_node_simulator
+from olive.timelord.timelord_launcher import kill_processes, spawn_process
+from olive.types.peer_info import PeerInfo
+from olive.util.bech32m import encode_puzzle_hash
+from tests.block_tools import BlockTools, test_constants
+from olive.util.hash import std_hash
+from olive.util.ints import uint16, uint32
+from olive.util.keychain import Keychain, bytes_to_mnemonic
 from tests.time_out_assert import time_out_assert_custom_interval
 
 bt = BlockTools(constants=test_constants)
@@ -207,10 +207,10 @@ async def setup_farmer(
     config = bt.config["farmer"]
     config_pool = bt.config["pool"]
 
-    config["xfx_target_address"] = encode_puzzle_hash(b_tools.farmer_ph, "xfx")
+    config["xol_target_address"] = encode_puzzle_hash(b_tools.farmer_ph, "xol")
     config["pool_public_keys"] = [bytes(pk).hex() for pk in b_tools.pool_pubkeys]
     config["port"] = port
-    config_pool["xfx_target_address"] = encode_puzzle_hash(b_tools.pool_ph, "xfx")
+    config_pool["xol_target_address"] = encode_puzzle_hash(b_tools.pool_ph, "xol")
 
     if full_node_port:
         config["full_node_peer"]["host"] = self_hostname

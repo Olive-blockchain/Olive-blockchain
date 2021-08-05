@@ -1,12 +1,12 @@
 from setuptools import setup
 
 dependencies = [
-    "blspy==1.0.2",  # Signature library
-    "chiavdf==1.0.1",  # timelord and vdf verification
-    "chiabip158==1.0",  # bip158-style wallet filters
-    "chiapos==1.0.2",  # proof of space
-    "clvm==0.9.6",
-    "clvm_rs==0.1.7",
+    "blspy==1.0.4",  # Signature library
+    "olivevdf==1.0.2",  # timelord and vdf verification
+    "olivebip158==1.0",  # bip158-style wallet filters
+    "olivepos==1.0.3",  # proof of space
+    "clvm==0.9.7",
+    "clvm_rs==0.1.8",
     "clvm_tools==0.4.3",
     "aiohttp==3.7.4",  # HTTP server for full node rpc
     "aiosqlite==0.17.0",  # asyncio wrapper for sqlite, to store blocks
@@ -19,7 +19,7 @@ dependencies = [
     #  "keyrings.cryptfile==1.3.8",  # Secure storage for keys on Linux (Will be replaced)
     #  See https://github.com/frispete/keyrings.cryptfile/issues/15
     "PyYAML==5.4.1",  # Used for config file format
-    "setproctitle==1.2.2",  # Gives the flax processes readable names
+    "setproctitle==1.2.2",  # Gives the olive processes readable names
     "sortedcontainers==2.3.0",  # For maintaining sorted mempools
     "websockets==8.1.0",  # For use in wallet RPC and electron UI
     "click==7.1.2",  # For the CLI
@@ -27,7 +27,7 @@ dependencies = [
 ]
 
 upnp_dependencies = [
-    "miniupnpc==2.1",  # Allows users to open ports on their router
+    "miniupnpc==2.2.2",  # Allows users to open ports on their router
 ]
 
 dev_dependencies = [
@@ -41,14 +41,14 @@ dev_dependencies = [
 ]
 
 kwargs = dict(
-    name="flax-blockchain",
+    name="olive-blockchain",
     author="Mariano Sorgente",
-    author_email="mariano@flaxnetwork.org",
-    description="Flax blockchain full node, farmer, timelord, and wallet.",
-    url="https://flaxnetwork.org/",
+    author_email="mariano@olive.net",
+    description="Olive blockchain full node, farmer, timelord, and wallet.",
+    url="https://olive.net/",
     license="Apache License",
     python_requires=">=3.7, <4",
-    keywords="flax blockchain node",
+    keywords="olive blockchain node",
     install_requires=dependencies,
     setup_requires=["setuptools_scm"],
     extras_require=dict(
@@ -58,52 +58,54 @@ kwargs = dict(
     ),
     packages=[
         "build_scripts",
-        "flax",
-        "flax.cmds",
-        "flax.consensus",
-        "flax.daemon",
-        "flax.full_node",
-        "flax.timelord",
-        "flax.farmer",
-        "flax.harvester",
-        "flax.introducer",
-        "flax.plotting",
-        "flax.protocols",
-        "flax.rpc",
-        "flax.server",
-        "flax.simulator",
-        "flax.types.blockchain_format",
-        "flax.types",
-        "flax.util",
-        "flax.wallet",
-        "flax.wallet.puzzles",
-        "flax.wallet.rl_wallet",
-        "flax.wallet.cc_wallet",
-        "flax.wallet.did_wallet",
-        "flax.wallet.settings",
-        "flax.wallet.trading",
-        "flax.wallet.util",
-        "flax.ssl",
+        "olive",
+        "olive.cmds",
+        "olive.clvm",
+        "olive.consensus",
+        "olive.daemon",
+        "olive.full_node",
+        "olive.timelord",
+        "olive.farmer",
+        "olive.harvester",
+        "olive.introducer",
+        "olive.plotting",
+        "olive.pools",
+        "olive.protocols",
+        "olive.rpc",
+        "olive.server",
+        "olive.simulator",
+        "olive.types.blockchain_format",
+        "olive.types",
+        "olive.util",
+        "olive.wallet",
+        "olive.wallet.puzzles",
+        "olive.wallet.rl_wallet",
+        "olive.wallet.cc_wallet",
+        "olive.wallet.did_wallet",
+        "olive.wallet.settings",
+        "olive.wallet.trading",
+        "olive.wallet.util",
+        "olive.ssl",
         "mozilla-ca",
     ],
     entry_points={
         "console_scripts": [
-            "flax = flax.cmds.flax:main",
-            "flax_wallet = flax.server.start_wallet:main",
-            "flax_full_node = flax.server.start_full_node:main",
-            "flax_harvester = flax.server.start_harvester:main",
-            "flax_farmer = flax.server.start_farmer:main",
-            "flax_introducer = flax.server.start_introducer:main",
-            "flax_timelord = flax.server.start_timelord:main",
-            "flax_timelord_launcher = flax.timelord.timelord_launcher:main",
-            "flax_full_node_simulator = flax.simulator.start_simulator:main",
+            "olive = olive.cmds.olive:main",
+            "olive_wallet = olive.server.start_wallet:main",
+            "olive_full_node = olive.server.start_full_node:main",
+            "olive_harvester = olive.server.start_harvester:main",
+            "olive_farmer = olive.server.start_farmer:main",
+            "olive_introducer = olive.server.start_introducer:main",
+            "olive_timelord = olive.server.start_timelord:main",
+            "olive_timelord_launcher = olive.timelord.timelord_launcher:main",
+            "olive_full_node_simulator = olive.simulator.start_simulator:main",
         ]
     },
     package_data={
-        "flax": ["pyinstaller.spec"],
-        "flax.wallet.puzzles": ["*.clvm", "*.clvm.hex"],
-        "flax.util": ["initial-*.yaml", "english.txt"],
-        "flax.ssl": ["flax_ca.crt", "flax_ca.key", "dst_root_ca.pem"],
+        "olive": ["pyinstaller.spec"],
+        "": ["*.clvm", "*.clvm.hex", "*.clib", "*.clinc", "*.clsp"],
+        "olive.util": ["initial-*.yaml", "english.txt"],
+        "olive.ssl": ["olive_ca.crt", "olive_ca.key", "dst_root_ca.pem"],
         "mozilla-ca": ["cacert.pem"],
     },
     use_scm_version={"fallback_version": "unknown-no-.git-directory"},
