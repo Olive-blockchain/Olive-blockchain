@@ -7,45 +7,45 @@ from cryptography import x509
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes, serialization
 
-from flax.protocols.shared_protocol import protocol_version
-from flax.server.outbound_message import NodeType
-from flax.server.server import FlaxServer, ssl_context_for_client
-from flax.server.ws_connection import WSFlaxConnection
-from flax.ssl.create_ssl import generate_ca_signed_cert
-from flax.types.blockchain_format.sized_bytes import bytes32
-from flax.types.peer_info import PeerInfo
-from flax.util.ints import uint16
+from olive.protocols.shared_protocol import protocol_version
+from olive.server.outbound_message import NodeType
+from olive.server.server import OliveServer, ssl_context_for_client
+from olive.server.ws_connection import WSOliveConnection
+from olive.ssl.create_ssl import generate_ca_signed_cert
+from olive.types.blockchain_format.sized_bytes import bytes32
+from olive.types.peer_info import PeerInfo
+from olive.util.ints import uint16
 from tests.setup_nodes import self_hostname
 from tests.time_out_assert import time_out_assert
 
 log = logging.getLogger(__name__)
 
 
-async def disconnect_all_and_reconnect(server: FlaxServer, reconnect_to: FlaxServer) -> bool:
+async def disconnect_all_and_reconnect(server: OliveServer, reconnect_to: OliveServer) -> bool:
     cons = list(server.all_connections.values())[:]
     for con in cons:
         await con.close()
     return await server.start_client(PeerInfo(self_hostname, uint16(reconnect_to._port)), None)
 
 
-async def add_dummy_connection(server: FlaxServer, dummy_port: int) -> Tuple[asyncio.Queue, bytes32]:
+async def add_dummy_connection(server: OliveServer, dummy_port: int) -> Tuple[asyncio.Queue, bytes32]:
     timeout = aiohttp.ClientTimeout(total=10)
     session = aiohttp.ClientSession(timeout=timeout)
     incoming_queue: asyncio.Queue = asyncio.Queue()
     dummy_crt_path = server._private_key_path.parent / "dummy.crt"
     dummy_key_path = server._private_key_path.parent / "dummy.key"
     generate_ca_signed_cert(
-        server.flax_ca_crt_path.read_bytes(), server.flax_ca_key_path.read_bytes(), dummy_crt_path, dummy_key_path
+        server.olive_ca_crt_path.read_bytes(), server.olive_ca_key_path.read_bytes(), dummy_crt_path, dummy_key_path
     )
     ssl_context = ssl_context_for_client(
-        server.flax_ca_crt_path, server.flax_ca_key_path, dummy_crt_path, dummy_key_path
+        server.olive_ca_crt_path, server.olive_ca_key_path, dummy_crt_path, dummy_key_path
     )
     pem_cert = x509.load_pem_x509_certificate(dummy_crt_path.read_bytes(), default_backend())
     der_cert = x509.load_der_x509_certificate(pem_cert.public_bytes(serialization.Encoding.DER), default_backend())
     peer_id = bytes32(der_cert.fingerprint(hashes.SHA256()))
     url = f"wss://{self_hostname}:{server._port}/ws"
     ws = await session.ws_connect(url, autoclose=True, autoping=True, ssl=ssl_context)
-    wsc = WSFlaxConnection(
+    wsc = WSOliveConnection(
         NodeType.FULL_NODE,
         ws,
         server._port,
@@ -64,7 +64,7 @@ async def add_dummy_connection(server: FlaxServer, dummy_port: int) -> Tuple[asy
     return incoming_queue, peer_id
 
 
-async def connect_and_get_peer(server_1: FlaxServer, server_2: FlaxServer) -> WSFlaxConnection:
+async def connect_and_get_peer(server_1: OliveServer, server_2: OliveServer) -> WSOliveConnection:
     """
     Connect server_2 to server_1, and get return the connection in server_1.
     """

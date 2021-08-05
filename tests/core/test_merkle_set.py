@@ -3,7 +3,7 @@ import itertools
 
 import pytest
 
-from flax.util.merkle_set import MerkleSet, confirm_included_already_hashed
+from olive.util.merkle_set import MerkleSet, confirm_included_already_hashed
 from tests.setup_nodes import bt
 
 

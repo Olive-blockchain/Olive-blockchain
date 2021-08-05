@@ -6,22 +6,22 @@ from typing import Dict, List, Optional, Tuple
 import aiosqlite
 import pytest
 
-from flax.consensus.block_header_validation import validate_finished_header_block
-from flax.consensus.block_record import BlockRecord
-from flax.consensus.blockchain import Blockchain
-from flax.consensus.default_constants import DEFAULT_CONSTANTS
-from flax.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
-from flax.consensus.full_block_to_block_record import block_to_block_record
-from flax.full_node.block_store import BlockStore
-from flax.full_node.coin_store import CoinStore
-from flax.server.start_full_node import SERVICE_NAME
-from flax.types.blockchain_format.sized_bytes import bytes32
-from flax.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from flax.util.block_cache import BlockCache
-from flax.util.block_tools import test_constants
-from flax.util.config import load_config
-from flax.util.default_root import DEFAULT_ROOT_PATH
-from flax.util.generator_tools import get_block_header
+from olive.consensus.block_header_validation import validate_finished_header_block
+from olive.consensus.block_record import BlockRecord
+from olive.consensus.blockchain import Blockchain
+from olive.consensus.default_constants import DEFAULT_CONSTANTS
+from olive.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
+from olive.consensus.full_block_to_block_record import block_to_block_record
+from olive.full_node.block_store import BlockStore
+from olive.full_node.coin_store import CoinStore
+from olive.server.start_full_node import SERVICE_NAME
+from olive.types.blockchain_format.sized_bytes import bytes32
+from olive.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from olive.util.block_cache import BlockCache
+from tests.block_tools import test_constants
+from olive.util.config import load_config
+from olive.util.default_root import DEFAULT_ROOT_PATH
+from olive.util.generator_tools import get_block_header
 from tests.setup_nodes import bt
 
 try:
@@ -30,16 +30,16 @@ except ImportError:
     pass
 
 
-from flax.consensus.pot_iterations import calculate_iterations_quality
-from flax.full_node.weight_proof import (  # type: ignore
+from olive.consensus.pot_iterations import calculate_iterations_quality
+from olive.full_node.weight_proof import (  # type: ignore
     WeightProofHandler,
     _map_sub_epoch_summaries,
     _validate_sub_epoch_segments,
     _validate_summaries_weight,
 )
-from flax.types.full_block import FullBlock
-from flax.types.header_block import HeaderBlock
-from flax.util.ints import uint32, uint64
+from olive.types.full_block import FullBlock
+from olive.types.header_block import HeaderBlock
+from olive.util.ints import uint32, uint64
 from tests.core.fixtures import (
     default_400_blocks,
     default_1000_blocks,
@@ -505,7 +505,8 @@ class TestWeightProof:
     async def test_weight_proof_from_database(self):
         connection = await aiosqlite.connect("path to db")
         block_store: BlockStore = await BlockStore.create(connection)
-        blocks, peak = await block_store.get_block_records()
+        blocks = await block_store.get_block_records_in_range(0, 0xFFFFFFFF)
+        peak = len(blocks) - 1
         peak_height = blocks[peak].height
         headers = await block_store.get_header_blocks_in_range(0, peak_height)
         sub_height_to_hash = {}

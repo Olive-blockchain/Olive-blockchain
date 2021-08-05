@@ -4,10 +4,10 @@
 # from secrets import token_bytes
 # import aiosqlite
 # import pytest
-# from flax.util.ints import uint32, uint64, uint128
-# from flax.wallet.wallet_coin_record import WalletCoinRecord
-# from flax.wallet.util.wallet_types import WalletType
-# from flax.types.coin import Coin
+# from olive.util.ints import uint32, uint64, uint128
+# from olive.wallet.wallet_coin_record import WalletCoinRecord
+# from olive.wallet.util.wallet_types import WalletType
+# from olive.types.coin import Coin
 #
 #
 # @pytest.fixture(scope="module")

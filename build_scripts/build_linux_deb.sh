@@ -5,7 +5,10 @@ if [ ! "$1" ]; then
 	exit 1
 elif [ "$1" = "amd64" ]; then
 	PLATFORM="$1"
+<<<<<<< HEAD:build_scripts/build_linux_deb.sh
 	REDHAT_PLATFORM="x86_64"
+=======
+>>>>>>> parent of d2478a0 (check):build_scripts/build_linux.sh
 	DIR_NAME="olive-blockchain-linux-x64"
 else
 	PLATFORM="$1"
@@ -13,6 +16,7 @@ else
 fi
 
 pip install setuptools_scm
+<<<<<<< HEAD:build_scripts/build_linux_deb.sh
 # The environment variable OLIVE_INSTALLER_VERSION needs to be defined
 # If the env variable NOTARIZE and the username and password variables are
 # set, this will attempt to Notarize the signed DMG
@@ -23,11 +27,22 @@ if [ ! "$OLIVE_INSTALLER_VERSION" ]; then
 	OLIVE_INSTALLER_VERSION="0.0.0"
 fi
 echo "Olive Installer Version is: $OLIVE_INSTALLER_VERSION"
+=======
+# The environment variable CHIA_INSTALLER_VERSION needs to be defined
+# If the env variable NOTARIZE and the username and password variables are
+# set, this will attempt to Notarize the signed DMG
+CHIA_INSTALLER_VERSION=$(python installer-version.py)
+
+if [ ! "$CHIA_INSTALLER_VERSION" ]; then
+	echo "WARNING: No environment variable CHIA_INSTALLER_VERSION set. Using 0.0.0."
+	CHIA_INSTALLER_VERSION="0.0.0"
+fi
+echo "Olive Installer Version is: $CHIA_INSTALLER_VERSION"
+>>>>>>> parent of d2478a0 (check):build_scripts/build_linux.sh
 
 echo "Installing npm and electron packagers"
 npm install electron-packager -g
 npm install electron-installer-debian -g
-npm install electron-installer-redhat -g
 
 echo "Create dist/"
 rm -rf dist
@@ -59,7 +74,11 @@ fi
 
 electron-packager . olive-blockchain --asar.unpack="**/daemon/**" --platform=linux \
 --icon=src/assets/img/Olive.icns --overwrite --app-bundle-id=net.olive.blockchain \
+<<<<<<< HEAD:build_scripts/build_linux_deb.sh
 --appVersion=$OLIVE_INSTALLER_VERSION
+=======
+--appVersion=$CHIA_INSTALLER_VERSION
+>>>>>>> parent of d2478a0 (check):build_scripts/build_linux.sh
 LAST_EXIT_CODE=$?
 if [ "$LAST_EXIT_CODE" -ne 0 ]; then
 	echo >&2 "electron-packager failed!"
@@ -69,17 +88,26 @@ fi
 mv $DIR_NAME ../build_scripts/dist/
 cd ../build_scripts || exit
 
+<<<<<<< HEAD:build_scripts/build_linux_deb.sh
 echo "Create olive-$OLIVE_INSTALLER_VERSION.deb"
 rm -rf final_installer
 mkdir final_installer
 electron-installer-debian --src dist/$DIR_NAME/ --dest final_installer/ \
 --arch "$PLATFORM" --options.version $OLIVE_INSTALLER_VERSION
+=======
+echo "Create olive-$CHIA_INSTALLER_VERSION.deb"
+rm -rf final_installer
+mkdir final_installer
+electron-installer-debian --src dist/$DIR_NAME/ --dest final_installer/ \
+--arch "$PLATFORM" --options.version $CHIA_INSTALLER_VERSION
+>>>>>>> parent of d2478a0 (check):build_scripts/build_linux.sh
 LAST_EXIT_CODE=$?
 if [ "$LAST_EXIT_CODE" -ne 0 ]; then
 	echo >&2 "electron-installer-debian failed!"
 	exit $LAST_EXIT_CODE
 fi
 
+<<<<<<< HEAD:build_scripts/build_linux_deb.sh
 +if [ "$REDHAT_PLATFORM" = "x86_64" ]; then
 	echo "Create olive-blockchain-$OLIVE_INSTALLER_VERSION.rpm"
   electron-installer-redhat --src dist/$DIR_NAME/ --dest final_installer/ \
@@ -92,4 +120,6 @@ fi
   fi
 fi
 
+=======
+>>>>>>> parent of d2478a0 (check):build_scripts/build_linux.sh
 ls final_installer/

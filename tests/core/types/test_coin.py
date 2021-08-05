@@ -1,7 +1,7 @@
-from flax.types.blockchain_format.coin import Coin
-from flax.types.blockchain_format.sized_bytes import bytes32
-from flax.util.ints import uint64
-from flax.util.hash import std_hash
+from olive.types.blockchain_format.coin import Coin
+from olive.types.blockchain_format.sized_bytes import bytes32
+from olive.util.ints import uint64
+from olive.util.hash import std_hash
 import io
 
 

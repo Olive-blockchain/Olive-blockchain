@@ -3,6 +3,7 @@
 set -euo pipefail
 
 pip install setuptools_scm
+<<<<<<< HEAD
 # The environment variable OLIVE_INSTALLER_VERSION needs to be defined.
 # If the env variable NOTARIZE and the username and password variables are
 # set, this will attempt to Notarize the signed DMG.
@@ -13,6 +14,18 @@ if [ ! "$OLIVE_INSTALLER_VERSION" ]; then
 	OLIVE_INSTALLER_VERSION="0.0.0"
 fi
 echo "Olive Installer Version is: $OLIVE_INSTALLER_VERSION"
+=======
+# The environment variable CHIA_INSTALLER_VERSION needs to be defined.
+# If the env variable NOTARIZE and the username and password variables are
+# set, this will attempt to Notarize the signed DMG.
+CHIA_INSTALLER_VERSION=$(python installer-version.py)
+
+if [ ! "$CHIA_INSTALLER_VERSION" ]; then
+	echo "WARNING: No environment variable CHIA_INSTALLER_VERSION set. Using 0.0.0."
+	CHIA_INSTALLER_VERSION="0.0.0"
+fi
+echo "Olive Installer Version is: $CHIA_INSTALLER_VERSION"
+>>>>>>> parent of d2478a0 (check)
 
 echo "Installing npm and electron packagers"
 npm install electron-installer-dmg -g
@@ -60,7 +73,11 @@ fi
 
 electron-packager . Olive --asar.unpack="**/daemon/**" --platform=darwin \
 --icon=src/assets/img/Olive.icns --overwrite --app-bundle-id=net.olive.blockchain \
+<<<<<<< HEAD
 --appVersion=$OLIVE_INSTALLER_VERSION
+=======
+--appVersion=$CHIA_INSTALLER_VERSION
+>>>>>>> parent of d2478a0 (check)
 LAST_EXIT_CODE=$?
 if [ "$LAST_EXIT_CODE" -ne 0 ]; then
 	echo >&2 "electron-packager failed!"
@@ -82,10 +99,17 @@ fi
 mv Olive-darwin-arm64 ../build_scripts/dist/
 cd ../build_scripts || exit
 
+<<<<<<< HEAD
 DMG_NAME="Olive-$OLIVE_INSTALLER_VERSION-arm64.dmg"
 echo "Create $DMG_NAME"
 mkdir final_installer
 electron-installer-dmg dist/Olive-darwin-arm64/Olive.app Olive-$OLIVE_INSTALLER_VERSION-arm64 \
+=======
+DMG_NAME="Olive-$CHIA_INSTALLER_VERSION-arm64.dmg"
+echo "Create $DMG_NAME"
+mkdir final_installer
+electron-installer-dmg dist/Olive-darwin-arm64/Olive.app Olive-$CHIA_INSTALLER_VERSION-arm64 \
+>>>>>>> parent of d2478a0 (check)
 --overwrite --out final_installer
 LAST_EXIT_CODE=$?
 if [ "$LAST_EXIT_CODE" -ne 0 ]; then

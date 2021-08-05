@@ -9,38 +9,38 @@ from typing import Dict, Optional, List
 
 import pytest
 
-from flax.consensus.pot_iterations import is_overflow_block
-from flax.full_node.bundle_tools import detect_potential_template_generator
-from flax.full_node.full_node_api import FullNodeAPI
-from flax.full_node.signage_point import SignagePoint
-from flax.protocols import full_node_protocol as fnp, full_node_protocol
-from flax.protocols import timelord_protocol
-from flax.protocols.full_node_protocol import RespondTransaction
-from flax.protocols.protocol_message_types import ProtocolMessageTypes
-from flax.server.address_manager import AddressManager
-from flax.server.outbound_message import Message
-from flax.simulator.simulator_protocol import FarmNewBlockProtocol
-from flax.types.blockchain_format.classgroup import ClassgroupElement
-from flax.types.blockchain_format.program import SerializedProgram
-from flax.types.blockchain_format.vdf import CompressibleVDFField, VDFProof
-from flax.types.condition_opcodes import ConditionOpcode
-from flax.types.condition_with_args import ConditionWithArgs
-from flax.types.full_block import FullBlock
-from flax.types.mempool_inclusion_status import MempoolInclusionStatus
-from flax.types.peer_info import PeerInfo, TimestampedPeerInfo
-from flax.types.spend_bundle import SpendBundle
-from flax.types.unfinished_block import UnfinishedBlock
-from flax.util.block_tools import get_signage_point
-from flax.util.clvm import int_to_bytes
-from flax.util.errors import Err
-from flax.util.hash import std_hash
-from flax.util.ints import uint8, uint16, uint32, uint64
-from flax.util.recursive_replace import recursive_replace
-from flax.util.vdf_prover import get_vdf_info_and_proof
-from flax.util.wallet_tools import WalletTool
+from olive.consensus.pot_iterations import is_overflow_block
+from olive.full_node.bundle_tools import detect_potential_template_generator
+from olive.full_node.full_node_api import FullNodeAPI
+from olive.full_node.signage_point import SignagePoint
+from olive.protocols import full_node_protocol as fnp, full_node_protocol
+from olive.protocols import timelord_protocol
+from olive.protocols.full_node_protocol import RespondTransaction
+from olive.protocols.protocol_message_types import ProtocolMessageTypes
+from olive.server.address_manager import AddressManager
+from olive.server.outbound_message import Message
+from olive.simulator.simulator_protocol import FarmNewBlockProtocol
+from olive.types.blockchain_format.classgroup import ClassgroupElement
+from olive.types.blockchain_format.program import SerializedProgram
+from olive.types.blockchain_format.vdf import CompressibleVDFField, VDFProof
+from olive.types.condition_opcodes import ConditionOpcode
+from olive.types.condition_with_args import ConditionWithArgs
+from olive.types.full_block import FullBlock
+from olive.types.mempool_inclusion_status import MempoolInclusionStatus
+from olive.types.peer_info import PeerInfo, TimestampedPeerInfo
+from olive.types.spend_bundle import SpendBundle
+from olive.types.unfinished_block import UnfinishedBlock
+from tests.block_tools import get_signage_point
+from olive.util.clvm import int_to_bytes
+from olive.util.errors import Err
+from olive.util.hash import std_hash
+from olive.util.ints import uint8, uint16, uint32, uint64
+from olive.util.recursive_replace import recursive_replace
+from olive.util.vdf_prover import get_vdf_info_and_proof
+from tests.wallet_tools import WalletTool
 from tests.core.fixtures import empty_blockchain  # noqa: F401
-from flax.wallet.cc_wallet.cc_wallet import CCWallet
-from flax.wallet.transaction_record import TransactionRecord
+from olive.wallet.cc_wallet.cc_wallet import CCWallet
+from olive.wallet.transaction_record import TransactionRecord
 
 from tests.connection_utils import add_dummy_connection, connect_and_get_peer
 from tests.core.full_node.test_coin_store import get_future_reward_coins
@@ -292,7 +292,7 @@ class TestFullNodeBlockCompression:
 
         # Creates a cc wallet
         cc_wallet: CCWallet = await CCWallet.create_new_cc(wallet_node_1.wallet_state_manager, wallet, uint64(100))
-        tx_queue: List[TransactionRecord] = await wallet_node_1.wallet_state_manager.get_send_queue()
+        tx_queue: List[TransactionRecord] = await wallet_node_1.wallet_state_manager.tx_store.get_not_sent()
         tr = tx_queue[0]
         await time_out_assert(
             10,
@@ -1487,7 +1487,8 @@ class TestFullNodeProtocol:
             )
         )
 
-        assert cc_eos_count == 3 and icc_eos_count == 3
+        # Note: the below numbers depend on the block cache, so might need to be updated
+        assert cc_eos_count == 4 and icc_eos_count == 3
         for compact_proof in timelord_protocol_finished:
             await full_node_1.full_node.respond_compact_proof_of_time(compact_proof)
         stored_blocks = await full_node_1.get_all_full_blocks()
@@ -1508,7 +1509,8 @@ class TestFullNodeProtocol:
                 has_compact_cc_sp_vdf = True
             if block.challenge_chain_ip_proof.normalized_to_identity:
                 has_compact_cc_ip_vdf = True
-        assert cc_eos_compact_count == 3
+        # Note: the below numbers depend on the block cache, so might need to be updated
+        assert cc_eos_compact_count == 4
         assert icc_eos_compact_count == 3
         assert has_compact_cc_sp_vdf
         assert has_compact_cc_ip_vdf
