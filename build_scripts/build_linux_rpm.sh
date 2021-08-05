@@ -13,16 +13,16 @@ else
 fi
 
 pip install setuptools_scm
-# The environment variable CHIA_INSTALLER_VERSION needs to be defined
+# The environment variable OLIVE_INSTALLER_VERSION needs to be defined
 # If the env variable NOTARIZE and the username and password variables are
 # set, this will attempt to Notarize the signed DMG
-CHIA_INSTALLER_VERSION=$(python installer-version.py)
+OLIVE_INSTALLER_VERSION=$(python installer-version.py)
 
-if [ ! "$CHIA_INSTALLER_VERSION" ]; then
-	echo "WARNING: No environment variable CHIA_INSTALLER_VERSION set. Using 0.0.0."
-	CHIA_INSTALLER_VERSION="0.0.0"
+if [ ! "$OLIVE_INSTALLER_VERSION" ]; then
+	echo "WARNING: No environment variable OLIVE_INSTALLER_VERSION set. Using 0.0.0."
+	OLIVE_INSTALLER_VERSION="0.0.0"
 fi
-echo "Olive Installer Version is: $CHIA_INSTALLER_VERSION"
+echo "Olive Installer Version is: $OLIVE_INSTALLER_VERSION"
 
 echo "Installing npm and electron packagers"
 npm install electron-packager -g
@@ -58,7 +58,7 @@ fi
 
 electron-packager . olive-blockchain --asar.unpack="**/daemon/**" --platform=linux \
 --icon=src/assets/img/Olive.icns --overwrite --app-bundle-id=net.olive.blockchain \
---appVersion=$CHIA_INSTALLER_VERSION
+--appVersion=$OLIVE_INSTALLER_VERSION
 LAST_EXIT_CODE=$?
 if [ "$LAST_EXIT_CODE" -ne 0 ]; then
 	echo >&2 "electron-packager failed!"
@@ -69,7 +69,7 @@ mv $DIR_NAME ../build_scripts/dist/
 cd ../build_scripts || exit
 
 if [ "$REDHAT_PLATFORM" = "x86_64" ]; then
-	echo "Create olive-blockchain-$CHIA_INSTALLER_VERSION.rpm"
+	echo "Create olive-blockchain-$OLIVE_INSTALLER_VERSION.rpm"
 
 	# shellcheck disable=SC2046
 	NODE_ROOT="$(dirname $(dirname $(which node)))"
@@ -84,7 +84,7 @@ if [ "$REDHAT_PLATFORM" = "x86_64" ]; then
 	sed -i "s#throw new Error('Please upgrade to RPM 4.13.*#console.warn('You are using RPM < 4.13')\n      return { requires: [ 'gtk3', 'libnotify', 'nss', 'libXScrnSaver', 'libXtst', 'xdg-utils', 'at-spi2-core', 'libdrm', 'mesa-libgbm', 'libxcb' ] }#g" sed -i "s#throw new Error('Please upgrade to RPM 4.13.*#console.warn('You are using RPM < 4.13')\n      return { requires: [ 'gtk3', 'libnotify', 'nss', 'libXScrnSaver', 'libXtst', 'xdg-utils', 'at-spi2-core', 'libdrm', 'mesa-libgbm', 'libxcb' ] }#g" $NODE_ROOT/lib/node_modules/electron-installer-redhat/src/dependencies.js
 
   electron-installer-redhat --src dist/$DIR_NAME/ --dest final_installer/ \
-  --arch "$REDHAT_PLATFORM" --options.version $CHIA_INSTALLER_VERSION \
+  --arch "$REDHAT_PLATFORM" --options.version $OLIVE_INSTALLER_VERSION \
   --license ../LICENSE
   LAST_EXIT_CODE=$?
   if [ "$LAST_EXIT_CODE" -ne 0 ]; then

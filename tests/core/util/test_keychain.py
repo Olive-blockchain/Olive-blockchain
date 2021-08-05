@@ -4,7 +4,7 @@ from secrets import token_bytes
 
 from blspy import AugSchemeMPL, PrivateKey
 
-from olive.util.keychain import Keychain, bytes_from_mnemonic, bytes_to_mnemonic, generate_mnemonic, mnemonic_to_seed
+from flax.util.keychain import Keychain, bytes_from_mnemonic, bytes_to_mnemonic, generate_mnemonic, mnemonic_to_seed
 
 
 class TesKeychain(unittest.TestCase):
@@ -21,16 +21,6 @@ class TesKeychain(unittest.TestCase):
         entropy = bytes_from_mnemonic(mnemonic)
         assert bytes_to_mnemonic(entropy) == mnemonic
         mnemonic_2 = generate_mnemonic()
-
-        # misspelled words in the mnemonic
-        bad_mnemonic = mnemonic.split(" ")
-        bad_mnemonic[6] = "ZZZZZZ"
-        self.assertRaisesRegex(
-            ValueError,
-            "'ZZZZZZ' is not in the mnemonic dictionary; may be misspelled",
-            bytes_from_mnemonic,
-            " ".join(bad_mnemonic),
-        )
 
         kc.add_private_key(mnemonic, "")
         assert kc._get_free_private_key_index() == 1

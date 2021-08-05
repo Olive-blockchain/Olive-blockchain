@@ -10,9 +10,8 @@ git status
 Write-Output "   ---"
 Write-Output "curl miniupnpc"
 Write-Output "   ---"
-Invoke-WebRequest -Uri "https://pypi.olive.net/simple/miniupnpc/miniupnpc-2.2.2-cp39-cp39-win_amd64.whl" -OutFile "miniupnpc-2.2.2-cp39-cp39-win_amd64.whl"
-Write-Output "Using win_amd64 python 3.9 wheel from https://github.com/miniupnp/miniupnp/pull/475 (2.2.0-RC1)"
-Write-Output "Actual build from https://github.com/miniupnp/miniupnp/commit/7783ac1545f70e3341da5866069bde88244dd848"
+Invoke-WebRequest -Uri "https://pypi.chia.net/simple/miniupnpc/miniupnpc-2.1-cp37-cp37m-win_amd64.whl" -OutFile "miniupnpc-2.1-cp37-cp37m-win_amd64.whl"
+Write-Output "Using win_amd64 python 3.7 wheel from https://github.com/miniupnp/miniupnp/pull/475 (2.2.0-RC1)"
 If ($LastExitCode -gt 0){
     Throw "Failed to download miniupnpc!"
 }
@@ -23,7 +22,7 @@ else
 }
 
 Write-Output "   ---"
-Write-Output "Create venv - python3.9 is required in PATH"
+Write-Output "Create venv - python3.7 or 3.8 is required in PATH"
 Write-Output "   ---"
 python -m venv venv
 . .\venv\Scripts\Activate.ps1
@@ -34,15 +33,15 @@ pip install pyinstaller==4.2
 pip install setuptools_scm
 
 Write-Output "   ---"
-Write-Output "Get CHIA_INSTALLER_VERSION"
-# The environment variable CHIA_INSTALLER_VERSION needs to be defined
-$env:CHIA_INSTALLER_VERSION = python .\build_scripts\installer-version.py -win
+Write-Output "Get OLIVE_INSTALLER_VERSION"
+# The environment variable OLIVE_INSTALLER_VERSION needs to be defined
+$env:OLIVE_INSTALLER_VERSION = python .\build_scripts\installer-version.py -win
 
-if (-not (Test-Path env:CHIA_INSTALLER_VERSION)) {
-  $env:CHIA_INSTALLER_VERSION = '0.0.0'
-  Write-Output "WARNING: No environment variable CHIA_INSTALLER_VERSION set. Using 0.0.0"
+if (-not (Test-Path env:OLIVE_INSTALLER_VERSION)) {
+  $env:OLIVE_INSTALLER_VERSION = '0.0.0'
+  Write-Output "WARNING: No environment variable OLIVE_INSTALLER_VERSION set. Using 0.0.0"
   }
-Write-Output "Olive Version is: $env:CHIA_INSTALLER_VERSION"
+Write-Output "Olive Version is: $env:OLIVE_INSTALLER_VERSION"
 Write-Output "   ---"
 
 Write-Output "   ---"
@@ -80,7 +79,6 @@ git status
 Write-Output "   ---"
 Write-Output "Prepare Electron packager"
 Write-Output "   ---"
-$Env:NODE_OPTIONS = "--max-old-space-size=3000"
 npm install --save-dev electron-winstaller
 npm install -g electron-packager
 npm install
@@ -102,7 +100,7 @@ Write-Output "Increase the stack for olive command for (olive plots create) oliv
 editbin.exe /STACK:8000000 daemon\olive.exe
 Write-Output "   ---"
 
-$packageVersion = "$env:CHIA_INSTALLER_VERSION"
+$packageVersion = "$env:OLIVE_INSTALLER_VERSION"
 $packageName = "Olive-$packageVersion"
 
 Write-Output "packageName is $packageName"

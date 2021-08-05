@@ -3,18 +3,18 @@ from typing import List
 
 import pytest
 
-from olive.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
-from olive.full_node.mempool_manager import MempoolManager
-from olive.simulator.simulator_protocol import FarmNewBlockProtocol
-from olive.types.blockchain_format.coin import Coin
-from olive.types.blockchain_format.sized_bytes import bytes32
-from olive.types.peer_info import PeerInfo
-from olive.util.ints import uint16, uint32, uint64
-from olive.wallet.cc_wallet.cc_utils import cc_puzzle_hash_for_inner_puzzle_hash
-from olive.wallet.cc_wallet.cc_wallet import CCWallet
-from olive.wallet.puzzles.cc_loader import CC_MOD
-from olive.wallet.transaction_record import TransactionRecord
-from olive.wallet.wallet_coin_record import WalletCoinRecord
+from flax.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
+from flax.full_node.mempool_manager import MempoolManager
+from flax.simulator.simulator_protocol import FarmNewBlockProtocol
+from flax.types.blockchain_format.coin import Coin
+from flax.types.blockchain_format.sized_bytes import bytes32
+from flax.types.peer_info import PeerInfo
+from flax.util.ints import uint16, uint32, uint64
+from flax.wallet.cc_wallet.cc_utils import cc_puzzle_hash_for_inner_puzzle_hash
+from flax.wallet.cc_wallet.cc_wallet import CCWallet
+from flax.wallet.puzzles.cc_loader import CC_MOD
+from flax.wallet.transaction_record import TransactionRecord
+from flax.wallet.wallet_coin_record import WalletCoinRecord
 from tests.setup_nodes import setup_simulators_and_wallets
 from tests.time_out_assert import time_out_assert
 
@@ -73,7 +73,7 @@ class TestCCWallet:
         await time_out_assert(15, wallet.get_confirmed_balance, funds)
 
         cc_wallet: CCWallet = await CCWallet.create_new_cc(wallet_node.wallet_state_manager, wallet, uint64(100))
-        tx_queue: List[TransactionRecord] = await wallet_node.wallet_state_manager.tx_store.get_not_sent()
+        tx_queue: List[TransactionRecord] = await wallet_node.wallet_state_manager.get_send_queue()
         tx_record = tx_queue[0]
         await time_out_assert(
             15, tx_in_pool, True, full_node_api.full_node.mempool_manager, tx_record.spend_bundle.name()
@@ -113,7 +113,7 @@ class TestCCWallet:
         await time_out_assert(15, wallet.get_confirmed_balance, funds)
 
         cc_wallet: CCWallet = await CCWallet.create_new_cc(wallet_node.wallet_state_manager, wallet, uint64(100))
-        tx_queue: List[TransactionRecord] = await wallet_node.wallet_state_manager.tx_store.get_not_sent()
+        tx_queue: List[TransactionRecord] = await wallet_node.wallet_state_manager.get_send_queue()
         tx_record = tx_queue[0]
         await time_out_assert(
             15, tx_in_pool, True, full_node_api.full_node.mempool_manager, tx_record.spend_bundle.name()
@@ -283,7 +283,7 @@ class TestCCWallet:
         await time_out_assert(15, wallet.get_confirmed_balance, funds)
 
         cc_wallet: CCWallet = await CCWallet.create_new_cc(wallet_node.wallet_state_manager, wallet, uint64(100))
-        tx_queue: List[TransactionRecord] = await wallet_node.wallet_state_manager.tx_store.get_not_sent()
+        tx_queue: List[TransactionRecord] = await wallet_node.wallet_state_manager.get_send_queue()
         tx_record = tx_queue[0]
         await time_out_assert(
             15, tx_in_pool, True, full_node_api.full_node.mempool_manager, tx_record.spend_bundle.name()
@@ -363,7 +363,7 @@ class TestCCWallet:
         await time_out_assert(15, wallet_0.get_confirmed_balance, funds)
 
         cc_wallet_0: CCWallet = await CCWallet.create_new_cc(wallet_node_0.wallet_state_manager, wallet_0, uint64(100))
-        tx_queue: List[TransactionRecord] = await wallet_node_0.wallet_state_manager.tx_store.get_not_sent()
+        tx_queue: List[TransactionRecord] = await wallet_node_0.wallet_state_manager.get_send_queue()
         tx_record = tx_queue[0]
         await time_out_assert(
             15, tx_in_pool, True, full_node_api.full_node.mempool_manager, tx_record.spend_bundle.name()
@@ -461,7 +461,7 @@ class TestCCWallet:
         await time_out_assert(15, wallet.get_confirmed_balance, funds)
 
         cc_wallet: CCWallet = await CCWallet.create_new_cc(wallet_node.wallet_state_manager, wallet, uint64(100000))
-        tx_queue: List[TransactionRecord] = await wallet_node.wallet_state_manager.tx_store.get_not_sent()
+        tx_queue: List[TransactionRecord] = await wallet_node.wallet_state_manager.get_send_queue()
         tx_record = tx_queue[0]
         await time_out_assert(
             15, tx_in_pool, True, full_node_api.full_node.mempool_manager, tx_record.spend_bundle.name()

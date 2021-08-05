@@ -1,5 +1,4 @@
 import asyncio
-import logging
 import random
 import sqlite3
 from pathlib import Path
@@ -7,13 +6,11 @@ from pathlib import Path
 import aiosqlite
 import pytest
 
-from olive.consensus.blockchain import Blockchain
-from olive.full_node.block_store import BlockStore
-from olive.full_node.coin_store import CoinStore
-from olive.util.db_wrapper import DBWrapper
+from flax.consensus.blockchain import Blockchain
+from flax.full_node.block_store import BlockStore
+from flax.full_node.coin_store import CoinStore
+from flax.util.db_wrapper import DBWrapper
 from tests.setup_nodes import bt, test_constants
-
-log = logging.getLogger(__name__)
 
 
 @pytest.fixture(scope="module")
@@ -67,8 +64,11 @@ class TestBlockStore:
             assert len(await store.get_full_blocks_at([100])) == 0
 
             # Get blocks
-            block_record_records = await store.get_block_records_in_range(0, 0xFFFFFFFF)
-            assert len(block_record_records) == len(blocks)
+            block_record_records = await store.get_block_records()
+            assert len(block_record_records[0]) == len(blocks)
+
+            # Peak is correct
+            assert block_record_records[1] == blocks[-1].header_hash
 
         except Exception:
             await connection.close()
