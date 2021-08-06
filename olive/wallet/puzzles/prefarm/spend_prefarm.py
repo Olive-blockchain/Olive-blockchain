@@ -15,7 +15,7 @@ from olive.util.ints import uint32, uint16
 
 
 async def main() -> None:
-    rpc_port: uint16 = uint16(6355)
+    rpc_port: uint16 = uint16(10113)
     self_hostname = "localhost"
     path = DEFAULT_ROOT_PATH
     config = load_config(path, "config.yaml")

@@ -34,9 +34,9 @@ echo "Note that this simulation will not work if connected to external nodes."
  _run_bg_cmd olive_timelord --logging.log_stdout=True --logging.log_level=INFO
  _run_bg_cmd olive_timelord_launcher --logging.log_stdout=True --logging.log_level=INFO
 _run_bg_cmd olive_introducer --logging.log_stdout=True --logging.log_level=INFO
-_run_bg_cmd olive_full_node --port=6333 --database_path="simulation_1.db" --rpc_port=6355 --introducer_peer.host="127.0.0.1" --introducer_peer.port=6337 --logging.log_stdout=True --logging.log_level=INFO --logging.log_level=INFO
+_run_bg_cmd olive_full_node --port=10114 --database_path="simulation_1.db" --rpc_port=10118 --introducer_peer.host="127.0.0.1" --introducer_peer.port=10120 --logging.log_stdout=True --logging.log_level=INFO --logging.log_level=INFO
 sleep 1
-_run_bg_cmd olive_full_node --port=8002 --database_path="simulation_2.db" --rpc_port=6356 --introducer_peer.host="127.0.0.1" --introducer_peer.port=6337 --logging.log_stdout=True --logging.log_level=INFO
+_run_bg_cmd olive_full_node --port=8002 --database_path="simulation_2.db" --rpc_port=6356 --introducer_peer.host="127.0.0.1" --introducer_peer.port=10120 --logging.log_stdout=True --logging.log_level=INFO
  _run_bg_cmd python -m olive.daemon.server --logging.log_stdout=True --logging.log_level=INFO
 
 wait
