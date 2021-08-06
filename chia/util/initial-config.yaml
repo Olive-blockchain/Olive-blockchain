@@ -305,7 +305,7 @@ full_node:
       host: *self_hostname
       port: 10400
   introducer_peer:
-      host: introducer.olive.net  # Chia AWS introducer IPv4/IPv6
+      host: introducer.olive.net  # Olive AWS introducer IPv4/IPv6
       port: 10111
   wallet_peer:
     host: *self_hostname
@@ -387,7 +387,7 @@ wallet:
   recent_peer_threshold: 6000
 
   introducer_peer:
-    host: introducer.olive.net # Chia AWS introducer IPv4/IPv6
+    host: introducer.olive.net # Olive AWS introducer IPv4/IPv6
     port: 10111
 
   ssl:

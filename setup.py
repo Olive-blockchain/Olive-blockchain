@@ -44,7 +44,7 @@ kwargs = dict(
     name="olive-blockchain",
     author="Mariano Sorgente",
     author_email="mariano@olive.net",
-    description="Chia blockchain full node, farmer, timelord, and wallet.",
+    description="Olive blockchain full node, farmer, timelord, and wallet.",
     url="https://olive.net/",
     license="Apache License",
     python_requires=">=3.7, <4",
