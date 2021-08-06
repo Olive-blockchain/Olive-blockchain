@@ -12,7 +12,7 @@ from olive.consensus.constants import ConsensusConstants
 from olive.protocols import farmer_protocol, harvester_protocol
 from olive.protocols.protocol_message_types import ProtocolMessageTypes
 from olive.server.outbound_message import NodeType, make_msg
-from olive.server.ws_connection import WSKaleConnection
+from olive.server.ws_connection import WSOliveConnection
 from olive.types.blockchain_format.proof_of_space import ProofOfSpace
 from olive.types.blockchain_format.sized_bytes import bytes32
 from olive.util.bech32m import decode_puzzle_hash
@@ -103,7 +103,7 @@ class Farmer:
     def _set_state_changed_callback(self, callback: Callable):
         self.state_changed_callback = callback
 
-    async def on_connect(self, peer: WSKaleConnection):
+    async def on_connect(self, peer: WSOliveConnection):
         # Sends a handshake to the harvester
         handshake = harvester_protocol.HarvesterHandshake(
             self.get_public_keys(),
@@ -120,7 +120,7 @@ class Farmer:
         if self.state_changed_callback is not None:
             self.state_changed_callback(change, data)
 
-    def on_disconnect(self, connection: ws.WSKaleConnection):
+    def on_disconnect(self, connection: ws.WSOliveConnection):
         self.log.info(f"peer disconnected {connection.get_peer_info()}")
         self.state_changed("close_connection", {})
 

@@ -3,7 +3,7 @@ min_mainnet_k_size: 32
 # Send a ping to all peers after ping_interval seconds
 ping_interval: 120
 self_hostname: &self_hostname "localhost"
-daemon_port: 10100
+daemon_port: 11000
 inbound_rate_limit_percent: 100
 outbound_rate_limit_percent: 30
 
@@ -11,7 +11,7 @@ network_overrides: &network_overrides
   constants:
     mainnet:
       NETWORK_TYPE: 0
-      GENESIS_CHALLENGE: 4adf0fe70cfbd24286695e105624a92e44c083eca84ee2906106e51566f5ae4d
+      GENESIS_CHALLENGE: 5a1be4fb8a8739798482f1dc549ec264d1cf5362aa90deb892cfb30c11be2280
       GENESIS_PRE_FARM_POOL_PUZZLE_HASH: "642e4098cd8dd161741868060bd8f0eabab8dcbe6e984c5a2c4bb00a69cc96d2"
       GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: "642e4098cd8dd161741868060bd8f0eabab8dcbe6e984c5a2c4bb00a69cc96d2"
     testnet0:
@@ -54,14 +54,14 @@ logging: &logging
 
 harvester:
   # The harvester server (if run) will run on this port
-  port: 10101
+  port: 11001
   farmer_peer:
     host: *self_hostname
-    port: 10102
+    port: 11002
 
   # If True, starts an RPC server at the following port
   start_rpc_server: True
-  rpc_port: 10103
+  rpc_port: 11003
   num_threads: 30
   plot_loading_frequency_seconds: 120
 
@@ -94,14 +94,14 @@ pool:
 
 farmer:
   # The farmer server (if run) will run on this port
-  port: 10102
+  port: 11002
   # The farmer will attempt to connect to this full node and harvester
   full_node_peer:
     host: *self_hostname
-    port: 10104
+    port: 11004
   harvester_peer:
     host: *self_hostname
-    port: 10101
+    port: 11001
 
   pool_public_keys: []
 
@@ -110,7 +110,7 @@ farmer:
 
   # If True, starts an RPC server at the following port
   start_rpc_server: True
-  rpc_port: 6459
+  rpc_port: 11005
 
   # To send a share to a pool, a proof of space must have required_iters less than this number
   pool_share_threshold: 1000
@@ -127,7 +127,7 @@ farmer:
 # Don't run this unless you want to run VDF clients on the local machine.
 timelord_launcher:
   # The server where the VDF clients will connect to.
-  port: 10105
+  port: 11006
   # Number of VDF client processes to keep alive in the local machine.
   process_count: 3
   logging: *logging
@@ -135,7 +135,7 @@ timelord_launcher:
 
 timelord:
   # The timelord server (if run) will run on this port
-  port: 10106
+  port: 11006
   # Provides a list of VDF clients expected to connect to this timelord.
   # For each client, an IP is provided, together with the estimated iterations per second.
   vdf_clients:
@@ -147,13 +147,13 @@ timelord:
       - 150000
   full_node_peer:
       host: *self_hostname
-      port: 10104
+      port: 11004
   # Maximum number of seconds allowed for a client to reconnect to the server.
   max_connection_time: 60
   # The ip and port where the TCP clients will connect.
   vdf_server:
     host: *self_hostname
-    port: 10105
+    port: 11006
   logging: *logging
   network_overrides: *network_overrides
   selected_network: *selected_network
@@ -182,7 +182,7 @@ timelord:
 
 full_node:
   # The full node server (if run) will run on this port
-  port: 10104
+  port: 11004
 
   # Run multiple nodes with different databases by changing the database_path
   database_path: db/blockchain_v1_CHALLENGE.sqlite
@@ -192,7 +192,7 @@ full_node:
 
   # If True, starts an RPC server at the following port
   start_rpc_server: True
-  rpc_port: 10106
+  rpc_port: 11006
 
   # Use UPnP to attempt to allow other full nodes to reach your node behind a gateway
   enable_upnp: True
@@ -240,16 +240,16 @@ full_node:
     - "dns-introducer.oliveblockchain.co"
   farmer_peer:
       host: *self_hostname
-      port: 10102
+      port: 11002
   timelord_peer:
       host: *self_hostname
-      port: 10106
+      port: 11006
   introducer_peer:
-      host: introducer.oliveblockchain.co  # Kale AWS introducer IPv4/IPv6
-      port: 10104
+      host: introducer.oliveblockchain.co  # Olive AWS introducer IPv4/IPv6
+      port: 11004
   wallet_peer:
     host: *self_hostname
-    port: 10107
+    port: 11007
   logging: *logging
   network_overrides: *network_overrides
   selected_network: *selected_network
@@ -262,10 +262,10 @@ full_node:
 
 ui:
    # The ui node server (if run) will run on this port
-  port: 10108
+  port: 11008
 
   # Which port to use to communicate with the full node
-  rpc_port: 10106
+  rpc_port: 11006
 
   # This SSH key is for the ui SSH server
   ssh_filename: config/ssh_host_key
@@ -276,14 +276,14 @@ ui:
   # this is where the electron UI will find its daemon
   # defaults to the one running locally with its private keys
   daemon_host: *self_hostname
-  daemon_port: 10100
+  daemon_port: 11000
   daemon_ssl:
     private_crt: config/ssl/daemon/private_daemon.crt
     private_key: config/ssl/daemon/private_daemon.key
 
 introducer:
   host: *self_hostname
-  port: 10108
+  port: 11008
   max_peers_to_send: 20
   # The introducer will only return peers who it has seen in the last
   # recent_peer_threshold seconds
@@ -297,8 +297,8 @@ introducer:
     public_key:  "config/ssl/full_node/public_full_node.key"
 
 wallet:
-  port: 10107
-  rpc_port: 10109
+  port: 11007
+  rpc_port: 11009
 
   # The minimum height that we care about for our transactions. Set to zero
   # If we are restoring from private key and don't know the height.
@@ -310,7 +310,7 @@ wallet:
 
   full_node_peer:
     host: *self_hostname
-    port: 10104
+    port: 11004
 
   testing: False
   database_path: wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite
@@ -327,8 +327,8 @@ wallet:
   recent_peer_threshold: 6000
 
   introducer_peer:
-    host: introducer.oliveblockchain.co # Kale AWS introducer IPv4/IPv6
-    port: 10104
+    host: introducer.oliveblockchain.co # Olive AWS introducer IPv4/IPv6
+    port: 11004
 
   ssl:
     private_crt:  "config/ssl/wallet/private_wallet.crt"

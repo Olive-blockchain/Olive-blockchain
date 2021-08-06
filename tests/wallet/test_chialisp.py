@@ -17,7 +17,7 @@ from olive.wallet.olivelisp import (
 )
 
 
-class TestKalelisp:
+class TestOlivelisp:
     def test_sexp(self):
         assert sexp() == "()"
         assert sexp(1) == "(1)"

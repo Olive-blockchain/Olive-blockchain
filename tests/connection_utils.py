@@ -9,8 +9,8 @@ from cryptography.hazmat.primitives import hashes, serialization
 
 from olive.protocols.shared_protocol import protocol_version
 from olive.server.outbound_message import NodeType
-from olive.server.server import KaleServer, ssl_context_for_client
-from olive.server.ws_connection import WSKaleConnection
+from olive.server.server import OliveServer, ssl_context_for_client
+from olive.server.ws_connection import WSOliveConnection
 from olive.ssl.create_ssl import generate_ca_signed_cert
 from olive.types.blockchain_format.sized_bytes import bytes32
 from olive.types.peer_info import PeerInfo
@@ -21,14 +21,14 @@ from tests.time_out_assert import time_out_assert
 log = logging.getLogger(__name__)
 
 
-async def disconnect_all_and_reconnect(server: KaleServer, reconnect_to: KaleServer) -> bool:
+async def disconnect_all_and_reconnect(server: OliveServer, reconnect_to: OliveServer) -> bool:
     cons = list(server.all_connections.values())[:]
     for con in cons:
         await con.close()
     return await server.start_client(PeerInfo(self_hostname, uint16(reconnect_to._port)), None)
 
 
-async def add_dummy_connection(server: KaleServer, dummy_port: int) -> Tuple[asyncio.Queue, bytes32]:
+async def add_dummy_connection(server: OliveServer, dummy_port: int) -> Tuple[asyncio.Queue, bytes32]:
     timeout = aiohttp.ClientTimeout(total=10)
     session = aiohttp.ClientSession(timeout=timeout)
     incoming_queue: asyncio.Queue = asyncio.Queue()
@@ -45,7 +45,7 @@ async def add_dummy_connection(server: KaleServer, dummy_port: int) -> Tuple[asy
     peer_id = bytes32(der_cert.fingerprint(hashes.SHA256()))
     url = f"wss://{self_hostname}:{server._port}/ws"
     ws = await session.ws_connect(url, autoclose=True, autoping=True, ssl=ssl_context)
-    wsc = WSKaleConnection(
+    wsc = WSOliveConnection(
         NodeType.FULL_NODE,
         ws,
         server._port,
@@ -64,7 +64,7 @@ async def add_dummy_connection(server: KaleServer, dummy_port: int) -> Tuple[asy
     return incoming_queue, peer_id
 
 
-async def connect_and_get_peer(server_1: KaleServer, server_2: KaleServer) -> WSKaleConnection:
+async def connect_and_get_peer(server_1: OliveServer, server_2: OliveServer) -> WSOliveConnection:
     """
     Connect server_2 to server_1, and get return the connection in server_1.
     """

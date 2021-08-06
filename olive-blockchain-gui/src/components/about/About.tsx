@@ -113,7 +113,7 @@ export default function About(props: Props) {
         <StyledSubTitle>{description}</StyledSubTitle>
         <Spacer />
         <div className="copyright">
-          Copyright (c) 2021 Kale Network
+          Copyright (c) 2021 Olive Network
         </div>
         <Spacer />
         <VersionsTable>
@@ -143,7 +143,7 @@ export default function About(props: Props) {
           )}
         </VersionsTable>
 
-        <BugReport href="https://github.com/Kale-Network/olive-blockchain/issues" target="_blank">
+        <BugReport href="https://github.com/Olive-Network/olive-blockchain/issues" target="_blank">
           Report an issue
         </BugReport>
         {'{{CSS}}'}

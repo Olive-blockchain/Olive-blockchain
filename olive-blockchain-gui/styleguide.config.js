@@ -7,7 +7,7 @@ module.exports = {
     Wrapper: path.join(__dirname, "src/StyleguidistMuiWrapper"),
   },
   ribbon: {
-    url: "https://github.com/Kale-Network/olive-blockchain",
+    url: "https://github.com/Olive-Network/olive-blockchain",
   },
   version,
 };

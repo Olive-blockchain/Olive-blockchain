@@ -28,8 +28,8 @@ export default function PlotOverviewHero() {
           <PlotHeroIcon fontSize="large" />
           <Typography variant="body1">
             <Trans>
-              {'Plots are allocated space on your hard drive used to farm and earn Kale. '}
-              <Link target="_blank" href="https://github.com/Kale-Network/olive-blockchain/wiki/Network-Architecture">Learn more</Link>
+              {'Plots are allocated space on your hard drive used to farm and earn Olive. '}
+              <Link target="_blank" href="https://github.com/Olive-Network/olive-blockchain/wiki/Network-Architecture">Learn more</Link>
             </Trans>
           </Typography>
           <Button

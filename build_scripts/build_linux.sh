@@ -22,7 +22,7 @@ if [ ! "$OLIVE_INSTALLER_VERSION" ]; then
 	echo "WARNING: No environment variable OLIVE_INSTALLER_VERSION set. Using 0.0.0."
 	OLIVE_INSTALLER_VERSION="0.0.0"
 fi
-echo "Kale Installer Version is: $OLIVE_INSTALLER_VERSION"
+echo "Olive Installer Version is: $OLIVE_INSTALLER_VERSION"
 
 echo "Installing npm and electron packagers"
 npm install electron-packager -g
@@ -58,7 +58,7 @@ if [ "$LAST_EXIT_CODE" -ne 0 ]; then
 fi
 
 electron-packager . olive-blockchain --asar.unpack="**/daemon/**" --platform=linux \
---icon=src/assets/img/Kale.icns --overwrite --app-bundle-id=net.olive.blockchain \
+--icon=src/assets/img/Olive.icns --overwrite --app-bundle-id=net.olive.blockchain \
 --appVersion=$OLIVE_INSTALLER_VERSION
 LAST_EXIT_CODE=$?
 if [ "$LAST_EXIT_CODE" -ne 0 ]; then
