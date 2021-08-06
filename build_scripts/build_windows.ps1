@@ -3,7 +3,7 @@
 $ErrorActionPreference = "Stop"
 
 mkdir build_scripts\win_build
-Set-Location -Path ".\build_scripts\win_build" -PassThru
+Set-Location -Path ".\build_scripts\win_build\" -PassThru
 
 git status
 
@@ -17,7 +17,7 @@ If ($LastExitCode -gt 0){
 }
 else
 {
-    Set-Location -Path - -PassThru
+    Set-Location -Path "..\..\" -PassThru
     Write-Output "miniupnpc download successful."
 }
 
