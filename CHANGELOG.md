@@ -444,7 +444,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - In chiavdf we changed n-Wesolowski proofs to include B instead of y in segments. Proof segments now have the form (iters, B, proof) instead of (iters, y, proof). This reduces proof segment size from 208 to 141 bytes.
 - The new chiavdf proof format is not compatible with the old one, however zero-Wesolowski proofs are not affected as they have zero proof segments and consist only of (y, proof).
 - We made two HashPrime optimizations in chiavdf. This forces numbers being tested for primality to be odd and avoids an unnecessary update of the sprout vector by stopping after the first non-zero value. This is a breaking change as it changes the prime numbers generated from a given seed. We believe this is the final breaking change for chiavdf.
-- olivebip158 was set to a gold 1.0 version.
+- chiabip158 was set to a gold 1.0 version.
 - Comments to Olivelisp and clvm source have been updated for all of the Olivelisp changes over the proceeding three weeks.
 - And thanks yet again to @jespino for a host of PRs to add more detailed typing to various components in olive-blockchain.
 - aiohttp was updated to 3.7.4 to address a low severity [security issue](https://github.com/advisories/GHSA-v6wp-4m6f-gcjg).
@@ -570,7 +570,7 @@ all fields that referred to sub blocks are changed to blocks.
 - We have added the [Crowdin](https://crowdin.com/) translation platform to [olive blockchain gui](https://crowdin.com/project/olive-blockchain). We are still getting it fully set up, but helping to translate the GUI is going to be much easier.
 - Full Node > Connections in the GUI now shows the peak sub block height your connected peers believe they are at. A node syncing from you will not be at the true peak sub block height until it gets into sync.
 - `olive init -c [directory]` will create new TLS certificates signed by your CA located in `[directory]`. Use this feature to configure a new remote harvester. Type `olive init -h` to get instructions. Huge thanks to a very efficient @eFishCent for this quick and thorough pull request.
-- We build both MacOS x86_64 and MacOS universal wheels for chiapos, chiavdf, blpsy, and olivebip158 in Python 3.9. The universal build allows M1 Macs to run these dependencies in ARM64 native mode.
+- We build both MacOS x86_64 and MacOS universal wheels for chiapos, chiavdf, blpsy, and chiabip158 in Python 3.9. The universal build allows M1 Macs to run these dependencies in ARM64 native mode.
 - On first run in the GUI (or when there are no plot directories) there is now an "Add Plot Directories" on the Farm tab also.
 
 ### Changed
@@ -628,7 +628,7 @@ all fields that referred to sub blocks are changed to blocks.
 - Plot filename is now back in the Plots table of the GUI.
 - There was a bug in adding a sub block to weight proofs and an issue in the weight proof index.
 - Over time the node would think that there were no peers attached with peak sub block heights higher than 0.
-- There was a potential bug in Python 3.9.0 that required us to update blspy, chiapos, chiavdf, and olivebip158.
+- There was a potential bug in Python 3.9.0 that required us to update blspy, chiapos, chiavdf, and chiabip158.
 - An off by one issue could cause syncing to ask for 1 sub block when it should ask for e.g. 32.
 - Short sync and backtrack sync both had various issues.
 - There was an edge case in bip158 handling.
@@ -804,7 +804,7 @@ all fields that referred to sub blocks are changed to blocks.
 
 - F1 generation in the plotter is now fully parallel for a small speedup.
 - We have bitfield optimized phase 2 of plotting. There is only about a 1% increase in speed from this change but there is a 12% decrease in writes with a penalty of 3% more reads. More details in [PR 120](https://github.com/Olive-Network/chiapos/pull/120). Note that some sorts in phase 2 and phase 3 will now appear "out of order" and that is now expected behavior.
-- Partial support for Python 3.9. That includes new versions of Olive dependencies like olivebip158.
+- Partial support for Python 3.9. That includes new versions of Olive dependencies like chiabip158.
 
 ### Changed
 
@@ -1197,7 +1197,7 @@ relic. We will make a patch available for these systems shortly.
 - We added total network storage space estimation to the node RPC at the `/get_network_space` endpoint instead of only being available in the cli. The RPC endpoint takes two block header hashes and estimates space between those header hashes.
 - Logs now autorotate. Once the debug.log reaches 20MB it is compressed and archived keeping 7 historical 20MB logs.
 - We now have a CHANGELOG.md that adheres closely to the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) standard. We merged in the version history and updated some previous release notes to capture items important to the change log. We are modifying our release process to accumulate changes at the top of the change log and then copy those to the release notes at the time of the release.
-- We added [lgtm](https://lgtm.com/) source analysis on pull request to the olive-blockchain, chiapos, chiavdf, olivebip158, and bls-library repositories to add some automated security analysis to our ci.
+- We added [lgtm](https://lgtm.com/) source analysis on pull request to the olive-blockchain, chiapos, chiavdf, chiabip158, and bls-library repositories to add some automated security analysis to our ci.
 
 ### Changed
 
@@ -1355,7 +1355,7 @@ relic. We will make a patch available for these systems shortly.
 - We have revamped the olive management command line. To start a farmer all you have to do is start the venv with `. ./activate` and then type `olive-start-farmer &`. The [README.md](https://github.com/Olive-Network/olive-blockchain/blob/main/README.md) has been updated to reflect the new commands.
 - We have moved all node to node communication to TLS 1.3 by default. For now, all TLS is unauthenticated but certain types of over the wire node to node communications will have the ability to authenticate both by certificate and by inter protocol signature. Encrypting over the wire by default stops casual snooping of transaction origination, light wallet to trusted node communication, and harvester-farmer-node communication for example. This leaves only the mempool and the chain itself open to casual observation by the public and the various entities around the world.
 - Configuration directories have been moved to a default location of HomeDirectory/.olive/release/config, plots/ db/, wallet/ etc. This can be overridden by `export OLIVE_ROOT=~/.olive` for example which would then put the plots directory in `HomeDirectory/.olive/plots`.
-- The libraries olive-pos, olive-fast-vdf, and olive-bip-158 have been moved to their own repositories: [chiapos](https://github.com/Olive-Network/chiapos), [chiavdf](https://github.com/Olive-Network/chiavdf), and [chaibip158](https://github.com/Olive-Network/olivebip158). They are brought in by olive-blockchain at install time. Our BLS signature library remains at [bls-signatures](https://github.com/Olive-Network/bls-signatures).
+- The libraries olive-pos, olive-fast-vdf, and olive-bip-158 have been moved to their own repositories: [chiapos](https://github.com/Olive-Network/chiapos), [chiavdf](https://github.com/Olive-Network/chiavdf), and [chaibip158](https://github.com/Olive-Network/chiabip158). They are brought in by olive-blockchain at install time. Our BLS signature library remains at [bls-signatures](https://github.com/Olive-Network/bls-signatures).
 - The install process now brings in chiapos, chiavdf, etc from Pypi where they are auto published via GitHub Actions ci using cibuildwheel. Check out `.github/workflows/build.yml` for build methods in each of the sub repositories.
 - `olive-regenerate-keys` has been renamed `olive-generate-keys`.
 - setproctitle is now an optional install dependency that we will continue to install in the default install methods.
