@@ -92,7 +92,7 @@ class TestPeerManager:
         assert await addrman.add_peer_info([peer1], source)
         assert await addrman.size() == 1
 
-        peer2 = PeerInfo("250.1.1.1", 8445)
+        peer2 = PeerInfo("250.1.1.1", 10600)
         assert not await addrman.add_peer_info([peer2], source)
         assert await addrman.size() == 1
         peer3 = await addrman.select_peer()

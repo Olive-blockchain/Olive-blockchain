@@ -1,12 +1,12 @@
 from setuptools import setup
 
 dependencies = [
-    "blspy==1.0.4",  # Signature library
-    "olivevdf==1.0.2",  # timelord and vdf verification
+    "blspy==1.0.2",  # Signature library
+    "olivevdf==1.0.1",  # timelord and vdf verification
     "olivebip158==1.0",  # bip158-style wallet filters
-    "olivepos==1.0.3",  # proof of space
-    "clvm==0.9.7",
-    "clvm_rs==0.1.8",
+    "olivepos==1.0.2",  # proof of space
+    "clvm==0.9.6",
+    "clvm_rs==0.1.7",
     "clvm_tools==0.4.3",
     "aiohttp==3.7.4",  # HTTP server for full node rpc
     "aiosqlite==0.17.0",  # asyncio wrapper for sqlite, to store blocks
@@ -27,7 +27,7 @@ dependencies = [
 ]
 
 upnp_dependencies = [
-    "miniupnpc==2.2.2",  # Allows users to open ports on their router
+    "miniupnpc==2.1",  # Allows users to open ports on their router
 ]
 
 dev_dependencies = [
@@ -60,7 +60,6 @@ kwargs = dict(
         "build_scripts",
         "olive",
         "olive.cmds",
-        "olive.clvm",
         "olive.consensus",
         "olive.daemon",
         "olive.full_node",
@@ -69,7 +68,6 @@ kwargs = dict(
         "olive.harvester",
         "olive.introducer",
         "olive.plotting",
-        "olive.pools",
         "olive.protocols",
         "olive.rpc",
         "olive.server",
@@ -103,7 +101,7 @@ kwargs = dict(
     },
     package_data={
         "olive": ["pyinstaller.spec"],
-        "": ["*.clvm", "*.clvm.hex", "*.clib", "*.clinc", "*.clsp"],
+        "olive.wallet.puzzles": ["*.clvm", "*.clvm.hex"],
         "olive.util": ["initial-*.yaml", "english.txt"],
         "olive.ssl": ["olive_ca.crt", "olive_ca.key", "dst_root_ca.pem"],
         "mozilla-ca": ["cacert.pem"],

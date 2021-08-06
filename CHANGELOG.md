@@ -6,88 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project does not yet adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 for setuptools_scm/PEP 440 reasons.
 
-## 1.2.1 Olive blockchain 2021-07-12
-
-### Added
-
-- Thanks @feldsam for adding support for Fedora in install-gui script
-
-### Fixed
-
-- Fix harvester cache updates. Prior to this commit the farmer called the `request_plots` every second for each harvester as long as they failed to respond properly. Since the rate limit was 10/minute this lead to hitting the rate limit if the harvester didn't responds for 10 tries in a row for whatever reason. This commit changes the behavior to always keep track of request attempts even if they end up in a timeout to really only re-try every 60s no matter what.
-- Fix M1 installed torrent and installer version number
-- Thanks to @x-Rune for helping find and test a lot of 1.2.0 bugs with the harvester.
-- Fixed issue for Debian users where the wallet crashes on start for them since last release
-
-## 1.2.0 Olive blockchain 2021-07-07
-
-### Added
-
-- Portable pooled plots are now available using our new plot NFT. These allow you to plot new plots to an NFT that can either self farm or join and leave pools. During development there were changes to the plot NFT so portable pool plots (those made with `-c` option to `olive plots create`) using code from before June 25th are invalid on mainnet.
-OG plots made before this release can continue to be farmed side by side with the new portable pool plots but can not join pools using the official pooling protocol. You can learn more as a farmer by checking out the [pool user guide](https://github.com/Olive-Network/olive-blockchain/wiki/Pooling-User-Guide). Pool operators and those wanting to understand how the official pooling protocol operates should check out our [pooling implementation reference repository](https://github.com/Olive-Network/pool-reference). If you plan to use plot NFT, all your farmers and harvesters must be on 1.2.0 to function properly for portable pool plots.
-- The exact commit after which Plot NFTs should be valid is the 89f7a4b3d6329493cd2b4bc5f346a819c99d3e7b commit (in which `pools.testnet9` branch was merged to main) or 5d62b3d1481c1e225d8354a012727ab263342c0a within the `pools.testnet9` branch.
-- `olive farm summary` and the GUI now use a new RPC endpoint to properly show plots for local and remote harvesters. This should address issues #6563, #5881, #3875, #1461.
-- `olive configure` now supports command line updates to peer count and target peer count.
-- Thank you @gldecurtins for adding logging support for remote syslog.
-- Thanks to @maran and @Animazing for adding farmer and pool public key display to the RPC.
-- We have added translations for Hungarian, Belarusian, Catalan, and Albanian.  For Hungarian thanks to @SirGeoff, @azazio @onokaxxx, @rolandfarkasCOM, @HUNDavid , @horvathpalzsolt, @stishun74, @tusdavgaming, @idotitusz, @rasocsabi, @mail.kope, @gsprblnt, @mbudahazi, @csiberius, @tomatos83, @zok42, @ocel0t, @rwtoptomi, @djxpitke, @ftamas85, @zotya0330, @fnni, @kapabeates, @zamery, @viktor.gonczi, @pal.suta, @miv, and @Joeman_. For Belarusian thanks to @shurix83, @haxycgm, and @metalomaniax. For Catalan thank you to @Poliwhirl, @Pep-33, @marqmarti, @meuca, @Guiwdin, @carlescampi, @jairobtx, @Neoares, @darknsis, @augustfarrerasgimeno, and @fornons. Finally for Albanian thanks to @ATSHOOTER and @lakedeejay. We apologize if we missed anyone and welcome corrections.
-- Our release process is now fully automated from tagging a release to publishing installers to all of the appropriate locations and now makes the release artifacts available via torrents as well.
-- All Olive repositories now automatically build M1 wheels and create a new MacOS M1 native installer.
-- New CLI command `olive plotnft` to manage pools.
-- We have added a new RPC `get_harvesters` to the farmer. This returns information about remote harvesters and plots.
-- We have added a new RPC `check_delete_key` to the wallet, to check keys prior to deleting them.
-- We have added a new RPC `delete_unconfirmed_transactions` to the wallet which deletes these transactions for a given wallet ID.
-- We have added a new RPC `get_puzzle_and_solution` to the full node, which takes in a coin ID.
-- We have added a new RPC `get_recent_signage_point_or_eos` to the full node, to support pooling.
-- We have added a new RPC `send_transaction_multi` to the wallet, which sends a payment with multiple payees.
-
-### Changed
-
-- We have made a host of changes to the GUI to support pooling and to improve the wallet experience.
-- We updated olivepos to version 1.0.3. This adds parallel reads to GetFullProof. Thanks to @marcoabreu ! We now print target/final directory early in the logs refs and log process ID. Thanks to @grayfallstown ! We are now using Gulrak 1.5.6.
-@683280 optimized code in phase1.hpp. @jespino and @mrhacky started migrating to flags instead of booleans parameters for `show_progress` and `nobitfield`. If you are providing third-party tools you may need to make adjustments if relying on the olivepos log.
-- Updated olivevdf to version 1.0.2 to fix certain tests.
-- Windows builds now rely upon Python 3.9 which obviates the fix in 1.1.7.
-- We are now using miniupnpc version 2.2.2 so that we can support Python 3.9 on Windows.
-- We updated to clvm 0.9.6 and clvm_rs 0.1.8. CLVMObject now lazily converts python types to CLVM types as elements are inspected in clvm. cvlm_rs now returns python objects rather than a serialized object.
-- We now have rudimentary checks to makes sure that fees are less than the amount being spent.
-- The harvester API no longer relies upon time:time with thanks to @x1957.
-- We have increased the strictness of validating Olivelisp in the mempool and clvm.
-- Thanks to @ruslanskorb for improvements to the human-readable forms in the CLI.
-- Thanks to @etr2460 for improvements to the plotting progress bar in the GUI and enhancements to human-readable sizes.
-- @dkackman changed the way that configuration was found on startup.
-- We now delay peer start for wallet until after backup init and make sure only one copy is started.
-- Wallets now trust the local node more for enhanced wallet sync speed.
-- We now store tasks used to initiate peer connections to ensure they are kept alive and to be able to wait for them if we hit the upper limit on number of pending outgoing connections.
-- We improved weight proof validation.
-- @cvet changed the wallet to take `override` instead of `confirm`.
-
-### Fixed
-
-- The delete plots button in the Windows GUI has been fixed and re-enabled.
-- Sometimes upon startup, the GUI takes a while to load the plots to display. We've made a temporary improvement that adds a "Refresh Plots" button whenever the GUI has not yet found plots.
-- Correctly display private key in `olive keys show`.
-- Thanks to @gldecurtins for removing a default printout of the private key mnemonic in `olive keys show`.
-- Shutting down the full node is cleaner and manages uPnP better.
-- DNS introducer could fail.
-- Fixed a potential timelord bug that could lead to a chain stall.
-- Add an explicit error message when mnemonic words are not in the dictionary; should help users self-service issues like #3425 faster. Thank you to @elliotback for this PR.
-- Thank you to @Nikolaj-K for various typo corrections around the Mozilla CA, code simplifications and improvements in converting to human-readable size estimations, and clean up in the RPCs and logging.
-- Thank you to @OliveMineJP for various improvements.
-- @asdf2014 removed some useless code in the wallet node API.
-- Thanks to @willi123yao for a fix to under development pool wallets.
-- `olive farm summary` better handles wallet errors.
-- @Hoinor fixed formatting issues around the Chinese translation in the GUI.
-- Sometimes the GUI would stop refreshing certain fields.
-- We have better error handling for misbehaving peers from naive forks/clones.
-- We have fixed an error where the wallet could get corrupted, which previously required restarting the application.
-- We have fixed an error where transactions were not being resubmitted from the wallet.
-
-### Known Issues
-
-- If you resync your wallet, transactions made with your plot NFTs will show incorrectly in the GUI. The internal accounting, and total balance displayed is correct.
-
-### 1.1.7 Olive Blockchain 2021-06-05
+## 1.1.7 Olive Blockchain 2021-06-05
 
 ### Fixed
 
@@ -272,7 +191,6 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - Help -> About was blank.
 - Our estimate for k=32 was about 0.4GiB too low in some cases.
 - Building the GUI in especially ARM64 Linux was painful enough to be considered broken.
-
 ## 1.0.4 Olive Blockchain 2021-04-12
 
 ### Added
@@ -387,23 +305,18 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - Thank you @L3Sota for bringing this log back into 2021.
 - The errant warning on Electron startup has been removed. Thanks @dkackman.
 
+
 ## 1.0rc9 aka Release Candidate 9 - 2021-03-16
 
 ### Changed
-
 - This is a hard fork/breaking change from RC6/7/8. The current plan is to drop the flag at noon pacific time, today 3/16.
 - Using the real prefarm keys for this test
 
 ### Fixed
-
 - Found and fixed another green flag related issue
 - Fixed an issue with weight proofs where all sub-epochs were sampled, and the size of the weight proof kept growing
 - Fixed an issue with install-gui.sh, where npm audit fix was failing. (Thanks @Depado!)
-<<<<<<< HEAD
 - Migration with OLIVE_ROOT set does not crash olive init
-=======
-- Migration with CHIA_ROOT set does not crash olive init
->>>>>>> parent of d2478a0 (check)
 
 ## 1.0rc8 aka Release Candidate 8 - 2021-03-15
 
@@ -643,6 +556,7 @@ all fields that referred to sub blocks are changed to blocks.
 - We updated olivepos to hopefully address some harvester crashes when moving plot files.
 - Many of the cards on the Farming page have had bugs addressed including last block farmed, block rewards, and user fees.
 - Improved validation of overflow blocks.
+
 
 ## [1.0beta27] aka Beta 1.27 - 2021-02-11
 
@@ -1340,11 +1254,7 @@ relic. We will make a patch available for these systems shortly.
 
 ### Deprecated
 
-<<<<<<< HEAD
 - We have made significant changes to the full node database to make it more reliable and quicker to restart. This requires re-syncing the current chain. If you use `olive init` then sync on first start will happen automatically. "\$OLIVE_ROOT" users will need to delete `$OLIVE_ROOT/db/*` before starting Beta 1.5. This also fixes the simulation issue in Beta 1.4 where tips could go "back in time."
-=======
-- We have made significant changes to the full node database to make it more reliable and quicker to restart. This requires re-syncing the current chain. If you use `olive init` then sync on first start will happen automatically. "\$CHIA_ROOT" users will need to delete `$CHIA_ROOT/db/*` before starting Beta 1.5. This also fixes the simulation issue in Beta 1.4 where tips could go "back in time."
->>>>>>> parent of d2478a0 (check)
 
 ### Known issues
 
@@ -1397,11 +1307,7 @@ relic. We will make a patch available for these systems shortly.
 - Windows, WSL 2, Linux and MacOS installation is significantly streamlined. There is a new Windows installer for the Wallet GUI (huge thanks to @dkackman).
 - All installs can now be from the source repository or just the binary dependencies on WSL 2, most modern Linuxes, and MacOS Catalina. Binary support is for both Python 3.7 and 3.8.
 - There is a new migration tool to move from Beta1 (or 2) to Beta3. It should move everything except your plots.
-<<<<<<< HEAD
 - There is a new command `olive init` that will migrate files and generate your initial configuration. If you want to use the Wallet or farm, you will also have to `olive-generate-keys`. You can read step by step instructions for [upgrading from a previous beta release](https://github.com/Olive-Network/olive-blockchain/wiki/Updating-beta-software). If you've set `$OLIVE_ROOT` you will have to make sure your existing configuration remains compatible manually.
-=======
-- There is a new command `olive init` that will migrate files and generate your initial configuration. If you want to use the Wallet or farm, you will also have to `olive-generate-keys`. You can read step by step instructions for [upgrading from a previous beta release](https://github.com/Olive-Network/olive-blockchain/wiki/Updating-beta-software). If you've set `$CHIA_ROOT` you will have to make sure your existing configuration remains compatible manually.
->>>>>>> parent of d2478a0 (check)
 - Wallet has improved paper wallet recovery support.
 - We now also support restoring old wallets with only the wallet_sk and wallet_target. Beta3's Wallet will re-sync from scratch.
 - We've made lots of little improvements that should speed up node syncing
@@ -1448,11 +1354,7 @@ relic. We will make a patch available for these systems shortly.
 
 - We have revamped the olive management command line. To start a farmer all you have to do is start the venv with `. ./activate` and then type `olive-start-farmer &`. The [README.md](https://github.com/Olive-Network/olive-blockchain/blob/main/README.md) has been updated to reflect the new commands.
 - We have moved all node to node communication to TLS 1.3 by default. For now, all TLS is unauthenticated but certain types of over the wire node to node communications will have the ability to authenticate both by certificate and by inter protocol signature. Encrypting over the wire by default stops casual snooping of transaction origination, light wallet to trusted node communication, and harvester-farmer-node communication for example. This leaves only the mempool and the chain itself open to casual observation by the public and the various entities around the world.
-<<<<<<< HEAD
 - Configuration directories have been moved to a default location of HomeDirectory/.olive/release/config, plots/ db/, wallet/ etc. This can be overridden by `export OLIVE_ROOT=~/.olive` for example which would then put the plots directory in `HomeDirectory/.olive/plots`.
-=======
-- Configuration directories have been moved to a default location of HomeDirectory/.olive/release/config, plots/ db/, wallet/ etc. This can be overridden by `export CHIA_ROOT=~/.olive` for example which would then put the plots directory in `HomeDirectory/.olive/plots`.
->>>>>>> parent of d2478a0 (check)
 - The libraries olive-pos, olive-fast-vdf, and olive-bip-158 have been moved to their own repositories: [olivepos](https://github.com/Olive-Network/olivepos), [olivevdf](https://github.com/Olive-Network/olivevdf), and [chaibip158](https://github.com/Olive-Network/olivebip158). They are brought in by olive-blockchain at install time. Our BLS signature library remains at [bls-signatures](https://github.com/Olive-Network/bls-signatures).
 - The install process now brings in olivepos, olivevdf, etc from Pypi where they are auto published via GitHub Actions ci using cibuildwheel. Check out `.github/workflows/build.yml` for build methods in each of the sub repositories.
 - `olive-regenerate-keys` has been renamed `olive-generate-keys`.
@@ -1485,7 +1387,7 @@ relic. We will make a patch available for these systems shortly.
 - You can now provide an index to create_plots using the -i flag to create an arbitrary new plot derived from an existing plot key. Thanks @xorinox.
 - There is a new restart_harvester.sh in scripts/ to easily restart a harvester when you want to add a newly completed plot to the farm without restarting farmer, fullnode, timelord, etc.
 - Harvesters now log errors if they encounter a malformed or corrupted plot file. Again thanks @xorinox.
-- New AJAX based full node UI. To access go to [http://127.0.0.1:8555/index.html](http://127.0.0.1:8555/index.html) with any modern web browser on the same machine as the full node.
+- New AJAX based full node UI. To access go to [http://127.0.0.1:10116/index.html](http://127.0.0.1:10116/index.html) with any modern web browser on the same machine as the full node.
 - If you want to benchmark your CPU as a VDF you can use vdf_bench square_asm 500000 for the assembly optimized test or just vdf_bench square 500000 for the plain C++ code path. This tool is found in lib/olivevdf/fast_vdf/.
 - Improvements to shutting down services in all of the scripts in scripts/. Another @xorinox HT.
 
@@ -1537,7 +1439,7 @@ relic. We will make a patch available for these systems shortly.
 
 - FullNode performance improvements - Syncing up to the blockchain by importing all blocks is faster due to improvements in VDF verification speed and multithreading block verification.
 - VDF improvements - VDF verification and generation speed has increased and dependence on flint2 has been removed. We wish to thank Dr. William Hart (@wbhart) for dual licensing parts of his contributions in FLINT and Antic for inclusion in the Olive blockchain.
-- Implemented an RPC interface with JSON serialization for streamables - currently on port 8555.
+- Implemented an RPC interface with JSON serialization for streamables - currently on port 10116.
 - Added details on how to contribute in CONTRIBUTING.md. Thanks @RichardLitt.
 - Added color logging
 - Now olive_harvester will periodically announce which plots it is currently farming and their k sizes.

@@ -243,13 +243,8 @@ def init(create_certs: Optional[Path], root_path: Path):
             else:
                 print(f"** Directory {create_certs} does not exist **")
         else:
-            print(f"** {root_path} does not exist. Executing core init **")
-            # sanity check here to prevent infinite recursion
-            if olive_init(root_path) == 0 and root_path.exists():
-                return init(create_certs, root_path)
-
-            print(f"** {root_path} was not created. Exiting **")
-            return -1
+            print(f"** {root_path} does not exist **")
+            print("** Please run `olive init` to migrate or create new config files **")
     else:
         return olive_init(root_path)
 

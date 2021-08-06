@@ -1,5 +1,3 @@
-from typing import Optional
-
 import click
 
 
@@ -49,12 +47,7 @@ def farm_cmd() -> None:
     default=None,
     show_default=True,
 )
-def summary_cmd(
-    rpc_port: Optional[int],
-    wallet_rpc_port: Optional[int],
-    harvester_rpc_port: Optional[int],
-    farmer_rpc_port: Optional[int],
-) -> None:
+def summary_cmd(rpc_port: int, wallet_rpc_port: int, harvester_rpc_port: int, farmer_rpc_port: int) -> None:
     from .farm_funcs import summary
     import asyncio
 
@@ -78,7 +71,7 @@ def summary_cmd(
     default=20,
     show_default=True,
 )
-def challenges_cmd(farmer_rpc_port: Optional[int], limit: int) -> None:
+def challenges_cmd(farmer_rpc_port: int, limit: int) -> None:
     from .farm_funcs import challenges
     import asyncio
 

@@ -17,7 +17,7 @@ from olive.types.condition_with_args import ConditionWithArgs
 from olive.types.unfinished_block import UnfinishedBlock
 from olive.util.clvm import int_to_bytes
 from olive.util.ints import uint64
-from tests.wallet_tools import WalletTool
+from olive.util.wallet_tools import WalletTool
 from tests.core.fixtures import empty_blockchain  # noqa: F401
 
 from tests.connection_utils import add_dummy_connection, connect_and_get_peer

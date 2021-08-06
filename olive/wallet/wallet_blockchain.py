@@ -16,7 +16,6 @@ from olive.consensus.full_block_to_block_record import block_to_block_record
 from olive.consensus.multiprocess_validation import PreValidationResult, pre_validate_blocks_multiprocessing
 from olive.types.blockchain_format.sized_bytes import bytes32
 from olive.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from olive.types.coin_spend import CoinSpend
 from olive.types.header_block import HeaderBlock
 from olive.types.unfinished_header_block import UnfinishedHeaderBlock
 from olive.util.errors import Err, ValidationError
@@ -25,7 +24,6 @@ from olive.util.streamable import recurse_jsonify
 from olive.wallet.block_record import HeaderBlockRecord
 from olive.wallet.wallet_block_store import WalletBlockStore
 from olive.wallet.wallet_coin_store import WalletCoinStore
-from olive.wallet.wallet_pool_store import WalletPoolStore
 from olive.wallet.wallet_transaction_store import WalletTransactionStore
 
 log = logging.getLogger(__name__)
@@ -59,15 +57,15 @@ class WalletBlockchain(BlockchainInterface):
     # All sub-epoch summaries that have been included in the blockchain from the beginning until and including the peak
     # (height_included, SubEpochSummary). Note: ONLY for the blocks in the path to the peak
     __sub_epoch_summaries: Dict[uint32, SubEpochSummary] = {}
-    # Stores
+    # Unspent Store
     coin_store: WalletCoinStore
     tx_store: WalletTransactionStore
-    pool_store: WalletPoolStore
+    # Store
     block_store: WalletBlockStore
     # Used to verify blocks in parallel
     pool: ProcessPoolExecutor
 
-    new_transaction_block_callback: Any
+    coins_of_interest_received: Any
     reorg_rollback: Any
     wallet_state_manager_lock: asyncio.Lock
 
@@ -83,9 +81,8 @@ class WalletBlockchain(BlockchainInterface):
         block_store: WalletBlockStore,
         coin_store: WalletCoinStore,
         tx_store: WalletTransactionStore,
-        pool_store: WalletPoolStore,
         consensus_constants: ConsensusConstants,
-        new_transaction_block_callback: Callable,  # f(removals: List[Coin], additions: List[Coin], height: uint32)
+        coins_of_interest_received: Callable,  # f(removals: List[Coin], additions: List[Coin], height: uint32)
         reorg_rollback: Callable,
         lock: asyncio.Lock,
     ):
@@ -98,7 +95,6 @@ class WalletBlockchain(BlockchainInterface):
         self.lock = asyncio.Lock()
         self.coin_store = coin_store
         self.tx_store = tx_store
-        self.pool_store = pool_store
         cpu_count = multiprocessing.cpu_count()
         if cpu_count > 61:
             cpu_count = 61  # Windows Server 2016 has an issue https://bugs.python.org/issue26903
@@ -109,7 +105,7 @@ class WalletBlockchain(BlockchainInterface):
         self.constants_json = recurse_jsonify(dataclasses.asdict(self.constants))
         self.block_store = block_store
         self._shut_down = False
-        self.new_transaction_block_callback = new_transaction_block_callback
+        self.coins_of_interest_received = coins_of_interest_received
         self.reorg_rollback = reorg_rollback
         self.log = logging.getLogger(__name__)
         self.wallet_state_manager_lock = lock
@@ -156,7 +152,6 @@ class WalletBlockchain(BlockchainInterface):
         pre_validation_result: Optional[PreValidationResult] = None,
         trusted: bool = False,
         fork_point_with_peak: Optional[uint32] = None,
-        additional_coin_spends: List[CoinSpend] = None,
     ) -> Tuple[ReceiveBlockResult, Optional[Err], Optional[uint32]]:
         """
         Adds a new block into the blockchain, if it's valid and connected to the current
@@ -165,8 +160,6 @@ class WalletBlockchain(BlockchainInterface):
         invalid. Also returns the fork height, in the case of a new peak.
         """
 
-        if additional_coin_spends is None:
-            additional_coin_spends = []
         block = header_block_record.header
         genesis: bool = block.height == 0
 
@@ -206,7 +199,7 @@ class WalletBlockchain(BlockchainInterface):
             required_iters, val_error = validate_unfinished_header_block(
                 self.constants, self, unfinished_header_block, False, difficulty, sub_slot_iters, False, True
             )
-            error = val_error if val_error is not None else None
+            error = ValidationError(Err(val_error)) if val_error is not None else None
         else:
             assert pre_validation_result is not None
             required_iters = pre_validation_result.required_iters
@@ -225,37 +218,26 @@ class WalletBlockchain(BlockchainInterface):
             None,
             block,
         )
-        heights_changed: Set[Tuple[uint32, Optional[bytes32]]] = set()
+
         # Always add the block to the database
         async with self.wallet_state_manager_lock:
             async with self.block_store.db_wrapper.lock:
                 try:
                     await self.block_store.db_wrapper.begin_transaction()
-                    await self.block_store.add_block_record(header_block_record, block_record, additional_coin_spends)
+                    await self.block_store.add_block_record(header_block_record, block_record)
                     self.add_block_record(block_record)
                     self.clean_block_record(block_record.height - self.constants.BLOCKS_CACHE_SIZE)
-                    fork_height, records_to_add = await self._reconsider_peak(
-                        block_record, genesis, fork_point_with_peak, additional_coin_spends, heights_changed
+
+                    fork_height: Optional[uint32] = await self._reconsider_peak(
+                        block_record, genesis, fork_point_with_peak
                     )
-                    for record in records_to_add:
-                        if record.sub_epoch_summary_included is not None:
-                            self.__sub_epoch_summaries[record.height] = record.sub_epoch_summary_included
                     await self.block_store.db_wrapper.commit_transaction()
                 except BaseException as e:
                     self.log.error(f"Error during db transaction: {e}")
                     if self.block_store.db_wrapper.db._connection is not None:
                         await self.block_store.db_wrapper.rollback_transaction()
-                        self.remove_block_record(block_record.header_hash)
-                        self.block_store.rollback_cache_block(block_record.header_hash)
                         await self.coin_store.rebuild_wallet_cache()
                         await self.tx_store.rebuild_tx_cache()
-                        await self.pool_store.rebuild_cache()
-                        for height, replaced in heights_changed:
-                            # If it was replaced change back to the previous value otherwise pop the change
-                            if replaced is not None:
-                                self.__height_to_hash[height] = replaced
-                            else:
-                                self.__height_to_hash.pop(height)
                     raise
             if fork_height is not None:
                 self.log.info(f"💰 Updated wallet peak to height {block_record.height}, weight {block_record.weight}, ")
@@ -264,13 +246,8 @@ class WalletBlockchain(BlockchainInterface):
                 return ReceiveBlockResult.ADDED_AS_ORPHAN, None, None
 
     async def _reconsider_peak(
-        self,
-        block_record: BlockRecord,
-        genesis: bool,
-        fork_point_with_peak: Optional[uint32],
-        additional_coin_spends_from_wallet: Optional[List[CoinSpend]],
-        heights_changed: Set[Tuple[uint32, Optional[bytes32]]],
-    ) -> Tuple[Optional[uint32], List[BlockRecord]]:
+        self, block_record: BlockRecord, genesis: bool, fork_point_with_peak: Optional[uint32]
+    ) -> Optional[uint32]:
         """
         When a new block is added, this is called, to check if the new block is the new peak of the chain.
         This also handles reorgs by reverting blocks which are not in the heaviest chain.
@@ -284,16 +261,13 @@ class WalletBlockchain(BlockchainInterface):
                     block_record.header_hash
                 )
                 assert block is not None
-                replaced = None
-                if uint32(0) in self.__height_to_hash:
-                    replaced = (self.__height_to_hash[uint32(0)],)
                 self.__height_to_hash[uint32(0)] = block.header_hash
-                heights_changed.add((uint32(0), replaced))
-                assert len(block.additions) == 0 and len(block.removals) == 0
-                await self.new_transaction_block_callback(block.removals, block.additions, block_record, [])
+                for removed in block.removals:
+                    self.log.debug(f"Removed: {removed.name()}")
+                await self.coins_of_interest_received(block.removals, block.additions, block.height)
                 self._peak_height = uint32(0)
-                return uint32(0), [block_record]
-            return None, []
+                return uint32(0)
+            return None
 
         assert peak is not None
         if block_record.weight > peak.weight:
@@ -318,50 +292,39 @@ class WalletBlockchain(BlockchainInterface):
                 del self.__sub_epoch_summaries[height]
 
             # Collect all blocks from fork point to new peak
-            blocks_to_add: List[Tuple[HeaderBlockRecord, BlockRecord, List[CoinSpend]]] = []
+            blocks_to_add: List[Tuple[HeaderBlockRecord, BlockRecord]] = []
             curr = block_record.header_hash
             while fork_h < 0 or curr != self.height_to_hash(uint32(fork_h)):
                 fetched_header_block: Optional[HeaderBlockRecord] = await self.block_store.get_header_block_record(curr)
                 fetched_block_record: Optional[BlockRecord] = await self.block_store.get_block_record(curr)
-                if curr == block_record.header_hash:
-                    additional_coin_spends = additional_coin_spends_from_wallet
-                else:
-                    additional_coin_spends = await self.block_store.get_additional_coin_spends(curr)
-                if additional_coin_spends is None:
-                    additional_coin_spends = []
                 assert fetched_header_block is not None
                 assert fetched_block_record is not None
-                blocks_to_add.append((fetched_header_block, fetched_block_record, additional_coin_spends))
+                blocks_to_add.append((fetched_header_block, fetched_block_record))
                 if fetched_header_block.height == 0:
                     # Doing a full reorg, starting at height 0
                     break
                 curr = fetched_block_record.prev_hash
 
-            records_to_add: List[BlockRecord] = []
-            for fetched_header_block, fetched_block_record, additional_coin_spends in reversed(blocks_to_add):
-                replaced = None
-                if fetched_block_record.height in self.__height_to_hash:
-                    replaced = self.__height_to_hash[fetched_block_record.height]
+            for fetched_header_block, fetched_block_record in reversed(blocks_to_add):
                 self.__height_to_hash[fetched_block_record.height] = fetched_block_record.header_hash
-                heights_changed.add((fetched_block_record.height, replaced))
-                records_to_add.append(fetched_block_record)
                 if fetched_block_record.is_transaction_block:
-                    await self.new_transaction_block_callback(
+                    await self.coins_of_interest_received(
                         fetched_header_block.removals,
                         fetched_header_block.additions,
-                        fetched_block_record,
-                        additional_coin_spends,
+                        fetched_header_block.height,
                     )
+                if fetched_block_record.sub_epoch_summary_included is not None:
+                    self.__sub_epoch_summaries[
+                        fetched_block_record.height
+                    ] = fetched_block_record.sub_epoch_summary_included
 
             # Changes the peak to be the new peak
             await self.block_store.set_peak(block_record.header_hash)
             self._peak_height = block_record.height
-            if fork_h < 0:
-                return None, records_to_add
-            return uint32(fork_h), records_to_add
+            return uint32(min(fork_h, 0))
 
         # This is not a heavier block than the heaviest we have seen, so we don't change the coin set
-        return None, []
+        return None
 
     def get_next_difficulty(self, header_hash: bytes32, new_slot: bool) -> uint64:
         assert self.contains_block(header_hash)
@@ -446,8 +409,6 @@ class WalletBlockchain(BlockchainInterface):
                 del self.__block_records[header_hash]
             del self.__heights_in_cache[uint32(height)]  # remove height from heights in cache
 
-            if height == 0:
-                break
             height -= 1
             blocks_to_remove = self.__heights_in_cache.get(uint32(height), None)
 

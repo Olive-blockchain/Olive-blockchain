@@ -1,6 +1,3 @@
-#
-# THIS FILE IS GENERATED. SEE https://github.com/Olive-Network/olive-blockchain/tree/main/tests#readme
-#
 name: MacOS TEST_NAME Tests
 
 on:
@@ -48,7 +45,7 @@ jobs:
         echo "::set-output name=dir::$(pip cache dir)"
 
     - name: Cache pip
-      uses: actions/cache@v2.1.6
+      uses: actions/cache@v2.1.5
       with:
         # Note that new runners may break this https://github.com/actions/cache/issues/292
         path: ${{ steps.pip-cache.outputs.dir }}
@@ -84,6 +81,3 @@ INSTALL_TIMELORD
       run: |
         . ./activate
         ./venv/bin/py.test TEST_DIR -s -v --durations 0 PYTEST_PARALLEL_ARGS
-#
-# THIS FILE IS GENERATED. SEE https://github.com/Olive-Network/olive-blockchain/tree/main/tests#readme
-#

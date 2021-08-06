@@ -44,12 +44,12 @@ class RpcServer:
             await self.websocket.close()
 
     async def _state_changed(self, *args):
+        change = args[0]
         if self.websocket is None:
             return None
         payloads: List[Dict] = await self.rpc_api._state_changed(*args)
 
-        change = args[0]
-        if change == "add_connection" or change == "close_connection" or change == "peer_changed_peak":
+        if change == "add_connection" or change == "close_connection":
             data = await self.get_connections({})
             if data is not None:
 
@@ -96,14 +96,11 @@ class RpcServer:
         return inner
 
     async def get_connections(self, request: Dict) -> Dict:
-        request_node_type: Optional[NodeType] = None
-        if "node_type" in request:
-            request_node_type = NodeType(request["node_type"])
         if self.rpc_api.service.server is None:
             raise ValueError("Global connections is not set")
         if self.rpc_api.service.server._local_type is NodeType.FULL_NODE:
             # TODO add peaks for peers
-            connections = self.rpc_api.service.server.get_connections(request_node_type)
+            connections = self.rpc_api.service.server.get_connections()
             con_info = []
             if self.rpc_api.service.sync_store is not None:
                 peak_store = self.rpc_api.service.sync_store.peer_to_peak
@@ -133,7 +130,7 @@ class RpcServer:
                 }
                 con_info.append(con_dict)
         else:
-            connections = self.rpc_api.service.server.get_connections(request_node_type)
+            connections = self.rpc_api.service.server.get_connections()
             con_info = [
                 {
                     "type": con.connection_type,
@@ -225,10 +222,13 @@ class RpcServer:
         except Exception as e:
             tb = traceback.format_exc()
             self.log.warning(f"Error while handling message: {tb}")
-            if message is not None:
-                error = e.args[0] if e.args else e
-                res = {"success": False, "error": f"{error}"}
-                await websocket.send_str(format_response(message, res))
+            if len(e.args) > 0:
+                error = {"success": False, "error": f"{e.args[0]}"}
+            else:
+                error = {"success": False, "error": f"{e}"}
+            if message is None:
+                return None
+            await websocket.send_str(format_response(message, error))
 
     async def connection(self, ws):
         data = {"service": self.service_name}
@@ -263,26 +263,32 @@ class RpcServer:
 
     async def connect_to_daemon(self, self_hostname: str, daemon_port: uint16):
         while True:
+            session = None
             try:
                 if self.shut_down:
                     break
-                async with aiohttp.ClientSession() as session:
-                    async with session.ws_connect(
-                        f"wss://{self_hostname}:{daemon_port}",
-                        autoclose=True,
-                        autoping=True,
-                        heartbeat=60,
-                        ssl_context=self.ssl_context,
-                        max_msg_size=100 * 1024 * 1024,
-                    ) as ws:
-                        self.websocket = ws
-                        await self.connection(ws)
-                    self.websocket = None
+                session = aiohttp.ClientSession()
+
+                async with session.ws_connect(
+                    f"wss://{self_hostname}:{daemon_port}",
+                    autoclose=True,
+                    autoping=True,
+                    heartbeat=60,
+                    ssl_context=self.ssl_context,
+                    max_msg_size=100 * 1024 * 1024,
+                ) as ws:
+                    self.websocket = ws
+                    await self.connection(ws)
+                self.websocket = None
+                await session.close()
             except aiohttp.ClientConnectorError:
                 self.log.warning(f"Cannot connect to daemon at ws://{self_hostname}:{daemon_port}")
             except Exception as e:
                 tb = traceback.format_exc()
                 self.log.warning(f"Exception: {tb} {type(e)}")
+            finally:
+                if session is not None:
+                    await session.close()
             await asyncio.sleep(2)
 
 
