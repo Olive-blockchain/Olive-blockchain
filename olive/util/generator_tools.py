@@ -1,5 +1,5 @@
 from typing import List, Tuple
-from olivebip158 import PyBIP158
+from chiabip158 import PyBIP158
 
 from olive.types.blockchain_format.coin import Coin
 from olive.types.blockchain_format.sized_bytes import bytes32
