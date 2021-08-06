@@ -39,7 +39,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - Optimized Streamable parsing by avoiding extra post-init checks, making parsing block records from database up to 40% faster.
 - Made the serialization of Coin follow the normal protocol of implementing stream().
 - Minor improvements to add_spendbundle and weight proofs.
-- We now use version 1.0.2 of olivepos. We now reopen files on read or write failure with thanks to @mreid-moz! We also prevent olivepos prover crashing for more bad plots.
+- We now use version 1.0.2 of chiapos. We now reopen files on read or write failure with thanks to @mreid-moz! We also prevent chiapos prover crashing for more bad plots.
 - Disabled deletion of running plot for Windows users as the crash/lockup bug has returned.
 - We more clearly prohibit root from installing/running the GUI.
 - Thanks to @sargonas for improvements to the template for creating Issues.
@@ -225,13 +225,13 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 ### Fixed
 
 - An incorrect merge brought in unreleased features and broke `olive keys`.
-- Omitted from the 1.0.2 changelog, we fixed one crash in harvester with the release of olivepos 1.0.0 as well.
+- Omitted from the 1.0.2 changelog, we fixed one crash in harvester with the release of chiapos 1.0.0 as well.
 
 ## 1.0.2 Olive Blockchain 2021-03-30
 
 ### Added
 
-- We have released version 1.0.0 of [olivepos](https://github.com/Olive-Network/olivepos). This includes a 20% speed increase for bitfield plotting compared to the previous version on the same machine. In many cases this will mean that bitfield plotting is as fast or faster than non bitfield plotting.
+- We have released version 1.0.0 of [chiapos](https://github.com/Olive-Network/chiapos). This includes a 20% speed increase for bitfield plotting compared to the previous version on the same machine. In many cases this will mean that bitfield plotting is as fast or faster than non bitfield plotting.
 - @xorinox improved our support for RedHat related distributions in `install.sh`.
 - @ayaseen improved our support for RedHat related distributions in `install-timelord.sh`.
 - We have added Dutch and Polish to supported translations. Thanks @psydafke, @WesleyVH, @pieterhauwaerts, @bartlomiej.tokarzewski, @abstruso, @feel.the.code, and @Axadiw for contributions to [translations on Crowdin](https://crowdin.com/project/olive-blockchain).
@@ -384,7 +384,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 
 - Remove `olive plots "-s" "--stripe_size"` and the strip size setting in the Advanced section of the GUI. We now always use the best default of 64K for the GUI and cli.
 - `olive keys add` takes secret words a prompt on the command line or stdin instead of command line arguments for security.
-- Version 1.0.1 of olivevdf was added. This brought MPIR on Windows to the most recent release. Additionally we removed inefficient ConvertIntegerToBytes() and ConvertBytesToInt() functions, use GMP library's mpz_export/mpz_import for big integers and simple helper functions for built-in integer types. The latter are taken from olivevdf. We now require compressed forms to be encoded canonically when deserializing. This should prevent potential grinding attacks where some non-canonical encodings of a compressed form could be used to change its hash and thus the next challenges derived from it. Canonically encoded compressed forms must be reduced and must produce the same string when deserialized and serialized again.
+- Version 1.0.1 of chiavdf was added. This brought MPIR on Windows to the most recent release. Additionally we removed inefficient ConvertIntegerToBytes() and ConvertBytesToInt() functions, use GMP library's mpz_export/mpz_import for big integers and simple helper functions for built-in integer types. The latter are taken from chiavdf. We now require compressed forms to be encoded canonically when deserializing. This should prevent potential grinding attacks where some non-canonical encodings of a compressed form could be used to change its hash and thus the next challenges derived from it. Canonically encoded compressed forms must be reduced and must produce the same string when deserialized and serialized again.
 - Version 1.0 of our BLS signature library is included. We brought Relic, gmp and MPIR up to their most recent releases. We again thank the Dash team for their fixes and improvements.
 - We now hand build Apple Silicon native binary wheels for all olive-blockchain dependencies and host them at [https://pypi.olive.net/simple](https://pypi.olive.net/simple). We are likely to hand build a MacOS ARM64 dmg available and certainly will for 1.0. You can install natively on M1 now with the `git clone` developer method today. Just make sure Python 3.9 is installed. `python3 --version` works.
 - The GUI now shows you which network you are connected to on the Full Node page. It will also wait patiently for the green flag to drop on a network launch.
@@ -441,14 +441,14 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - We have updated the display of peer nodes and moved adding a peer to it's own pop up in the GUI.
 - Block searching in the GUI has been improved.
 - @jespino added i18n support and refactored how locales are loaded in the GUI. Additionally he moved more strings into the translation infrastructure for translators.
-- In olivevdf we changed n-Wesolowski proofs to include B instead of y in segments. Proof segments now have the form (iters, B, proof) instead of (iters, y, proof). This reduces proof segment size from 208 to 141 bytes.
-- The new olivevdf proof format is not compatible with the old one, however zero-Wesolowski proofs are not affected as they have zero proof segments and consist only of (y, proof).
-- We made two HashPrime optimizations in olivevdf. This forces numbers being tested for primality to be odd and avoids an unnecessary update of the sprout vector by stopping after the first non-zero value. This is a breaking change as it changes the prime numbers generated from a given seed. We believe this is the final breaking change for olivevdf.
+- In chiavdf we changed n-Wesolowski proofs to include B instead of y in segments. Proof segments now have the form (iters, B, proof) instead of (iters, y, proof). This reduces proof segment size from 208 to 141 bytes.
+- The new chiavdf proof format is not compatible with the old one, however zero-Wesolowski proofs are not affected as they have zero proof segments and consist only of (y, proof).
+- We made two HashPrime optimizations in chiavdf. This forces numbers being tested for primality to be odd and avoids an unnecessary update of the sprout vector by stopping after the first non-zero value. This is a breaking change as it changes the prime numbers generated from a given seed. We believe this is the final breaking change for chiavdf.
 - olivebip158 was set to a gold 1.0 version.
 - Comments to Olivelisp and clvm source have been updated for all of the Olivelisp changes over the proceeding three weeks.
 - And thanks yet again to @jespino for a host of PRs to add more detailed typing to various components in olive-blockchain.
 - aiohttp was updated to 3.7.4 to address a low severity [security issue](https://github.com/advisories/GHSA-v6wp-4m6f-gcjg).
-- calccrypto/uint128_t was updated in the Windows olivepos implementation. Olivepos required some changes its build process to support MacOS ARM64.
+- calccrypto/uint128_t was updated in the Windows chiapos implementation. Olivepos required some changes its build process to support MacOS ARM64.
 
 ### Fixed
 
@@ -553,7 +553,7 @@ all fields that referred to sub blocks are changed to blocks.
 
 ### Fixed
 
-- We updated olivepos to hopefully address some harvester crashes when moving plot files.
+- We updated chiapos to hopefully address some harvester crashes when moving plot files.
 - Many of the cards on the Farming page have had bugs addressed including last block farmed, block rewards, and user fees.
 - Improved validation of overflow blocks.
 
@@ -564,13 +564,13 @@ all fields that referred to sub blocks are changed to blocks.
 
 - The Beta 27 chain is a hard fork. All TXCH from previous releases has been reset on this chain. Your keys and plots of k=32 or larger continue to work just fine on this new chain.
 - We now use the rust version of clvm, clvm_rs, in preference to validate transactions. We have additionally published binary wheels or clvm_rs for all four platforms and all three supported python versions. The rust version is approximately 50 times faster than the python version used to validate on chain transactions in previous versions.
-- We have moved to compressed quadratic forms for VDFs. Using compressed representation of quadratic forms reduces their serialized size from 130 to 100 bytes (for forms with 1024-bit discriminant). This shrinks the size of VDF outputs and VDF proofs, and it's a breaking change as the compressed representation is not compatible with the older uncompressed (a, b) representation. Compressed forms are also used in calls to olivevdf and in timelord's communication with VDF clients. The form compression algorithm is based on ["Trustless Groups of Unknown Order with Hyperelliptic Curves"](https://eprint.iacr.org/2020/196) by Samuel Dobson, Steven D. Galbraith and Benjamin Smith.
+- We have moved to compressed quadratic forms for VDFs. Using compressed representation of quadratic forms reduces their serialized size from 130 to 100 bytes (for forms with 1024-bit discriminant). This shrinks the size of VDF outputs and VDF proofs, and it's a breaking change as the compressed representation is not compatible with the older uncompressed (a, b) representation. Compressed forms are also used in calls to chiavdf and in timelord's communication with VDF clients. The form compression algorithm is based on ["Trustless Groups of Unknown Order with Hyperelliptic Curves"](https://eprint.iacr.org/2020/196) by Samuel Dobson, Steven D. Galbraith and Benjamin Smith.
 - Last Attempted Proof on the Farm tab of the GUI now shows hours:minutes:seconds instead of just hours:minutes. This makes it much easier to see that your farmer is responding to recent challenges at a glance.
 - You can now send and receive transactions with the command line. Try `olive wallet -h` to learn more. Also, `olive wallet` now requires a third argument of `show`, therefor you will use `olive wallet show` to see your wallet balance.
 - We have added the [Crowdin](https://crowdin.com/) translation platform to [olive blockchain gui](https://crowdin.com/project/olive-blockchain). We are still getting it fully set up, but helping to translate the GUI is going to be much easier.
 - Full Node > Connections in the GUI now shows the peak sub block height your connected peers believe they are at. A node syncing from you will not be at the true peak sub block height until it gets into sync.
 - `olive init -c [directory]` will create new TLS certificates signed by your CA located in `[directory]`. Use this feature to configure a new remote harvester. Type `olive init -h` to get instructions. Huge thanks to a very efficient @eFishCent for this quick and thorough pull request.
-- We build both MacOS x86_64 and MacOS universal wheels for olivepos, olivevdf, blpsy, and olivebip158 in Python 3.9. The universal build allows M1 Macs to run these dependencies in ARM64 native mode.
+- We build both MacOS x86_64 and MacOS universal wheels for chiapos, chiavdf, blpsy, and olivebip158 in Python 3.9. The universal build allows M1 Macs to run these dependencies in ARM64 native mode.
 - On first run in the GUI (or when there are no plot directories) there is now an "Add Plot Directories" on the Farm tab also.
 
 ### Changed
@@ -628,7 +628,7 @@ all fields that referred to sub blocks are changed to blocks.
 - Plot filename is now back in the Plots table of the GUI.
 - There was a bug in adding a sub block to weight proofs and an issue in the weight proof index.
 - Over time the node would think that there were no peers attached with peak sub block heights higher than 0.
-- There was a potential bug in Python 3.9.0 that required us to update blspy, olivepos, olivevdf, and olivebip158.
+- There was a potential bug in Python 3.9.0 that required us to update blspy, chiapos, chiavdf, and olivebip158.
 - An off by one issue could cause syncing to ask for 1 sub block when it should ask for e.g. 32.
 - Short sync and backtrack sync both had various issues.
 - There was an edge case in bip158 handling.
@@ -759,7 +759,7 @@ all fields that referred to sub blocks are changed to blocks.
 - The GUI now warns if you attempt to create a plot smaller than k=32.
 - Added Chinese language localization (zh-cn). A big thank you to @goomario for their pull request!
 - You can now specify which private key to use for `olive plots create`. After obtaining the fingerprint from `olive keys show`, try `olive plots create -a FINGERPRINT`. Thanks to @eFishCent for this pull request!
-- We use a faster hash to prime function for olivevdf from the current release of gmp-6.2.1 which we have upgraded olivevdf and blspy to support.
+- We use a faster hash to prime function for chiavdf from the current release of gmp-6.2.1 which we have upgraded chiavdf and blspy to support.
 - There is a new cli command - `olive configure`. This allows you to update certain configuration details like log level in config.yaml from the command line. This is particularly useful in containerization and linux automation. Try `olive configure -h`. Note that if olive services are running and you issue this command you will have to restart them for changes to take effect but you can use this command in the venv when no services are running or call it directly by path in the venv without activating the venv. Expect the options for this command to expand.
 - We now fully support Python 3.9.
 
@@ -779,13 +779,13 @@ all fields that referred to sub blocks are changed to blocks.
 - All appropriate Olivelisp smart transactions have been updated to use aggsig_me.
 - Full node should be more aggressive about finding other peers.
 - Peer disconnect messages are now set to log level INFO down from WARNING.
-- olivevdf now allows passing in input to a VDF for new consensus.
+- chiavdf now allows passing in input to a VDF for new consensus.
 - sha256tree has been removed from Olivelisp.
 - `olive show -s` has been refactored to support the new consensus.
 - `olive netspace` has been refactored for new consensus.
 - aiohttp, clvm-tools, colorlog, concurrent-log-handler, keyring, cryptography, and sortedcontainers have been upgraded to their current versions.
 - Tests now place a cache of blocks and plots in the ~/.olive/ directory to speed up total testing time.
-- Changes were made to olivepos to correctly support the new bitfiled backpropogation on FreeBSD and OpenBSD. With the exception of needing to work around python cryptography as outlined on the wiki, FreeBSD and OpenBSD should be able to compile and run olive-blockchain.
+- Changes were made to chiapos to correctly support the new bitfiled backpropogation on FreeBSD and OpenBSD. With the exception of needing to work around python cryptography as outlined on the wiki, FreeBSD and OpenBSD should be able to compile and run olive-blockchain.
 - With the change to new consensus many components of the chain and local database are not yet stored optimally. Startup and sync times may be slower than usual so please be patient. This will improve next release.
 - Errata: Coinbase amount is missing from the GUI Block view.
 - Eratta: wallet Backup, and Fly-sync on the wallet are currently not working.
@@ -803,7 +803,7 @@ all fields that referred to sub blocks are changed to blocks.
 ### Added
 
 - F1 generation in the plotter is now fully parallel for a small speedup.
-- We have bitfield optimized phase 2 of plotting. There is only about a 1% increase in speed from this change but there is a 12% decrease in writes with a penalty of 3% more reads. More details in [PR 120](https://github.com/Olive-Network/olivepos/pull/120). Note that some sorts in phase 2 and phase 3 will now appear "out of order" and that is now expected behavior.
+- We have bitfield optimized phase 2 of plotting. There is only about a 1% increase in speed from this change but there is a 12% decrease in writes with a penalty of 3% more reads. More details in [PR 120](https://github.com/Olive-Network/chiapos/pull/120). Note that some sorts in phase 2 and phase 3 will now appear "out of order" and that is now expected behavior.
 - Partial support for Python 3.9. That includes new versions of Olive dependencies like olivebip158.
 
 ### Changed
@@ -845,7 +845,7 @@ all fields that referred to sub blocks are changed to blocks.
 ### Changed
 
 - The entire GUI has been refactored for code quality and performance.
-- Updated to olivepos 0.12.32. This update significantly speeds up the F1/first table plot generation. It also now can log disk usage while plotting and generate graphs. More details in the [olivepos release notes](https://github.com/Olive-Network/olivepos/releases/tag/0.12.32).
+- Updated to chiapos 0.12.32. This update significantly speeds up the F1/first table plot generation. It also now can log disk usage while plotting and generate graphs. More details in the [chiapos release notes](https://github.com/Olive-Network/chiapos/releases/tag/0.12.32).
 - Node losing or not connecting to another peer node (which is entirely normal behaviour) is now logged at INFO and not WARNING. Your logs will be quieter.
 - Both the GUI and CLI now default to putting the second temporary directory files into the specified temporary directory.
 - SSL Certificate handling was refactored along with Consensus constants, service launching, and internal configuration management.
@@ -857,7 +857,7 @@ all fields that referred to sub blocks are changed to blocks.
 
 - A bug in bls-singatures/blspy could cause a stack overflow if too many signatures were verified at once. This caused the block of death at 11997 of the Beta 15 chain. Updated to 0.2.4 to address the issue.
 - GUI Wallet now correctly updates around reorgs.
-- olivepos 0.12.32 fixed a an out of bounds read that could crash the plotter. It also contains a fix to better handle the case of drive letters on Windows.
+- chiapos 0.12.32 fixed a an out of bounds read that could crash the plotter. It also contains a fix to better handle the case of drive letters on Windows.
 - Node would fail to start on Windows Server 2016 with lots of cores. This [python issue explains]( https://bugs.python.org/issue26903) the problem.
 
 ### Known Issues
@@ -890,11 +890,11 @@ all fields that referred to sub blocks are changed to blocks.
 - The rate limited wallet library now supports coin aggregation for adding additional funds after the time of creation.
 - Fees are now used in all applicable rate limited wallet calls
 - New parameters for plotting: -r (number of threads) -s (stripe size) -u (number of buckets) in cli and GUI
-- olivevdf now has full IFMA optimizations for processors that support it.
+- chiavdf now has full IFMA optimizations for processors that support it.
 
 ### Changed
 
-- Multithreading support in olivepos, as well as a new algorithm which is faster and does 70% less IO. This is a significant improvement in speed, much lower total writing, and configurability for different hardware environments.
+- Multithreading support in chiapos, as well as a new algorithm which is faster and does 70% less IO. This is a significant improvement in speed, much lower total writing, and configurability for different hardware environments.
 - Default -b changed to 3072 to improve performance
 - The correct amount of memory is used for plotting
 - `sh install.sh` was upgraded so that on Ubuntu it will install any needed OS dependencies.
@@ -910,7 +910,7 @@ all fields that referred to sub blocks are changed to blocks.
 - Tables in the README.MD were not rendering correctly on Pypi. Thanks again @altendky.
 - Olivepos issue where memory was spiking and increasing
 - Fixed working space estimates so they are exact
-- Log all errors in olivepos
+- Log all errors in chiapos
 - Fixed a bug that was causing Bluebox vdfs to fail.
 
 ## [1.0beta13] aka Beta 1.13 - 2020-09-15
@@ -990,7 +990,7 @@ all fields that referred to sub blocks are changed to blocks.
 
 - Wallet addresses and other key related elements are now expressed in Chech32 which is the Olive implementation of [Bech32](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki). All of your old wallet addresses will be replaced with the new Chech32 addresses. The only thing you can't do is send test olive between 1.8/1.9 and 1.10 software. Anyone who upgrades to 1.10 will keep their transactions and balances of test olive from the earlier two releases however.
 - We added a first few enhancements to plotting speed. For a k=30 on a ramdisk with `-b 64 GiB` it results in an 11% speedup in overall plotting speed and a 23% improvement in phase 1 speed. Many more significant increases in plotting speed are in the works.
-- The proof of space document in olivepos has been updated to the new format and edited for clarity. Additionally GitHub actions now has the on demand ability to create the PDF version.
+- The proof of space document in chiapos has been updated to the new format and edited for clarity. Additionally GitHub actions now has the on demand ability to create the PDF version.
 - Relic has upstreamed our changes required for the IETF BLS standard. We now build directly from the Relic repository for all but Windows and will be migrating Windows in the next release.
 - Minor improvements to the Coloured Coin wallet were integrated in advance of an upcoming re-factor.
 - Smart wallet backup was upgraded to encrypt and sign the contents of the backup.
@@ -1000,7 +1000,7 @@ all fields that referred to sub blocks are changed to blocks.
 - Proof of space plotting now correctly calculates the total working space used in the `-t` directory.
 - `olive show -w` now displays a message when balances cannot be displayed instead of throwing an error. Thanks to @freddiecoleman for this fix!
 - Fix issue with shutting down full node (full node processes remained open, and caused a spinner when launching Olive)
-- Various code review alerts for comparing to a wider type in olivepos were fixed. Additionally, unused code was removed from olivepos
+- Various code review alerts for comparing to a wider type in chiapos were fixed. Additionally, unused code was removed from chiapos
 - Benchmarking has been re-enabled in bls-signatures.
 - Various node security vulnerabilities were addressed.
 - Updated keyring, various GitHub actions, colorlog, cbor2, and clvm_tools.
@@ -1075,7 +1075,7 @@ specify so you'll have to add any subfolders you want to also contain plots.
 - The UI now asks for confirmation before closing and shows shutdown progress.
 - UI now tries to shut down servers gracefully before exiting, and also closes
 the daemon before starting.
-- The various sub repositories (olivepos, olivevdf, etc.) now build ARM64 binary
+- The various sub repositories (chiapos, chiavdf, etc.) now build ARM64 binary
 wheels for Linux with Python 3.8. This makes installing on Ubuntu 20.04 lts on
 a Raspberry Pi 3 or 4 easy.
 - Ci's check to see if they have secret access and attempt to fail cleanly so
@@ -1120,7 +1120,7 @@ farmer and full node protocols.
 other chains.
 - Keys are now derived with the EIP 2334 (m/12381/10111/a/b).
 - Removed the ability to pass in sk_seed to plotting, to increase security.
-- Linux builds of olivevdf and blspy now use a fresh build of gmp 6.2.1.
+- Linux builds of chiavdf and blspy now use a fresh build of gmp 6.2.1.
 
 ### Fixed
 
@@ -1197,7 +1197,7 @@ relic. We will make a patch available for these systems shortly.
 - We added total network storage space estimation to the node RPC at the `/get_network_space` endpoint instead of only being available in the cli. The RPC endpoint takes two block header hashes and estimates space between those header hashes.
 - Logs now autorotate. Once the debug.log reaches 20MB it is compressed and archived keeping 7 historical 20MB logs.
 - We now have a CHANGELOG.md that adheres closely to the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) standard. We merged in the version history and updated some previous release notes to capture items important to the change log. We are modifying our release process to accumulate changes at the top of the change log and then copy those to the release notes at the time of the release.
-- We added [lgtm](https://lgtm.com/) source analysis on pull request to the olive-blockchain, olivepos, olivevdf, olivebip158, and bls-library repositories to add some automated security analysis to our ci.
+- We added [lgtm](https://lgtm.com/) source analysis on pull request to the olive-blockchain, chiapos, chiavdf, olivebip158, and bls-library repositories to add some automated security analysis to our ci.
 
 ### Changed
 
@@ -1210,7 +1210,7 @@ relic. We will make a patch available for these systems shortly.
   current LCA. Optionally you can use the `-b` flag to start the calculation from a different block
   height. Use `-d` to specify the delta number of blocks back into history to estimate over from either LCA or your `-b` block height.
 - The Full node RPC response formats have been changed. All API calls now return a dict with success, and an additional value, for example {"success": True, "block": block}.
-- olivepos is now easier to compile with MSVC.
+- chiapos is now easier to compile with MSVC.
 - create plots now takes in an optional sk_seed, it is no longer read in from keys.yaml. If not passed in, it is randomly generated. The -i argument can now only be used when you provide an sk_seed.
 - Moved to PyYAML 5.3.1 which prevents arbitrary code execution during python/object/new constructor.
 - Moved to Python cryptography 2.9.2 which deprecates OpenSSL 1.0.1 and now relies upon OpenSSL 1.1.1g.
@@ -1245,11 +1245,11 @@ relic. We will make a patch available for these systems shortly.
 - Coloured coins now have a prefix to help identify them. When sending transactions, the new prefix is incompatible with older clients.
 - The user interface now refers to olive coins with their correct currency code of XCH.
 - The next release will now be in the dev branch instead of the e.g. beta-1.5. Additionally we are enforcing linear merge into dev and prefer rebase merges or partial squash merges of particularly chatty commit histories.
-- Building the sub reposities (olivepos, olivevdf, blslibrary) now requires CMake 3.14+.
+- Building the sub reposities (chiapos, chiavdf, blslibrary) now requires CMake 3.14+.
 
 ### Fixed
 
-- There was a regression in Olive Proof of Space ([olivepos](https://github.com/Olive-Network/olivepos)) that came from our efforts to speed up plotting on Windows native. Now k>=32 plots work correctly. We made additional bug fixes and corrected limiting small k size generation.
+- There was a regression in Olive Proof of Space ([chiapos](https://github.com/Olive-Network/chiapos)) that came from our efforts to speed up plotting on Windows native. Now k>=32 plots work correctly. We made additional bug fixes and corrected limiting small k size generation.
 - There was a bug in Timelord handling that could stop all VDF progress.
 
 ### Deprecated
@@ -1355,13 +1355,13 @@ relic. We will make a patch available for these systems shortly.
 - We have revamped the olive management command line. To start a farmer all you have to do is start the venv with `. ./activate` and then type `olive-start-farmer &`. The [README.md](https://github.com/Olive-Network/olive-blockchain/blob/main/README.md) has been updated to reflect the new commands.
 - We have moved all node to node communication to TLS 1.3 by default. For now, all TLS is unauthenticated but certain types of over the wire node to node communications will have the ability to authenticate both by certificate and by inter protocol signature. Encrypting over the wire by default stops casual snooping of transaction origination, light wallet to trusted node communication, and harvester-farmer-node communication for example. This leaves only the mempool and the chain itself open to casual observation by the public and the various entities around the world.
 - Configuration directories have been moved to a default location of HomeDirectory/.olive/release/config, plots/ db/, wallet/ etc. This can be overridden by `export OLIVE_ROOT=~/.olive` for example which would then put the plots directory in `HomeDirectory/.olive/plots`.
-- The libraries olive-pos, olive-fast-vdf, and olive-bip-158 have been moved to their own repositories: [olivepos](https://github.com/Olive-Network/olivepos), [olivevdf](https://github.com/Olive-Network/olivevdf), and [chaibip158](https://github.com/Olive-Network/olivebip158). They are brought in by olive-blockchain at install time. Our BLS signature library remains at [bls-signatures](https://github.com/Olive-Network/bls-signatures).
-- The install process now brings in olivepos, olivevdf, etc from Pypi where they are auto published via GitHub Actions ci using cibuildwheel. Check out `.github/workflows/build.yml` for build methods in each of the sub repositories.
+- The libraries olive-pos, olive-fast-vdf, and olive-bip-158 have been moved to their own repositories: [chiapos](https://github.com/Olive-Network/chiapos), [chiavdf](https://github.com/Olive-Network/chiavdf), and [chaibip158](https://github.com/Olive-Network/olivebip158). They are brought in by olive-blockchain at install time. Our BLS signature library remains at [bls-signatures](https://github.com/Olive-Network/bls-signatures).
+- The install process now brings in chiapos, chiavdf, etc from Pypi where they are auto published via GitHub Actions ci using cibuildwheel. Check out `.github/workflows/build.yml` for build methods in each of the sub repositories.
 - `olive-regenerate-keys` has been renamed `olive-generate-keys`.
 - setproctitle is now an optional install dependency that we will continue to install in the default install methods.
 - The project now defaults to `venv` without the proceeding . to better match best practices.
 - Developer requirements were separated from the actual requirements.
-- `install-timelord.sh` has been pulled out from `install.sh`. This script downloads the source python package for olivevdf and compiles it locally for timelords. vdf_client can be included or excluded to make building normal user wheels easier.
+- `install-timelord.sh` has been pulled out from `install.sh`. This script downloads the source python package for chiavdf and compiles it locally for timelords. vdf_client can be included or excluded to make building normal user wheels easier.
 
 ### Removed
 
@@ -1388,7 +1388,7 @@ relic. We will make a patch available for these systems shortly.
 - There is a new restart_harvester.sh in scripts/ to easily restart a harvester when you want to add a newly completed plot to the farm without restarting farmer, fullnode, timelord, etc.
 - Harvesters now log errors if they encounter a malformed or corrupted plot file. Again thanks @xorinox.
 - New AJAX based full node UI. To access go to [http://127.0.0.1:10116/index.html](http://127.0.0.1:10116/index.html) with any modern web browser on the same machine as the full node.
-- If you want to benchmark your CPU as a VDF you can use vdf_bench square_asm 500000 for the assembly optimized test or just vdf_bench square 500000 for the plain C++ code path. This tool is found in lib/olivevdf/fast_vdf/.
+- If you want to benchmark your CPU as a VDF you can use vdf_bench square_asm 500000 for the assembly optimized test or just vdf_bench square 500000 for the plain C++ code path. This tool is found in lib/chiavdf/fast_vdf/.
 - Improvements to shutting down services in all of the scripts in scripts/. Another @xorinox HT.
 
 ### Changed
