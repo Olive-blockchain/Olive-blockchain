@@ -18,9 +18,9 @@ fi
 if [ "$(uname -m)" = "armv7l" ]; then
   echo ""
 	echo "WARNING:"
-	echo "The Olive Blockchain requires a 64 bit OS and this is 32 bit armv7l"
+	echo "The Chia Blockchain requires a 64 bit OS and this is 32 bit armv7l"
 	echo "For more information, see"
-	echo "https://github.com/Olive-Network/olive-blockchain/wiki/Raspberry-Pi"
+	echo "https://github.com/Chia-Network/olive-blockchain/wiki/Raspberry-Pi"
 	echo "Exiting."
 	exit 1
 fi
@@ -84,7 +84,7 @@ find_python() {
 	unset BEST_VERSION
 	for V in 37 3.7 38 3.8 39 3.9 3; do
 		if which python$V >/dev/null; then
-			if [ "$BEST_VERSION" = "" ]; then
+			if [ x"$BEST_VERSION" = x ]; then
 				BEST_VERSION=$V
 			fi
 		fi
@@ -93,7 +93,7 @@ find_python() {
 	set -e
 }
 
-if [ "$INSTALL_PYTHON_VERSION" = "" ]; then
+if [ x"$INSTALL_PYTHON_VERSION" = x ]; then
 	INSTALL_PYTHON_VERSION=$(find_python)
 fi
 
@@ -116,16 +116,16 @@ python -m pip install --upgrade pip
 python -m pip install wheel
 #if [ "$INSTALL_PYTHON_VERSION" = "3.8" ]; then
 # This remains in case there is a diversion of binary wheels
-python -m pip install --extra-index-url https://pypi.chia.net/simple/ miniupnpc==2.2.2
+python -m pip install --extra-index-url https://pypi.chia.net/simple/ miniupnpc==2.1
 python -m pip install -e . --extra-index-url https://pypi.chia.net/simple/
 
 echo ""
-echo "Olive blockchain install.sh complete."
+echo "Chia blockchain install.sh complete."
 echo "For assistance join us on Keybase in the #testnet chat channel:"
 echo "https://keybase.io/team/olive_network.public"
 echo ""
 echo "Try the Quick Start Guide to running olive-blockchain:"
-echo "https://github.com/Olive-Network/olive-blockchain/wiki/Quick-Start-Guide"
+echo "https://github.com/Chia-Network/olive-blockchain/wiki/Quick-Start-Guide"
 echo ""
 echo "To install the GUI type 'sh install-gui.sh' after '. ./activate'."
 echo ""

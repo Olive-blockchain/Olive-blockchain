@@ -1,5 +1,3 @@
-from typing import Optional
-
 import aiohttp
 
 from olive.rpc.full_node_rpc_client import FullNodeRpcClient
@@ -7,10 +5,9 @@ from olive.util.byte_types import hexstr_to_bytes
 from olive.util.config import load_config
 from olive.util.default_root import DEFAULT_ROOT_PATH
 from olive.util.ints import uint16
-from olive.util.misc import format_bytes
 
 
-async def netstorge_async(rpc_port: Optional[int], delta_block_height: str, start: str) -> None:
+async def netstorge_async(rpc_port: int, delta_block_height: str, start: str) -> None:
     """
     Calculates the estimated space on the network given two block header hashes.
     """
@@ -62,7 +59,16 @@ async def netstorge_async(rpc_port: Optional[int], delta_block_height: str, star
                 f"VDF Iterations:   {newer_block_header.total_iters}\n"
                 f"Header Hash:      0x{newer_block_header.header_hash}\n"
             )
-            print(format_bytes(network_space_bytes_estimate))
+            network_space_terabytes_estimate = network_space_bytes_estimate / 1024 ** 4
+            if network_space_terabytes_estimate >= 1024:
+                network_space_terabytes_estimate = network_space_terabytes_estimate / 1024
+                if network_space_terabytes_estimate >= 1024:
+                    network_space_terabytes_estimate = network_space_terabytes_estimate / 1024
+                    print(f"The network has an estimated {network_space_terabytes_estimate:.3f} EiB")
+                else:
+                    print(f"The network has an estimated {network_space_terabytes_estimate:.3f} PiB")
+            else:
+                print(f"The network has an estimated {network_space_terabytes_estimate:.3f} TiB")
 
     except Exception as e:
         if isinstance(e, aiohttp.ClientConnectorError):

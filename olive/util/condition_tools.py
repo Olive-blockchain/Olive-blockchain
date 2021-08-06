@@ -20,7 +20,7 @@ def parse_sexp_to_condition(
     sexp: Program,
 ) -> Tuple[Optional[Err], Optional[ConditionWithArgs]]:
     """
-    Takes a OliveLisp sexp and returns a ConditionWithArgs.
+    Takes a ChiaLisp sexp and returns a ConditionWithArgs.
     If it fails, returns an Error
     """
     as_atoms = sexp.as_atom_list()
@@ -40,7 +40,7 @@ def parse_sexp_to_conditions(
     sexp: Program,
 ) -> Tuple[Optional[Err], Optional[List[ConditionWithArgs]]]:
     """
-    Takes a OliveLisp sexp (list) and returns the list of ConditionWithArgss
+    Takes a ChiaLisp sexp (list) and returns the list of ConditionWithArgss
     If it fails, returns as Error
     """
     results: List[ConditionWithArgs] = []
@@ -96,6 +96,10 @@ def created_outputs_for_conditions_dict(
 ) -> List[Coin]:
     output_coins = []
     for cvp in conditions_dict.get(ConditionOpcode.CREATE_COIN, []):
+        # TODO: check condition very carefully
+        # (ensure there are the correct number and type of parameters)
+        # maybe write a type-checking framework for conditions
+        # and don't just fail with asserts
         puzzle_hash, amount_bin = cvp.vars[0], cvp.vars[1]
         amount = int_from_bytes(amount_bin)
         coin = Coin(input_coin_name, puzzle_hash, uint64(amount))

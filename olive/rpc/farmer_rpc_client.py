@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional
 
 from olive.rpc.rpc_client import RpcClient
 from olive.types.blockchain_format.sized_bytes import bytes32
@@ -6,9 +6,9 @@ from olive.types.blockchain_format.sized_bytes import bytes32
 
 class FarmerRpcClient(RpcClient):
     """
-    Client to Olive RPC, connects to a local farmer. Uses HTTP/JSON, and converts back from
+    Client to Chia RPC, connects to a local farmer. Uses HTTP/JSON, and converts back from
     JSON into native python objects before returning. All api calls use POST requests.
-    Note that this is not the same as the peer protocol, or wallet protocol (which run Olive's
+    Note that this is not the same as the peer protocol, or wallet protocol (which run Chia's
     protocol on top of TCP), it's a separate protocol on top of HTTP that provides easy access
     to the full node.
     """
@@ -41,19 +41,3 @@ class FarmerRpcClient(RpcClient):
         if pool_target is not None:
             request["pool_target"] = pool_target
         return await self.fetch("set_reward_targets", request)
-
-    async def get_pool_state(self) -> Dict:
-        return await self.fetch("get_pool_state", {})
-
-    async def set_payout_instructions(self, launcher_id: bytes32, payout_instructions: str) -> Dict:
-        request = {"launcher_id": launcher_id.hex(), "payout_instructions": payout_instructions}
-        return await self.fetch("set_payout_instructions", request)
-
-    async def get_harvesters(self) -> Dict[str, Any]:
-        return await self.fetch("get_harvesters", {})
-
-    async def get_pool_login_link(self, launcher_id: bytes32) -> Optional[str]:
-        try:
-            return (await self.fetch("get_pool_login_link", {"launcher_id": launcher_id.hex()}))["login_link"]
-        except ValueError:
-            return None

@@ -16,7 +16,7 @@ from olive.util.streamable import Streamable, streamable
 log = logging.getLogger(__name__)
 
 
-@lru_cache(maxsize=200)
+@lru_cache(maxsize=20)
 def get_discriminant(challenge, size_bites) -> int:
     return int(
         create_discriminant(challenge, size_bites),
@@ -24,7 +24,7 @@ def get_discriminant(challenge, size_bites) -> int:
     )
 
 
-@lru_cache(maxsize=1000)
+@lru_cache(maxsize=100)
 def verify_vdf(
     disc: int,
     input_el: bytes100,

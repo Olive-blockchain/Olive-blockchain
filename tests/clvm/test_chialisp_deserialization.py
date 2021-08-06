@@ -16,7 +16,7 @@ def serialized_atom_overflow(size):
         size_blob = bytes([0xC0 | (size >> 8), (size >> 0) & 0xFF])
     elif size < 0x100000:
         size_blob = bytes([0xE0 | (size >> 16), (size >> 8) & 0xFF, (size >> 0) & 0xFF])
-    elif size < 0x8000000:
+    elif size < 0x10300000:
         size_blob = bytes(
             [
                 0xF0 | (size >> 24),

@@ -17,8 +17,6 @@ log = logging.getLogger(__name__)
 class WalletPuzzleStore:
     """
     WalletPuzzleStore keeps track of all generated puzzle_hashes and their derivation path / wallet.
-    This is only used for HD wallets where each address is derived from a public key. Otherwise, use the
-    WalletInterestedStore to keep track of puzzle hashes which we are interested in.
     """
 
     db_connection: aiosqlite.Connection
@@ -79,14 +77,11 @@ class WalletPuzzleStore:
         await cursor.close()
         await self.db_connection.commit()
 
-    async def add_derivation_paths(self, records: List[DerivationRecord], in_transaction=False) -> None:
+    async def add_derivation_paths(self, records: List[DerivationRecord]) -> None:
         """
         Insert many derivation paths into the database.
         """
-
-        if not in_transaction:
-            await self.db_wrapper.lock.acquire()
-        try:
+        async with self.db_wrapper.lock:
             sql_records = []
             for record in records:
                 self.all_puzzle_hashes.add(record.puzzle_hash)
@@ -107,10 +102,7 @@ class WalletPuzzleStore:
             )
 
             await cursor.close()
-        finally:
-            if not in_transaction:
-                await self.db_connection.commit()
-                self.db_wrapper.lock.release()
+            await self.db_connection.commit()
 
     async def get_derivation_record(self, index: uint32, wallet_id: uint32) -> Optional[DerivationRecord]:
         """

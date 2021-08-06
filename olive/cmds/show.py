@@ -1,10 +1,10 @@
-from typing import Any, Optional
+from typing import Any
 
 import click
 
 
 async def show_async(
-    rpc_port: Optional[int],
+    rpc_port: int,
     state: bool,
     show_connections: bool,
     exit_node: bool,
@@ -28,7 +28,6 @@ async def show_async(
     from olive.util.config import load_config
     from olive.util.default_root import DEFAULT_ROOT_PATH
     from olive.util.ints import uint16
-    from olive.util.misc import format_bytes
 
     try:
         config = load_config(DEFAULT_ROOT_PATH, "config.yaml")
@@ -50,14 +49,18 @@ async def show_async(
             total_iters = peak.total_iters if peak is not None else 0
             num_blocks: int = 10
 
+            if sync_mode:
+                sync_max_block = blockchain_state["sync"]["sync_tip_height"]
+                sync_current_block = blockchain_state["sync"]["sync_progress_height"]
+                print(
+                    "Current Blockchain Status: Full Node syncing to block",
+                    sync_max_block,
+                    "\nCurrently synced to block:",
+                    sync_current_block,
+                )
             if synced:
                 print("Current Blockchain Status: Full Node Synced")
                 print("\nPeak: Hash:", peak.header_hash if peak is not None else "")
-            elif peak is not None and sync_mode:
-                sync_max_block = blockchain_state["sync"]["sync_tip_height"]
-                sync_current_block = blockchain_state["sync"]["sync_progress_height"]
-                print(f"Current Blockchain Status: Syncing {sync_current_block}/{sync_max_block}.")
-                print("Peak: Hash:", peak.header_hash if peak is not None else "")
             elif peak is not None:
                 print(f"Current Blockchain Status: Not Synced. Peak height: {peak.height}")
             else:
@@ -82,7 +85,16 @@ async def show_async(
                 )
 
                 print("Estimated network space: ", end="")
-                print(format_bytes(blockchain_state["space"]))
+                network_space_human_readable = blockchain_state["space"] / 1024 ** 4
+                if network_space_human_readable >= 1024:
+                    network_space_human_readable = network_space_human_readable / 1024
+                    if network_space_human_readable >= 1024:
+                        network_space_human_readable = network_space_human_readable / 1024
+                        print(f"{network_space_human_readable:.3f} EiB")
+                    else:
+                        print(f"{network_space_human_readable:.3f} PiB")
+                else:
+                    print(f"{network_space_human_readable:.3f} TiB")
                 print(f"Current difficulty: {difficulty}")
                 print(f"Current VDF sub_slot_iters: {sub_slot_iters}")
                 print("Total iterations since the start of the blockchain:", total_iters)
@@ -154,7 +166,7 @@ async def show_async(
             print(node_stop, "Node stopped")
         if add_connection:
             if ":" not in add_connection:
-                print("Enter a valid IP and port in the following format: 10.5.4.3:8000")
+                print("Enter a valid IP and port in the following format: 10.5.4.3:10300")
             else:
                 ip, port = (
                     ":".join(add_connection.split(":")[:-1]),
@@ -296,8 +308,8 @@ async def show_async(
 )
 @click.option("-b", "--block-by-header-hash", help="Look up a block by block header hash", type=str, default="")
 def show_cmd(
-    rpc_port: Optional[int],
-    wallet_rpc_port: Optional[int],
+    rpc_port: int,
+    wallet_rpc_port: int,
     state: bool,
     connections: bool,
     exit_node: bool,

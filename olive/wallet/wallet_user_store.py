@@ -48,7 +48,7 @@ class WalletUserStore:
     async def init_wallet(self):
         all_wallets = await self.get_all_wallet_info_entries()
         if len(all_wallets) == 0:
-            await self.create_wallet("Olive Wallet", WalletType.STANDARD_WALLET, "")
+            await self.create_wallet("Chia Wallet", WalletType.STANDARD_WALLET, "")
 
     async def _clear_database(self):
         cursor = await self.db_connection.execute("DELETE FROM users_wallets")
@@ -56,34 +56,22 @@ class WalletUserStore:
         await self.db_connection.commit()
 
     async def create_wallet(
-        self, name: str, wallet_type: int, data: str, id: Optional[int] = None, in_transaction=False
+        self, name: str, wallet_type: int, data: str, id: Optional[int] = None
     ) -> Optional[WalletInfo]:
-
-        if not in_transaction:
-            await self.db_wrapper.lock.acquire()
-        try:
+        async with self.db_wrapper.lock:
             cursor = await self.db_connection.execute(
                 "INSERT INTO users_wallets VALUES(?, ?, ?, ?)",
                 (id, name, wallet_type, data),
             )
             await cursor.close()
-        finally:
-            if not in_transaction:
-                await self.db_connection.commit()
-                self.db_wrapper.lock.release()
-
+            await self.db_connection.commit()
         return await self.get_last_wallet()
 
-    async def delete_wallet(self, id: int, in_transaction: bool):
-        if not in_transaction:
-            await self.db_wrapper.lock.acquire()
-        try:
+    async def delete_wallet(self, id: int):
+        async with self.db_wrapper.lock:
             cursor = await self.db_connection.execute(f"DELETE FROM users_wallets where id={id}")
             await cursor.close()
-        finally:
-            if not in_transaction:
-                await self.db_connection.commit()
-                self.db_wrapper.lock.release()
+            await self.db_connection.commit()
 
     async def update_wallet(self, wallet_info: WalletInfo, in_transaction):
         if not in_transaction:

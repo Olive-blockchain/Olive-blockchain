@@ -6,7 +6,7 @@ from olive.full_node.full_node import FullNode
 from olive.rpc.full_node_rpc_api import FullNodeRpcApi
 from olive.server.outbound_message import NodeType
 from olive.server.start_service import run_service
-from tests.block_tools import BlockTools, test_constants
+from olive.util.block_tools import BlockTools, test_constants
 from olive.util.config import load_config_cli
 from olive.util.default_root import DEFAULT_ROOT_PATH
 from olive.util.path import mkdir, path_from_root
@@ -52,7 +52,7 @@ def main() -> None:
     config["database_path"] = config["simulator_database_path"]
     config["peer_db_path"] = config["simulator_peer_db_path"]
     config["introducer_peer"]["host"] = "127.0.0.1"
-    config["introducer_peer"]["port"] = 58555
+    config["introducer_peer"]["port"] = 510116
     config["selected_network"] = "testnet0"
     config["simulation"] = True
     kwargs = service_kwargs_for_full_node_simulator(

@@ -20,7 +20,7 @@ from olive.protocols.shared_protocol import protocol_version
 from olive.server.introducer_peers import IntroducerPeers
 from olive.server.outbound_message import Message, NodeType
 from olive.server.ssl_context import private_ssl_paths, public_ssl_paths
-from olive.server.ws_connection import WSOliveConnection
+from olive.server.ws_connection import WSChiaConnection
 from olive.types.blockchain_format.sized_bytes import bytes32
 from olive.types.peer_info import PeerInfo
 from olive.util.errors import Err, ProtocolError
@@ -58,7 +58,7 @@ def ssl_context_for_client(
     return ssl_context
 
 
-class OliveServer:
+class ChiaServer:
     def __init__(
         self,
         port: int,
@@ -78,10 +78,10 @@ class OliveServer:
     ):
         # Keeps track of all connections to and from this node.
         logging.basicConfig(level=logging.DEBUG)
-        self.all_connections: Dict[bytes32, WSOliveConnection] = {}
+        self.all_connections: Dict[bytes32, WSChiaConnection] = {}
         self.tasks: Set[asyncio.Task] = set()
 
-        self.connection_by_type: Dict[NodeType, Dict[bytes32, WSOliveConnection]] = {
+        self.connection_by_type: Dict[NodeType, Dict[bytes32, WSChiaConnection]] = {
             NodeType.FULL_NODE: {},
             NodeType.WALLET: {},
             NodeType.HARVESTER: {},
@@ -101,7 +101,10 @@ class OliveServer:
         # Task list to keep references to tasks, so they don't get GCd
         self._tasks: List[asyncio.Task] = []
 
-        self.log = logging.getLogger(name if name else __name__)
+        if name:
+            self.log = logging.getLogger(name)
+        else:
+            self.log = logging.getLogger(__name__)
 
         # Our unique random node id that we will send to other peers, regenerated on launch
         self.api = api
@@ -166,7 +169,7 @@ class OliveServer:
         """
         while True:
             await asyncio.sleep(600)
-            to_remove: List[WSOliveConnection] = []
+            to_remove: List[WSChiaConnection] = []
             for connection in self.all_connections.values():
                 if self._local_type == NodeType.FULL_NODE and connection.connection_type == NodeType.FULL_NODE:
                     if time.time() - connection.last_message_time > 1800:
@@ -227,9 +230,9 @@ class OliveServer:
         peer_id = bytes32(der_cert.fingerprint(hashes.SHA256()))
         if peer_id == self.node_id:
             return ws
-        connection: Optional[WSOliveConnection] = None
+        connection: Optional[WSChiaConnection] = None
         try:
-            connection = WSOliveConnection(
+            connection = WSChiaConnection(
                 self._local_type,
                 ws,
                 self._port,
@@ -288,7 +291,7 @@ class OliveServer:
         await close_event.wait()
         return ws
 
-    async def connection_added(self, connection: WSOliveConnection, on_connect=None):
+    async def connection_added(self, connection: WSChiaConnection, on_connect=None):
         # If we already had a connection to this peer_id, close the old one. This is secure because peer_ids are based
         # on TLS public keys
         if connection.peer_node_id in self.all_connections:
@@ -340,7 +343,7 @@ class OliveServer:
                 self.olive_ca_crt_path, self.olive_ca_key_path, self.p2p_crt_path, self.p2p_key_path
             )
         session = None
-        connection: Optional[WSOliveConnection] = None
+        connection: Optional[WSChiaConnection] = None
         try:
             timeout = ClientTimeout(total=30)
             session = ClientSession(timeout=timeout)
@@ -359,54 +362,54 @@ class OliveServer:
                 )
             except ServerDisconnectedError:
                 self.log.debug(f"Server disconnected error connecting to {url}. Perhaps we are banned by the peer.")
+                await session.close()
                 return False
             except asyncio.TimeoutError:
                 self.log.debug(f"Timeout error connecting to {url}")
+                await session.close()
                 return False
-            if ws is None:
+            if ws is not None:
+                assert ws._response.connection is not None and ws._response.connection.transport is not None
+                transport = ws._response.connection.transport  # type: ignore
+                cert_bytes = transport._ssl_protocol._extra["ssl_object"].getpeercert(True)  # type: ignore
+                der_cert = x509.load_der_x509_certificate(cert_bytes, default_backend())
+                peer_id = bytes32(der_cert.fingerprint(hashes.SHA256()))
+                if peer_id == self.node_id:
+                    raise RuntimeError(f"Trying to connect to a peer ({target_node}) with the same peer_id: {peer_id}")
+
+                connection = WSChiaConnection(
+                    self._local_type,
+                    ws,
+                    self._port,
+                    self.log,
+                    True,
+                    False,
+                    target_node.host,
+                    self.incoming_messages,
+                    self.connection_closed,
+                    peer_id,
+                    self._inbound_rate_limit_percent,
+                    self._outbound_rate_limit_percent,
+                    session=session,
+                )
+                handshake = await connection.perform_handshake(
+                    self._network_id,
+                    protocol_version,
+                    self._port,
+                    self._local_type,
+                )
+                assert handshake is True
+                await self.connection_added(connection, on_connect)
+                connection_type_str = ""
+                if connection.connection_type is not None:
+                    connection_type_str = connection.connection_type.name.lower()
+                self.log.info(f"Connected with {connection_type_str} {target_node}")
+                if is_feeler:
+                    asyncio.create_task(connection.close())
+                return True
+            else:
+                await session.close()
                 return False
-
-            assert ws._response.connection is not None and ws._response.connection.transport is not None
-            transport = ws._response.connection.transport  # type: ignore
-            cert_bytes = transport._ssl_protocol._extra["ssl_object"].getpeercert(True)  # type: ignore
-            der_cert = x509.load_der_x509_certificate(cert_bytes, default_backend())
-            peer_id = bytes32(der_cert.fingerprint(hashes.SHA256()))
-            if peer_id == self.node_id:
-                raise RuntimeError(f"Trying to connect to a peer ({target_node}) with the same peer_id: {peer_id}")
-
-            connection = WSOliveConnection(
-                self._local_type,
-                ws,
-                self._port,
-                self.log,
-                True,
-                False,
-                target_node.host,
-                self.incoming_messages,
-                self.connection_closed,
-                peer_id,
-                self._inbound_rate_limit_percent,
-                self._outbound_rate_limit_percent,
-                session=session,
-            )
-            handshake = await connection.perform_handshake(
-                self._network_id,
-                protocol_version,
-                self._port,
-                self._local_type,
-            )
-            assert handshake is True
-            await self.connection_added(connection, on_connect)
-            # the session has been adopted by the connection, don't close it at
-            # the end of the function
-            session = None
-            connection_type_str = ""
-            if connection.connection_type is not None:
-                connection_type_str = connection.connection_type.name.lower()
-            self.log.info(f"Connected with {connection_type_str} {target_node}")
-            if is_feeler:
-                asyncio.create_task(connection.close())
-            return True
         except client_exceptions.ClientConnectorError as e:
             self.log.info(f"{e}")
         except ProtocolError as e:
@@ -426,13 +429,13 @@ class OliveServer:
                 await connection.close(self.invalid_protocol_ban_seconds, WSCloseCode.PROTOCOL_ERROR, Err.UNKNOWN)
             error_stack = traceback.format_exc()
             self.log.error(f"Exception {e}, exception Stack: {error_stack}")
-        finally:
-            if session is not None:
-                await session.close()
+
+        if session is not None:
+            await session.close()
 
         return False
 
-    def connection_closed(self, connection: WSOliveConnection, ban_time: int):
+    def connection_closed(self, connection: WSChiaConnection, ban_time: int):
         if is_localhost(connection.peer_host) and ban_time != 0:
             self.log.warning(f"Trying to ban localhost for {ban_time}, but will not ban")
             ban_time = 0
@@ -481,7 +484,7 @@ class OliveServer:
             if payload_inc is None or connection_inc is None:
                 continue
 
-            async def api_call(full_message: Message, connection: WSOliveConnection, task_id):
+            async def api_call(full_message: Message, connection: WSChiaConnection, task_id):
                 start_time = time.time()
                 try:
                     if self.received_message_callback is not None:
@@ -568,7 +571,7 @@ class OliveServer:
         self,
         messages: List[Message],
         node_type: NodeType,
-        origin_peer: WSOliveConnection,
+        origin_peer: WSChiaConnection,
     ):
         for node_id, connection in self.all_connections.items():
             if node_id == origin_peer.peer_node_id:
@@ -595,7 +598,7 @@ class OliveServer:
             for message in messages:
                 await connection.send_message(message)
 
-    def get_outgoing_connections(self) -> List[WSOliveConnection]:
+    def get_outgoing_connections(self) -> List[WSChiaConnection]:
         result = []
         for _, connection in self.all_connections.items():
             if connection.is_outbound:
@@ -603,7 +606,7 @@ class OliveServer:
 
         return result
 
-    def get_full_node_outgoing_connections(self) -> List[WSOliveConnection]:
+    def get_full_node_outgoing_connections(self) -> List[WSChiaConnection]:
         result = []
         connections = self.get_full_node_connections()
         for connection in connections:
@@ -611,14 +614,13 @@ class OliveServer:
                 result.append(connection)
         return result
 
-    def get_full_node_connections(self) -> List[WSOliveConnection]:
+    def get_full_node_connections(self) -> List[WSChiaConnection]:
         return list(self.connection_by_type[NodeType.FULL_NODE].values())
 
-    def get_connections(self, node_type: Optional[NodeType] = None) -> List[WSOliveConnection]:
+    def get_connections(self) -> List[WSChiaConnection]:
         result = []
         for _, connection in self.all_connections.items():
-            if node_type is None or connection.connection_type == node_type:
-                result.append(connection)
+            result.append(connection)
         return result
 
     async def close_all_connections(self) -> None:
@@ -687,7 +689,7 @@ class OliveServer:
             return inbound_count < self.config["max_inbound_timelord"]
         return True
 
-    def is_trusted_peer(self, peer: WSOliveConnection, trusted_peers: Dict) -> bool:
+    def is_trusted_peer(self, peer: WSChiaConnection, trusted_peers: Dict) -> bool:
         if trusted_peers is None:
             return False
         for trusted_peer in trusted_peers:

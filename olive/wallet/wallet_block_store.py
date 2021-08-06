@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 
 import aiosqlite
@@ -6,19 +5,11 @@ import aiosqlite
 from olive.consensus.block_record import BlockRecord
 from olive.types.blockchain_format.sized_bytes import bytes32
 from olive.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from olive.types.coin_spend import CoinSpend
 from olive.types.header_block import HeaderBlock
 from olive.util.db_wrapper import DBWrapper
 from olive.util.ints import uint32, uint64
 from olive.util.lru_cache import LRUCache
-from olive.util.streamable import Streamable, streamable
 from olive.wallet.block_record import HeaderBlockRecord
-
-
-@dataclass(frozen=True)
-@streamable
-class AdditionalCoinSpends(Streamable):
-    coin_spends_list: List[CoinSpend]
 
 
 class WalletBlockStore:
@@ -57,10 +48,6 @@ class WalletBlockStore:
             "block blob, sub_epoch_summary blob, is_peak tinyint)"
         )
 
-        await self.db.execute(
-            "CREATE TABLE IF NOT EXISTS additional_coin_spends(header_hash text PRIMARY KEY, spends_list_blob blob)"
-        )
-
         # Height index so we can look up in order of height for sync purposes
         await self.db.execute("CREATE INDEX IF NOT EXISTS height on block_records(height)")
 
@@ -75,12 +62,7 @@ class WalletBlockStore:
         await cursor_2.close()
         await self.db.commit()
 
-    async def add_block_record(
-        self,
-        header_block_record: HeaderBlockRecord,
-        block_record: BlockRecord,
-        additional_coin_spends: List[CoinSpend],
-    ):
+    async def add_block_record(self, header_block_record: HeaderBlockRecord, block_record: BlockRecord):
         """
         Adds a block record to the database. This block record is assumed to be connected
         to the chain, but it may or may not be in the LCA path.
@@ -121,15 +103,8 @@ class WalletBlockStore:
                 False,
             ),
         )
-        await cursor_2.close()
 
-        if len(additional_coin_spends) > 0:
-            blob: bytes = bytes(AdditionalCoinSpends(additional_coin_spends))
-            cursor_3 = await self.db.execute(
-                "INSERT OR REPLACE INTO additional_coin_spends VALUES(?, ?)",
-                (header_block_record.header_hash.hex(), blob),
-            )
-            await cursor_3.close()
+        await cursor_2.close()
 
     async def get_header_block_at(self, heights: List[uint32]) -> List[HeaderBlock]:
         if len(heights) == 0:
@@ -154,18 +129,6 @@ class WalletBlockStore:
             hbr: HeaderBlockRecord = HeaderBlockRecord.from_bytes(row[0])
             self.block_cache.put(hbr.header_hash, hbr)
             return hbr
-        else:
-            return None
-
-    async def get_additional_coin_spends(self, header_hash: bytes32) -> Optional[List[CoinSpend]]:
-        cursor = await self.db.execute(
-            "SELECT spends_list_blob from additional_coin_spends WHERE header_hash=?", (header_hash.hex(),)
-        )
-        row = await cursor.fetchone()
-        await cursor.close()
-        if row is not None:
-            coin_spends: AdditionalCoinSpends = AdditionalCoinSpends.from_bytes(row[0])
-            return coin_spends.coin_spends_list
         else:
             return None
 
@@ -200,9 +163,6 @@ class WalletBlockStore:
                 assert peak is None  # Sanity check, only one peak
                 peak = header_hash
         return ret, peak
-
-    def rollback_cache_block(self, header_hash: bytes32):
-        self.block_cache.remove(header_hash)
 
     async def set_peak(self, header_hash: bytes32) -> None:
         cursor_1 = await self.db.execute("UPDATE block_records SET is_peak=0 WHERE is_peak=1")

@@ -85,7 +85,7 @@ def generate_replacements(defaults, conf, dir, test_files):
     if not conf["checkout_blocks_and_plots"]:
         replacements[
             "CHECKOUT_TEST_BLOCKS_AND_PLOTS"
-        ] = "# Omitted checking out blocks and plots repo Olive-Network/test-cache"
+        ] = "# Omitted checking out blocks and plots repo Chia-Network/test-cache"
     if not conf["install_timelord"]:
         replacements["INSTALL_TIMELORD"] = "# Omitted installing Timelord"
     if conf["parallel"]:
@@ -99,8 +99,6 @@ def generate_replacements(defaults, conf, dir, test_files):
     replacements["TEST_NAME"] = test_name(str(dir))
     if "test_name" in conf:
         replacements["TEST_NAME"] = conf["test_name"]
-    for var in conf["custom_vars"]:
-        replacements[var] = conf[var] if var in conf else ""
     return replacements
 
 

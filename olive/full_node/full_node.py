@@ -38,7 +38,7 @@ from olive.protocols.full_node_protocol import (
 from olive.protocols.protocol_message_types import ProtocolMessageTypes
 from olive.server.node_discovery import FullNodePeers
 from olive.server.outbound_message import Message, NodeType, make_msg
-from olive.server.server import OliveServer
+from olive.server.server import ChiaServer
 from olive.types.blockchain_format.classgroup import ClassgroupElement
 from olive.types.blockchain_format.pool_target import PoolTarget
 from olive.types.blockchain_format.sized_bytes import bytes32
@@ -68,7 +68,6 @@ class FullNode:
     mempool_manager: MempoolManager
     connection: aiosqlite.Connection
     _sync_task: Optional[asyncio.Task]
-    _init_weight_proof: Optional[asyncio.Task] = None
     blockchain: Blockchain
     config: Dict
     server: Any
@@ -80,7 +79,6 @@ class FullNode:
     timelord_lock: asyncio.Lock
     initialized: bool
     weight_proof_handler: Optional[WeightProofHandler]
-    _ui_tasks: Set[asyncio.Task]
 
     def __init__(
         self,
@@ -101,11 +99,11 @@ class FullNode:
         self.sync_store = None
         self.signage_point_times = [time.time() for _ in range(self.constants.NUM_SPS_SUB_SLOT)]
         self.full_node_store = FullNodeStore(self.constants)
-        self.uncompact_task = None
 
-        self.log = logging.getLogger(name if name else __name__)
-
-        self._ui_tasks = set()
+        if name:
+            self.log = logging.getLogger(name)
+        else:
+            self.log = logging.getLogger(__name__)
 
         db_path_replaced: str = config["database_path"].replace("CHALLENGE", config["selected_network"])
         self.db_path = path_from_root(root_path, db_path_replaced)
@@ -116,8 +114,8 @@ class FullNode:
 
     async def _start(self):
         self.timelord_lock = asyncio.Lock()
-        self.compact_vdf_sem = asyncio.Semaphore(4)
-        self.new_peak_sem = asyncio.Semaphore(8)
+        self.compact_vdf_lock = asyncio.Semaphore(4)
+        self.new_peak_lock = asyncio.Semaphore(8)
         # create the store (db) and full node instance
         self.connection = await aiosqlite.connect(self.db_path)
         self.db_wrapper = DBWrapper(self.connection)
@@ -129,10 +127,10 @@ class FullNode:
         self.blockchain = await Blockchain.create(self.coin_store, self.block_store, self.constants)
         self.mempool_manager = MempoolManager(self.coin_store, self.constants)
         self.weight_proof_handler = None
-        self._init_weight_proof = asyncio.create_task(self.initialize_weight_proof())
+        asyncio.create_task(self.initialize_weight_proof())
 
         if self.config.get("enable_profiler", False):
-            asyncio.create_task(profile_task(self.root_path, "node", self.log))
+            asyncio.create_task(profile_task(self.root_path, self.log))
 
         self._sync_task = None
         self._segment_task = None
@@ -149,6 +147,7 @@ class FullNode:
             assert len(pending_tx) == 0  # no pending transactions when starting up
 
         peak: Optional[BlockRecord] = self.blockchain.get_peak()
+        self.uncompact_task = None
         if peak is not None:
             full_peak = await self.blockchain.get_full_peak()
             await self.peak_post_processing(full_peak, peak, max(peak.height - 1, 0), None)
@@ -174,18 +173,12 @@ class FullNode:
         if peak is not None:
             await self.weight_proof_handler.create_sub_epoch_segments()
 
-    def set_server(self, server: OliveServer):
+    def set_server(self, server: ChiaServer):
         self.server = server
         dns_servers = []
-        try:
-            network_name = self.config["selected_network"]
-            default_port = self.config["network_overrides"]["config"][network_name]["default_full_node_port"]
-        except Exception:
-            self.log.info("Default port field not found in config.")
-            default_port = None
         if "dns_servers" in self.config:
             dns_servers = self.config["dns_servers"]
-        elif self.config["port"] == 8444:
+        elif self.config["port"] == 10111:
             # If `dns_servers` misses from the `config`, hardcode it if we're running mainnet.
             dns_servers.append("dns-introducer.olive.net")
         try:
@@ -198,8 +191,6 @@ class FullNode:
                 self.config["introducer_peer"],
                 dns_servers,
                 self.config["peer_connect_interval"],
-                self.config["selected_network"],
-                default_port,
                 self.log,
             )
         except Exception as e:
@@ -212,7 +203,7 @@ class FullNode:
         if self.state_changed_callback is not None:
             self.state_changed_callback(change)
 
-    async def short_sync_batch(self, peer: ws.WSOliveConnection, start_height: uint32, target_height: uint32) -> bool:
+    async def short_sync_batch(self, peer: ws.WSChiaConnection, start_height: uint32, target_height: uint32) -> bool:
         """
         Tries to sync to a chain which is not too far in the future, by downloading batches of blocks. If the first
         block that we download is not connected to our chain, we return False and do an expensive long sync instead.
@@ -282,7 +273,7 @@ class FullNode:
         return True
 
     async def short_sync_backtrack(
-        self, peer: ws.WSOliveConnection, peak_height: uint32, target_height: uint32, target_unf_hash: bytes32
+        self, peer: ws.WSChiaConnection, peak_height: uint32, target_height: uint32, target_unf_hash: bytes32
     ):
         """
         Performs a backtrack sync, where blocks are downloaded one at a time from newest to oldest. If we do not
@@ -333,12 +324,7 @@ class FullNode:
         self.sync_store.backtrack_syncing[peer.peer_node_id] -= 1
         return found_fork_point
 
-    async def _refresh_ui_connections(self, sleep_before: float = 0):
-        if sleep_before > 0:
-            await asyncio.sleep(sleep_before)
-        self._state_changed("peer_changed_peak")
-
-    async def new_peak(self, request: full_node_protocol.NewPeak, peer: ws.WSOliveConnection):
+    async def new_peak(self, request: full_node_protocol.NewPeak, peer: ws.WSChiaConnection):
         """
         We have received a notification of a new peak from a peer. This happens either when we have just connected,
         or when the peer has updated their peak.
@@ -348,17 +334,6 @@ class FullNode:
             peer: peer that sent the message
 
         """
-
-        try:
-            seen_header_hash = self.sync_store.seen_header_hash(request.header_hash)
-            # Updates heights in the UI. Sleeps 1.5s before, so other peers have time to update their peaks as well.
-            # Limit to 3 refreshes.
-            if not seen_header_hash and len(self._ui_tasks) < 3:
-                self._ui_tasks.add(asyncio.create_task(self._refresh_ui_connections(1.5)))
-            # Prune completed connect tasks
-            self._ui_tasks = set(filter(lambda t: not t.done(), self._ui_tasks))
-        except Exception as e:
-            self.log.warning(f"Exception UI refresh task: {e}")
 
         # Store this peak/peer combination in case we want to sync to it, and to keep track of peers
         self.sync_store.peer_has_block(request.header_hash, peer.peer_node_id, request.weight, request.height, True)
@@ -416,7 +391,7 @@ class FullNode:
             self._sync_task = asyncio.create_task(self._sync())
 
     async def send_peak_to_timelords(
-        self, peak_block: Optional[FullBlock] = None, peer: Optional[ws.WSOliveConnection] = None
+        self, peak_block: Optional[FullBlock] = None, peer: Optional[ws.WSChiaConnection] = None
     ):
         """
         Sends current peak to timelords
@@ -489,7 +464,7 @@ class FullNode:
         else:
             return True
 
-    async def on_connect(self, connection: ws.WSOliveConnection):
+    async def on_connect(self, connection: ws.WSChiaConnection):
         """
         Whenever we connect to another node / wallet, send them our current heads. Also send heads to farmers
         and challenges to timelords.
@@ -541,7 +516,7 @@ class FullNode:
             elif connection.connection_type is NodeType.TIMELORD:
                 await self.send_peak_to_timelords()
 
-    def on_disconnect(self, connection: ws.WSOliveConnection):
+    def on_disconnect(self, connection: ws.WSChiaConnection):
         self.log.info(f"peer disconnected {connection.get_peer_info()}")
         self._state_changed("close_connection")
         self._state_changed("sync_mode")
@@ -556,8 +531,6 @@ class FullNode:
 
     def _close(self):
         self._shut_down = True
-        if self._init_weight_proof is not None:
-            self._init_weight_proof.cancel()
         if self.blockchain is not None:
             self.blockchain.shut_down()
         if self.mempool_manager is not None:
@@ -572,8 +545,6 @@ class FullNode:
         for task_id, task in list(self.full_node_store.tx_fetch_tasks.items()):
             cancel_task_safe(task, self.log)
         await self.connection.close()
-        if self._init_weight_proof is not None:
-            await asyncio.wait([self._init_weight_proof])
 
     async def _sync(self):
         """
@@ -729,7 +700,7 @@ class FullNode:
         if len(ses_heigths) > 2 and our_peak_height is not None:
             ses_heigths.sort()
             max_fork_ses_height = ses_heigths[-3]
-            # This is the fork point in SES in the case where no fork was detected
+            # This is fork point in SES in case where fork was not detected
             if self.blockchain.get_peak_height() is not None and fork_point_height == max_fork_ses_height:
                 for peer in peers_with_peak:
                     # Grab a block at peak + 1 and check if fork point is actually our current height
@@ -809,7 +780,7 @@ class FullNode:
     async def receive_block_batch(
         self,
         all_blocks: List[FullBlock],
-        peer: ws.WSOliveConnection,
+        peer: ws.WSChiaConnection,
         fork_point: Optional[uint32],
         wp_summaries: Optional[List[SubEpochSummary]] = None,
     ) -> Tuple[bool, bool, Optional[uint32]]:
@@ -827,7 +798,7 @@ class FullNode:
         pre_validate_start = time.time()
         pre_validation_results: Optional[
             List[PreValidationResult]
-        ] = await self.blockchain.pre_validate_blocks_multiprocessing(blocks_to_validate, {}, wp_summaries=wp_summaries)
+        ] = await self.blockchain.pre_validate_blocks_multiprocessing(blocks_to_validate, {})
         self.log.debug(f"Block pre-validation time: {time.time() - pre_validate_start}")
         if pre_validation_results is None:
             return False, False, None
@@ -841,7 +812,7 @@ class FullNode:
         for i, block in enumerate(blocks_to_validate):
             assert pre_validation_results[i].required_iters is not None
             (result, error, fork_height,) = await self.blockchain.receive_block(
-                block, pre_validation_results[i], None if advanced_peak else fork_point
+                block, pre_validation_results[i], None if advanced_peak else fork_point, wp_summaries
             )
             if result == ReceiveBlockResult.NEW_PEAK:
                 advanced_peak = True
@@ -879,7 +850,7 @@ class FullNode:
 
             peak_fb: FullBlock = await self.blockchain.get_full_peak()
             if peak is not None:
-                await self.peak_post_processing(peak_fb, peak, max(peak.height - 1, 0), None)
+                await self.peak_post_processing(peak_fb, peak, peak.height - 1, None)
 
         if peak is not None and self.weight_proof_handler is not None:
             await self.weight_proof_handler.get_proof_of_weight(peak.header_hash)
@@ -903,7 +874,7 @@ class FullNode:
     async def signage_point_post_processing(
         self,
         request: full_node_protocol.RespondSignagePoint,
-        peer: ws.WSOliveConnection,
+        peer: ws.WSChiaConnection,
         ip_sub_slot: Optional[EndOfSubSlotBundle],
     ):
         self.log.info(
@@ -957,7 +928,7 @@ class FullNode:
         await self.server.send_to_all([msg], NodeType.FARMER)
 
     async def peak_post_processing(
-        self, block: FullBlock, record: BlockRecord, fork_height: uint32, peer: Optional[ws.WSOliveConnection]
+        self, block: FullBlock, record: BlockRecord, fork_height: uint32, peer: Optional[ws.WSChiaConnection]
     ):
         """
         Must be called under self.blockchain.lock. This updates the internal state of the full node with the
@@ -1106,7 +1077,7 @@ class FullNode:
     async def respond_block(
         self,
         respond_block: full_node_protocol.RespondBlock,
-        peer: Optional[ws.WSOliveConnection] = None,
+        peer: Optional[ws.WSChiaConnection] = None,
     ) -> Optional[Message]:
         """
         Receive a full block from a peer full node (or ourselves).
@@ -1267,7 +1238,7 @@ class FullNode:
     async def respond_unfinished_block(
         self,
         respond_unfinished_block: full_node_protocol.RespondUnfinishedBlock,
-        peer: Optional[ws.WSOliveConnection],
+        peer: Optional[ws.WSChiaConnection],
         farmed_block: bool = False,
     ):
         """
@@ -1424,7 +1395,7 @@ class FullNode:
         self._state_changed("unfinished_block")
 
     async def new_infusion_point_vdf(
-        self, request: timelord_protocol.NewInfusionPointVDF, timelord_peer: Optional[ws.WSOliveConnection] = None
+        self, request: timelord_protocol.NewInfusionPointVDF, timelord_peer: Optional[ws.WSChiaConnection] = None
     ) -> Optional[Message]:
         # Lookup unfinished blocks
         unfinished_block: Optional[UnfinishedBlock] = self.full_node_store.get_unfinished_block(
@@ -1527,7 +1498,7 @@ class FullNode:
         return None
 
     async def respond_end_of_sub_slot(
-        self, request: full_node_protocol.RespondEndOfSubSlot, peer: ws.WSOliveConnection
+        self, request: full_node_protocol.RespondEndOfSubSlot, peer: ws.WSChiaConnection
     ) -> Tuple[Optional[Message], bool]:
 
         fetched_ss = self.full_node_store.get_sub_slot(request.end_of_slot_bundle.challenge_chain.get_hash())
@@ -1615,7 +1586,7 @@ class FullNode:
         self,
         transaction: SpendBundle,
         spend_name: bytes32,
-        peer: Optional[ws.WSOliveConnection] = None,
+        peer: Optional[ws.WSChiaConnection] = None,
         test: bool = False,
     ) -> Tuple[MempoolInclusionStatus, Optional[Err]]:
         if self.sync_store.get_sync_mode():
@@ -1761,16 +1732,12 @@ class FullNode:
         vdf_proof: VDFProof,
         height: uint32,
         field_vdf: CompressibleVDFField,
-    ) -> bool:
+    ):
         full_blocks = await self.block_store.get_full_blocks_at([height])
         assert len(full_blocks) > 0
-        replaced = False
-        expected_header_hash = self.blockchain.height_to_hash(height)
         for block in full_blocks:
             new_block = None
-            if block.header_hash != expected_header_hash:
-                continue
-            block_record = await self.blockchain.get_block_record_from_db(expected_header_hash)
+            block_record = await self.blockchain.get_block_record_from_db(self.blockchain.height_to_hash(height))
             assert block_record is not None
 
             if field_vdf == CompressibleVDFField.CC_EOS_VDF:
@@ -1802,12 +1769,11 @@ class FullNode:
                 if block.reward_chain_block.challenge_chain_ip_vdf == vdf_info:
                     new_block = dataclasses.replace(block, challenge_chain_ip_proof=vdf_proof)
             if new_block is None:
-                continue
+                self.log.debug("did not replace any proof, vdf does not match")
+                return
             async with self.db_wrapper.lock:
                 await self.block_store.add_full_block(new_block.header_hash, new_block, block_record)
                 await self.block_store.db_wrapper.commit_transaction()
-                replaced = True
-        return replaced
 
     async def respond_compact_proof_of_time(self, request: timelord_protocol.RespondCompactProofOfTime):
         field_vdf = CompressibleVDFField(int(request.field_vdf))
@@ -1816,10 +1782,7 @@ class FullNode:
         ):
             return None
         async with self.blockchain.compact_proof_lock:
-            replaced = await self._replace_proof(request.vdf_info, request.vdf_proof, request.height, field_vdf)
-        if not replaced:
-            self.log.error(f"Could not replace compact proof: {request.height}")
-            return None
+            await self._replace_proof(request.vdf_info, request.vdf_proof, request.height, field_vdf)
         msg = make_msg(
             ProtocolMessageTypes.new_compact_vdf,
             full_node_protocol.NewCompactVDF(request.height, request.header_hash, request.field_vdf, request.vdf_info),
@@ -1827,7 +1790,7 @@ class FullNode:
         if self.server is not None:
             await self.server.send_to_all([msg], NodeType.FULL_NODE)
 
-    async def new_compact_vdf(self, request: full_node_protocol.NewCompactVDF, peer: ws.WSOliveConnection):
+    async def new_compact_vdf(self, request: full_node_protocol.NewCompactVDF, peer: ws.WSChiaConnection):
         is_fully_compactified = await self.block_store.is_fully_compactified(request.header_hash)
         if is_fully_compactified is None or is_fully_compactified:
             return False
@@ -1845,7 +1808,7 @@ class FullNode:
             if response is not None and isinstance(response, full_node_protocol.RespondCompactVDF):
                 await self.respond_compact_vdf(response, peer)
 
-    async def request_compact_vdf(self, request: full_node_protocol.RequestCompactVDF, peer: ws.WSOliveConnection):
+    async def request_compact_vdf(self, request: full_node_protocol.RequestCompactVDF, peer: ws.WSChiaConnection):
         header_block = await self.blockchain.get_header_block_by_height(
             request.height, request.header_hash, tx_filter=False
         )
@@ -1889,7 +1852,7 @@ class FullNode:
         msg = make_msg(ProtocolMessageTypes.respond_compact_vdf, compact_vdf)
         await peer.send_message(msg)
 
-    async def respond_compact_vdf(self, request: full_node_protocol.RespondCompactVDF, peer: ws.WSOliveConnection):
+    async def respond_compact_vdf(self, request: full_node_protocol.RespondCompactVDF, peer: ws.WSChiaConnection):
         field_vdf = CompressibleVDFField(int(request.field_vdf))
         if not await self._can_accept_compact_proof(
             request.vdf_info, request.vdf_proof, request.height, request.header_hash, field_vdf
@@ -1898,10 +1861,7 @@ class FullNode:
         async with self.blockchain.compact_proof_lock:
             if self.blockchain.seen_compact_proofs(request.vdf_info, request.height):
                 return None
-            replaced = await self._replace_proof(request.vdf_info, request.vdf_proof, request.height, field_vdf)
-        if not replaced:
-            self.log.error(f"Could not replace compact proof: {request.height}")
-            return None
+            await self._replace_proof(request.vdf_info, request.vdf_proof, request.height, field_vdf)
         msg = make_msg(
             ProtocolMessageTypes.new_compact_vdf,
             full_node_protocol.NewCompactVDF(request.height, request.header_hash, request.field_vdf, request.vdf_info),
@@ -1912,6 +1872,7 @@ class FullNode:
     async def broadcast_uncompact_blocks(
         self, uncompact_interval_scan: int, target_uncompact_proofs: int, sanitize_weight_proof_only: bool
     ):
+        min_height: Optional[int] = 0
         try:
             while not self._shut_down:
                 while self.sync_store.get_sync_mode():
@@ -1920,30 +1881,33 @@ class FullNode:
                     await asyncio.sleep(30)
 
                 broadcast_list: List[timelord_protocol.RequestCompactProofOfTime] = []
+                new_min_height = None
                 max_height = self.blockchain.get_peak_height()
                 if max_height is None:
                     await asyncio.sleep(30)
                     continue
-                assert max_height is not None
-                self.log.info("Getting minimum bluebox work height")
-                min_height = await self.block_store.get_first_not_compactified()
+                # Calculate 'min_height' correctly the first time this task is launched, using the db
+                assert min_height is not None
+                min_height = await self.block_store.get_first_not_compactified(min_height)
                 if min_height is None or min_height > max(0, max_height - 1000):
                     min_height = max(0, max_height - 1000)
-                assert min_height is not None
-                max_height = uint32(min(max_height, min_height + 2000))
                 batches_finished = 0
-                self.log.info(f"Scanning the blockchain for uncompact blocks. Range: {min_height}..{max_height}")
+                self.log.info("Scanning the blockchain for uncompact blocks.")
+                assert max_height is not None
+                assert min_height is not None
                 for h in range(min_height, max_height, 100):
                     # Got 10 times the target header count, sampling the target headers should contain
                     # enough randomness to split the work between blueboxes.
                     if len(broadcast_list) > target_uncompact_proofs * 10:
                         break
                     stop_height = min(h + 99, max_height)
-                    headers = await self.blockchain.get_header_blocks_in_range(h, stop_height, tx_filter=False)
+                    assert min_height is not None
+                    headers = await self.blockchain.get_header_blocks_in_range(min_height, stop_height, tx_filter=False)
                     records: Dict[bytes32, BlockRecord] = {}
                     if sanitize_weight_proof_only:
-                        records = await self.blockchain.get_block_records_in_range(h, stop_height)
+                        records = await self.blockchain.get_block_records_in_range(min_height, stop_height)
                     for header in headers.values():
+                        prev_broadcast_list_len = len(broadcast_list)
                         expected_header_hash = self.blockchain.height_to_hash(header.height)
                         if header.header_hash != expected_header_hash:
                             continue
@@ -1980,6 +1944,14 @@ class FullNode:
                         # unless this is a challenge block.
                         if sanitize_weight_proof_only:
                             if not record.is_challenge_block(self.constants):
+                                # Calculates 'new_min_height' as described below.
+                                if (
+                                    prev_broadcast_list_len == 0
+                                    and len(broadcast_list) > 0
+                                    and h <= max(0, max_height - 1000)
+                                ):
+                                    new_min_height = header.height
+                                # Skip calculations for CC_SP_VDF and CC_IP_VDF.
                                 continue
                         if header.challenge_chain_sp_proof is not None and (
                             header.challenge_chain_sp_proof.witness_type > 0
@@ -2007,13 +1979,21 @@ class FullNode:
                                     uint8(CompressibleVDFField.CC_IP_VDF),
                                 )
                             )
+                        # This is the first header with uncompact proofs. Store its height so next time we iterate
+                        # only from here. Fix header block iteration window to at least 1000, so reorgs will be
+                        # handled correctly.
+                        if prev_broadcast_list_len == 0 and len(broadcast_list) > 0 and h <= max(0, max_height - 1000):
+                            new_min_height = header.height
 
                     # Small sleep between batches.
                     batches_finished += 1
                     if batches_finished % 10 == 0:
                         await asyncio.sleep(1)
 
-                # sample work randomly from the uncompact blocks we found
+                # We have no uncompact blocks, but mentain the block iteration window to at least 1000 blocks.
+                if new_min_height is None:
+                    new_min_height = max(0, max_height - 1000)
+                min_height = new_min_height
                 if len(broadcast_list) > target_uncompact_proofs:
                     random.shuffle(broadcast_list)
                     broadcast_list = broadcast_list[:target_uncompact_proofs]

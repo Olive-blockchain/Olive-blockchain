@@ -23,7 +23,7 @@ from olive.util.network import class_for_type, is_localhost
 LENGTH_BYTES: int = 4
 
 
-class WSOliveConnection:
+class WSChiaConnection:
     """
     Represents a connection to another node. Local host and port are ours, while peer host and
     port are the host and port of the peer that we are connected to. Node_id and connection_type are
@@ -69,7 +69,7 @@ class WSOliveConnection:
         self.is_outbound = is_outbound
         self.is_feeler = is_feeler
 
-        # OliveConnection metrics
+        # ChiaConnection metrics
         self.creation_time = time.time()
         self.bytes_read = 0
         self.bytes_written = 0
@@ -103,12 +103,12 @@ class WSOliveConnection:
         self.outbound_rate_limiter = RateLimiter(incoming=False, percentage_of_limit=outbound_rate_limit_percent)
         self.inbound_rate_limiter = RateLimiter(incoming=True, percentage_of_limit=inbound_rate_limit_percent)
 
-    async def perform_handshake(self, network_id: str, protocol_version: str, server_port: int, local_type: NodeType):
+    async def perform_handshake(self, "olive-"+network_id: str, protocol_version: str, server_port: int, local_type: NodeType):
         if self.is_outbound:
             outbound_handshake = make_msg(
                 ProtocolMessageTypes.handshake,
                 Handshake(
-                    network_id,
+                    "olive-"+network_id,
                     protocol_version,
                     olive_full_version_str(),
                     uint16(server_port),
@@ -122,17 +122,9 @@ class WSOliveConnection:
             if inbound_handshake_msg is None:
                 raise ProtocolError(Err.INVALID_HANDSHAKE)
             inbound_handshake = Handshake.from_bytes(inbound_handshake_msg.data)
-
-            # Handle case of invalid ProtocolMessageType
-            try:
-                message_type: ProtocolMessageTypes = ProtocolMessageTypes(inbound_handshake_msg.type)
-            except Exception:
+            if ProtocolMessageTypes(inbound_handshake_msg.type) != ProtocolMessageTypes.handshake:
                 raise ProtocolError(Err.INVALID_HANDSHAKE)
-
-            if message_type != ProtocolMessageTypes.handshake:
-                raise ProtocolError(Err.INVALID_HANDSHAKE)
-
-            if inbound_handshake.network_id != network_id:
+            if inbound_handshake."olive-"+network_id != "olive-"+network_id:
                 raise ProtocolError(Err.INCOMPATIBLE_NETWORK_ID)
 
             self.peer_server_port = inbound_handshake.server_port
@@ -146,23 +138,15 @@ class WSOliveConnection:
 
             if message is None:
                 raise ProtocolError(Err.INVALID_HANDSHAKE)
-
-            # Handle case of invalid ProtocolMessageType
-            try:
-                message_type = ProtocolMessageTypes(message.type)
-            except Exception:
-                raise ProtocolError(Err.INVALID_HANDSHAKE)
-
-            if message_type != ProtocolMessageTypes.handshake:
-                raise ProtocolError(Err.INVALID_HANDSHAKE)
-
             inbound_handshake = Handshake.from_bytes(message.data)
-            if inbound_handshake.network_id != network_id:
+            if ProtocolMessageTypes(message.type) != ProtocolMessageTypes.handshake:
+                raise ProtocolError(Err.INVALID_HANDSHAKE)
+            if inbound_handshake."olive-"+network_id != "olive-"+network_id:
                 raise ProtocolError(Err.INCOMPATIBLE_NETWORK_ID)
             outbound_handshake = make_msg(
                 ProtocolMessageTypes.handshake,
                 Handshake(
-                    network_id,
+                    "olive-"+network_id,
                     protocol_version,
                     olive_full_version_str(),
                     uint16(server_port),
