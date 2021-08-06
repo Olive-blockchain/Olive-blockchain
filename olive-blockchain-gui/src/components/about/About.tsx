@@ -70,7 +70,7 @@ const Spacer = styled.div`
   margin-bottom: 1rem;
 `;
 
-const url = 'https://olivenetwork.org';
+const url = 'https://oliveblockchain.co';
 
 type Props = {
   version: string;

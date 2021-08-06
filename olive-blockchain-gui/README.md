@@ -1,5 +1,5 @@
 # olive-blockchain
-![Alt text](https://www.olivenetwork.org/img/olive_logo.svg)
+![Alt text](https://www.oliveblockchain.co/img/olive_logo.svg)
 
 ![GitHub contributors](https://img.shields.io/github/contributors/Olive-Network/olive-blockchain?logo=GitHub)
 
