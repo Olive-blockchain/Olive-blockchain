@@ -76,7 +76,7 @@ def configure(
         if testnet == "true" or testnet == "t":
             print("Setting Testnet")
             testnet_port = "510111"
-            testnet_introducer = "beta1_introducer.olive.net"
+            testnet_introducer = "beta1_introducer.oliveblockchain.co"
             testnet = "testnet7"
             config["full_node"]["port"] = int(testnet_port)
             config["full_node"]["introducer_peer"]["port"] = int(testnet_port)
@@ -101,7 +101,7 @@ def configure(
         elif testnet == "false" or testnet == "f":
             print("Setting Mainnet")
             mainnet_port = "10111"
-            mainnet_introducer = "introducer.olive.net"
+            mainnet_introducer = "introducer.oliveblockchain.co"
             net = "mainnet"
             config["full_node"]["port"] = int(mainnet_port)
             config["full_node"]["introducer_peer"]["port"] = int(mainnet_port)
