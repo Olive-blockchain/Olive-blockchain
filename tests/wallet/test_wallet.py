@@ -3,7 +3,7 @@ import pytest
 import time
 from olive.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
 from olive.protocols.full_node_protocol import RespondBlock
-from olive.server.server import OliveServer
+from olive.server.server import KaleServer
 from olive.simulator.simulator_protocol import FarmNewBlockProtocol, ReorgProtocol
 from olive.types.peer_info import PeerInfo
 from olive.util.ints import uint16, uint32, uint64
@@ -48,7 +48,7 @@ class TestWalletSimulator:
         num_blocks = 10
         full_nodes, wallets = wallet_node
         full_node_api = full_nodes[0]
-        server_1: OliveServer = full_node_api.full_node.server
+        server_1: KaleServer = full_node_api.full_node.server
         wallet_node, server_2 = wallets[0]
 
         wallet = wallet_node.wallet_state_manager.main_wallet
@@ -318,7 +318,7 @@ class TestWalletSimulator:
     #     introducer, introducer_server = await node_iters[2].__anext__()
     #
     #     async def has_full_node():
-    #         outbound: List[WSOliveConnection] = wallet.server.get_outgoing_connections()
+    #         outbound: List[WSKaleConnection] = wallet.server.get_outgoing_connections()
     #         for connection in outbound:
     #             if connection.connection_type is NodeType.FULL_NODE:
     #                 return True

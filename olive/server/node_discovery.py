@@ -16,7 +16,7 @@ from olive.protocols.protocol_message_types import ProtocolMessageTypes
 from olive.server.address_manager import AddressManager, ExtendedPeerInfo
 from olive.server.address_manager_store import AddressManagerStore
 from olive.server.outbound_message import NodeType, make_msg
-from olive.server.server import OliveServer
+from olive.server.server import KaleServer
 from olive.types.peer_info import PeerInfo, TimestampedPeerInfo
 from olive.util.hash import std_hash
 from olive.util.ints import uint64
@@ -30,7 +30,7 @@ MAX_CONCURRENT_OUTBOUND_CONNECTIONS = 70
 class FullNodeDiscovery:
     def __init__(
         self,
-        server: OliveServer,
+        server: KaleServer,
         root_path: Path,
         target_outbound_count: int,
         peer_db_path: str,
@@ -39,7 +39,7 @@ class FullNodeDiscovery:
         peer_connect_interval: int,
         log,
     ):
-        self.server: OliveServer = server
+        self.server: KaleServer = server
         self.message_queue: asyncio.Queue = asyncio.Queue()
         self.is_closed = False
         self.target_outbound_count = target_outbound_count
@@ -100,7 +100,7 @@ class FullNodeDiscovery:
     def add_message(self, message, data):
         self.message_queue.put_nowait((message, data))
 
-    async def on_connect(self, peer: ws.WSOliveConnection):
+    async def on_connect(self, peer: ws.WSKaleConnection):
         if (
             peer.is_outbound is False
             and peer.peer_server_port is not None
@@ -127,7 +127,7 @@ class FullNodeDiscovery:
             await peer.send_message(msg)
 
     # Updates timestamps each time we receive a message for outbound connections.
-    async def update_peer_timestamp_on_message(self, peer: ws.WSOliveConnection):
+    async def update_peer_timestamp_on_message(self, peer: ws.WSKaleConnection):
         if (
             peer.is_outbound
             and peer.peer_server_port is not None
@@ -165,7 +165,7 @@ class FullNodeDiscovery:
         if self.introducer_info is None:
             return None
 
-        async def on_connect(peer: ws.WSOliveConnection):
+        async def on_connect(peer: ws.WSKaleConnection):
             msg = make_msg(ProtocolMessageTypes.request_peers_introducer, introducer_protocol.RequestPeersIntroducer())
             await peer.send_message(msg)
 
@@ -179,7 +179,7 @@ class FullNodeDiscovery:
                 peers.append(
                     TimestampedPeerInfo(
                         ip.to_text(),
-                        10114,
+                        10104,
                         0,
                     )
                 )

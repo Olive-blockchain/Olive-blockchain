@@ -90,7 +90,7 @@ export default function FarmFullNodeConnections() {
       tooltip={(
         <Trans>
           {'The full node that your farmer is connected to is below. '}
-          <Link target="_blank" href="https://github.com/Olive-Network/olive-blockchain/wiki/Network-Architecture">
+          <Link target="_blank" href="https://github.com/Kale-Network/olive-blockchain/wiki/Network-Architecture">
             Learn more
           </Link>
         </Trans>

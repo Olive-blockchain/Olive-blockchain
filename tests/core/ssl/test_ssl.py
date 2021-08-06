@@ -5,8 +5,8 @@ import pytest
 
 from olive.protocols.shared_protocol import protocol_version
 from olive.server.outbound_message import NodeType
-from olive.server.server import OliveServer, ssl_context_for_client
-from olive.server.ws_connection import WSOliveConnection
+from olive.server.server import KaleServer, ssl_context_for_client
+from olive.server.ws_connection import WSKaleConnection
 from olive.ssl.create_ssl import generate_ca_signed_cert
 from olive.types.peer_info import PeerInfo
 from olive.util.block_tools import test_constants
@@ -21,14 +21,14 @@ from tests.setup_nodes import (
 )
 
 
-async def establish_connection(server: OliveServer, dummy_port: int, ssl_context) -> bool:
+async def establish_connection(server: KaleServer, dummy_port: int, ssl_context) -> bool:
     timeout = aiohttp.ClientTimeout(total=10)
     session = aiohttp.ClientSession(timeout=timeout)
     try:
         incoming_queue: asyncio.Queue = asyncio.Queue()
         url = f"wss://{self_hostname}:{server._port}/ws"
         ws = await session.ws_connect(url, autoclose=False, autoping=True, ssl=ssl_context)
-        wsc = WSOliveConnection(
+        wsc = WSKaleConnection(
             NodeType.FULL_NODE,
             ws,
             server._port,
@@ -75,7 +75,7 @@ class TestSSL:
     async def test_public_connections(self, wallet_node):
         full_nodes, wallets = wallet_node
         full_node_api = full_nodes[0]
-        server_1: OliveServer = full_node_api.full_node.server
+        server_1: KaleServer = full_node_api.full_node.server
         wallet_node, server_2 = wallets[0]
 
         success = await server_2.start_client(PeerInfo(self_hostname, uint16(server_1._port)), None)

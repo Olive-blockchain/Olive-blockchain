@@ -12,7 +12,7 @@ const convert = (amount, from, to) => {
   return Number.parseFloat(amountInFromUnit.div(units.getUnit(to)));
 };
 
-class Olive {
+class Kale {
   constructor(value, unit) {
     this._value = value;
     this._unit = unit;
@@ -73,7 +73,7 @@ class Olive {
   }
 }
 
-export const olive_formatter = (value, unit) => new Olive(value, unit);
+export const olive_formatter = (value, unit) => new Kale(value, unit);
 
 olive_formatter.convert = convert;
 olive_formatter.setDisplay = units.setDisplay;

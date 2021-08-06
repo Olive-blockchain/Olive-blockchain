@@ -309,7 +309,7 @@ export default function Block() {
         title={(
           <BlockTitle>
             <Trans>
-              Block at height {blockRecord.height} in the Olive
+              Block at height {blockRecord.height} in the Kale
               blockchain
             </Trans>
           </BlockTitle>

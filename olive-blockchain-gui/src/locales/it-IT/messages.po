@@ -19,8 +19,8 @@ msgstr ""
 "X-Crowdin-File-ID: 72\n"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
-#~ msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
-#~ msgstr "*Vuoi esplorare ulteriormente i blocchi della rete Olive? Dai uno sguardo a <0>Olive Explorer</0> creato da uno sviluppatore open source."
+#~ msgid "*Want to explore Kale’s blocks further? Check out <0>Kale Explorer</0> built by an open source developer."
+#~ msgstr "*Vuoi esplorare ulteriormente i blocchi della rete Kale? Dai uno sguardo a <0>Kale Explorer</0> creato da uno sviluppatore open source."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -36,8 +36,8 @@ msgstr "Un harvester (letteralmente mietitrice) è un servizio eseguito sulla ma
 
 #: src/electron/main.tsx:423
 #: src/electron/main.tsx:510
-msgid "About Olive Blockchain"
-msgstr "Informazioni sulla Blockchain di Olive"
+msgid "About Kale Blockchain"
+msgstr "Informazioni sulla Blockchain di Kale"
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -187,8 +187,8 @@ msgid "Block VDF Iterations"
 msgstr "Blocco Iterazioni VDF"
 
 #: src/components/block/Block.jsx:311
-msgid "Block at height {0} in the Olive blockchain"
-msgstr "Blocco all'altezza {0} nella blockchain Olive"
+msgid "Block at height {0} in the Kale blockchain"
+msgstr "Blocco all'altezza {0} nella blockchain Kale"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
@@ -579,8 +579,8 @@ msgid "Edit"
 msgstr "Modifica"
 
 #: src/components/wallet/WalletImport.tsx:142
-msgid "Enter the 24 word mnemonic that you have saved in order to restore your Olive wallet."
-msgstr "Inserisci le 24 parole mnemoniche che hai salvato per poter ripristinare il tuo wallet Olive."
+msgid "Enter the 24 word mnemonic that you have saved in order to restore your Kale wallet."
+msgstr "Inserisci le 24 parole mnemoniche che hai salvato per poter ripristinare il tuo wallet Kale."
 
 #: src/components/farm/card/FarmCardStatus.tsx:41
 #: src/components/farm/card/FarmCardStatus.tsx:55
@@ -845,20 +845,20 @@ msgid "K-Size"
 msgstr "Dimensione-K"
 
 #: src/electron/main.tsx:420
-msgid "Olive"
-msgstr "Olive"
+msgid "Kale"
+msgstr "Kale"
 
 #: src/electron/main.tsx:359
-msgid "Olive Blockchain Wiki"
-msgstr "Wiki della Blockchain Olive"
+msgid "Kale Blockchain Wiki"
+msgstr "Wiki della Blockchain Kale"
 
 #: src/components/wallet/Wallets.tsx:56
-msgid "Olive Wallet"
-msgstr "Portafoglio Olive"
+msgid "Kale Wallet"
+msgstr "Portafoglio Kale"
 
 #: src/components/dashboard/DashboardSideBar.tsx:60
 msgid "Keys"
-msgstr "Olivevi"
+msgstr "Kalevi"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:54
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:58
@@ -1187,7 +1187,7 @@ msgstr "Id Plot"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:68
 msgid "Plot Key"
-msgstr "Oliveve Plot"
+msgstr "Kaleve Plot"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:43
 #~ msgid "Plot Name"
@@ -1195,7 +1195,7 @@ msgstr "Oliveve Plot"
 
 #: src/components/block/Block.jsx:244
 msgid "Plot Public Key"
-msgstr "Oliveve Pubblica del Plot"
+msgstr "Kaleve Pubblica del Plot"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 #~ msgid "Plot Seed"
@@ -1222,8 +1222,8 @@ msgid "Plots Passed Filter"
 msgstr "Plot che hanno passato il filtro"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:30
-msgid "Plots are allocated space on your hard drive used to farm and earn Olive. <0>Learn more</0>"
-msgstr "I plot sono dello spazio allocato sui tuoi dischi che viene usato per coltivare e guadagnare Olive. <0>Per saperne di più</0>"
+msgid "Plots are allocated space on your hard drive used to farm and earn Kale. <0>Learn more</0>"
+msgstr "I plot sono dello spazio allocato sui tuoi dischi che viene usato per coltivare e guadagnare Kale. <0>Per saperne di più</0>"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:33
 msgid "Plotting"
@@ -1243,11 +1243,11 @@ msgstr "Il plotting con bitfield abilitato ha circa il 30% in meno di scritture 
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:74
 msgid "Pool Key"
-msgstr "Oliveve Pool"
+msgstr "Kaleve Pool"
 
 #: src/components/block/Block.jsx:248
 msgid "Pool Public Key"
-msgstr "Oliveve Pubblica Pool"
+msgstr "Kaleve Pubblica Pool"
 
 #: src/components/block/Block.jsx:260
 msgid "Pool Puzzle Hash"
@@ -1286,15 +1286,15 @@ msgstr "Hash Header Precedente"
 
 #: src/components/selectKey/SelectKey.tsx:139
 msgid "Private key with public fingerprint {fingerprint}"
-msgstr "Oliveve privata con impronta pubblica {fingerprint}"
+msgstr "Kaleve privata con impronta pubblica {fingerprint}"
 
 #: src/middleware/middleware_api.jsx:249
 msgid "Private key {0}"
-msgstr "Oliveve privata {0}"
+msgstr "Kaleve privata {0}"
 
 #: src/middleware/middleware_api.jsx:259
 msgid "Private key:"
-msgstr "Oliveve privata:"
+msgstr "Kaleve privata:"
 
 #: src/components/block/Block.jsx:240
 msgid "Proof of Space Size"
@@ -1310,7 +1310,7 @@ msgstr "Pubkey"
 
 #: src/middleware/middleware_api.jsx:267
 msgid "Public key:"
-msgstr "Oliveve pubblica:"
+msgstr "Kaleve pubblica:"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:186
 msgid "Queue Name"
@@ -1438,7 +1438,7 @@ msgstr "Selezione Cartella Finale"
 
 #: src/components/selectKey/SelectKey.tsx:107
 msgid "Select Key"
-msgstr "Selezione Oliveve"
+msgstr "Selezione Kaleve"
 
 #: src/components/trading/ViewOffer.jsx:38
 msgid "Select Offer"
@@ -1592,8 +1592,8 @@ msgstr "Stato:"
 #~ msgstr "Sub Block Height"
 
 #: src/components/block/Block.jsx:338
-#~ msgid "Sub Block at height {0} in the Olive blockchain"
-#~ msgstr "Sub Block at height {0} in the Olive blockchain"
+#~ msgid "Sub Block at height {0} in the Kale blockchain"
+#~ msgstr "Sub Block at height {0} in the Kale blockchain"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:357
 msgid "Submit"
@@ -1697,8 +1697,8 @@ msgid "This feature is available only from the GUI."
 msgstr "Questa funzione è disponibile solo sulla GUI."
 
 #: src/components/wallet/standard/WalletStandard.tsx:264
-msgid "This is the amount of Olive that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Olive that you have just spent but is not yet in the blockchain."
-msgstr "Questo è l'ammontare di Olive che puoi utilizzare attualmente per fare transazioni. Non include le ricompense coltivate in sospeso, transazioni in entrata in sospeso, e Olive che tua hai appena speso ma non sono ancora nella blockchain."
+msgid "This is the amount of Kale that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Kale that you have just spent but is not yet in the blockchain."
+msgstr "Questo è l'ammontare di Kale che puoi utilizzare attualmente per fare transazioni. Non include le ricompense coltivate in sospeso, transazioni in entrata in sospeso, e Kale che tua hai appena speso ma non sono ancora nella blockchain."
 
 #: src/components/wallet/standard/WalletStandard.tsx:313
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
@@ -1745,8 +1745,8 @@ msgid "This trade was included on blockchain at this block height"
 msgstr "Questo commercio è stato incluso sulla blockchain a questa altezza di blocco"
 
 #: src/components/app/AppTimeBombAlert.tsx:18
-msgid "This version of Olive is no longer compatible with the blockchain and can not safely farm."
-msgstr "Questa versione di Olive non è più compatibile con la blockchain e non può coltivare in modo sicuro."
+msgid "This version of Kale is no longer compatible with the blockchain and can not safely farm."
+msgstr "Questa versione di Kale non è più compatibile con la blockchain e non può coltivare in modo sicuro."
 
 #: src/components/fullNode/FullNode.jsx:87
 msgid "Time Created"
@@ -1774,8 +1774,8 @@ msgstr "Bilancio Totale"
 msgid "Total Iterations"
 msgstr "Iterazioni in Totale"
 
-#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
-#~ msgid "Total Olive Farmed"
+#: src/components/farm/card/FarmCardTotalKaleFarmed.tsx:15
+#~ msgid "Total Kale Farmed"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:16
@@ -1934,8 +1934,8 @@ msgstr "I wallet"
 #~ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:107
-msgid "Want to earn more Olive? Add more plots to your farm."
-msgstr "Vuoi guadagnare più Olive? Aggingi più plot alla tua coltivazione."
+msgid "Want to earn more Kale? Add more plots to your farm."
+msgstr "Vuoi guadagnare più Kale? Aggingi più plot alla tua coltivazione."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:82
 msgid "Want to have a delay before the next plot starts?"
@@ -1950,8 +1950,8 @@ msgid "Weight is the total added difficulty of all sub blocks up to and includin
 msgstr "Il peso è la difficoltà aggiunta in totale a tutti i sottoblocchi fino a e incluso questo"
 
 #: src/components/selectKey/SelectKey.tsx:115
-msgid "Welcome to Olive. Please log in with an existing key, or create a new key."
-msgstr "Benvenuto da Olive. Per favore accedi con una oliveve esistente, o crea una nuova oliveve."
+msgid "Welcome to Kale. Please log in with an existing key, or create a new key."
+msgstr "Benvenuto da Kale. Per favore accedi con una oliveve esistente, o crea una nuova oliveve."
 
 #: src/components/wallet/WalletAdd.tsx:66
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -2000,8 +2000,8 @@ msgstr "Hai {0}% dello spazio sulla rete, quindi coltivare un blocco richiederà
 #~ msgstr "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer this estimate. <0>Learn about Expected Value</0>"
 
 #: src/components/app/AppTimeBomb.tsx:28
-#~ msgid "You need to upgrade the Olive application as this version will stop working soon!"
-#~ msgstr "You need to upgrade the Olive application as this version will stop working soon!"
+#~ msgid "You need to upgrade the Kale application as this version will stop working soon!"
+#~ msgstr "You need to upgrade the Kale application as this version will stop working soon!"
 
 #: src/components/farm/overview/FarmOverview.tsx:33
 msgid "Your Farm Overview"
@@ -2065,9 +2065,9 @@ msgid "{currencyCode} Block Rewards"
 msgstr "{currencyCode} Ricompense Blocco"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:29
-#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:29
-msgid "{currencyCode} Total Olive Farmed"
-msgstr "{currencyCode} Olive Farmati in Totale"
+#: src/components/farm/card/FarmCardTotalKaleFarmed.tsx:29
+msgid "{currencyCode} Total Kale Farmed"
+msgstr "{currencyCode} Kale Farmati in Totale"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:28
 msgid "{currencyCode} User Transaction Fees"

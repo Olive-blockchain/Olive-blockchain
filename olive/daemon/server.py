@@ -33,7 +33,7 @@ io_pool_exc = ThreadPoolExecutor()
 try:
     from aiohttp import ClientSession, web
 except ModuleNotFoundError:
-    print("Error: Make sure to run . ./activate from the project folder before starting Olive.")
+    print("Error: Make sure to run . ./activate from the project folder before starting Kale.")
     quit()
 
 try:
