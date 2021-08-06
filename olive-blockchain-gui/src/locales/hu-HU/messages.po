@@ -19,8 +19,8 @@ msgstr ""
 "X-Crowdin-File-ID: 72\n"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
-msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
-msgstr "Felszeretnéd fedezni a Olive rendszerét bővebben? Csekkold a <0> Olive Explorert</0> amit egy nyílt forráskóddal foglalkozó fejlesztő készített."
+msgid "*Want to explore Kale’s blocks further? Check out <0>Kale Explorer</0> built by an open source developer."
+msgstr "Felszeretnéd fedezni a Kale rendszerét bővebben? Csekkold a <0> Kale Explorert</0> amit egy nyílt forráskóddal foglalkozó fejlesztő készített."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -36,8 +36,8 @@ msgstr "A betakarító egy szolgáltatás ahol a parcellák valójában tárolá
 
 #: src/electron/main.tsx:365
 #: src/electron/main.tsx:443
-msgid "About Olive Blockchain"
-msgstr "A Olive Blockchain-ről"
+msgid "About Kale Blockchain"
+msgstr "A Kale Blockchain-ről"
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -187,8 +187,8 @@ msgid "Block VDF Iterations"
 msgstr "VDF-iterációk blokkja"
 
 #: src/components/block/Block.jsx:311
-msgid "Block at height {0} in the Olive blockchain"
-msgstr "{0} Magasságú blokk a Olive blokkláncban"
+msgid "Block at height {0} in the Kale blockchain"
+msgstr "{0} Magasságú blokk a Kale blokkláncban"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
@@ -268,16 +268,16 @@ msgid "Chat on Discord"
 msgstr "Csevegés a Discord-n"
 
 #: src/electron/main.tsx:362
-msgid "Olive"
-msgstr "Olive"
+msgid "Kale"
+msgstr "Kale"
 
 #: src/electron/main.tsx:312
-msgid "Olive Blockchain Wiki"
-msgstr "Olive Blokklánc Wiki"
+msgid "Kale Blockchain Wiki"
+msgstr "Kale Blokklánc Wiki"
 
 #: src/components/wallet/Wallets.tsx:32
-msgid "Olive Wallet"
-msgstr "Olive Wallet"
+msgid "Kale Wallet"
+msgstr "Kale Wallet"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:13
 msgid "Choose Number of Plots"
@@ -591,8 +591,8 @@ msgid "Edit"
 msgstr "Módosítás"
 
 #: src/components/wallet/WalletImport.tsx:67
-msgid "Enter the 24 word mnemonic that you have saved in order to restore your Olive wallet."
-msgstr "A Olive pénztárca visszaállításához írja be az elmentett 24 szóból álló mnemonikát."
+msgid "Enter the 24 word mnemonic that you have saved in order to restore your Kale wallet."
+msgstr "A Kale pénztárca visszaállításához írja be az elmentett 24 szóból álló mnemonikát."
 
 #: src/components/farm/FarmerStatus.tsx:30
 #: src/components/farm/FarmerStatus.tsx:31
@@ -1222,8 +1222,8 @@ msgid "Plots Passed Filter"
 msgstr "Szűrőn átjutott parcellák"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:23
-msgid "Plots are allocated space on your hard drive used to farm and earn Olive. <0>Learn more</0>"
-msgstr "A cserepek a termesztéshez fenntartott helyek a merevlemezen, amikből Olive nyerhető. <0>Részletek</0>"
+msgid "Plots are allocated space on your hard drive used to farm and earn Kale. <0>Learn more</0>"
+msgstr "A cserepek a termesztéshez fenntartott helyek a merevlemezen, amikből Kale nyerhető. <0>Részletek</0>"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:21
 msgid "Plotting"
@@ -1592,8 +1592,8 @@ msgstr "Állapot:"
 #~ msgstr "Sub Block Height"
 
 #: src/components/block/Block.jsx:338
-#~ msgid "Sub Block at height {0} in the Olive blockchain"
-#~ msgstr "Sub Block at height {0} in the Olive blockchain"
+#~ msgid "Sub Block at height {0} in the Kale blockchain"
+#~ msgstr "Sub Block at height {0} in the Kale blockchain"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:357
 msgid "Submit"
@@ -1693,8 +1693,8 @@ msgid "This feature is available only from the GUI."
 msgstr "Ez a funkció csak a grafikus felhasználói felületrôl érhetô el."
 
 #: src/components/wallet/standard/WalletStandard.tsx:201
-msgid "This is the amount of Olive that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Olive that you have just spent but is not yet in the blockchain."
-msgstr "Ez az összeg Olive, amelyet jelenleg felhasználhat tranzakciók lebonyolítására. Nem tartalmazza a függőben lévő gazdálkodási jutalmakat, a függőben lévő bejövő tranzakciókat és Chiát, amelyet most költött, de még nem tartozik a blokkláncba."
+msgid "This is the amount of Kale that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Kale that you have just spent but is not yet in the blockchain."
+msgstr "Ez az összeg Kale, amelyet jelenleg felhasználhat tranzakciók lebonyolítására. Nem tartalmazza a függőben lévő gazdálkodási jutalmakat, a függőben lévő bejövő tranzakciókat és Chiát, amelyet most költött, de még nem tartozik a blokkláncba."
 
 #: src/components/wallet/standard/WalletStandard.tsx:228
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
@@ -1715,7 +1715,7 @@ msgstr "Ekkor hozta létre a blokkot a gazdálkodó, ami még az idő igazolás�
 
 #: src/components/wallet/standard/WalletStandard.tsx:195
 msgid "This is the total amount of olive in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
-msgstr "Ez az összes Olive mennyiség a blokkláncban az aktuális csúcs alblokkban, amelyet a privát kulcsaid vezérelnek. Ez magában foglalja a befagyasztott gazdálkodási jutalmakat, de nem a függőben lévő bejövő és kimenő tranzakciókat."
+msgstr "Ez az összes Kale mennyiség a blokkláncban az aktuális csúcs alblokkban, amelyet a privát kulcsaid vezérelnek. Ez magában foglalja a befagyasztott gazdálkodási jutalmakat, de nem a függőben lévő bejövő és kimenő tranzakciókat."
 
 #: src/components/wallet/standard/WalletStandard.tsx:218
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
@@ -1742,8 +1742,8 @@ msgid "This trade was included on blockchain at this block height"
 msgstr "Ez a kereskedés a blokklánc ezen magasságán történt"
 
 #: src/components/app/AppTimeBombAlert.tsx:11
-msgid "This version of Olive is no longer compatible with the blockchain and can not safely farm."
-msgstr "A Olive ezen verziója többé már nem kompatibilis a blokklánccal és nem biztonságos."
+msgid "This version of Kale is no longer compatible with the blockchain and can not safely farm."
+msgstr "A Kale ezen verziója többé már nem kompatibilis a blokklánccal és nem biztonságos."
 
 #: src/components/fullNode/FullNode.jsx:86
 msgid "Time Created"
@@ -1767,8 +1767,8 @@ msgstr "Címzett"
 msgid "Total Balance"
 msgstr "Teljes egyenleg"
 
-#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
-#~ msgid "Total Olive Farmed"
+#: src/components/farm/card/FarmCardTotalKaleFarmed.tsx:15
+#~ msgid "Total Kale Farmed"
 #~ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:191
@@ -1931,8 +1931,8 @@ msgstr "Tárcák"
 #~ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:84
-msgid "Want to earn more Olive? Add more plots to your farm."
-msgstr "Szeretne többet keresni Olive-val? Adjon hozzá több telket a gazdaságához (farmoláshoz)."
+msgid "Want to earn more Kale? Add more plots to your farm."
+msgstr "Szeretne többet keresni Kale-val? Adjon hozzá több telket a gazdaságához (farmoláshoz)."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:53
 msgid "Want to have a delay before the next plot starts?"
@@ -1947,8 +1947,8 @@ msgid "Weight is the total added difficulty of all sub blocks up to and includin
 msgstr "Az összes alblokk teljes hozzáadott nehézségének a súlya, egészen ehhez az egységig"
 
 #: src/components/selectKey/SelectKey.tsx:77
-msgid "Welcome to Olive. Please log in with an existing key, or create a new key."
-msgstr "Üdvözöljük a Olive-ban. Kérem jelentkezzen be egy létező kulccsal, vagy készítsen egy új kulcsot magának."
+msgid "Welcome to Kale. Please log in with an existing key, or create a new key."
+msgstr "Üdvözöljük a Kale-ban. Kérem jelentkezzen be egy létező kulccsal, vagy készítsen egy új kulcsot magának."
 
 #: src/components/wallet/WalletAdd.tsx:35
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -1997,8 +1997,8 @@ msgstr "Jelenleg {0}% tárhely kapacitással rendelkezel a hálózaton, amivel m
 #~ msgstr "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer this estimate. <0>Learn about Expected Value</0>"
 
 #: src/components/app/AppTimeBomb.tsx:28
-#~ msgid "You need to upgrade the Olive application as this version will stop working soon!"
-#~ msgstr "You need to upgrade the Olive application as this version will stop working soon!"
+#~ msgid "You need to upgrade the Kale application as this version will stop working soon!"
+#~ msgstr "You need to upgrade the Kale application as this version will stop working soon!"
 
 #: src/components/farm/overview/FarmOverview.tsx:24
 msgid "Your Farm Overview"
@@ -2061,9 +2061,9 @@ msgstr "szinkronizálás"
 msgid "{currencyCode} Block Rewards"
 msgstr "Blokk jutalmak {currencyCode}"
 
-#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:17
-msgid "{currencyCode} Total Olive Farmed"
-msgstr "Teljes farmolt Olive mennyiség {currencyCode}"
+#: src/components/farm/card/FarmCardTotalKaleFarmed.tsx:17
+msgid "{currencyCode} Total Kale Farmed"
+msgstr "Teljes farmolt Kale mennyiség {currencyCode}"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:17
 msgid "{currencyCode} User Transaction Fees"

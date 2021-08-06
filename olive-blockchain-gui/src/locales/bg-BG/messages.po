@@ -19,8 +19,8 @@ msgstr ""
 "X-Crowdin-File-ID: 72\n"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
-#~ msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
-#~ msgstr "Olive Explorer"
+#~ msgid "*Want to explore Kale’s blocks further? Check out <0>Kale Explorer</0> built by an open source developer."
+#~ msgstr "Kale Explorer"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -36,7 +36,7 @@ msgstr "Комбайнът е услуга, работеща на машина, 
 
 #: src/electron/main.tsx:423
 #: src/electron/main.tsx:510
-msgid "About Olive Blockchain"
+msgid "About Kale Blockchain"
 msgstr "Относно Чиа Блокчейн"
 
 #: src/components/trading/ViewOffer.jsx:85
@@ -187,8 +187,8 @@ msgid "Block VDF Iterations"
 msgstr "Общи брой VDF повторения"
 
 #: src/components/block/Block.jsx:311
-msgid "Block at height {0} in the Olive blockchain"
-msgstr "Блокирайте на височина {0} в блокчейна Olive"
+msgid "Block at height {0} in the Kale blockchain"
+msgstr "Блокирайте на височина {0} в блокчейна Kale"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
@@ -579,8 +579,8 @@ msgid "Edit"
 msgstr "Редактиране"
 
 #: src/components/wallet/WalletImport.tsx:142
-msgid "Enter the 24 word mnemonic that you have saved in order to restore your Olive wallet."
-msgstr "Въведи 24 думения ключ който сте запазили за да възстановите вашият Olive портфейл."
+msgid "Enter the 24 word mnemonic that you have saved in order to restore your Kale wallet."
+msgstr "Въведи 24 думения ключ който сте запазили за да възстановите вашият Kale портфейл."
 
 #: src/components/farm/card/FarmCardStatus.tsx:41
 #: src/components/farm/card/FarmCardStatus.tsx:55
@@ -594,7 +594,7 @@ msgstr "Грешка"
 
 #: src/components/wallet/standard/WalletStandard.tsx:415
 msgid "Error: Cannot send olive to coloured address. Please enter a olive address."
-msgstr "Грешка: Неуспешно изпращане на Olive до избрания адрес. Моля въведете Olive адрес."
+msgstr "Грешка: Неуспешно изпращане на Kale до избрания адрес. Моля въведете Kale адрес."
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:51
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:61
@@ -845,16 +845,16 @@ msgid "K-Size"
 msgstr "К-размер"
 
 #: src/electron/main.tsx:420
-msgid "Olive"
+msgid "Kale"
 msgstr "Чиа"
 
 #: src/electron/main.tsx:359
-msgid "Olive Blockchain Wiki"
+msgid "Kale Blockchain Wiki"
 msgstr "Чиа блокчейн Wiki"
 
 #: src/components/wallet/Wallets.tsx:56
-msgid "Olive Wallet"
-msgstr "Olive Портфейл"
+msgid "Kale Wallet"
+msgstr "Kale Портфейл"
 
 #: src/components/dashboard/DashboardSideBar.tsx:60
 msgid "Keys"
@@ -1224,7 +1224,7 @@ msgid "Plots Passed Filter"
 msgstr ""
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:30
-msgid "Plots are allocated space on your hard drive used to farm and earn Olive. <0>Learn more</0>"
+msgid "Plots are allocated space on your hard drive used to farm and earn Kale. <0>Learn more</0>"
 msgstr ""
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:33
@@ -1594,8 +1594,8 @@ msgstr "Статус:"
 #~ msgstr "Sub Block Height"
 
 #: src/components/block/Block.jsx:338
-#~ msgid "Sub Block at height {0} in the Olive blockchain"
-#~ msgstr "Sub Block at height {0} in the Olive blockchain"
+#~ msgid "Sub Block at height {0} in the Kale blockchain"
+#~ msgstr "Sub Block at height {0} in the Kale blockchain"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:357
 msgid "Submit"
@@ -1699,8 +1699,8 @@ msgid "This feature is available only from the GUI."
 msgstr "Тази функция е налична само в графична среда."
 
 #: src/components/wallet/standard/WalletStandard.tsx:264
-msgid "This is the amount of Olive that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Olive that you have just spent but is not yet in the blockchain."
-msgstr "Това е количеството Olive, което в момента можете да използвате за извършване на транзакции. То не включва чакащи фермерски награди, чакащи входящи транзакции и Olive, които току-що сте похарчили, но все още не са в блокчейна."
+msgid "This is the amount of Kale that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Kale that you have just spent but is not yet in the blockchain."
+msgstr "Това е количеството Kale, което в момента можете да използвате за извършване на транзакции. То не включва чакащи фермерски награди, чакащи входящи транзакции и Kale, които току-що сте похарчили, но все още не са в блокчейна."
 
 #: src/components/wallet/standard/WalletStandard.tsx:313
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
@@ -1747,8 +1747,8 @@ msgid "This trade was included on blockchain at this block height"
 msgstr "Тази сделка беше включена в блокчейн на тази височина на блока"
 
 #: src/components/app/AppTimeBombAlert.tsx:18
-msgid "This version of Olive is no longer compatible with the blockchain and can not safely farm."
-msgstr "Тази версия на Olive вече не е съвместима с блокчейна и не може безопасно да се обработва."
+msgid "This version of Kale is no longer compatible with the blockchain and can not safely farm."
+msgstr "Тази версия на Kale вече не е съвместима с блокчейна и не може безопасно да се обработва."
 
 #: src/components/fullNode/FullNode.jsx:87
 msgid "Time Created"
@@ -1776,8 +1776,8 @@ msgstr "Общ баланс"
 msgid "Total Iterations"
 msgstr "Общи повторения"
 
-#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
-#~ msgid "Total Olive Farmed"
+#: src/components/farm/card/FarmCardTotalKaleFarmed.tsx:15
+#~ msgid "Total Kale Farmed"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:16
@@ -1936,8 +1936,8 @@ msgstr "Портфейли"
 #~ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:107
-msgid "Want to earn more Olive? Add more plots to your farm."
-msgstr "Искате да получавате повече Olive? Добавете повече полета в фермата си."
+msgid "Want to earn more Kale? Add more plots to your farm."
+msgstr "Искате да получавате повече Kale? Добавете повече полета в фермата си."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:82
 msgid "Want to have a delay before the next plot starts?"
@@ -1952,8 +1952,8 @@ msgid "Weight is the total added difficulty of all sub blocks up to and includin
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:115
-msgid "Welcome to Olive. Please log in with an existing key, or create a new key."
-msgstr "Добре дошли в Olive. Моля влезте със съществуващ ключ или създайте нов."
+msgid "Welcome to Kale. Please log in with an existing key, or create a new key."
+msgstr "Добре дошли в Kale. Моля влезте със съществуващ ключ или създайте нов."
 
 #: src/components/wallet/WalletAdd.tsx:66
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -2002,8 +2002,8 @@ msgstr "Имате {0}% от пространството в мрежата, к�
 #~ msgstr "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer this estimate. <0>Learn about Expected Value</0>"
 
 #: src/components/app/AppTimeBomb.tsx:28
-#~ msgid "You need to upgrade the Olive application as this version will stop working soon!"
-#~ msgstr "You need to upgrade the Olive application as this version will stop working soon!"
+#~ msgid "You need to upgrade the Kale application as this version will stop working soon!"
+#~ msgstr "You need to upgrade the Kale application as this version will stop working soon!"
 
 #: src/components/farm/overview/FarmOverview.tsx:33
 msgid "Your Farm Overview"
@@ -2067,9 +2067,9 @@ msgid "{currencyCode} Block Rewards"
 msgstr "{currencyCode} Награди на блока"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:29
-#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:29
-msgid "{currencyCode} Total Olive Farmed"
-msgstr "{currencyCode} Общо изкопани Olive"
+#: src/components/farm/card/FarmCardTotalKaleFarmed.tsx:29
+msgid "{currencyCode} Total Kale Farmed"
+msgstr "{currencyCode} Общо изкопани Kale"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:28
 msgid "{currencyCode} User Transaction Fees"

@@ -20,7 +20,7 @@ from olive.protocols.shared_protocol import protocol_version
 from olive.server.introducer_peers import IntroducerPeers
 from olive.server.outbound_message import Message, NodeType
 from olive.server.ssl_context import private_ssl_paths, public_ssl_paths
-from olive.server.ws_connection import WSOliveConnection
+from olive.server.ws_connection import WSKaleConnection
 from olive.types.blockchain_format.sized_bytes import bytes32
 from olive.types.peer_info import PeerInfo
 from olive.util.errors import Err, ProtocolError
@@ -58,7 +58,7 @@ def ssl_context_for_client(
     return ssl_context
 
 
-class OliveServer:
+class KaleServer:
     def __init__(
         self,
         port: int,
@@ -78,10 +78,10 @@ class OliveServer:
     ):
         # Keeps track of all connections to and from this node.
         logging.basicConfig(level=logging.DEBUG)
-        self.all_connections: Dict[bytes32, WSOliveConnection] = {}
+        self.all_connections: Dict[bytes32, WSKaleConnection] = {}
         self.tasks: Set[asyncio.Task] = set()
 
-        self.connection_by_type: Dict[NodeType, Dict[bytes32, WSOliveConnection]] = {
+        self.connection_by_type: Dict[NodeType, Dict[bytes32, WSKaleConnection]] = {
             NodeType.FULL_NODE: {},
             NodeType.WALLET: {},
             NodeType.HARVESTER: {},
@@ -169,7 +169,7 @@ class OliveServer:
         """
         while True:
             await asyncio.sleep(600)
-            to_remove: List[WSOliveConnection] = []
+            to_remove: List[WSKaleConnection] = []
             for connection in self.all_connections.values():
                 if self._local_type == NodeType.FULL_NODE and connection.connection_type == NodeType.FULL_NODE:
                     if time.time() - connection.last_message_time > 1800:
@@ -230,9 +230,9 @@ class OliveServer:
         peer_id = bytes32(der_cert.fingerprint(hashes.SHA256()))
         if peer_id == self.node_id:
             return ws
-        connection: Optional[WSOliveConnection] = None
+        connection: Optional[WSKaleConnection] = None
         try:
-            connection = WSOliveConnection(
+            connection = WSKaleConnection(
                 self._local_type,
                 ws,
                 self._port,
@@ -291,7 +291,7 @@ class OliveServer:
         await close_event.wait()
         return ws
 
-    async def connection_added(self, connection: WSOliveConnection, on_connect=None):
+    async def connection_added(self, connection: WSKaleConnection, on_connect=None):
         # If we already had a connection to this peer_id, close the old one. This is secure because peer_ids are based
         # on TLS public keys
         if connection.peer_node_id in self.all_connections:
@@ -343,7 +343,7 @@ class OliveServer:
                 self.olive_ca_crt_path, self.olive_ca_key_path, self.p2p_crt_path, self.p2p_key_path
             )
         session = None
-        connection: Optional[WSOliveConnection] = None
+        connection: Optional[WSKaleConnection] = None
         try:
             timeout = ClientTimeout(total=30)
             session = ClientSession(timeout=timeout)
@@ -377,7 +377,7 @@ class OliveServer:
                 if peer_id == self.node_id:
                     raise RuntimeError(f"Trying to connect to a peer ({target_node}) with the same peer_id: {peer_id}")
 
-                connection = WSOliveConnection(
+                connection = WSKaleConnection(
                     self._local_type,
                     ws,
                     self._port,
@@ -435,7 +435,7 @@ class OliveServer:
 
         return False
 
-    def connection_closed(self, connection: WSOliveConnection, ban_time: int):
+    def connection_closed(self, connection: WSKaleConnection, ban_time: int):
         if is_localhost(connection.peer_host) and ban_time != 0:
             self.log.warning(f"Trying to ban localhost for {ban_time}, but will not ban")
             ban_time = 0
@@ -484,7 +484,7 @@ class OliveServer:
             if payload_inc is None or connection_inc is None:
                 continue
 
-            async def api_call(full_message: Message, connection: WSOliveConnection, task_id):
+            async def api_call(full_message: Message, connection: WSKaleConnection, task_id):
                 start_time = time.time()
                 try:
                     if self.received_message_callback is not None:
@@ -571,7 +571,7 @@ class OliveServer:
         self,
         messages: List[Message],
         node_type: NodeType,
-        origin_peer: WSOliveConnection,
+        origin_peer: WSKaleConnection,
     ):
         for node_id, connection in self.all_connections.items():
             if node_id == origin_peer.peer_node_id:
@@ -598,7 +598,7 @@ class OliveServer:
             for message in messages:
                 await connection.send_message(message)
 
-    def get_outgoing_connections(self) -> List[WSOliveConnection]:
+    def get_outgoing_connections(self) -> List[WSKaleConnection]:
         result = []
         for _, connection in self.all_connections.items():
             if connection.is_outbound:
@@ -606,7 +606,7 @@ class OliveServer:
 
         return result
 
-    def get_full_node_outgoing_connections(self) -> List[WSOliveConnection]:
+    def get_full_node_outgoing_connections(self) -> List[WSKaleConnection]:
         result = []
         connections = self.get_full_node_connections()
         for connection in connections:
@@ -614,10 +614,10 @@ class OliveServer:
                 result.append(connection)
         return result
 
-    def get_full_node_connections(self) -> List[WSOliveConnection]:
+    def get_full_node_connections(self) -> List[WSKaleConnection]:
         return list(self.connection_by_type[NodeType.FULL_NODE].values())
 
-    def get_connections(self) -> List[WSOliveConnection]:
+    def get_connections(self) -> List[WSKaleConnection]:
         result = []
         for _, connection in self.all_connections.items():
             result.append(connection)
@@ -689,7 +689,7 @@ class OliveServer:
             return inbound_count < self.config["max_inbound_timelord"]
         return True
 
-    def is_trusted_peer(self, peer: WSOliveConnection, trusted_peers: Dict) -> bool:
+    def is_trusted_peer(self, peer: WSKaleConnection, trusted_peers: Dict) -> bool:
         if trusted_peers is None:
             return False
         for trusted_peer in trusted_peers:

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Box, BoxProps } from '@material-ui/core';
-import { Olive } from '@olive/icons';
+import { Kale } from '@olive/icons';
 
-const StyledOlive = styled(Olive)`
+const StyledKale = styled(Kale)`
   max-width: 100%;
   width: auto;
   height: auto;
@@ -12,7 +12,7 @@ const StyledOlive = styled(Olive)`
 export default function Logo(props: BoxProps) {
   return (
     <Box {...props}>
-      <StyledOlive />
+      <StyledKale />
     </Box>
   );
 }

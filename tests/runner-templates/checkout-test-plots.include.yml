@@ -1,7 +1,7 @@
     - name: Checkout test blocks and plots
       uses: actions/checkout@v2
       with:
-        repository: 'Olive-Network/test-cache'
+        repository: 'Kale-Network/test-cache'
         path: '.olive'
         ref: '0.26.0'
         fetch-depth: 1

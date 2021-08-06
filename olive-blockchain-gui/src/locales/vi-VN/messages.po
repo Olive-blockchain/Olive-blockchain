@@ -19,8 +19,8 @@ msgstr ""
 "X-Crowdin-File-ID: 72\n"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
-msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
-msgstr "* Bạn muốn khám phá thêm về Olive Blockchain? Xem <0> Olive Explorer </0> được xây dựng bởi các nhà phát triển nguồn mở."
+msgid "*Want to explore Kale’s blocks further? Check out <0>Kale Explorer</0> built by an open source developer."
+msgstr "* Bạn muốn khám phá thêm về Kale Blockchain? Xem <0> Kale Explorer </0> được xây dựng bởi các nhà phát triển nguồn mở."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -36,8 +36,8 @@ msgstr "Harvester là một dịch vụ chạy trên một máy chứa các tệ
 
 #: src/electron/main.tsx:365
 #: src/electron/main.tsx:443
-msgid "About Olive Blockchain"
-msgstr "Về Olive Blockchain"
+msgid "About Kale Blockchain"
+msgstr "Về Kale Blockchain"
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -187,8 +187,8 @@ msgid "Block VDF Iterations"
 msgstr "Khối VDF lặp lại"
 
 #: src/components/block/Block.jsx:311
-msgid "Block at height {0} in the Olive blockchain"
-msgstr "Khối tại height {0} trong Olive blockchain"
+msgid "Block at height {0} in the Kale blockchain"
+msgstr "Khối tại height {0} trong Kale blockchain"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
@@ -268,16 +268,16 @@ msgid "Chat on Discord"
 msgstr "Chat trên Discord"
 
 #: src/electron/main.tsx:362
-msgid "Olive"
-msgstr "Olive"
+msgid "Kale"
+msgstr "Kale"
 
 #: src/electron/main.tsx:312
-msgid "Olive Blockchain Wiki"
-msgstr "Olive Blockchain Wiki"
+msgid "Kale Blockchain Wiki"
+msgstr "Kale Blockchain Wiki"
 
 #: src/components/wallet/Wallets.tsx:32
-msgid "Olive Wallet"
-msgstr "Ví Olive"
+msgid "Kale Wallet"
+msgstr "Ví Kale"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:13
 msgid "Choose Number of Plots"
@@ -591,8 +591,8 @@ msgid "Edit"
 msgstr "Chỉnh sửa"
 
 #: src/components/wallet/WalletImport.tsx:67
-msgid "Enter the 24 word mnemonic that you have saved in order to restore your Olive wallet."
-msgstr "Nhập 24 từ ghi nhớ mà bạn đã lưu để khôi phục ví Olive của bạn."
+msgid "Enter the 24 word mnemonic that you have saved in order to restore your Kale wallet."
+msgstr "Nhập 24 từ ghi nhớ mà bạn đã lưu để khôi phục ví Kale của bạn."
 
 #: src/components/farm/FarmerStatus.tsx:30
 #: src/components/farm/FarmerStatus.tsx:31
@@ -1222,8 +1222,8 @@ msgid "Plots Passed Filter"
 msgstr "Plot đã lọc"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:23
-msgid "Plots are allocated space on your hard drive used to farm and earn Olive. <0>Learn more</0>"
-msgstr "Plot được phân bổ không gian trên ổ cứng của bạn dùng để farm và thu về Olive. <0> Tìm hiểu thêm </0>"
+msgid "Plots are allocated space on your hard drive used to farm and earn Kale. <0>Learn more</0>"
+msgstr "Plot được phân bổ không gian trên ổ cứng của bạn dùng để farm và thu về Kale. <0> Tìm hiểu thêm </0>"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:21
 msgid "Plotting"
@@ -1592,8 +1592,8 @@ msgstr "Tình trạng:"
 #~ msgstr "Sub Block Height"
 
 #: src/components/block/Block.jsx:338
-#~ msgid "Sub Block at height {0} in the Olive blockchain"
-#~ msgstr "Sub Block at height {0} in the Olive blockchain"
+#~ msgid "Sub Block at height {0} in the Kale blockchain"
+#~ msgstr "Sub Block at height {0} in the Kale blockchain"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:357
 msgid "Submit"
@@ -1693,8 +1693,8 @@ msgid "This feature is available only from the GUI."
 msgstr "Tính năng này chỉ khả dụng trên GUI."
 
 #: src/components/wallet/standard/WalletStandard.tsx:201
-msgid "This is the amount of Olive that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Olive that you have just spent but is not yet in the blockchain."
-msgstr "Đây là số lượng Olive mà bạn hiện có thể sử dụng để thực hiện các giao dịch. Nó không bao gồm phần thưởng farm đang chờ xử lý, các giao dịch đến đang chờ xử lý và Olive mà bạn vừa chi tiêu nhưng chưa có trong blockchain."
+msgid "This is the amount of Kale that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Kale that you have just spent but is not yet in the blockchain."
+msgstr "Đây là số lượng Kale mà bạn hiện có thể sử dụng để thực hiện các giao dịch. Nó không bao gồm phần thưởng farm đang chờ xử lý, các giao dịch đến đang chờ xử lý và Kale mà bạn vừa chi tiêu nhưng chưa có trong blockchain."
 
 #: src/components/wallet/standard/WalletStandard.tsx:228
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
@@ -1741,8 +1741,8 @@ msgid "This trade was included on blockchain at this block height"
 msgstr "Giao dịch này đã được đưa vào blockchain ở chiều cao khối này"
 
 #: src/components/app/AppTimeBombAlert.tsx:11
-msgid "This version of Olive is no longer compatible with the blockchain and can not safely farm."
-msgstr "Phiên bản Olive này không còn tương thích với blockchain và không thể farm một cách an toàn."
+msgid "This version of Kale is no longer compatible with the blockchain and can not safely farm."
+msgstr "Phiên bản Kale này không còn tương thích với blockchain và không thể farm một cách an toàn."
 
 #: src/components/fullNode/FullNode.jsx:86
 msgid "Time Created"
@@ -1766,8 +1766,8 @@ msgstr "Đến"
 msgid "Total Balance"
 msgstr "Tổng số dư"
 
-#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
-#~ msgid "Total Olive Farmed"
+#: src/components/farm/card/FarmCardTotalKaleFarmed.tsx:15
+#~ msgid "Total Kale Farmed"
 #~ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:191
@@ -1930,8 +1930,8 @@ msgstr "Wallets"
 #~ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:84
-msgid "Want to earn more Olive? Add more plots to your farm."
-msgstr "Muốn thêm Olive? Thêm nhiều plot vào farm của bạn."
+msgid "Want to earn more Kale? Add more plots to your farm."
+msgstr "Muốn thêm Kale? Thêm nhiều plot vào farm của bạn."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:53
 msgid "Want to have a delay before the next plot starts?"
@@ -1946,8 +1946,8 @@ msgid "Weight is the total added difficulty of all sub blocks up to and includin
 msgstr "Trọng lượng là tổng độ khó cộng thêm của tất cả các khối phụ lên đến và bao gồm khối này"
 
 #: src/components/selectKey/SelectKey.tsx:77
-msgid "Welcome to Olive. Please log in with an existing key, or create a new key."
-msgstr "Chào mừng đến với Olive. Vui lòng đăng nhập bằng khóa hiện có hoặc tạo khóa mới."
+msgid "Welcome to Kale. Please log in with an existing key, or create a new key."
+msgstr "Chào mừng đến với Kale. Vui lòng đăng nhập bằng khóa hiện có hoặc tạo khóa mới."
 
 #: src/components/wallet/WalletAdd.tsx:35
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -1996,8 +1996,8 @@ msgstr "Bạn chiếm {0}% dung lượng của mạng lưới, vì vậy để �
 #~ msgstr "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer this estimate. <0>Learn about Expected Value</0>"
 
 #: src/components/app/AppTimeBomb.tsx:28
-#~ msgid "You need to upgrade the Olive application as this version will stop working soon!"
-#~ msgstr "You need to upgrade the Olive application as this version will stop working soon!"
+#~ msgid "You need to upgrade the Kale application as this version will stop working soon!"
+#~ msgstr "You need to upgrade the Kale application as this version will stop working soon!"
 
 #: src/components/farm/overview/FarmOverview.tsx:24
 msgid "Your Farm Overview"
@@ -2060,9 +2060,9 @@ msgstr "đang đồng bộ"
 msgid "{currencyCode} Block Rewards"
 msgstr "{currencyCode} phần thưởng khối"
 
-#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:17
-msgid "{currencyCode} Total Olive Farmed"
-msgstr "{currencyCode} Tổng số Olive thu được"
+#: src/components/farm/card/FarmCardTotalKaleFarmed.tsx:17
+msgid "{currencyCode} Total Kale Farmed"
+msgstr "{currencyCode} Tổng số Kale thu được"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:17
 msgid "{currencyCode} User Transaction Fees"

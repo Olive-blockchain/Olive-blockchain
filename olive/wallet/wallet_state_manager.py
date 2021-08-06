@@ -54,7 +54,7 @@ from olive.wallet.wallet_puzzle_store import WalletPuzzleStore
 from olive.wallet.wallet_sync_store import WalletSyncStore
 from olive.wallet.wallet_transaction_store import WalletTransactionStore
 from olive.wallet.wallet_user_store import WalletUserStore
-from olive.server.server import OliveServer
+from olive.server.server import KaleServer
 from olive.wallet.did_wallet.did_wallet import DIDWallet
 
 
@@ -99,7 +99,7 @@ class WalletStateManager:
     coin_store: WalletCoinStore
     sync_store: WalletSyncStore
     weight_proof_handler: Any
-    server: OliveServer
+    server: KaleServer
 
     @staticmethod
     async def create(
@@ -107,7 +107,7 @@ class WalletStateManager:
         config: Dict,
         db_path: Path,
         constants: ConsensusConstants,
-        server: OliveServer,
+        server: KaleServer,
         name: str = None,
     ):
         self = WalletStateManager()

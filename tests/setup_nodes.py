@@ -445,7 +445,7 @@ async def setup_full_system(
         setup_introducer(21233),
         setup_harvester(21234, 21235, consensus_constants, b_tools),
         setup_farmer(21235, consensus_constants, b_tools, uint16(21237)),
-        setup_vdf_clients(10116),
+        setup_vdf_clients(10105),
         setup_timelord(21236, 21237, False, consensus_constants, b_tools),
         setup_full_node(
             consensus_constants, "blockchain_test.db", 21237, b_tools, 21233, False, 10, True, connect_to_daemon

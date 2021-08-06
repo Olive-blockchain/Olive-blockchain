@@ -19,8 +19,8 @@ msgstr ""
 "X-Crowdin-File-ID: 72\n"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
-#~ msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
-#~ msgstr "Haluatko tarkastella lohkoja? Katso avoimen koodin <0>Olive Explorer</0>."
+#~ msgid "*Want to explore Kale’s blocks further? Check out <0>Kale Explorer</0> built by an open source developer."
+#~ msgstr "Haluatko tarkastella lohkoja? Katso avoimen koodin <0>Kale Explorer</0>."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -36,8 +36,8 @@ msgstr "Harvesteri on palvelu koneella, jolle plot-tiedostot on tallennettu. Far
 
 #: src/electron/main.tsx:423
 #: src/electron/main.tsx:510
-msgid "About Olive Blockchain"
-msgstr "Tietoa Olive farmista"
+msgid "About Kale Blockchain"
+msgstr "Tietoa Kale farmista"
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -187,8 +187,8 @@ msgid "Block VDF Iterations"
 msgstr "Lohkon VDF-iteraatiot"
 
 #: src/components/block/Block.jsx:311
-msgid "Block at height {0} in the Olive blockchain"
-msgstr "Lohko korkeudessa {0} Oliven lohkoketjussa"
+msgid "Block at height {0} in the Kale blockchain"
+msgstr "Lohko korkeudessa {0} Kalen lohkoketjussa"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
@@ -579,8 +579,8 @@ msgid "Edit"
 msgstr "Muokkaa"
 
 #: src/components/wallet/WalletImport.tsx:142
-msgid "Enter the 24 word mnemonic that you have saved in order to restore your Olive wallet."
-msgstr "Anna tallentamasi 24 muistisanaa palauttaaksesi Olive-lompakon."
+msgid "Enter the 24 word mnemonic that you have saved in order to restore your Kale wallet."
+msgstr "Anna tallentamasi 24 muistisanaa palauttaaksesi Kale-lompakon."
 
 #: src/components/farm/card/FarmCardStatus.tsx:41
 #: src/components/farm/card/FarmCardStatus.tsx:55
@@ -594,7 +594,7 @@ msgstr "Virhe"
 
 #: src/components/wallet/standard/WalletStandard.tsx:415
 msgid "Error: Cannot send olive to coloured address. Please enter a olive address."
-msgstr "Virhe: Chioja ei voi lähettää värikolikko-osoitteeseen. Anna Olivelompakon osoite."
+msgstr "Virhe: Chioja ei voi lähettää värikolikko-osoitteeseen. Anna Kalelompakon osoite."
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:51
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:61
@@ -845,16 +845,16 @@ msgid "K-Size"
 msgstr "K-Arvo"
 
 #: src/electron/main.tsx:420
-msgid "Olive"
-msgstr "Olive"
+msgid "Kale"
+msgstr "Kale"
 
 #: src/electron/main.tsx:359
-msgid "Olive Blockchain Wiki"
-msgstr "Olive Wiki"
+msgid "Kale Blockchain Wiki"
+msgstr "Kale Wiki"
 
 #: src/components/wallet/Wallets.tsx:56
-msgid "Olive Wallet"
-msgstr "Olive-lompakko"
+msgid "Kale Wallet"
+msgstr "Kale-lompakko"
 
 #: src/components/dashboard/DashboardSideBar.tsx:60
 msgid "Keys"
@@ -1222,7 +1222,7 @@ msgid "Plots Passed Filter"
 msgstr "Plotteja Päässyt Filtteristä"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:30
-msgid "Plots are allocated space on your hard drive used to farm and earn Olive. <0>Learn more</0>"
+msgid "Plots are allocated space on your hard drive used to farm and earn Kale. <0>Learn more</0>"
 msgstr "Plotit ovat levyn tilavarauksia, joilla tuotetaan ja ansaitaan Chioja. <0>Katso lisää</0>"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:33
@@ -1545,7 +1545,7 @@ msgstr "Käyttöajanjakson pituus (lohkojen määrä)"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:415
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:466
 msgid "Spending Limit (olive per interval): {0}"
-msgstr "Käyttöraja (Olivea/ajanjakso):{0}"
+msgstr "Käyttöraja (Kalea/ajanjakso):{0}"
 
 #: src/components/fullNode/FullNode.jsx:95
 msgid "State"
@@ -1592,8 +1592,8 @@ msgstr "Tila:"
 #~ msgstr "Sub Block Height"
 
 #: src/components/block/Block.jsx:338
-#~ msgid "Sub Block at height {0} in the Olive blockchain"
-#~ msgstr "Sub Block at height {0} in the Olive blockchain"
+#~ msgid "Sub Block at height {0} in the Kale blockchain"
+#~ msgstr "Sub Block at height {0} in the Kale blockchain"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:357
 msgid "Submit"
@@ -1697,7 +1697,7 @@ msgid "This feature is available only from the GUI."
 msgstr "Tämä ominaisuus käytettävissä ainoastaan graafisessa käyttöliittymässä."
 
 #: src/components/wallet/standard/WalletStandard.tsx:264
-msgid "This is the amount of Olive that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Olive that you have just spent but is not yet in the blockchain."
+msgid "This is the amount of Kale that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Kale that you have just spent but is not yet in the blockchain."
 msgstr "Transaktioihin käytettävissä oleva Chiojen määrä. Ei sisällä avoimia farmarin palkkioita, avoimia saapuvia transaktioita eikä lähetettyjä, mutta vahvistamattomia transaktioita."
 
 #: src/components/wallet/standard/WalletStandard.tsx:313
@@ -1745,8 +1745,8 @@ msgid "This trade was included on blockchain at this block height"
 msgstr "Kauppa on sisällytetty lohkoketjuun tässä lohkokorkeudessa"
 
 #: src/components/app/AppTimeBombAlert.tsx:18
-msgid "This version of Olive is no longer compatible with the blockchain and can not safely farm."
-msgstr "Tämä Oliven versio ei ole enää yhteensopiva lohkoketjun kanssa."
+msgid "This version of Kale is no longer compatible with the blockchain and can not safely farm."
+msgstr "Tämä Kalen versio ei ole enää yhteensopiva lohkoketjun kanssa."
 
 #: src/components/fullNode/FullNode.jsx:87
 msgid "Time Created"
@@ -1774,8 +1774,8 @@ msgstr "Kokonaissaldo"
 msgid "Total Iterations"
 msgstr "Iteraatioita"
 
-#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
-#~ msgid "Total Olive Farmed"
+#: src/components/farm/card/FarmCardTotalKaleFarmed.tsx:15
+#~ msgid "Total Kale Farmed"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:16
@@ -1934,7 +1934,7 @@ msgstr "Lompakot"
 #~ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:107
-msgid "Want to earn more Olive? Add more plots to your farm."
+msgid "Want to earn more Kale? Add more plots to your farm."
 msgstr "Haluatko ansaita Chioja? Lisää plot-tiedostoja farmiisi."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:82
@@ -1950,8 +1950,8 @@ msgid "Weight is the total added difficulty of all sub blocks up to and includin
 msgstr "Paino on kaikkien tähänastisten lohkojen vaikeuskerroin"
 
 #: src/components/selectKey/SelectKey.tsx:115
-msgid "Welcome to Olive. Please log in with an existing key, or create a new key."
-msgstr "Tervetuloa Olivean. Kirjaudu sisään avaimella tai luo uusi avain."
+msgid "Welcome to Kale. Please log in with an existing key, or create a new key."
+msgstr "Tervetuloa Kalean. Kirjaudu sisään avaimella tai luo uusi avain."
 
 #: src/components/wallet/WalletAdd.tsx:66
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -2000,8 +2000,8 @@ msgstr "Sinulla on {0}% verkossa olevasta tilasta, joten lohkon farmarointi vie 
 #~ msgstr "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer this estimate. <0>Learn about Expected Value</0>"
 
 #: src/components/app/AppTimeBomb.tsx:28
-#~ msgid "You need to upgrade the Olive application as this version will stop working soon!"
-#~ msgstr "You need to upgrade the Olive application as this version will stop working soon!"
+#~ msgid "You need to upgrade the Kale application as this version will stop working soon!"
+#~ msgstr "You need to upgrade the Kale application as this version will stop working soon!"
 
 #: src/components/farm/overview/FarmOverview.tsx:33
 msgid "Your Farm Overview"
@@ -2065,8 +2065,8 @@ msgid "{currencyCode} Block Rewards"
 msgstr "{currencyCode} Lohkopalkkiot"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:29
-#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:29
-msgid "{currencyCode} Total Olive Farmed"
+#: src/components/farm/card/FarmCardTotalKaleFarmed.tsx:29
+msgid "{currencyCode} Total Kale Farmed"
 msgstr "{currencyCode} Chioja Farmaroitu"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:28

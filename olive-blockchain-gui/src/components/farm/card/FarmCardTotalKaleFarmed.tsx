@@ -6,7 +6,7 @@ import FarmCard from './FarmCard';
 import { mojo_to_olive } from '../../../util/olive';
 import useCurrencyCode from '../../../hooks/useCurrencyCode';
 
-export default function FarmCardTotalOliveFarmed() {
+export default function FarmCardTotalKaleFarmed() {
   const currencyCode = useCurrencyCode();
 
   const loading = useSelector(
@@ -17,7 +17,7 @@ export default function FarmCardTotalOliveFarmed() {
     (state: RootState) => state.wallet_state.farmed_amount?.farmed_amount,
   );
 
-  const totalOliveFarmed = useMemo(() => {
+  const totalKaleFarmed = useMemo(() => {
     if (farmedAmount !== undefined) {
       const val = BigInt(farmedAmount.toString());
       return mojo_to_olive(val);
@@ -26,8 +26,8 @@ export default function FarmCardTotalOliveFarmed() {
 
   return (
     <FarmCard
-      title={<Trans>{currencyCode} Total Olive Farmed</Trans>}
-      value={totalOliveFarmed}
+      title={<Trans>{currencyCode} Total Kale Farmed</Trans>}
+      value={totalKaleFarmed}
       loading={loading}
     />
   );
