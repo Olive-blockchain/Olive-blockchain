@@ -37,7 +37,7 @@ steps:
   - task: InstallAppleCertificate@2
     inputs:
       certSecureFile: 'olive-apple-dev-id-app.p12'
-      certPwd: $(OLIVE_APPLE_DEV_ID_APP_PASS)
+      certPwd: $(Olive_APPLE_DEV_ID_APP_PASS)
       keychain: temp
       deleteCert: true
 

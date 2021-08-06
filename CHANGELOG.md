@@ -953,8 +953,8 @@ all fields that referred to sub blocks are changed to blocks.
 
 - `olive show -w` should now more reliably work. Wallet balances should be more often correct.
 - View -> Developer -> Developer Tools now correctly opens the developer tools. Thank you to @roxaaams for this pull request!
-- Fixed 'Receive Address' typo in Wallet. Thanks @meurtn on Discord.
-- Fixed a typo in `olive show -w` with thanks to @pyl on Discord.
+- Fixed 'Receive Address' typo in Wallet. Thanks @meurtn on Keybase.
+- Fixed a typo in `olive show -w` with thanks to @pyl on Keybase.
 - In Windows the start menu item is now Olive Network and the icon in Add/Remove is updated.
 
 ## [1.0beta11] aka Beta 1.11 - 2020-08-24
@@ -966,7 +966,7 @@ all fields that referred to sub blocks are changed to blocks.
 
 ### Changed
 
-- To complement the new About menu, we have revamped all Electron menus and made them OS native. There are now direct links to the Wiki, Discord, and FAQ in the Help menu.
+- To complement the new About menu, we have revamped all Electron menus and made them OS native. There are now direct links to the Wiki, Keybase, and FAQ in the Help menu.
 - There are minor improvements to how working space is calculated and displayed by the plotter. The plotter also has additional debugging information in its output.
 - Successful plots only have an atomic rename.
 

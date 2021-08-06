@@ -12,8 +12,8 @@ network_overrides: &network_overrides
     mainnet:
       NETWORK_TYPE: 0
       GENESIS_CHALLENGE: 5a1be4fb8a8739798482f1dc549ec264d1cf5362aa90deb892cfb30c11be2280
-      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: "e8e245e2e6536e17fd7cbc2e3bd90de06f55362ee3c84cea5a68391e5bad7ef6"
-      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: "e8e245e2e6536e17fd7cbc2e3bd90de06f55362ee3c84cea5a68391e5bad7ef6"
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: "0x41b3ffd0cd089cac7598a30cc387ee2f3ca5e7a886a0c66426e1d1faa0d66501"
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: "0x41b3ffd0cd089cac7598a30cc387ee2f3ca5e7a886a0c66426e1d1faa0d66501"
     testnet0:
       GENESIS_CHALLENGE: 28a206a22e7e2060230c88ad149d81cc8e74bcf5e8e74aafcce8b8efe6181dbb
       NETWORK_TYPE: 1
@@ -49,7 +49,7 @@ daemon_ssl:
 logging: &logging
   log_stdout: False  # If True, outputs to stdout instead of a file
   log_filename: "log/debug.log"
-  log_level: "WARNING"  # Can be CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET
+  log_level: "INFO"  # Can be CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET
   log_maxfilesrotation: 7 #  Max files in rotation. Default value 7 if the key is not set
 
 harvester:
