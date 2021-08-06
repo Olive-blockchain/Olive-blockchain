@@ -224,7 +224,7 @@ if (!handleSquirrelEvent()) {
       app.applicationMenu = createMenu();
       // if the daemon isn't local we aren't going to try to start/stop it
       if (oliveConfig.manageDaemonLifetime()) {
-        oliveEnvironment.startKaleDaemon();
+        oliveEnvironment.startOliveDaemon();
       }
     };
 
@@ -356,10 +356,10 @@ if (!handleSquirrelEvent()) {
         role: 'help',
         submenu: [
           {
-            label: i18n._(/* i18n */ { id: 'Kale Blockchain Wiki' }),
+            label: i18n._(/* i18n */ { id: 'Olive Blockchain Wiki' }),
             click: () => {
               openExternal(
-                'https://github.com/Kale-Network/olive-blockchain/wiki',
+                'https://github.com/Olive-Network/olive-blockchain/wiki',
               );
             },
           },
@@ -367,7 +367,7 @@ if (!handleSquirrelEvent()) {
             label: i18n._(/* i18n */ { id: 'Frequently Asked Questions' }),
             click: () => {
               openExternal(
-                'https://github.com/Kale-Network/olive-blockchain/wiki/FAQ',
+                'https://github.com/Olive-Network/olive-blockchain/wiki/FAQ',
               );
             },
           },
@@ -375,7 +375,7 @@ if (!handleSquirrelEvent()) {
             label: i18n._(/* i18n */ { id: 'Release Notes' }),
             click: () => {
               openExternal(
-                'https://github.com/Kale-Network/olive-blockchain/releases',
+                'https://github.com/Olive-Network/olive-blockchain/releases',
               );
             },
           },
@@ -383,7 +383,7 @@ if (!handleSquirrelEvent()) {
             label: i18n._(/* i18n */ { id: 'Contribute on GitHub' }),
             click: () => {
               openExternal(
-                'https://github.com/Kale-Network/olive-blockchain/blob/master/CONTRIBUTING.md',
+                'https://github.com/Olive-Network/olive-blockchain/blob/master/CONTRIBUTING.md',
               );
             },
           },
@@ -394,7 +394,7 @@ if (!handleSquirrelEvent()) {
             label: i18n._(/* i18n */ { id: 'Report an Issue...' }),
             click: () => {
               openExternal(
-                'https://github.com/Kale-Network/olive-blockchain/issues',
+                'https://github.com/Olive-Network/olive-blockchain/issues',
               );
             },
           },
@@ -415,12 +415,12 @@ if (!handleSquirrelEvent()) {
     ];
 
     if (process.platform === 'darwin') {
-      // Kale Blockchain menu (Mac)
+      // Olive Blockchain menu (Mac)
       template.unshift({
-        label: i18n._(/* i18n */ { id: 'Kale' }),
+        label: i18n._(/* i18n */ { id: 'Olive' }),
         submenu: [
           {
-            label: i18n._(/* i18n */ { id: 'About Kale Blockchain' }),
+            label: i18n._(/* i18n */ { id: 'About Olive Blockchain' }),
             click: () => {
               openAbout();
             },
@@ -507,7 +507,7 @@ if (!handleSquirrelEvent()) {
           type: 'separator',
         },
         {
-          label: i18n._(/* i18n */ { id: 'About Kale Blockchain' }),
+          label: i18n._(/* i18n */ { id: 'About Olive Blockchain' }),
           click() {
             openAbout();
           },

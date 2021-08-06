@@ -1,8 +1,8 @@
 {
   "name": "olive-blockchain",
-  "author": "Kale Network <hello@oliveblockchain.co> (https://oliveblockchain.co/)",
-  "description": "GUI for Kale Blockchain",
-  "productName": "Kale Blockchain",
+  "author": "Olive Network <hello@oliveblockchain.co> (https://oliveblockchain.co/)",
+  "description": "GUI for Olive Blockchain",
+  "productName": "Olive Blockchain",
   "private": true,
   "homepage": "./",
   "main": "build/electron/main.js",

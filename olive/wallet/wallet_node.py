@@ -27,8 +27,8 @@ from olive.protocols.wallet_protocol import (
 )
 from olive.server.node_discovery import WalletPeers
 from olive.server.outbound_message import Message, NodeType, make_msg
-from olive.server.server import KaleServer
-from olive.server.ws_connection import WSKaleConnection
+from olive.server.server import OliveServer
+from olive.server.ws_connection import WSOliveConnection
 from olive.types.blockchain_format.coin import Coin, hash_coin_list
 from olive.types.blockchain_format.sized_bytes import bytes32
 from olive.types.header_block import HeaderBlock
@@ -55,7 +55,7 @@ class WalletNode:
     key_config: Dict
     config: Dict
     constants: ConsensusConstants
-    server: Optional[KaleServer]
+    server: Optional[OliveServer]
     log: logging.Logger
     wallet_peers: WalletPeers
     # Maintains the state of the wallet (blockchain and transactions), handles DB connections
@@ -303,7 +303,7 @@ class WalletNode:
 
         return messages
 
-    def set_server(self, server: KaleServer):
+    def set_server(self, server: OliveServer):
         self.server = server
         # TODO: perhaps use a different set of DNS seeders for wallets, to split the traffic.
         self.wallet_peers = WalletPeers(
@@ -318,7 +318,7 @@ class WalletNode:
         )
         asyncio.create_task(self.wallet_peers.start())
 
-    async def on_connect(self, peer: WSKaleConnection):
+    async def on_connect(self, peer: WSOliveConnection):
         if self.wallet_state_manager is None or self.backup_initialized is False:
             return None
         messages_peer_ids = await self._messages_to_resend()
@@ -360,7 +360,7 @@ class WalletNode:
                 return True
         return False
 
-    async def complete_blocks(self, header_blocks: List[HeaderBlock], peer: WSKaleConnection):
+    async def complete_blocks(self, header_blocks: List[HeaderBlock], peer: WSOliveConnection):
         if self.wallet_state_manager is None:
             return None
         header_block_records: List[HeaderBlockRecord] = []
@@ -402,7 +402,7 @@ class WalletNode:
                 else:
                     self.log.debug(f"Result: {result}")
 
-    async def new_peak_wallet(self, peak: wallet_protocol.NewPeakWallet, peer: WSKaleConnection):
+    async def new_peak_wallet(self, peak: wallet_protocol.NewPeakWallet, peer: WSOliveConnection):
         if self.wallet_state_manager is None:
             return None
 
@@ -553,7 +553,7 @@ class WalletNode:
             self.log.info("Not performing sync, already caught up.")
             return None
 
-        peers: List[WSKaleConnection] = self.server.get_full_node_connections()
+        peers: List[WSOliveConnection] = self.server.get_full_node_connections()
         if len(peers) == 0:
             self.log.info("No peers to sync to")
             return None
@@ -624,7 +624,7 @@ class WalletNode:
 
     async def fetch_blocks_and_validate(
         self,
-        peer: WSKaleConnection,
+        peer: WSOliveConnection,
         height_start: uint32,
         height_end: uint32,
         fork_point_with_peak: Optional[uint32],
@@ -815,7 +815,7 @@ class WalletNode:
                         return False
         return True
 
-    async def get_additions(self, peer: WSKaleConnection, block_i, additions) -> Optional[List[Coin]]:
+    async def get_additions(self, peer: WSOliveConnection, block_i, additions) -> Optional[List[Coin]]:
         if len(additions) > 0:
             additions_request = RequestAdditions(block_i.height, block_i.header_hash, additions)
             additions_res: Optional[Union[RespondAdditions, RejectAdditionsRequest]] = await peer.request_additions(
@@ -846,7 +846,7 @@ class WalletNode:
             added_coins = []
             return added_coins
 
-    async def get_removals(self, peer: WSKaleConnection, block_i, additions, removals) -> Optional[List[Coin]]:
+    async def get_removals(self, peer: WSOliveConnection, block_i, additions, removals) -> Optional[List[Coin]]:
         assert self.wallet_state_manager is not None
         request_all_removals = False
         # Check if we need all removals
