@@ -1,3 +1,5 @@
-# flax-blockchain
+# olive-blockchain
 
-This is the GUI for flax-blockchain. It is built into distribution packages in the flax-blockchain repository.
+**Olive** is a modern community-centric green cryptocurrency based on a proof-of-space-and-time consensus algorithm. It is a community-supported fork of the [Chia Network](https://github.com/Chia-Network/chia-blockchain) codebase.
+
+For more information, see our website and downloads at https://oliveblockchain.co.

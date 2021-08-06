@@ -97,7 +97,7 @@ If ($LastExitCode -gt 0){
 Write-Output "   ---"
 Write-Output "Increase the stack for olive command for (olive plots create) chiapos limitations"
 # editbin.exe needs to be in the path
-editbin.exe /STACK:10300000 daemon\olive.exe
+editbin.exe /STACK:8000000 daemon\olive.exe
 Write-Output "   ---"
 
 $packageVersion = "$env:OLIVE_INSTALLER_VERSION"

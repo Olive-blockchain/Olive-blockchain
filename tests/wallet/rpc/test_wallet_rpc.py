@@ -131,7 +131,7 @@ class TestWalletRpc:
             ph_5 = await wallet_node_2.wallet_state_manager.main_wallet.get_new_puzzlehash()
 
             # Test basic transaction to one output
-            signed_tx_amount = 8810300
+            signed_tx_amount = 888000
             tx_res = await client.create_signed_transaction([{"amount": signed_tx_amount, "puzzle_hash": ph_3}])
 
             assert tx_res["success"]

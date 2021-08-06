@@ -295,7 +295,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 ### Changed
 
 - Weight proof request timeout was increased to 180 seconds.
-- Mainnet uses port 10111 and other constants and service names were changed for mainnet.
+- Mainnet uses port 8444 and other constants and service names were changed for mainnet.
 - GUI locales are now extracted and compiled in `npm run build`.
 - Daemon now logs to STDERR also.
 
@@ -444,7 +444,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - In chiavdf we changed n-Wesolowski proofs to include B instead of y in segments. Proof segments now have the form (iters, B, proof) instead of (iters, y, proof). This reduces proof segment size from 208 to 141 bytes.
 - The new chiavdf proof format is not compatible with the old one, however zero-Wesolowski proofs are not affected as they have zero proof segments and consist only of (y, proof).
 - We made two HashPrime optimizations in chiavdf. This forces numbers being tested for primality to be odd and avoids an unnecessary update of the sprout vector by stopping after the first non-zero value. This is a breaking change as it changes the prime numbers generated from a given seed. We believe this is the final breaking change for chiavdf.
-- olivebip158 was set to a gold 1.0 version.
+- chiabip158 was set to a gold 1.0 version.
 - Comments to Olivelisp and clvm source have been updated for all of the Olivelisp changes over the proceeding three weeks.
 - And thanks yet again to @jespino for a host of PRs to add more detailed typing to various components in olive-blockchain.
 - aiohttp was updated to 3.7.4 to address a low severity [security issue](https://github.com/advisories/GHSA-v6wp-4m6f-gcjg).
@@ -570,7 +570,7 @@ all fields that referred to sub blocks are changed to blocks.
 - We have added the [Crowdin](https://crowdin.com/) translation platform to [olive blockchain gui](https://crowdin.com/project/olive-blockchain). We are still getting it fully set up, but helping to translate the GUI is going to be much easier.
 - Full Node > Connections in the GUI now shows the peak sub block height your connected peers believe they are at. A node syncing from you will not be at the true peak sub block height until it gets into sync.
 - `olive init -c [directory]` will create new TLS certificates signed by your CA located in `[directory]`. Use this feature to configure a new remote harvester. Type `olive init -h` to get instructions. Huge thanks to a very efficient @eFishCent for this quick and thorough pull request.
-- We build both MacOS x86_64 and MacOS universal wheels for chiapos, chiavdf, blpsy, and olivebip158 in Python 3.9. The universal build allows M1 Macs to run these dependencies in ARM64 native mode.
+- We build both MacOS x86_64 and MacOS universal wheels for chiapos, chiavdf, blpsy, and chiabip158 in Python 3.9. The universal build allows M1 Macs to run these dependencies in ARM64 native mode.
 - On first run in the GUI (or when there are no plot directories) there is now an "Add Plot Directories" on the Farm tab also.
 
 ### Changed
@@ -610,7 +610,7 @@ all fields that referred to sub blocks are changed to blocks.
 ### Changed
 
 - Significant improvements have been made to how the full node handles the mempool. This generally cuts CPU usage of node by 2x or more. Part of this increase is that we have temporarily limited the size of transactions. If you want to test sending a transaction you should keep the value of your transaction below 20 TXCH as new consensus will cause you to use a lot of inputs. This will be returned to the expected level as soon as the integration of [clvm rust](https://github.com/Olive-Network/clvm_rs) is complete.
-- We have changed the way TLS between nodes and between olive services work. Each node now has two certificate authorities. One is a public, shared CA that signs the TLS certificates that every node uses to connect to other nodes on 10111 or 510111. You now also have a self generated private CA that must sign e.g. farmer and harvester's certificates. To run a remote harvester you need a new harvester key that is then signed by your private CA. We know this is not easy for remote harvester in this release but will address it quickly.
+- We have changed the way TLS between nodes and between olive services work. Each node now has two certificate authorities. One is a public, shared CA that signs the TLS certificates that every node uses to connect to other nodes on 8444 or 58444. You now also have a self generated private CA that must sign e.g. farmer and harvester's certificates. To run a remote harvester you need a new harvester key that is then signed by your private CA. We know this is not easy for remote harvester in this release but will address it quickly.
 - We have changed the way we compile the proof of space plotter and added one additional optimization. On many modern processors this will mean that using the plotter with the `-e` flag will be 2-3% faster than the Beta 17 plotter on the same CPU. We have found this to be very sensitive to different CPUs but are now confident that, at worst, the Beta 24 plotter with `-e` will be the same speed as Beta 17 if not slightly faster on the same hardware. Huge thanks to @xorinox for meticulously tracking down and testing this.
 - If a peer is not responsive during sync, node will disconnect it.
 - Peers that have not sent data in the last hour are now disconnected.
@@ -628,7 +628,7 @@ all fields that referred to sub blocks are changed to blocks.
 - Plot filename is now back in the Plots table of the GUI.
 - There was a bug in adding a sub block to weight proofs and an issue in the weight proof index.
 - Over time the node would think that there were no peers attached with peak sub block heights higher than 0.
-- There was a potential bug in Python 3.9.0 that required us to update blspy, chiapos, chiavdf, and olivebip158.
+- There was a potential bug in Python 3.9.0 that required us to update blspy, chiapos, chiavdf, and chiabip158.
 - An off by one issue could cause syncing to ask for 1 sub block when it should ask for e.g. 32.
 - Short sync and backtrack sync both had various issues.
 - There was an edge case in bip158 handling.
@@ -770,7 +770,7 @@ all fields that referred to sub blocks are changed to blocks.
 - The plotter supports the new bitfield back propagation method and the old method from Beta 17. To choose the old method add a `-e` to the command line or choose "Disable bitfield plotting" in "Show Advanced Options" of the Plots tab. Bitfield back propagation writes about 13% less total writes and can be faster on some slower hard drive temp spaces. For now, SSD temp space will likely plot faster with bitfield back propagation disabled. We will be returning to speed enhancements to the plotter as we approach and pass our mainnet launch.
 - The Farm tab in the GUI is significantly enhanced. Here you have a dashboard overview of your farm and your activity in response to challenges blockchain challnegs, how long it will take you - on average - to win a block, and how much TXCH you've won so far. Harvester and Full Node connections have moved to Advanced Options.
 - Harvester and farmer will start when the GUI starts instead of waiting for key selection if there are already keys available. This means you will start farming on reboot if you have the Olive application set to launch on start.
-- Testnet is now running at the primary port of 510111. Update your routers appropriately. This opens 10111 for mainnet.
+- Testnet is now running at the primary port of 58444. Update your routers appropriately. This opens 8444 for mainnet.
 - All networking code has been refactored and mostly moved to websockets.
 - RPCs and daemon now communicate over TLS with certificates that are generated into `~/.olive/VERSION/config/`
 - We have moved to taproot across all of our transactions and smart transactions.
@@ -804,7 +804,7 @@ all fields that referred to sub blocks are changed to blocks.
 
 - F1 generation in the plotter is now fully parallel for a small speedup.
 - We have bitfield optimized phase 2 of plotting. There is only about a 1% increase in speed from this change but there is a 12% decrease in writes with a penalty of 3% more reads. More details in [PR 120](https://github.com/Olive-Network/chiapos/pull/120). Note that some sorts in phase 2 and phase 3 will now appear "out of order" and that is now expected behavior.
-- Partial support for Python 3.9. That includes new versions of Olive dependencies like olivebip158.
+- Partial support for Python 3.9. That includes new versions of Olive dependencies like chiabip158.
 
 ### Changed
 
@@ -953,8 +953,8 @@ all fields that referred to sub blocks are changed to blocks.
 
 - `olive show -w` should now more reliably work. Wallet balances should be more often correct.
 - View -> Developer -> Developer Tools now correctly opens the developer tools. Thank you to @roxaaams for this pull request!
-- Fixed 'Receive Address' typo in Wallet. Thanks @meurtn on Keybase.
-- Fixed a typo in `olive show -w` with thanks to @pyl on Keybase.
+- Fixed 'Receive Address' typo in Wallet. Thanks @meurtn on Discord.
+- Fixed a typo in `olive show -w` with thanks to @pyl on Discord.
 - In Windows the start menu item is now Olive Network and the icon in Add/Remove is updated.
 
 ## [1.0beta11] aka Beta 1.11 - 2020-08-24
@@ -966,7 +966,7 @@ all fields that referred to sub blocks are changed to blocks.
 
 ### Changed
 
-- To complement the new About menu, we have revamped all Electron menus and made them OS native. There are now direct links to the Wiki, Keybase, and FAQ in the Help menu.
+- To complement the new About menu, we have revamped all Electron menus and made them OS native. There are now direct links to the Wiki, Discord, and FAQ in the Help menu.
 - There are minor improvements to how working space is calculated and displayed by the plotter. The plotter also has additional debugging information in its output.
 - Successful plots only have an atomic rename.
 
@@ -1118,7 +1118,7 @@ farmer and full node protocols.
 - Use real plot sizes in UI instead of a formula/
 - HD keys now use EIP 2333 format instead of BIP32, for compatibility with
 other chains.
-- Keys are now derived with the EIP 2334 (m/12381/10111/a/b).
+- Keys are now derived with the EIP 2334 (m/12381/8444/a/b).
 - Removed the ability to pass in sk_seed to plotting, to increase security.
 - Linux builds of chiavdf and blspy now use a fresh build of gmp 6.2.1.
 
@@ -1197,7 +1197,7 @@ relic. We will make a patch available for these systems shortly.
 - We added total network storage space estimation to the node RPC at the `/get_network_space` endpoint instead of only being available in the cli. The RPC endpoint takes two block header hashes and estimates space between those header hashes.
 - Logs now autorotate. Once the debug.log reaches 20MB it is compressed and archived keeping 7 historical 20MB logs.
 - We now have a CHANGELOG.md that adheres closely to the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) standard. We merged in the version history and updated some previous release notes to capture items important to the change log. We are modifying our release process to accumulate changes at the top of the change log and then copy those to the release notes at the time of the release.
-- We added [lgtm](https://lgtm.com/) source analysis on pull request to the olive-blockchain, chiapos, chiavdf, olivebip158, and bls-library repositories to add some automated security analysis to our ci.
+- We added [lgtm](https://lgtm.com/) source analysis on pull request to the olive-blockchain, chiapos, chiavdf, chiabip158, and bls-library repositories to add some automated security analysis to our ci.
 
 ### Changed
 
@@ -1265,7 +1265,7 @@ relic. We will make a patch available for these systems shortly.
 
 ### Added
 
-- This release adds Coloured coin support with offers. Yes that is the correct spelling. Coloured coins allow you to issue a coin, token, or asset with nearly unlimited issuance plans and functionality. They support inner smart transactions so they can inherit any of the other functionality you can implement in Olivelisp. Offers are especially cool as they create a truly decentralized exolange capability. Read much more about them in Bram's [blog post on Coloured coins](https://oliveblockchain.co/2020/04/29/coloured-coins-launch.en.html).
+- This release adds Coloured coin support with offers. Yes that is the correct spelling. Coloured coins allow you to issue a coin, token, or asset with nearly unlimited issuance plans and functionality. They support inner smart transactions so they can inherit any of the other functionality you can implement in Olivelisp. Offers are especially cool as they create a truly decentralized exchange capability. Read much more about them in Bram's [blog post on Coloured coins](https://oliveblockchain.co/2020/04/29/coloured-coins-launch.en.html).
 - This release adds support for native Windows via a (mostly) automated installer and MacOS Mojave. Windows still requires some PowerShell command line use. You should expect ongoing improvements in ease of install and replication of the command line tools in the GUI. Again huge thanks to @dkackman for continued Windows installer development. Native Windows is currently slightly slower than the same version running in WSL 2 on the same machine for both block verification and plotting.
 - We made some speed improvements that positively affected all platforms while trying to increase plotting speed in Windows.
 - The graphical Full Node display now shows the expected finish times of each of the prospective chain tips.
@@ -1355,7 +1355,7 @@ relic. We will make a patch available for these systems shortly.
 - We have revamped the olive management command line. To start a farmer all you have to do is start the venv with `. ./activate` and then type `olive-start-farmer &`. The [README.md](https://github.com/Olive-Network/olive-blockchain/blob/main/README.md) has been updated to reflect the new commands.
 - We have moved all node to node communication to TLS 1.3 by default. For now, all TLS is unauthenticated but certain types of over the wire node to node communications will have the ability to authenticate both by certificate and by inter protocol signature. Encrypting over the wire by default stops casual snooping of transaction origination, light wallet to trusted node communication, and harvester-farmer-node communication for example. This leaves only the mempool and the chain itself open to casual observation by the public and the various entities around the world.
 - Configuration directories have been moved to a default location of HomeDirectory/.olive/release/config, plots/ db/, wallet/ etc. This can be overridden by `export OLIVE_ROOT=~/.olive` for example which would then put the plots directory in `HomeDirectory/.olive/plots`.
-- The libraries olive-pos, olive-fast-vdf, and olive-bip-158 have been moved to their own repositories: [chiapos](https://github.com/Olive-Network/chiapos), [chiavdf](https://github.com/Olive-Network/chiavdf), and [chaibip158](https://github.com/Olive-Network/olivebip158). They are brought in by olive-blockchain at install time. Our BLS signature library remains at [bls-signatures](https://github.com/Olive-Network/bls-signatures).
+- The libraries olive-pos, olive-fast-vdf, and olive-bip-158 have been moved to their own repositories: [chiapos](https://github.com/Olive-Network/chiapos), [chiavdf](https://github.com/Olive-Network/chiavdf), and [chaibip158](https://github.com/Olive-Network/chiabip158). They are brought in by olive-blockchain at install time. Our BLS signature library remains at [bls-signatures](https://github.com/Olive-Network/bls-signatures).
 - The install process now brings in chiapos, chiavdf, etc from Pypi where they are auto published via GitHub Actions ci using cibuildwheel. Check out `.github/workflows/build.yml` for build methods in each of the sub repositories.
 - `olive-regenerate-keys` has been renamed `olive-generate-keys`.
 - setproctitle is now an optional install dependency that we will continue to install in the default install methods.
@@ -1387,7 +1387,7 @@ relic. We will make a patch available for these systems shortly.
 - You can now provide an index to create_plots using the -i flag to create an arbitrary new plot derived from an existing plot key. Thanks @xorinox.
 - There is a new restart_harvester.sh in scripts/ to easily restart a harvester when you want to add a newly completed plot to the farm without restarting farmer, fullnode, timelord, etc.
 - Harvesters now log errors if they encounter a malformed or corrupted plot file. Again thanks @xorinox.
-- New AJAX based full node UI. To access go to [http://127.0.0.1:10116/index.html](http://127.0.0.1:10116/index.html) with any modern web browser on the same machine as the full node.
+- New AJAX based full node UI. To access go to [http://127.0.0.1:8555/index.html](http://127.0.0.1:8555/index.html) with any modern web browser on the same machine as the full node.
 - If you want to benchmark your CPU as a VDF you can use vdf_bench square_asm 500000 for the assembly optimized test or just vdf_bench square 500000 for the plain C++ code path. This tool is found in lib/chiavdf/fast_vdf/.
 - Improvements to shutting down services in all of the scripts in scripts/. Another @xorinox HT.
 
@@ -1439,7 +1439,7 @@ relic. We will make a patch available for these systems shortly.
 
 - FullNode performance improvements - Syncing up to the blockchain by importing all blocks is faster due to improvements in VDF verification speed and multithreading block verification.
 - VDF improvements - VDF verification and generation speed has increased and dependence on flint2 has been removed. We wish to thank Dr. William Hart (@wbhart) for dual licensing parts of his contributions in FLINT and Antic for inclusion in the Olive blockchain.
-- Implemented an RPC interface with JSON serialization for streamables - currently on port 10116.
+- Implemented an RPC interface with JSON serialization for streamables - currently on port 8555.
 - Added details on how to contribute in CONTRIBUTING.md. Thanks @RichardLitt.
 - Added color logging
 - Now olive_harvester will periodically announce which plots it is currently farming and their k sizes.
@@ -1501,7 +1501,7 @@ relic. We will make a patch available for these systems shortly.
 
 ### Added
 
-- Introducer now makes sure it only sends peer addresses to peers of peers that it can reach on port 10111 or their UPnP port.
+- Introducer now makes sure it only sends peer addresses to peers of peers that it can reach on port 8444 or their UPnP port.
 - We are now using setuptools_scm for versioning.
 
 ### Changed
