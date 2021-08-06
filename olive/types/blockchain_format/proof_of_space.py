@@ -4,7 +4,7 @@ from typing import Optional
 
 from bitstring import BitArray
 from blspy import G1Element
-from olivepos import Verifier
+from chiapos import Verifier
 
 from olive.consensus.constants import ConsensusConstants
 from olive.types.blockchain_format.sized_bytes import bytes32

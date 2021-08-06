@@ -1,6 +1,6 @@
 from typing import Tuple
 
-from olivevdf import prove
+from chiavdf import prove
 
 from olive.consensus.constants import ConsensusConstants
 from olive.types.blockchain_format.classgroup import ClassgroupElement

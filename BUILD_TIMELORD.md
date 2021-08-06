@@ -1,6 +1,6 @@
 # Building timelords
 
-The Linux and MacOS olivevdf binary wheels currently exclude an executable
+The Linux and MacOS chiavdf binary wheels currently exclude an executable
 required to run a [Timelord](https://github.com/Olive-Network/olive-blockchain/wiki/Timelords).
 If you want to run a Timelord on Linux or MacOS, you must install the wheel
 from source (which may require some additional development packages) while in
@@ -15,10 +15,10 @@ sh install-timelord.sh
 If the compile fails, it's likely due to a missing dependency. The script
 [install-timelord.sh](https://github.com/Olive-Network/olive-blockchain/blob/main/install-timelord.sh)
 attempts to install required build dependencies for Linux and MacOS before
-invoking pip to build from the source python distribution of olivevdf.
+invoking pip to build from the source python distribution of chiavdf.
 
 The `install-timelord.sh` install script leverages two environmental variables
-that the olivevdf wheels can use to specify how to build. The service that the
+that the chiavdf wheels can use to specify how to build. The service that the
 Timelord uses to run the VDF and prove the Proof of Time is `vdf_client` and
 `vdf_bench` is a utility to get a sense of a given CPU's iterations per second.
 
