@@ -1,6 +1,6 @@
 # olive-blockchain
 
-![Alt text](https://www.olive.net/img/olive_logo.svg)
+![Alt text](https://www.oliveblockchain.co/img/olive_logo.svg)
 
 | Current Release/main | Development Branch/dev |
 |         :---:          |          :---:         |
@@ -14,7 +14,7 @@ Olive is a modern cryptocurrency built from scratch, designed to be efficient, d
 * Simplified UTXO based transaction model, with small on chain state
 * Lisp-style turing complete functional [programming language](https://olivelisp.com/) for money related use cases
 * BLS keys and aggregate signatures (only one signature per block)
-* [Pooling protocol](https://www.olive.net/2020/11/10/pools-in-olive.html) (in development) that allows farmers to have control of making blocks
+* [Pooling protocol](https://www.oliveblockchain.co/2020/11/10/pools-in-olive.html) (in development) that allows farmers to have control of making blocks
 * Support for light clients with fast, objective syncing
 * A growing community of farmers and developers around the world
 
