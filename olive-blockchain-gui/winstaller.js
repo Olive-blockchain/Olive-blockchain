@@ -14,16 +14,16 @@ function getInstallerConfig () {
   const outPath = path.join(rootPath, 'release-builds')
 
   return Promise.resolve({
-    appDirectory: path.join(rootPath, 'Olive-win32-x64'),
-    authors: 'Olive Network',
-    version: process.env.OLIVE_INSTALLER_VERSION,
+    appDirectory: path.join(rootPath, 'olive-win32-x64'),
+    authors: 'olive Network',
+    version: process.env.olive_INSTALLER_VERSION,
     noMsi: true,
-    iconUrl: 'https://raw.githubusercontent.com/Olive-Network/olive-blockchain/master/electron-react/src/assets/img/olive.ico',
+    iconUrl: 'https://raw.githubusercontent.com/olive-Network/olive-blockchain/master/electron-react/src/assets/img/olive.ico',
     outputDirectory: path.join(outPath, 'windows-installer'),
     certificateFile: 'win_code_sign_cert.p12',
     certificatePassword: process.env.WIN_CODE_SIGN_PASS,
-    exe: 'Olive.exe',
-    setupExe: 'OliveSetup-' + process.env.OLIVE_INSTALLER_VERSION + '.exe',
+    exe: 'olive.exe',
+    setupExe: 'oliveSetup-' + process.env.olive_INSTALLER_VERSION + '.exe',
     setupIcon: path.join(rootPath, 'src', 'assets', 'img', 'olive.ico')
   })
 }

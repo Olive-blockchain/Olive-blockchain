@@ -112,8 +112,6 @@ export default {
     new LodashModuleReplacementPlugin({
       paths: true,
       flattening: true,
-      shorthands: true,
-      collections: true,
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(DEV ? 'development' : 'production'),
@@ -128,11 +126,6 @@ export default {
   ].filter(Boolean),
   module: {
     rules: [{
-      test: /node_modules[\/\\](iconv-lite)[\/\\].+/,
-      resolve: {
-        aliasFields: ['main'],
-      },
-    }, {
       test: /\.mjs$/,
       include: /node_modules/,
       type: 'javascript/auto',
@@ -143,9 +136,6 @@ export default {
         loader: 'babel-loader',
         options: babelQuery,
       }],
-    }, {
-      test: /\.css$/i,
-      use: ['style-loader', 'css-loader'],
     }, {
       test: /\.(woff|woff2?|ttf|eot)$/,
       use: [{

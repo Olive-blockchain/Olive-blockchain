@@ -16,7 +16,7 @@ export default function PlotNFTSelectFaucet(props: Props) {
   const openExternal = useOpenExternal();
 
   function handleClick() {
-    openExternal('https://faucet.oliveblockchain.co/');
+    openExternal('https://faucet.olive.net/');
   }
 
   return (
