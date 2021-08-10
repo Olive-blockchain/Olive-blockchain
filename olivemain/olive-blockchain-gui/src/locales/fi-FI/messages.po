@@ -2120,7 +2120,7 @@ msgstr "Lähtevien ja saapuvien avointen transaktioiden summa (ei vielä lohkoke
 
 #: src/components/fullNode/card/FullNodeCardPeakTime.tsx:24
 msgid "This is the time of the latest peak sub block."
-msgstr "Viimeisimmän lohkon aikaleima."
+msgstr "Viimeisimmän lohkon aioliveima."
 
 #: src/components/block/Block.jsx:194
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
@@ -2186,7 +2186,7 @@ msgstr "Luontiaika"
 
 #: src/components/block/Block.jsx:189
 msgid "Timestamp"
-msgstr "Aikaleima"
+msgstr "Aioliveima"
 
 #: src/components/wallet/WalletHistory.tsx:42
 msgid "To"
