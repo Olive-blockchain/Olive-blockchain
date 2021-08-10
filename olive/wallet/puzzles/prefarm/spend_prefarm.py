@@ -15,7 +15,7 @@ from olive.util.ints import uint32, uint16
 
 
 async def main() -> None:
-    rpc_port: uint16 = uint16(11006)
+    rpc_port: uint16 = uint16(6355)
     self_hostname = "localhost"
     path = DEFAULT_ROOT_PATH
     config = load_config(path, "config.yaml")
@@ -29,8 +29,8 @@ async def main() -> None:
         print(farmer_prefarm.amount, farmer_amounts)
         assert farmer_amounts == farmer_prefarm.amount // 2
         assert pool_amounts == pool_prefarm.amount // 2
-        address1 = "xol1ypzsr2z4ykw3xr4tlsm2mvg9az48a48e3z8y97eg2le3hzwj2nnqulw346"  # Key 1
-        address2 = "xol1ypzsr2z4ykw3xr4tlsm2mvg9az48a48e3z8y97eg2le3hzwj2nnqulw346"  # Key 2
+        address1 = "xol1vshypxxd3hgkzaqcdqrqhk8sa2at3h97d6vyck3vfwcq56wvjmfqv8h8kd"  # Key 1
+        address2 = "xol1vshypxxd3hgkzaqcdqrqhk8sa2at3h97d6vyck3vfwcq56wvjmfqv8h8kd"  # Key 2
 
         ph1 = decode_puzzle_hash(address1)
         ph2 = decode_puzzle_hash(address2)

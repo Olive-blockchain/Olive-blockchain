@@ -1083,7 +1083,7 @@ msgstr "Po ngarkohet..."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:126
 #~ msgid "Local Harvester Plots"
-#~ msgstr "Plotet lokale korrëse"
+#~ msgstr "Plotet loolive korrëse"
 
 #: src/components/app/AppRouter.tsx:41
 msgid "Logging in"
