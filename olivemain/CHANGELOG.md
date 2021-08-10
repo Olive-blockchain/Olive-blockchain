@@ -292,7 +292,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - The `src` directory in chia-blockchain has been changed to `chia` to avoid namespace collisions.
 - GUI install builds have been simplified to rely on one `.spec` file in `chia/`
 - The weight proof timeout can now be configured in config.yaml.
-- Peer discovery is now retried more often after you receive initial peers.
+- Peer disxolery is now retried more often after you receive initial peers.
 
 ### Fixed
 
@@ -438,7 +438,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 
 ### Changed
 
-- Our green flag test blockchain launch worked but it uncovered a flaw in our installer versions. This release is a bug fix release to address that flaw. You should read the RC6 changes below if this is your first time installing since RC5.
+- Our green flag test blockchain launch worked but it unxolered a flaw in our installer versions. This release is a bug fix release to address that flaw. You should read the RC6 changes below if this is your first time installing since RC5.
 - Thanks to @dkackman for implementing an early exit of the GUI if you run `npm run build` without being in the `venv`.
 - `chia netspace` now defaults to 1000 blocks to mirror the GUI.
 - The installer build process was spruced up some.
@@ -504,7 +504,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - `chia wallet` had various bugs.
 - Various weight proof improvements.
 - Some users on Big Sur could not plot from the GUI as the log window would be stuck on "Loading."
-- We believe we have fixed the chain stall/confused Timelord bug from ~ 13:00 UTC 3/10/21. We've added additional recovery logic as well.
+- We believe we have fixed the chain stall/confused Timelord bug from ~ 13:00 UTC 3/10/21. We've added additional rexolery logic as well.
 - Logs from receiving a duplicate compacted Proof of Time are much more human friendly.
 - We believe that the install/migrate process was bringing forward bad farming rewards receive addresses. We have attempted to stop that by only migrating RC3 and newer configurations. You can make sure you are not effected by using the Manage Farming Rewards tool mentioned above or putting a known good wallet receive address in both `xch_target_address` sections of config.yaml.
 - Wallet cached transactions incorrectly in some cases.
@@ -1035,7 +1035,7 @@ all fields that referred to sub blocks are changed to blocks.
 - Coloured coins have been updated to simplify them, remove 'a', and stop using an 'auditor'.
 - clvm has been significantly changed to support the new coloured coins implementation.
 - Bumped cryptography to 3.1. Cryptography is now publishing ARM64 binary wheels to PyPi so Raspberry Pi installs should be even easier.
-- `chia init` now automatically discovers previous releases in each new release.
+- `chia init` now automatically disxolers previous releases in each new release.
 
 ### Fixed
 
@@ -1068,7 +1068,7 @@ all fields that referred to sub blocks are changed to blocks.
 
 ### Added
 
-- Meet our new Rate Limited wallet. You can now fund a wallet from an Admin wallet that will set how many coins can be spent over a given range of blocks for a given User wallet. Once combined with on chain wallet recovery, this makes it much easier to secure your "spending money" wallet so that if it is compromised you have time to get most of the funds back before an attacker can steal them all. This wallet should be considered alpha in this release as additional fixes and functionality will be coming in subsequent releases.
+- Meet our new Rate Limited wallet. You can now fund a wallet from an Admin wallet that will set how many coins can be spent over a given range of blocks for a given User wallet. Once combined with on chain wallet rexolery, this makes it much easier to secure your "spending money" wallet so that if it is compromised you have time to get most of the funds back before an attacker can steal them all. This wallet should be considered alpha in this release as additional fixes and functionality will be coming in subsequent releases.
 - We've added unhardened HD keys to bls-signatures for the smart wallets that need them. We've added significant cross project testing to our BLS implementation.
 - The python implementation of bls-signatures is now current to the new specification.
 - `chia show -b` now returns plot public key and pool public key for each block.
@@ -1256,7 +1256,7 @@ relic. We will make a patch available for these systems shortly.
 - Test plots for the simulation and testing harness now go into `~/.chia/test-plots/`
 - We have completely refactored all networking code towards making each Chia service use the same default networking infrastructure and move to websockets as the default networking wire protocol.
 - We added additional improvements and more RPCs to the start daemon and various services to continue to make chia start/stop reliable cross platform.
-- The install.sh script now discovers if it's running on Ubuntu less than 20.04 and correctly upgrades node.js to the current stable version.
+- The install.sh script now disxolers if it's running on Ubuntu less than 20.04 and correctly upgrades node.js to the current stable version.
 - For GitHub ci builds of the Windows installer, editbin.exe is more reliably found.
 - All installer ci builds now obtain version information automatically from setuptools_scm and convert it to an installer version number that is appropriate for the platform and type of release (dev versus release.)
 - We now codesign the Apple .dmg installer with the Chia Network developer ID on both GitHub Actions and Azure Pipelines. We will be notarizing and distributing the Azure Pipelines version as it's built on MacOS Mojave (10.14.6) for stronger cross version support.
@@ -1396,7 +1396,7 @@ relic. We will make a patch available for these systems shortly.
 - All installs can now be from the source repository or just the binary dependencies on WSL 2, most modern Linuxes, and MacOS Catalina. Binary support is for both Python 3.7 and 3.8.
 - There is a new migration tool to move from Beta1 (or 2) to Beta3. It should move everything except your plots.
 - There is a new command `chia init` that will migrate files and generate your initial configuration. If you want to use the Wallet or farm, you will also have to `chia-generate-keys`. You can read step by step instructions for [upgrading from a previous beta release](https://github.com/Chia-Network/chia-blockchain/wiki/Updating-beta-software). If you've set `$CHIA_ROOT` you will have to make sure your existing configuration remains compatible manually.
-- Wallet has improved paper wallet recovery support.
+- Wallet has improved paper wallet rexolery support.
 - We now also support restoring old wallets with only the wallet_sk and wallet_target. Beta3's Wallet will re-sync from scratch.
 - We've made lots of little improvements that should speed up node syncing
 - We added full block lookup to `chia show`.

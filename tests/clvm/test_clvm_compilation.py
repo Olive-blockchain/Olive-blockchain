@@ -9,7 +9,7 @@ wallet_program_files = set(
     [
         "olive/wallet/puzzles/calculate_synthetic_public_key.clvm",
         "olive/wallet/puzzles/cc.clvm",
-        "olive/wallet/puzzles/olivelisp_deserialisation.clvm",
+        "olive/wallet/puzzles/chialisp_deserialisation.clvm",
         "olive/wallet/puzzles/rom_bootstrap_generator.clvm",
         "olive/wallet/puzzles/generator_for_single_coin.clvm",
         "olive/wallet/puzzles/genesis-by-coin-id-with-0.clvm",
@@ -27,11 +27,16 @@ wallet_program_files = set(
         "olive/wallet/puzzles/singleton_top_layer.clvm",
         "olive/wallet/puzzles/did_innerpuz.clvm",
         "olive/wallet/puzzles/decompress_puzzle.clvm",
-        "olive/wallet/puzzles/decompress_coin_solution_entry_with_prefix.clvm",
-        "olive/wallet/puzzles/decompress_coin_solution_entry.clvm",
+        "olive/wallet/puzzles/decompress_coin_spend_entry_with_prefix.clvm",
+        "olive/wallet/puzzles/decompress_coin_spend_entry.clvm",
         "olive/wallet/puzzles/block_program_zero.clvm",
         "olive/wallet/puzzles/test_generator_deserialize.clvm",
         "olive/wallet/puzzles/test_multiple_generator_input_arguments.clvm",
+        "olive/wallet/puzzles/p2_singleton.clvm",
+        "olive/wallet/puzzles/pool_waitingroom_innerpuz.clvm",
+        "olive/wallet/puzzles/pool_member_innerpuz.clvm",
+        "olive/wallet/puzzles/singleton_launcher.clvm",
+        "olive/wallet/puzzles/p2_singleton_or_delayed_puzhash.clvm",
     ]
 )
 

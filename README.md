@@ -1,7 +1,7 @@
-# olive-blockchain
+Covid is a cryptocurrency forked from Taco forked from Chia and uses the Proof of Space and Time consensus algorithm
 
-**Olive** is a modern community-centric green cryptocurrency based on a proof-of-space-and-time consensus algorithm. It is a community-supported fork of the [Chia Network](https://github.com/Chia-Network/chia-blockchain) codebase.
+Discord Channel: https://discord.gg/Tr2uxdHTxM
 
-For more information, see our website and downloads at https://oliveblockchain.co.
+Website: https://www.pinksheetscrypto.com (coming soon)
 
-Discord: https://discord.gg/cSrV78ye
+Introducer: dns-introducer.olive.pinksheetscrypto.com:19180

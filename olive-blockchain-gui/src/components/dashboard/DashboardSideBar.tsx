@@ -9,6 +9,7 @@ import {
   Keys as KeysIcon,
   Home as HomeIcon,
   Plot as PlotIcon,
+  Pool as PoolIcon,
 } from '@olive/icons';
 import { Flex, SideBarItem } from '@olive/core';
 import { logOut } from '../../modules/message';
@@ -53,6 +54,11 @@ export default function DashboardSideBar() {
           icon={<FarmIcon fontSize="large" />}
           title={<Trans>Farm</Trans>}
         />
+        {/* <SideBarItem
+          to="/dashboard/pool"
+          icon={<PoolIcon fontSize="large" />}
+          title={<Trans>Pool</Trans>}
+        /> */}
         <SideBarItem
           to="/"
           icon={<KeysIcon fontSize="large" />}

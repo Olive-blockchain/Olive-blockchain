@@ -7,7 +7,7 @@ from olive.types.blockchain_format.program import Program
 from olive.types.blockchain_format.sized_bytes import bytes32
 from olive.types.condition_opcodes import ConditionOpcode
 from olive.util.ints import uint64
-from olive.wallet.olivelisp import sexp
+from olive.wallet.chialisp import sexp
 from olive.wallet.puzzles.load_clvm import load_clvm
 
 RATE_LIMITED_MODE = 1

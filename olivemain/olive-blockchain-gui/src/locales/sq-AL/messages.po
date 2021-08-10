@@ -140,7 +140,7 @@ msgstr "Sasia për monedhën fillestare"
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
-msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
+msgid "Are you sure you want to delete the plot? The plot cannot be rexolered."
 msgstr "Je i sigurt që do ta fshish këtë Plot? Pasi nuk mund ta riktheni."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:122
@@ -673,7 +673,7 @@ msgid "Does your machine support parallel plotting?"
 msgstr "A përballon pajisja juaj Ploting paralel?"
 
 #: src/components/trading/ViewOffer.jsx:39
-#: src/components/wallet/create/recoverDIDWallet.js:294
+#: src/components/wallet/create/rexolerDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr "Terhiq dhe zgjidh skedarin"
 
@@ -1122,7 +1122,7 @@ msgstr "Duke u loguar"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:334
-#~ msgid "MainWalletList.recoverDIDWallet"
+#~ msgid "MainWalletList.rexolerDIDWallet"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:112
@@ -1699,7 +1699,7 @@ msgid "Receive Address"
 msgstr "Adresë për Marrje"
 
 #: src/components/wallet/create/WalletCreate.jsx:282
-msgid "Recover DID wallet"
+msgid "Rexoler DID wallet"
 msgstr "Rikthe kuletën"
 
 #: src/components/plot/PlotHeader.tsx:78

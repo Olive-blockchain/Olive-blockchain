@@ -140,7 +140,7 @@ msgstr "จำนวนเหรียญเริ่มต้น"
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
-msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
+msgid "Are you sure you want to delete the plot? The plot cannot be rexolered."
 msgstr "พล็อตที่ถูกลบจะไม่สามารถกู้คืนได้ คุณแน่ใจหรือไม่ว่าต้องการลบพล็อตนี้?"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:122
@@ -673,7 +673,7 @@ msgid "Does your machine support parallel plotting?"
 msgstr "เครื่องของคุณรองรับการพล็อตแบบขนานกันหรือไม่?"
 
 #: src/components/trading/ViewOffer.jsx:39
-#: src/components/wallet/create/recoverDIDWallet.js:294
+#: src/components/wallet/create/rexolerDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr "ลากและวางไฟล์ข้อเสนอ"
 
@@ -1118,7 +1118,7 @@ msgstr "กำลังเข้าสู่ระบบ"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:334
-#~ msgid "MainWalletList.recoverDIDWallet"
+#~ msgid "MainWalletList.rexolerDIDWallet"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:112
@@ -1691,7 +1691,7 @@ msgid "Receive Address"
 msgstr "ที่อยู่ผู้รับ"
 
 #: src/components/wallet/create/WalletCreate.jsx:282
-msgid "Recover DID wallet"
+msgid "Rexoler DID wallet"
 msgstr "การกู้คืน DID wallet"
 
 #: src/components/plot/PlotHeader.tsx:78

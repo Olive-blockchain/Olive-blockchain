@@ -6,7 +6,7 @@ import pytest
 from olive.server.outbound_message import NodeType
 from olive.server.server import ssl_context_for_server
 from olive.types.peer_info import PeerInfo
-from olive.util.block_tools import BlockTools
+from tests.block_tools import BlockTools
 from olive.util.ints import uint16
 from olive.util.ws_message import create_payload
 from tests.core.node_height import node_height_at_least

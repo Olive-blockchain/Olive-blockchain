@@ -94,14 +94,14 @@ class WalletRpcApi:
             "/get_all_trades": self.get_all_trades,
             "/cancel_trade": self.cancel_trade,
             # DID Wallet
-            "/did_update_recovery_ids": self.did_update_recovery_ids,
+            "/did_update_rexolery_ids": self.did_update_rexolery_ids,
             "/did_spend": self.did_spend,
             "/did_get_pubkey": self.did_get_pubkey,
             "/did_get_did": self.did_get_did,
-            "/did_recovery_spend": self.did_recovery_spend,
-            "/did_get_recovery_list": self.did_get_recovery_list,
+            "/did_rexolery_spend": self.did_rexolery_spend,
+            "/did_get_rexolery_list": self.did_get_rexolery_list,
             "/did_create_attest": self.did_create_attest,
-            "/did_get_information_needed_for_recovery": self.did_get_information_needed_for_recovery,
+            "/did_get_information_needed_for_rexolery": self.did_get_information_needed_for_rexolery,
             "/did_create_backup_file": self.did_create_backup_file,
             # RL wallet
             "/rl_set_user_info": self.rl_set_user_info,
@@ -155,7 +155,7 @@ class WalletRpcApi:
 
         await self._stop_wallet()
         log_in_type = request["type"]
-        recovery_host = request["host"]
+        rexolery_host = request["host"]
         testing = False
 
         if "testing" in self.service.config and self.service.config["testing"] is True:
@@ -178,13 +178,13 @@ class WalletRpcApi:
             backup_path = None
             try:
                 private_key = self.service.get_key_for_fingerprint(fingerprint)
-                last_recovery = await download_backup(recovery_host, private_key)
-                backup_path = path_from_root(self.service.root_path, "last_recovery")
+                last_rexolery = await download_backup(rexolery_host, private_key)
+                backup_path = path_from_root(self.service.root_path, "last_rexolery")
                 if backup_path.exists():
                     backup_path.unlink()
-                backup_path.write_text(last_recovery)
+                backup_path.write_text(last_rexolery)
                 backup_info = get_backup_info(backup_path, private_key)
-                backup_info["backup_host"] = recovery_host
+                backup_info["backup_host"] = rexolery_host
                 backup_info["downloaded"] = True
             except Exception as e:
                 log.error(f"error {e}")
@@ -507,9 +507,9 @@ class WalletRpcApi:
                     "wallet_id": did_wallet.id(),
                 }
 
-            elif request["did_type"] == "recovery":
+            elif request["did_type"] == "rexolery":
                 async with self.service.wallet_state_manager.lock:
-                    did_wallet = await DIDWallet.create_new_did_wallet_from_recovery(
+                    did_wallet = await DIDWallet.create_new_did_wallet_from_rexolery(
                         wallet_state_manager, main_wallet, request["filename"]
                     )
                 assert did_wallet.did_info.temp_coin is not None
@@ -574,8 +574,8 @@ class WalletRpcApi:
                         "launcher_id": launcher_id.hex(),
                         "p2_singleton_puzzle_hash": p2_singleton_puzzle_hash.hex(),
                     }
-            elif request["mode"] == "recovery":
-                raise ValueError("Need upgraded singleton for on-chain recovery")
+            elif request["mode"] == "rexolery":
+                raise ValueError("Need upgraded singleton for on-chain rexolery")
 
             else:  # undefined did_type
                 pass
@@ -927,18 +927,18 @@ class WalletRpcApi:
     # Distributed Identities
     ##########################################################################################
 
-    async def did_update_recovery_ids(self, request):
+    async def did_update_rexolery_ids(self, request):
         wallet_id = int(request["wallet_id"])
         wallet: DIDWallet = self.service.wallet_state_manager.wallets[wallet_id]
-        recovery_list = []
+        rexolery_list = []
         for _ in request["new_list"]:
-            recovery_list.append(hexstr_to_bytes(_))
+            rexolery_list.append(hexstr_to_bytes(_))
         if "num_verifications_required" in request:
             new_amount_verifications_required = uint64(request["num_verifications_required"])
         else:
-            new_amount_verifications_required = len(recovery_list)
+            new_amount_verifications_required = len(rexolery_list)
         async with self.service.wallet_state_manager.lock:
-            update_success = await wallet.update_recovery_list(recovery_list, new_amount_verifications_required)
+            update_success = await wallet.update_rexolery_list(rexolery_list, new_amount_verifications_required)
             # Update coin with new ID info
             updated_puz = await wallet.get_new_puzzle()
             spend_bundle = await wallet.create_spend(updated_puz.get_tree_hash())
@@ -967,21 +967,21 @@ class WalletRpcApi:
             coin = coins.pop()
             return {"success": True, "wallet_id": wallet_id, "my_did": my_did, "coin_id": coin.name()}
 
-    async def did_get_recovery_list(self, request):
+    async def did_get_rexolery_list(self, request):
         wallet_id = int(request["wallet_id"])
         wallet: DIDWallet = self.service.wallet_state_manager.wallets[wallet_id]
-        recovery_list = wallet.did_info.backup_ids
-        recover_hex_list = []
-        for _ in recovery_list:
-            recover_hex_list.append(_.hex())
+        rexolery_list = wallet.did_info.backup_ids
+        rexoler_hex_list = []
+        for _ in rexolery_list:
+            rexoler_hex_list.append(_.hex())
         return {
             "success": True,
             "wallet_id": wallet_id,
-            "recover_list": recover_hex_list,
+            "rexoler_list": rexoler_hex_list,
             "num_required": wallet.did_info.num_of_backup_ids_needed,
         }
 
-    async def did_recovery_spend(self, request):
+    async def did_rexolery_spend(self, request):
         wallet_id = int(request["wallet_id"])
         wallet: DIDWallet = self.service.wallet_state_manager.wallets[wallet_id]
         if len(request["attest_filenames"]) < wallet.did_info.num_of_backup_ids_needed:
@@ -991,7 +991,7 @@ class WalletRpcApi:
             (
                 info_list,
                 message_spend_bundle,
-            ) = await wallet.load_attest_files_for_recovery_spend(request["attest_filenames"])
+            ) = await wallet.load_attest_files_for_rexolery_spend(request["attest_filenames"])
 
             if "pubkey" in request:
                 pubkey = G1Element.from_bytes(hexstr_to_bytes(request["pubkey"]))
@@ -1005,7 +1005,7 @@ class WalletRpcApi:
                 assert wallet.did_info.temp_puzhash is not None
                 puzhash = wallet.did_info.temp_puzhash
 
-            success = await wallet.recovery_spend(
+            success = await wallet.rexolery_spend(
                 wallet.did_info.temp_coin,
                 puzhash,
                 info_list,
@@ -1024,7 +1024,7 @@ class WalletRpcApi:
         wallet_id = int(request["wallet_id"])
         wallet: DIDWallet = self.service.wallet_state_manager.wallets[wallet_id]
         async with self.service.wallet_state_manager.lock:
-            info = await wallet.get_info_for_recovery()
+            info = await wallet.get_info_for_rexolery()
             coin = hexstr_to_bytes(request["coin_name"])
             pubkey = G1Element.from_bytes(hexstr_to_bytes(request["pubkey"]))
             spend_bundle = await wallet.create_attestment(
@@ -1039,7 +1039,7 @@ class WalletRpcApi:
         else:
             return {"success": False}
 
-    async def did_get_information_needed_for_recovery(self, request):
+    async def did_get_information_needed_for_rexolery(self, request):
         wallet_id = int(request["wallet_id"])
         did_wallet: DIDWallet = self.service.wallet_state_manager.wallets[wallet_id]
         my_did = did_wallet.get_my_DID()

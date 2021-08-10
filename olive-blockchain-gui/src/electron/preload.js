@@ -1,3 +1,8 @@
-window.remote = require('electron').remote;
-window.ipcRenderer = require('electron').ipcRenderer;
-window.shell = require('electron').shell;
+const electron = require('electron');
+
+const geoip =require("geoip-lite");
+
+window.remote = electron.remote;
+window.ipcRenderer = electron.ipcRenderer;
+window.shell = electron.shell;
+window.geoip = geoip;

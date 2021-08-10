@@ -20,8 +20,8 @@ class UPnP:
         def run():
             try:
                 self.upnp = miniupnpc.UPnP()
-                self.upnp.discoverdelay = 30
-                self.upnp.discover()
+                self.upnp.disxolerdelay = 30
+                self.upnp.disxoler()
                 self.upnp.selectigd()
                 keep_going = True
                 while keep_going:

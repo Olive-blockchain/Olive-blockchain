@@ -14,7 +14,7 @@ from olive.consensus.pot_iterations import calculate_sp_iters, is_overflow_block
 from olive.protocols import timelord_protocol
 from olive.protocols.protocol_message_types import ProtocolMessageTypes
 from olive.server.outbound_message import NodeType, make_msg
-from olive.server.server import OliveServer
+from olive.server.server import CovidServer
 from olive.timelord.iters_from_block import iters_from_block
 from olive.timelord.timelord_state import LastState
 from olive.timelord.types import Chain, IterationType, StateType
@@ -44,7 +44,7 @@ class Timelord:
         self.free_clients: List[Tuple[str, asyncio.StreamReader, asyncio.StreamWriter]] = []
         self.potential_free_clients: List = []
         self.ip_whitelist = self.config["vdf_clients"]["ip"]
-        self.server: Optional[OliveServer] = None
+        self.server: Optional[CovidServer] = None
         self.chain_type_to_stream: Dict[Chain, Tuple[str, asyncio.StreamReader, asyncio.StreamWriter]] = {}
         self.chain_start_time: Dict = {}
         # Chains that currently don't have a vdf_client.
@@ -89,7 +89,7 @@ class Timelord:
         self.total_infused: int = 0
         self.state_changed_callback: Optional[Callable] = None
         self.sanitizer_mode = self.config["sanitizer_mode"]
-        self.pending_bluebox_info: List[timelord_protocol.RequestCompactProofOfTime] = []
+        self.pending_bluebox_info: List[Tuple[float, timelord_protocol.RequestCompactProofOfTime]] = []
         self.last_active_time = time.time()
 
     async def _start(self):
@@ -116,7 +116,7 @@ class Timelord:
     async def _await_closed(self):
         pass
 
-    def set_server(self, server: OliveServer):
+    def set_server(self, server: CovidServer):
         self.server = server
 
     async def _handle_client(self, reader: asyncio.StreamReader, writer: asyncio.StreamWriter):
@@ -180,6 +180,9 @@ class Timelord:
                 break
         if found_index == -1:
             log.warning(f"Will not infuse {block.rc_prev} because its reward chain challenge is not in the chain")
+            return None
+        if ip_iters > block_ip_iters:
+            log.warning("Too late to infuse block")
             return None
 
         new_block_iters = uint64(block_ip_iters - ip_iters)
@@ -1002,7 +1005,7 @@ class Timelord:
                         # CC_EOS and ICC_EOS. This guarantees everything is picked uniformly.
                         target_field_vdf = random.randint(1, 4)
                         info = next(
-                            (info for info in self.pending_bluebox_info if info.field_vdf == target_field_vdf),
+                            (info for info in self.pending_bluebox_info if info[1].field_vdf == target_field_vdf),
                             None,
                         )
                         if info is None:
@@ -1013,15 +1016,15 @@ class Timelord:
                             asyncio.create_task(
                                 self._do_process_communication(
                                     Chain.BLUEBOX,
-                                    info.new_proof_of_time.challenge,
+                                    info[1].new_proof_of_time.challenge,
                                     ClassgroupElement.get_default_element(),
                                     ip,
                                     reader,
                                     writer,
-                                    info.new_proof_of_time.number_of_iterations,
-                                    info.header_hash,
-                                    info.height,
-                                    info.field_vdf,
+                                    info[1].new_proof_of_time.number_of_iterations,
+                                    info[1].header_hash,
+                                    info[1].height,
+                                    info[1].field_vdf,
                                 )
                             )
                         )

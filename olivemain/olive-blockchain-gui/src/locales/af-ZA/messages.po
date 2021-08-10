@@ -120,7 +120,7 @@ msgstr "Bedrag vir die aanvanklike muntstuk"
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:32
-msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
+msgid "Are you sure you want to delete the plot? The plot cannot be rexolered."
 msgstr "Is jy seker jy wil die landery verwyder? Die landery kan nie weer herwin word nie."
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:23
@@ -578,7 +578,7 @@ msgid "Does your machine support parallel plotting?"
 msgstr ""
 
 #: src/components/trading/ViewOffer.jsx:41
-#: src/components/wallet/create/recoverDIDWallet.js:294
+#: src/components/wallet/create/rexolerDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr ""
 
@@ -922,7 +922,7 @@ msgstr ""
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:334
-#~ msgid "MainWalletList.recoverDIDWallet"
+#~ msgid "MainWalletList.rexolerDIDWallet"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:112
@@ -1359,7 +1359,7 @@ msgid "Receive Address"
 msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:320
-msgid "Recover DID wallet"
+msgid "Rexoler DID wallet"
 msgstr ""
 
 #: src/components/plot/PlotHeader.tsx:43

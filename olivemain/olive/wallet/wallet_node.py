@@ -26,7 +26,7 @@ from olive.protocols.wallet_protocol import (
     RespondHeaderBlocks,
     RespondRemovals,
 )
-from olive.server.node_discovery import WalletPeers
+from olive.server.node_disxolery import WalletPeers
 from olive.server.outbound_message import Message, NodeType, make_msg
 from olive.server.server import oliveServer
 from olive.server.ws_connection import WSoliveConnection

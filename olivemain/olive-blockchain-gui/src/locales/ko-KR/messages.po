@@ -140,7 +140,7 @@ msgstr "초기 코인의 양"
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
-msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
+msgid "Are you sure you want to delete the plot? The plot cannot be rexolered."
 msgstr "정말로 플롯을 삭제하시겠습니까? 삭제된 플롯은 복구되지 않습니다."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:122
@@ -673,7 +673,7 @@ msgid "Does your machine support parallel plotting?"
 msgstr "이 장치가 병렬 플로팅을 지원합니까?"
 
 #: src/components/trading/ViewOffer.jsx:39
-#: src/components/wallet/create/recoverDIDWallet.js:294
+#: src/components/wallet/create/rexolerDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr "거래 파일을 끌어서 여기에 놓으세요"
 
@@ -1122,7 +1122,7 @@ msgstr "로그인 중"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:334
-#~ msgid "MainWalletList.recoverDIDWallet"
+#~ msgid "MainWalletList.rexolerDIDWallet"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:112
@@ -1699,7 +1699,7 @@ msgid "Receive Address"
 msgstr "입금 주소"
 
 #: src/components/wallet/create/WalletCreate.jsx:282
-msgid "Recover DID wallet"
+msgid "Rexoler DID wallet"
 msgstr "DID 지갑 찾기"
 
 #: src/components/plot/PlotHeader.tsx:78

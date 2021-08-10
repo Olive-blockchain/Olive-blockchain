@@ -2,7 +2,14 @@ import React from 'react';
 import { Trans } from '@lingui/macro';
 import styled from 'styled-components';
 import { Warning as WarningIcon } from '@material-ui/icons';
-import { Card, Flex, Table, FormatBytes, StateColor } from '@olive/core';
+import {
+  Card,
+  Flex,
+  Table,
+  FormatBytes,
+  StateColor,
+  Address,
+} from '@olive/core';
 import {
   Box,
   Typography,
@@ -55,12 +62,12 @@ const cols = [
     },
     title: <Trans>K-Size</Trans>,
   },
-  {
-    minWidth: '100px',
-    field: 'queue-name',
-    tooltip: 'queue-name',
-    title: <Trans>Queue name</Trans>,
-  },
+  //{
+  //  minWidth: '100px',
+  //  field: 'queue-name',
+  //  tooltip: 'queue-name',
+  //  title: <Trans>Queue name</Trans>,
+  //},
   {
     minWidth: '100px',
     field: 'plot_public_key',
@@ -73,6 +80,25 @@ const cols = [
     tooltip: 'pool_public_key',
     title: <Trans>Pool Key</Trans>,
   },
+  {
+    minWidth: '100px',
+    field: 'harvester.node_id',
+    tooltip: 'harvester.node_id',
+    title: <Trans>Node Id</Trans>,
+  },
+  //{
+  //#  minWidth: '100px',
+  //  field: ({ pool_contract_puzzle_hash }: Plot) => (
+  //    <Address value={pool_contract_puzzle_hash} tooltip copyToClipboard>
+  //      {(address) => (
+  //        <Typography variant="body2" noWrap>
+  //          {address}
+  //        </Typography>
+  //      )}
+  //    </Address>
+  //  ),
+  //  title: <Trans>Pool Contract Address</Trans>,
+  //},
   {
     minWidth: '100px',
     field: 'filename',
@@ -95,17 +121,23 @@ export default function PlotOverviewPlots() {
     return null;
   }
 
-  const queuePlots = queue?.filter((item) => item.state !== PlotStatusEnum.FINISHED);
+  const queuePlots = queue?.filter(
+    (item) => item.state !== PlotStatusEnum.FINISHED,
+  );
 
   return (
     <>
-      <PlotHeader />
-      <Card title={<Trans>Local Harvester Plots</Trans>}>
+      <PlotHeader>
+        <Typography variant="h5">
+          <Trans>Harvester Plots</Trans>
+        </Typography>
+      </PlotHeader>
+      <Card>
         <Flex gap={1}>
           <Flex flexGrow={1}>
             <Typography variant="body2">
               <Trans>
-                Want to earn more Olive? Add more plots to your farm.
+                Want to earn more Covid? Add more plots to your farm.
               </Trans>
             </Typography>
           </Flex>
@@ -128,6 +160,8 @@ export default function PlotOverviewPlots() {
                       <PlotQueueSize queueItem={item} />
                     </TableCell>
                     <TableCell>{item.queue}</TableCell>
+                    <TableCell />
+                    <TableCell />
                     <TableCell />
                     <TableCell />
                     <TableCell />

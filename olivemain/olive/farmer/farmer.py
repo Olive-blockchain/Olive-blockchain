@@ -451,7 +451,7 @@ class Farmer:
                                 #     self.log.info(
                                 #         f"Farmer information successfully updated on the pool {pool_config.pool_url}"
                                 #     )
-                                # TODO: Fix Streamable implementation and recover the above.
+                                # TODO: Fix Streamable implementation and rexoler the above.
                                 if put_farmer_response_dict["payout_instructions"]:
                                     self.log.info(
                                         f"Farmer information successfully updated on the pool {pool_config.pool_url}"

@@ -41,7 +41,7 @@ pip-log.txt
 pip-delete-this-directory.txt
 **/*.egg-info
 
-# Unit test / coverage reports
+# Unit test / xolerage reports
 .cache
 .pytest_cache/
 

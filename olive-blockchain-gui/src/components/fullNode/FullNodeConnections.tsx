@@ -3,7 +3,14 @@ import { Trans } from '@lingui/macro';
 import { useSelector } from 'react-redux';
 import { Delete as DeleteIcon } from '@material-ui/icons';
 import styled from 'styled-components';
-import { Card, Flex, FormatBytes, FormatLargeNumber, Loading, Table, IconButton } from '@olive/core';
+import {
+  Card,
+  FormatBytes,
+  FormatLargeNumber,
+  Loading,
+  Table,
+  IconButton,
+} from '@olive/core';
 import { Button, Tooltip } from '@material-ui/core';
 import { service_connection_types } from '../../util/service_names';
 import Connection from '../../types/Connection';
@@ -18,7 +25,7 @@ const StyledIconButton = styled(IconButton)`
 
 const cols = [
   {
-    minWidth: '200px',
+    minWidth: '100px',
     field(row: Connection) {
       return (
         <Tooltip title={row.node_id}>
@@ -34,7 +41,29 @@ const cols = [
   },
   {
     field(row: Connection) {
-      return `${row.peer_port}/${row.peer_server_port}`;
+      const Geo = window.geoip.lookup(row.peer_host.replace(/\[/,"").replace(/]/g,""))||{country:"",region:"",city:""}
+
+      var emoji = require('node-emoji')
+
+      var find_nat = emoji.get("flag-" + Geo.country.toLowerCase())
+      var cityRegion = `${Geo.city}`
+      if(cityRegion.length == 0)
+        cityRegion = `${Geo.region}`
+
+        var text = `${find_nat||''} ${Geo.country} ${cityRegion}`
+
+        return  emoji.emojify(text,(name)=>{
+          return emoji.get("earth_americas");
+        });
+    }, title: <Trans>Region</Trans>,
+  }, 
+  {
+    field(row: Connection) {
+      return (
+        <Tooltip title={`${row.peer_port}/${row.peer_server_port}`}>
+          <span>{row.peer_server_port}</span>
+        </Tooltip>
+      );
     },
     title: <Trans>Port</Trans>,
   },
@@ -42,9 +71,19 @@ const cols = [
     field(row: Connection) {
       return (
         <>
-          <FormatBytes value={row.bytes_written} unit="MiB" removeUnit fixedDecimals />
+          <FormatBytes
+            value={row.bytes_written}
+            unit="MiB"
+            removeUnit
+            fixedDecimals
+          />
           /
-          <FormatBytes value={row.bytes_read} unit="MiB" removeUnit fixedDecimals />
+          <FormatBytes
+            value={row.bytes_read}
+            unit="MiB"
+            removeUnit
+            fixedDecimals
+          />
         </>
       );
     },
@@ -79,33 +118,27 @@ const cols = [
 
 export default function Connections() {
   const openDialog = useOpenDialog();
-  const connections = useSelector((state: RootState) => state.full_node_state.connections);
+  const connections = useSelector(
+    (state: RootState) => state.full_node_state.connections,
+  );
 
   function handleAddPeer() {
-    openDialog((
-      <FullNodeAddConnection />
-    ));
+    openDialog(<FullNodeAddConnection />);
   }
 
   return (
     <Card
       title={<Trans>Connections</Trans>}
-      action={(
-        <Flex>
-          <Button onClick={handleAddPeer} variant="contained">
-            <Trans>
-              Connect to other peers
-            </Trans>
-          </Button>
-        </Flex>
-      )}
+      action={
+        <Button onClick={handleAddPeer} variant="outlined">
+          <Trans>Connect to other peers</Trans>
+        </Button>
+      }
     >
       {connections ? (
         <Table cols={cols} rows={connections} />
       ) : (
-        <Flex justifyContent="center">
-          <Loading />
-        </Flex>
+        <Loading center />
       )}
     </Card>
   );

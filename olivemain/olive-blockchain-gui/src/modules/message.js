@@ -771,20 +771,20 @@ export const create_did_action =
       }
     });
 
-export const recover_did_wallet = (filename) => {
+export const rexoler_did_wallet = (filename) => {
   const action = walletMessage();
   action.message.command = 'create_new_wallet';
   action.message.data = {
     wallet_type: 'did_wallet',
-    did_type: 'recovery',
+    did_type: 'rexolery',
     filename,
     host: backup_host,
   };
   return action;
 };
 
-export const recover_did_action = (filename) => (dispatch) =>
-  async_api(dispatch, recover_did_wallet(filename), true).then((response) => {
+export const rexoler_did_action = (filename) => (dispatch) =>
+  async_api(dispatch, rexoler_did_wallet(filename), true).then((response) => {
     dispatch(createState(true, false));
     if (response.data.success) {
       // Go to wallet
@@ -798,13 +798,13 @@ export const recover_did_action = (filename) => (dispatch) =>
     }
   });
 
-export const did_update_recovery_ids = (
+export const did_update_rexolery_ids = (
   wallet_id,
   new_list,
   num_verifications_required,
 ) => {
   const action = walletMessage();
-  action.message.command = 'did_update_recovery_ids';
+  action.message.command = 'did_update_rexolery_ids';
   action.message.data = {
     wallet_id,
     new_list,
@@ -813,11 +813,11 @@ export const did_update_recovery_ids = (
   return action;
 };
 
-export const did_update_recovery_ids_action =
+export const did_update_rexolery_ids_action =
   (wallet_id, new_list, num_verifications_required) => (dispatch) =>
     async_api(
       dispatch,
-      did_update_recovery_ids(wallet_id, new_list, num_verifications_required),
+      did_update_rexolery_ids(wallet_id, new_list, num_verifications_required),
       true,
     ).then((response) => {
       dispatch(format_message('get_wallets', {}));
@@ -838,14 +838,14 @@ export const did_get_did = (wallet_id) => {
   return action;
 };
 
-export const did_get_recovery_list = (wallet_id) => {
+export const did_get_rexolery_list = (wallet_id) => {
   const action = walletMessage();
-  action.message.command = 'did_get_recovery_list';
+  action.message.command = 'did_get_rexolery_list';
   action.message.data = { wallet_id };
   return action;
 };
 
-export const did_recovery_spend = (
+export const did_rexolery_spend = (
   wallet_id,
   spend_bundles,
   info_dict,
@@ -853,7 +853,7 @@ export const did_recovery_spend = (
   puzhash,
 ) => {
   const action = walletMessage();
-  action.message.command = 'did_recovery_spend';
+  action.message.command = 'did_rexolery_spend';
   action.message.data = {
     wallet_id,
     spend_bundles,

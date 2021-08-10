@@ -29,7 +29,7 @@ export default function PlotAction(props: Props) {
       >
         <Trans>
           Are you sure you want to delete the plot? The plot cannot be
-          recovered.
+          rexolered.
         </Trans>
       </ConfirmDialog>,
     );

@@ -140,7 +140,7 @@ msgstr "Belopp för ursprungligt mynt"
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
-msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
+msgid "Are you sure you want to delete the plot? The plot cannot be rexolered."
 msgstr "Är det säkert att du vill ta bort plotten? Den kan inte återställas."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:122
@@ -673,7 +673,7 @@ msgid "Does your machine support parallel plotting?"
 msgstr "Stöder din maskin parallell plottning?"
 
 #: src/components/trading/ViewOffer.jsx:39
-#: src/components/wallet/create/recoverDIDWallet.js:294
+#: src/components/wallet/create/rexolerDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr "Dra och släpp erbjudandefil"
 
@@ -1122,7 +1122,7 @@ msgstr "Loggar in"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:334
-#~ msgid "MainWalletList.recoverDIDWallet"
+#~ msgid "MainWalletList.rexolerDIDWallet"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:112
@@ -1699,7 +1699,7 @@ msgid "Receive Address"
 msgstr "Mottagaradress"
 
 #: src/components/wallet/create/WalletCreate.jsx:282
-msgid "Recover DID wallet"
+msgid "Rexoler DID wallet"
 msgstr "Återställ DID-plånbok"
 
 #: src/components/plot/PlotHeader.tsx:78

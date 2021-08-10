@@ -10,8 +10,8 @@ testnet_kwargs = {
     "SUB_SLOT_ITERS_STARTING": 2 ** 27,
     # DIFFICULTY_STARTING is the starting difficulty for the first epoch, which is then further
     # multiplied by another factor of DIFFICULTY_CONSTANT_FACTOR, to be used in the VDF iter calculation formula.
-    "DIFFICULTY_CONSTANT_FACTOR": 2 ** 66,
-    "DIFFICULTY_STARTING": 7,
+    "DIFFICULTY_CONSTANT_FACTOR": 2 ** 64,
+    "DIFFICULTY_STARTING": 12,
     "DIFFICULTY_CHANGE_MAX_FACTOR": 3,  # The next difficulty is truncated to range [prev / FACTOR, prev * FACTOR]
     # These 3 constants must be changed at the same time
     "SUB_EPOCH_BLOCKS": 384,  # The number of blocks per sub-epoch, mainnet 384
@@ -28,14 +28,14 @@ testnet_kwargs = {
     # Used as the initial cc rc challenges, as well as first block back pointers, and first SES back pointer
     # We override this value based on the chain being run (testnet0, testnet1, mainnet, etc)
     # Default used for tests is std_hash(b'')
-    "GENESIS_CHALLENGE": bytes.fromhex("4adf0fe70cfbd24286695e105624a92e44c083eca84ee2906106e51566f5ae4d"),
-    # Forks of chia should change this value to provide replay attack protection. This is set to mainnet genesis call
-    "AGG_SIG_ME_ADDITIONAL_DATA": bytes.fromhex("9248f1109f8f5b99d77b39e7e50ed2491848baf30d2837857561c599ef9b74cb"),
+    "GENESIS_CHALLENGE": bytes.fromhex("c7e84e1f4f1bf4a4aa79b461957baf1fe02d5b9f3be7201230b91df728d20430"),
+    # Forks of olive should change this value to provide replay attack protection. This is set to mainnet genesis chall
+    "AGG_SIG_ME_ADDITIONAL_DATA": bytes.fromhex("11d8513356cee3cd17832ecfcb3ad6a3cea24971f6b6f9699e0dfa1e090a8cf0"),
     "GENESIS_PRE_FARM_POOL_PUZZLE_HASH": bytes.fromhex(
-        "642e4098cd8dd161741868060bd8f0eabab8dcbe6e984c5a2c4bb00a69cc96d2"
+        "210836d3c99ecbe716647dcee23c4b124ccbc7881007014d490c7e31ff613af2"
     ),
     "GENESIS_PRE_FARM_FARMER_PUZZLE_HASH": bytes.fromhex(
-        "642e4098cd8dd161741868060bd8f0eabab8dcbe6e984c5a2c4bb00a69cc96d2"
+        "210836d3c99ecbe716647dcee23c4b124ccbc7881007014d490c7e31ff613af2"
     ),
     "MAX_VDF_WITNESS_SIZE": 64,
     # Size of mempool = 50x the size of block
@@ -50,10 +50,10 @@ testnet_kwargs = {
     "BLOCKS_CACHE_SIZE": 4608 + (128 * 4),
     "WEIGHT_PROOF_RECENT_BLOCKS": 1000,
     "MAX_BLOCK_COUNT_PER_REQUESTS": 32,  # Allow up to 32 blocks per request
-    "INITIAL_FREEZE_END_TIMESTAMP": 0,
     "NETWORK_TYPE": 0,
     "MAX_GENERATOR_SIZE": 1000000,
     "MAX_GENERATOR_REF_LIST_SIZE": 512,  # Number of references allowed in the block generator ref list
+    "POOL_SUB_SLOT_ITERS": 37600000000,  # iters limit * NUM_SPS
 }
 
 

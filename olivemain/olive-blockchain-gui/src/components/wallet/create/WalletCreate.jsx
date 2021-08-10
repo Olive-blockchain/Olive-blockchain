@@ -36,7 +36,7 @@ import { CreateExistingCCWallet } from './createExistingColouredCoin';
 import { CreateRLAdminWallet } from './createRLAdmin';
 import { CreateRLUserWallet } from './createRLUser';
 import { CreateDIDWallet } from './createDIDWallet';
-import { RecoverDIDWallet } from './recoverDIDWallet';
+import { RexolerDIDWallet } from './rexolerDIDWallet';
 
 export const useStyles = makeStyles((theme) => ({
   walletContainer: {
@@ -247,7 +247,7 @@ export const DIDListItems = () => {
     dispatch(changeCreateWallet(CREATE_DID_WALLET));
   }
 
-  function select_option_recover() {
+  function select_option_rexoler() {
     dispatch(changeCreateWallet(RECOVER_DID_WALLET));
   }
 
@@ -275,11 +275,11 @@ export const DIDListItems = () => {
             </ListItemIcon>
             <ListItemText primary={<Trans>Create DID wallet</Trans>} />
           </ListItem>
-          <ListItem button onClick={select_option_recover}>
+          <ListItem button onClick={select_option_rexoler}>
             <ListItemIcon>
               <InvertColorsIcon />
             </ListItemIcon>
-            <ListItemText primary={<Trans>Recover DID wallet</Trans>} />
+            <ListItemText primary={<Trans>Rexoler DID wallet</Trans>} />
           </ListItem>
         </List>
       </Grid>
@@ -302,7 +302,7 @@ export function CreateWalletView() {
         {view === CREATE_RL_USER && <CreateRLUserWallet />}
         {view === CREATE_DID_WALLET_OPTIONS && <DIDListItems />}
         {view === CREATE_DID_WALLET && <CreateDIDWallet />}
-        {view === RECOVER_DID_WALLET && <RecoverDIDWallet />}
+        {view === RECOVER_DID_WALLET && <RexolerDIDWallet />}
       </CardContent>
     </Card>
   );

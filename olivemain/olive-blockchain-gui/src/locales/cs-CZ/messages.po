@@ -140,7 +140,7 @@ msgstr "Částka pro počáteční minci"
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
-msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
+msgid "Are you sure you want to delete the plot? The plot cannot be rexolered."
 msgstr "Jste si jisti, že chcete pole odstranit? Pole nelze obnovit."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:122
@@ -673,7 +673,7 @@ msgid "Does your machine support parallel plotting?"
 msgstr "Zvládne vaše zařízení paralelní vytváření polí?"
 
 #: src/components/trading/ViewOffer.jsx:39
-#: src/components/wallet/create/recoverDIDWallet.js:294
+#: src/components/wallet/create/rexolerDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr "Přetáhněte soubor nabídky"
 
@@ -1122,7 +1122,7 @@ msgstr "Probíhá přihlašování"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:334
-#~ msgid "MainWalletList.recoverDIDWallet"
+#~ msgid "MainWalletList.rexolerDIDWallet"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:112
@@ -1289,7 +1289,7 @@ msgstr "Vytvořené nabídky"
 
 #: src/components/wallet/standard/WalletStandard.tsx:485
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
-msgstr "Mezi každým transakčním blokem je v průměru jedna minuta. Pokud nedojde ke zdržení z důvodu přetížení, zpracování vaší transakce proběhne zhruba do minuty."
+msgstr "Mezi každým transakčním blokem je v průměru jedna minuta. Pokud nedojde ke zdržení z důvodu přetížení, zpraxolání vaší transakce proběhne zhruba do minuty."
 
 #: src/components/wallet/WalletHistory.tsx:23
 msgid "Outgoing"
@@ -1699,7 +1699,7 @@ msgid "Receive Address"
 msgstr "Adresa příjemce"
 
 #: src/components/wallet/create/WalletCreate.jsx:282
-msgid "Recover DID wallet"
+msgid "Rexoler DID wallet"
 msgstr "Obnovit DID peněženku"
 
 #: src/components/plot/PlotHeader.tsx:78
@@ -2024,7 +2024,7 @@ msgstr "Umístění dočasné složky"
 
 #: src/components/app/AppTimeBomb.tsx:30
 msgid "The application will stop working at block height 193536."
-msgstr "Aplikace přestane pracovat při výšce bloku 193536."
+msgstr "Aplikace přestane praxolat při výšce bloku 193536."
 
 #: src/components/farm/FarmFullNodeConnections.tsx:97
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
@@ -2108,15 +2108,15 @@ msgstr "Tato funkce je dostupná pouze v grafickém rozhraní."
 
 #: src/components/wallet/card/WalletCardSpendableBalance.tsx:26
 msgid "This is the amount of olive that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and olive that you have just spent but is not yet in the blockchain."
-msgstr "olive zůstatek využitelný pro transakce. Neobsahuje nezpracované odměny za farmaření, nezpracované příchozí transakce a ani převody, které ještě nebyly zaneseny do blockchainu."
+msgstr "olive zůstatek využitelný pro transakce. Neobsahuje nezpraxolané odměny za farmaření, nezpraxolané příchozí transakce a ani převody, které ještě nebyly zaneseny do blockchainu."
 
 #: src/components/wallet/card/WalletCardPendingChange.tsx:26
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
-msgstr "Dosud nezpracovaná změna vlastního převodu, která ještě nebyla potvrzena."
+msgstr "Dosud nezpraxolaná změna vlastního převodu, která ještě nebyla potvrzena."
 
 #: src/components/wallet/card/WalletCardPendingBalance.tsx:26
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
-msgstr "Souhrn příchozích a odchozích nezpracovaných změn (zatím nejsou obsaženy v blockchainu). Neobsahuje odměny za farmaření."
+msgstr "Souhrn příchozích a odchozích nezpraxolaných změn (zatím nejsou obsaženy v blockchainu). Neobsahuje odměny za farmaření."
 
 #: src/components/fullNode/card/FullNodeCardPeakTime.tsx:24
 msgid "This is the time of the latest peak sub block."

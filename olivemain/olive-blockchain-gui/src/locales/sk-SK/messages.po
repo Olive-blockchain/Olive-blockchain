@@ -140,7 +140,7 @@ msgstr "Počiatočná suma"
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
-msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
+msgid "Are you sure you want to delete the plot? The plot cannot be rexolered."
 msgstr "Naozaj chcete odstrániť pole? Pole nie je možné obnoviť."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:122
@@ -673,7 +673,7 @@ msgid "Does your machine support parallel plotting?"
 msgstr "Podporuje váše zariadenie paralelné vytváranie polí?"
 
 #: src/components/trading/ViewOffer.jsx:39
-#: src/components/wallet/create/recoverDIDWallet.js:294
+#: src/components/wallet/create/rexolerDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr "Súbor s ponukami presuňte tu"
 
@@ -1122,7 +1122,7 @@ msgstr "Prihlasovanie"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:334
-#~ msgid "MainWalletList.recoverDIDWallet"
+#~ msgid "MainWalletList.rexolerDIDWallet"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:112
@@ -1315,17 +1315,17 @@ msgstr "Spracúva sa"
 #: src/components/wallet/card/WalletCardPendingBalance.tsx:24
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:573
 msgid "Pending Balance"
-msgstr "Nespracovaný zostatok"
+msgstr "Nespraxolaný zostatok"
 
 #: src/components/wallet/card/WalletCardPendingChange.tsx:24
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:578
 msgid "Pending Change"
-msgstr "Nespracované zmeny"
+msgstr "Nespraxolané zmeny"
 
 #: src/components/wallet/card/WalletCardPendingTotalBalance.tsx:27
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:568
 msgid "Pending Total Balance"
-msgstr "Celkový nespracovaný zostatok"
+msgstr "Celkový nespraxolaný zostatok"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:131
 #: src/hooks/useAbsorbRewards.tsx:45
@@ -1699,7 +1699,7 @@ msgid "Receive Address"
 msgstr "Adresa príjemcu"
 
 #: src/components/wallet/create/WalletCreate.jsx:282
-msgid "Recover DID wallet"
+msgid "Rexoler DID wallet"
 msgstr "Obnoviť Peňaženku DID"
 
 #: src/components/plot/PlotHeader.tsx:78
@@ -1846,7 +1846,7 @@ msgstr "Poslať tento informačný paket používateľovi peňaženky s obmedzen
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:279
 msgid "Send your pubkey to your Rate Limited Wallet admin:"
-msgstr "Pošlite svoj verejný kľúč vášmu správcovi peňaženky s obmedzenou sadzbou:"
+msgstr "Pošlite svoj verejný kľúč vášmu správxoli peňaženky s obmedzenou sadzbou:"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:74
 msgid "Show Advanced Options"
@@ -2024,7 +2024,7 @@ msgstr "Dočasný adresár"
 
 #: src/components/app/AppTimeBomb.tsx:30
 msgid "The application will stop working at block height 193536."
-msgstr "Aplikácia prestane pracovať pri výške bloku 193536."
+msgstr "Aplikácia prestane praxolať pri výške bloku 193536."
 
 #: src/components/farm/FarmFullNodeConnections.tsx:97
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
@@ -2108,15 +2108,15 @@ msgstr "Táto možnosť je dostupná iba z Electron aplikácie."
 
 #: src/components/wallet/card/WalletCardSpendableBalance.tsx:26
 msgid "This is the amount of olive that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and olive that you have just spent but is not yet in the blockchain."
-msgstr "Toto je množstvo olive, ktoré môžete v súčasnosti použiť na uskutočnenie transakcií. Nezahŕňa nespracované odmeny za ťažbu, nespracované prichádzajúce transakcie a olive, ktorú ste práve minuli, ale ešte nie je v blockchaine."
+msgstr "Toto je množstvo olive, ktoré môžete v súčasnosti použiť na uskutočnenie transakcií. Nezahŕňa nespraxolané odmeny za ťažbu, nespraxolané prichádzajúce transakcie a olive, ktorú ste práve minuli, ale ešte nie je v blockchaine."
 
 #: src/components/wallet/card/WalletCardPendingChange.tsx:26
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
-msgstr "Toto je nespracovaná zmena. Sú to mince, ktoré ste si poslali, ale zatiaľ neboli spracované."
+msgstr "Toto je nespraxolaná zmena. Sú to mince, ktoré ste si poslali, ale zatiaľ neboli spraxolané."
 
 #: src/components/wallet/card/WalletCardPendingBalance.tsx:26
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
-msgstr "Toto je súčet prichádzajúcich a odchádzajúcich nespracovaných transakcií (ešte nezahrnutých do blockchainu). To nezahŕňa odmeny za ťažbu."
+msgstr "Toto je súčet prichádzajúcich a odchádzajúcich nespraxolaných transakcií (ešte nezahrnutých do blockchainu). To nezahŕňa odmeny za ťažbu."
 
 #: src/components/fullNode/card/FullNodeCardPeakTime.tsx:24
 msgid "This is the time of the latest peak sub block."
@@ -2128,11 +2128,11 @@ msgstr "Toto je čas, kedy ťažiar vytvoril blok, a to ešte predtým, ako bol 
 
 #: src/components/wallet/card/WalletCardTotalBalance.tsx:34
 msgid "This is the total amount of olive in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
-msgstr "Toto je celkové množstvo olive v blockchaine v aktuálne najnovšom čiastkovom bloku, ktorý je kontrolovaný vašimi súkromnými kľúčmi. Zahŕňa zmrazené odmeny za ťaženie, ale nie nespracované prichádzajúce a odchádzajúce transakcie."
+msgstr "Toto je celkové množstvo olive v blockchaine v aktuálne najnovšom čiastkovom bloku, ktorý je kontrolovaný vašimi súkromnými kľúčmi. Zahŕňa zmrazené odmeny za ťaženie, ale nie nespraxolané prichádzajúce a odchádzajúce transakcie."
 
 #: src/components/wallet/card/WalletCardPendingTotalBalance.tsx:29
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
-msgstr "Toto je celkový zostatok + nespracovaný zostatok alebo to, aký bude váš zostatok po potvrdení všetkých nespracovaných transakcií."
+msgstr "Toto je celkový zostatok + nespraxolaný zostatok alebo to, aký bude váš zostatok po potvrdení všetkých nespraxolaných transakcií."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:151
 #: src/components/plotNFT/PlotNFTCard.tsx:190
@@ -2336,11 +2336,11 @@ msgstr "Zobraziť odkaz na prihlásenie do združenia"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:562
 msgid "View pending balances"
-msgstr "Zobraziť nespracované zostatky"
+msgstr "Zobraziť nespraxolané zostatky"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:393
 msgid "View pending balances..."
-msgstr "Zobraziť nespracované zostatky..."
+msgstr "Zobraziť nespraxolané zostatky..."
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:26
 #: src/components/plot/PlotStatus.tsx:26

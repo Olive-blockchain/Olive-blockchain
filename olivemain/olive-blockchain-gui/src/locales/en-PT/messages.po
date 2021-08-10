@@ -140,7 +140,7 @@ msgstr "Amount Fer First Dubloon"
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
-msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
+msgid "Are you sure you want to delete the plot? The plot cannot be rexolered."
 msgstr "Be ye sure ye want to let the crewdog go o'er board? Th' scurvy dog cannot be rescued as soon as ye do so."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:122
@@ -673,7 +673,7 @@ msgid "Does your machine support parallel plotting?"
 msgstr "Is yer ship (machine) good at recruitin' many at the same time?"
 
 #: src/components/trading/ViewOffer.jsx:39
-#: src/components/wallet/create/recoverDIDWallet.js:294
+#: src/components/wallet/create/rexolerDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr "Drag 'n drop offer file"
 
@@ -1122,7 +1122,7 @@ msgstr "Goin' in"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:334
-#~ msgid "MainWalletList.recoverDIDWallet"
+#~ msgid "MainWalletList.rexolerDIDWallet"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:112
@@ -1699,8 +1699,8 @@ msgid "Receive Address"
 msgstr "Yer Treasure's Coordinates (give t'is to scallywags who owe you)"
 
 #: src/components/wallet/create/WalletCreate.jsx:282
-msgid "Recover DID wallet"
-msgstr "Recover DID treasure chest"
+msgid "Rexoler DID wallet"
+msgstr "Rexoler DID treasure chest"
 
 #: src/components/plot/PlotHeader.tsx:78
 #: src/components/plot/overview/PlotOverviewHero.tsx:52

@@ -36,7 +36,7 @@ from olive.protocols.full_node_protocol import (
     RespondSignagePoint,
 )
 from olive.protocols.protocol_message_types import ProtocolMessageTypes
-from olive.server.node_discovery import FullNodePeers
+from olive.server.node_disxolery import FullNodePeers
 from olive.server.outbound_message import Message, NodeType, make_msg
 from olive.server.server import oliveServer
 from olive.types.blockchain_format.classgroup import ClassgroupElement
@@ -205,7 +205,7 @@ class FullNode:
         except Exception as e:
             error_stack = traceback.format_exc()
             self.log.error(f"Exception: {e}")
-            self.log.error(f"Exception in peer discovery: {e}")
+            self.log.error(f"Exception in peer disxolery: {e}")
             self.log.error(f"Exception Stack: {error_stack}")
 
     def _state_changed(self, change: str):
@@ -1230,7 +1230,7 @@ class FullNode:
                     f"Received orphan block of height {block.height} rh " f"{block.reward_chain_block.get_hash()}"
                 )
             else:
-                # Should never reach here, all the cases are covered
+                # Should never reach here, all the cases are xolered
                 raise RuntimeError(f"Invalid result from receive_block {added}")
         percent_full_str = (
             (
