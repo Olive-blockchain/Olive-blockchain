@@ -16,7 +16,7 @@ from olive.protocols.protocol_message_types import ProtocolMessageTypes
 from olive.server.address_manager import AddressManager, ExtendedPeerInfo
 from olive.server.address_manager_store import AddressManagerStore
 from olive.server.outbound_message import NodeType, make_msg
-from olive.server.server import CovidServer
+from olive.server.server import OliveServer
 from olive.types.peer_info import PeerInfo, TimestampedPeerInfo
 from olive.util.hash import std_hash
 from olive.util.ints import uint64
@@ -37,7 +37,7 @@ class FullNodeDisxolery:
 
     def __init__(
         self,
-        server: CovidServer,
+        server: OliveServer,
         root_path: Path,
         target_outbound_count: int,
         peer_db_path: str,
@@ -48,7 +48,7 @@ class FullNodeDisxolery:
         default_port: Optional[int],
         log,
     ):
-        self.server: CovidServer = server
+        self.server: OliveServer = server
         self.message_queue: asyncio.Queue = asyncio.Queue()
         self.is_closed = False
         self.target_outbound_count = target_outbound_count
@@ -127,7 +127,7 @@ class FullNodeDisxolery:
     def add_message(self, message, data):
         self.message_queue.put_nowait((message, data))
 
-    async def on_connect(self, peer: ws.WSCovidConnection):
+    async def on_connect(self, peer: ws.WSOliveConnection):
         if (
             peer.is_outbound is False
             and peer.peer_server_port is not None
@@ -154,7 +154,7 @@ class FullNodeDisxolery:
             await peer.send_message(msg)
 
     # Updates timestamps each time we receive a message for outbound connections.
-    async def update_peer_timestamp_on_message(self, peer: ws.WSCovidConnection):
+    async def update_peer_timestamp_on_message(self, peer: ws.WSOliveConnection):
         if (
             peer.is_outbound
             and peer.peer_server_port is not None
@@ -192,7 +192,7 @@ class FullNodeDisxolery:
         if self.introducer_info is None:
             return None
 
-        async def on_connect(peer: ws.WSCovidConnection):
+        async def on_connect(peer: ws.WSOliveConnection):
             msg = make_msg(ProtocolMessageTypes.request_peers_introducer, introducer_protocol.RequestPeersIntroducer())
             await peer.send_message(msg)
 

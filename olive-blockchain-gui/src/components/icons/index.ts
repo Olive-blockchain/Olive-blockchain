@@ -1,4 +1,4 @@
-export { default as Covid } from './olive';
+export { default as Olive } from './olive';
 export { default as Farm } from './Farm';
 export { default as Home } from './Home';
 export { default as Keys } from './Keys';

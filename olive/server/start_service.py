@@ -16,7 +16,7 @@ except ImportError:
 
 from olive.rpc.rpc_server import start_rpc_server
 from olive.server.outbound_message import NodeType
-from olive.server.server import CovidServer
+from olive.server.server import OliveServer
 from olive.server.upnp import UPnP
 from olive.types.peer_info import PeerInfo
 from olive.util.olive_logging import initialize_logging
@@ -80,7 +80,7 @@ class Service:
         inbound_rlp = self.config.get("inbound_rate_limit_percent")
         outbound_rlp = self.config.get("outbound_rate_limit_percent")
         assert inbound_rlp and outbound_rlp
-        self._server = CovidServer(
+        self._server = OliveServer(
             advertised_port,
             node,
             peer_api,
@@ -226,7 +226,7 @@ class Service:
 
         self._log.info("Waiting for socket to be closed (if opened)")
 
-        self._log.info("Waiting for CovidServer to be closed")
+        self._log.info("Waiting for OliveServer to be closed")
         await self._server.await_closed()
 
         if self._rpc_close_task:

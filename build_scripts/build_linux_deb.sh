@@ -12,16 +12,16 @@ else
 fi
 
 pip install setuptools_scm
-# The environment variable COVID_INSTALLER_VERSION needs to be defined
+# The environment variable OLIVE_INSTALLER_VERSION needs to be defined
 # If the env variable NOTARIZE and the username and password variables are
 # set, this will attempt to Notarize the signed DMG
-COVID_INSTALLER_VERSION=$(python installer-version.py)
+OLIVE_INSTALLER_VERSION=$(python installer-version.py)
 
-if [ ! "$COVID_INSTALLER_VERSION" ]; then
-	echo "WARNING: No environment variable COVID_INSTALLER_VERSION set. Using 0.0.0."
-	COVID_INSTALLER_VERSION="0.0.0"
+if [ ! "$OLIVE_INSTALLER_VERSION" ]; then
+	echo "WARNING: No environment variable OLIVE_INSTALLER_VERSION set. Using 0.0.0."
+	OLIVE_INSTALLER_VERSION="0.0.0"
 fi
-echo "Covid Installer Version is: $COVID_INSTALLER_VERSION"
+echo "Olive Installer Version is: $OLIVE_INSTALLER_VERSION"
 
 echo "Installing npm and electron packagers"
 npm install electron-packager -g
@@ -57,11 +57,11 @@ fi
 
 # sets the version for olive-blockchain in package.json
 cp package.json package.json.orig
-jq --arg VER "$COVID_INSTALLER_VERSION" '.version=$VER' package.json > temp.json && mv temp.json package.json
+jq --arg VER "$OLIVE_INSTALLER_VERSION" '.version=$VER' package.json > temp.json && mv temp.json package.json
 
 electron-packager . olive-blockchain --asar.unpack="**/daemon/**" --platform=linux \
---icon=src/assets/img/Covid.icns --overwrite --app-bundle-id=net.olive.blockchain \
---appVersion=$COVID_INSTALLER_VERSION
+--icon=src/assets/img/Olive.icns --overwrite --app-bundle-id=net.olive.blockchain \
+--appVersion=$OLIVE_INSTALLER_VERSION
 LAST_EXIT_CODE=$?
 
 # reset the package.json to the original
@@ -75,11 +75,11 @@ fi
 mv $DIR_NAME ../build_scripts/dist/
 cd ../build_scripts || exit
 
-echo "Create olive-$COVID_INSTALLER_VERSION.deb"
+echo "Create olive-$OLIVE_INSTALLER_VERSION.deb"
 rm -rf final_installer
 mkdir final_installer
 electron-installer-debian --src dist/$DIR_NAME/ --dest final_installer/ \
---arch "$PLATFORM" --options.version $COVID_INSTALLER_VERSION
+--arch "$PLATFORM" --options.version $OLIVE_INSTALLER_VERSION
 LAST_EXIT_CODE=$?
 if [ "$LAST_EXIT_CODE" -ne 0 ]; then
 	echo >&2 "electron-installer-debian failed!"

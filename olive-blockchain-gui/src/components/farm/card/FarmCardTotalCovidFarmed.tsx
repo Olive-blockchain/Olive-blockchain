@@ -7,7 +7,7 @@ import { mojo_to_olive } from '../../../util/olive';
 import useCurrencyCode from '../../../hooks/useCurrencyCode';
 import { FormatLargeNumber } from '@olive/core';
 
-export default function FarmCardTotalCovidFarmed() {
+export default function FarmCardTotalOliveFarmed() {
   const currencyCode = useCurrencyCode();
 
   const loading = useSelector(
@@ -18,7 +18,7 @@ export default function FarmCardTotalCovidFarmed() {
     (state: RootState) => state.wallet_state.farmed_amount?.farmed_amount,
   );
 
-  const totalCovidFarmed = useMemo(() => {
+  const totalOliveFarmed = useMemo(() => {
     if (farmedAmount !== undefined) {
       const val = BigInt(farmedAmount.toString());
       return mojo_to_olive(val);
@@ -27,8 +27,8 @@ export default function FarmCardTotalCovidFarmed() {
 
   return (
     <FarmCard
-      title={<Trans>{currencyCode} Total Covid Farmed</Trans>}
-      value={<FormatLargeNumber value={totalCovidFarmed} />}
+      title={<Trans>{currencyCode} Total Olive Farmed</Trans>}
+      value={<FormatLargeNumber value={totalOliveFarmed} />}
       loading={loading}
     />
   );

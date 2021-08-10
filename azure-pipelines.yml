@@ -39,7 +39,7 @@ steps:
   - task: InstallAppleCertificate@2
     inputs:
       certSecureFile: 'olive-apple-dev-id-app.p12'
-      certPwd: $(COVID_APPLE_DEV_ID_APP_PASS)
+      certPwd: $(OLIVE_APPLE_DEV_ID_APP_PASS)
       keychain: temp
       deleteCert: true
 
@@ -100,8 +100,8 @@ steps:
   - bash: |
       ls $(System.DefaultWorkingDirectory)/build_scripts/final_installer/
       cd $(System.DefaultWorkingDirectory)/build_scripts/
-      export COVID_VERSION="Covid-"$(<version.txt)
-      shasum -a 256 $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$COVID_VERSION.dmg > $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$COVID_VERSION.dmg.sha256
+      export OLIVE_VERSION="Olive-"$(<version.txt)
+      shasum -a 256 $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$OLIVE_VERSION.dmg > $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$OLIVE_VERSION.dmg.sha256
       ls $(System.DefaultWorkingDirectory)/build_scripts/final_installer/
     displayName: "Create Checksums"
 
@@ -114,10 +114,10 @@ steps:
 
   - bash: |
       cd $(System.DefaultWorkingDirectory)/build_scripts/
-      export COVID_VERSION="Covid-"$(<version.txt)
+      export OLIVE_VERSION="Olive-"$(<version.txt)
 
       pip3 install py3createtorrent
-      py3createtorrent -f -t udp://tracker.opentrackr.org:1337/announce $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$COVID_VERSION.dmg -o $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$COVID_VERSION.dmg.torrent --webseed https://download-olive-net.s3.us-west-2.amazonaws.com/install/$COVID_VERSION.dmg
+      py3createtorrent -f -t udp://tracker.opentrackr.org:1337/announce $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$OLIVE_VERSION.dmg -o $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$OLIVE_VERSION.dmg.torrent --webseed https://download-olive-net.s3.us-west-2.amazonaws.com/install/$OLIVE_VERSION.dmg
       ls
     displayName: "Create torrent file"
     condition: and(succeeded(), contains(variables['build.sourceBranch'], 'refs/tags/'))
@@ -127,17 +127,17 @@ steps:
       export AWS_SECRET_ACCESS_KEY=$(SecretKey)
       export AWS_DEFAULT_REGION=us-west-2
       cd $(System.DefaultWorkingDirectory)/build_scripts/
-      export COVID_VERSION="Covid-"$(<version.txt)
-      aws s3 cp $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$COVID_VERSION.dmg s3://download-olive-net/install/
-      aws s3 cp $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$COVID_VERSION.dmg.sha256 s3://download-olive-net/install/
-      aws s3 cp $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$COVID_VERSION.dmg.torrent s3://download-olive-net/torrents/
+      export OLIVE_VERSION="Olive-"$(<version.txt)
+      aws s3 cp $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$OLIVE_VERSION.dmg s3://download-olive-net/install/
+      aws s3 cp $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$OLIVE_VERSION.dmg.sha256 s3://download-olive-net/install/
+      aws s3 cp $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$OLIVE_VERSION.dmg.torrent s3://download-olive-net/torrents/
     displayName: "Upload Release Files"
     condition: and(succeeded(), contains(variables['build.sourceBranch'], 'refs/tags/'))
 
   - bash: |
       cd $(System.DefaultWorkingDirectory)/build_scripts/
-      export COVID_TAG=$(<version.txt)
+      export OLIVE_TAG=$(<version.txt)
       export REPO_NAME=$(echo $(Build.Repository.Name) | cut -d'/' -f 2)
-      curl -s -XPOST -H "Authorization: Bearer $(GLUE_ACCESS_TOKEN)" --data "{\"olive_ref\": \"$COVID_TAG\"}" $(GLUE_API_URL)/api/v1/${REPO_NAME}/${COVID_TAG}/success/build-macos
+      curl -s -XPOST -H "Authorization: Bearer $(GLUE_ACCESS_TOKEN)" --data "{\"olive_ref\": \"$OLIVE_TAG\"}" $(GLUE_API_URL)/api/v1/${REPO_NAME}/${OLIVE_TAG}/success/build-macos
     displayName: "Mark installer complete"
     condition: and(succeeded(), contains(variables['build.sourceBranch'], 'refs/tags/'))

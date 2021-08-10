@@ -33,7 +33,7 @@ io_pool_exc = ThreadPoolExecutor()
 try:
     from aiohttp import ClientSession, web
 except ModuleNotFoundError:
-    print("Error: Make sure to run . ./activate from the project folder before starting Covid.")
+    print("Error: Make sure to run . ./activate from the project folder before starting Olive.")
     quit()
 
 try:
@@ -749,8 +749,8 @@ def plotter_log_path(root_path: Path, id: str):
 
 
 def launch_plotter(root_path: Path, service_name: str, service_array: List[str], id: str):
-    # we need to pass on the possibly altered COVID_ROOT
-    os.environ["COVID_ROOT"] = str(root_path)
+    # we need to pass on the possibly altered OLIVE_ROOT
+    os.environ["OLIVE_ROOT"] = str(root_path)
     service_executable = executable_for_service(service_array[0])
 
     # Swap service name with name of executable
@@ -799,14 +799,14 @@ def launch_service(root_path: Path, service_command) -> Tuple[subprocess.Popen, 
     """
     Launch a child process.
     """
-    # set up COVID_ROOT
+    # set up OLIVE_ROOT
     # invoke correct script
     # save away PID
 
-    # we need to pass on the possibly altered COVID_ROOT
-    os.environ["COVID_ROOT"] = str(root_path)
+    # we need to pass on the possibly altered OLIVE_ROOT
+    os.environ["OLIVE_ROOT"] = str(root_path)
 
-    log.debug(f"Launching service with COVID_ROOT: {os.environ['COVID_ROOT']}")
+    log.debug(f"Launching service with OLIVE_ROOT: {os.environ['OLIVE_ROOT']}")
 
     # Insert proper e
     service_array = service_command.split()

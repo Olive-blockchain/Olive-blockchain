@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project does not yet adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 for setuptools_scm/PEP 440 reasons.
 
-## 1.2.0 Covid blockchain 2021-07-07
+## 1.2.0 Olive blockchain 2021-07-07
 
 ### Added
 
@@ -19,7 +19,7 @@ OG plots made before this release can continue to be farmed side by side with th
 - Thanks to @maran and @Animazing for adding farmer and pool public key display to the RPC.
 - We have added translations for Hungarian, Belarusian, Catalan, and Albanian.  For Hungarian thanks to @SirGeoff, @azazio @onokaxxx, @rolandfarkasCOM, @HUNDavid , @horvathpalzsolt, @stishun74, @tusdavgaming, @idotitusz, @rasocsabi, @mail.kope, @gsprblnt, @mbudahazi, @csiberius, @tomatos83, @zok42, @ocel0t, @rwtoptomi, @djxpitke, @ftamas85, @zotya0330, @fnni, @kapabeates, @zamery, @viktor.gonczi, @pal.suta, @miv, and @Joeman_. For Belarusian thanks to @shurix83, @haxycgm, and @metalomaniax. For Catalan thank you to @Poliwhirl, @Pep-33, @marqmarti, @meuca, @Guiwdin, @carlescampi, @jairobtx, @Neoares, @darknsis, @augustfarrerasgimeno, and @fornons. Finally for Albanian thanks to @ATSHOOTER and @lakedeejay. We apologize if we missed anyone and welcome corrections.
 - Our release process is now fully automated from tagging a release to publishing installers to all of the appropriate locations and now makes the release artifacts available via torrents as well.
-- All Covid repositories now automatically build M1 wheels and create a new MacOS M1 native installer.
+- All Olive repositories now automatically build M1 wheels and create a new MacOS M1 native installer.
 - New CLI command `olive plotnft` to manage pools.
 - We have added a new RPC `get_harvesters` to the farmer. This returns information about remote harvesters and plots.
 - We have added a new RPC `check_delete_key` to the wallet, to check keys prior to deleting them.
@@ -60,7 +60,7 @@ OG plots made before this release can continue to be farmed side by side with th
 - Fixed a potential timelord bug that could lead to a chain stall.
 - Add an explicit error message when mnemonic words are not in the dictionary; should help users self-service issues like #3425 faster. Thank you to @elliotback for this PR.
 - Thank you to @Nikolaj-K for various typo corrections around the Mozilla CA, code simplifications and improvements in converting to human-readable size estimations, and clean up in the RPCs and logging.
-- Thank you to @CovidMineJP for various improvements.
+- Thank you to @OliveMineJP for various improvements.
 - @asdf2014 removed some useless code in the wallet node API.
 - Thanks to @willi123yao for a fix to under development pool wallets.
 - `olive farm summary` better handles wallet errors.
@@ -74,13 +74,13 @@ OG plots made before this release can continue to be farmed side by side with th
 
 - If you resync your wallet, transactions made with your plot NFTs will show incorrectly in the GUI. The internal accounting, and total balance displayed is correct.
 
-### 1.1.7 Covid Blockchain 2021-06-05
+### 1.1.7 Olive Blockchain 2021-06-05
 
 ### Fixed
 
 Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite limit (999 for Python 3.7 on Windows). Fixes sqlite3.OperationalError: too many SQL variables error and resulting issues with syncing wallets on Windows.
 
-## 1.1.6 Covid Blockchain 2021-05-20
+## 1.1.6 Olive Blockchain 2021-05-20
 
 ### Added
 
@@ -124,13 +124,13 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - Thanks to @msg7086 for fixing install.sh for Debian.
 - And thank you to @alfonsoperez, @asdf2014, @fredericosilva, @lamba09, @Nikolaj-K, @sargonas, @aisk, @Ich5003, and @trumankain for various other fixes and improvements.
 
-## 1.1.5 Covid Blockchain 2021-05-09
+## 1.1.5 Olive Blockchain 2021-05-09
 
 ### Fixed
 
 - We were not checking for negative values in the uint64 constructor. Therefore coins with negative values were added to the mempool. These blocks passed validation, but they did not get added into the blockchain due to negative values not serializing in uint64. Farmers making these blocks would make blocks that did not make it into or advance the chain, so the blockchain slowed down starting at block 255518 around 6:35AM PDT 5/9/2021. The fix adds a check in the mempool and block validation, and does not disconnect peers who send these invalid blocks (any peer 1.1.4 or older), making this update not mandatory but is recommended. Users not updating might see their blocks get rejected from other peers. Upgraded nodes will show an error when they encounter an old node trying to send an invalid block. This "Consensus error 124..." can be safely ignored.
 
-## 1.1.4 Covid Blockchain 2021-05-04
+## 1.1.4 Olive Blockchain 2021-05-04
 
 ### Changed
 
@@ -145,7 +145,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - Two issues with processing Weight Proofs during syncing while farming.
 - Fixed a bug in the outgoing rate control logic that could prevent messages being sent.
 
-## 1.1.3 Covid Blockchain 2021-05-01
+## 1.1.3 Olive Blockchain 2021-05-01
 
 ### Added
 
@@ -190,7 +190,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - Thanks @antoniobg for a typo fix in keychain.py.
 - Thanks to @altendky for catching a Copyright date error.
 
-## 1.1.2 Covid Blockchain 2021-04-24
+## 1.1.2 Olive Blockchain 2021-04-24
 
 ### Changed
 
@@ -201,7 +201,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - When attempting to sync, connections could accidentally disconnect for rate limiting reasons. This was causing many to not be able to sync.
 - Some temp files were not being closed during GUI plotting.
 
-## 1.1.1 Covid Blockchain 2021-04-21
+## 1.1.1 Olive Blockchain 2021-04-21
 
 ### Added
 
@@ -215,11 +215,11 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 
 - Changes were made in 1.1.0 to make sure that even out of order signage points were found and responded to by as many farmers as possible. That change lead to a situation where the harvester could thrash on the same cached signage point.
 
-## 1.1.0 Covid Blockchain 2021-04-21
+## 1.1.0 Olive Blockchain 2021-04-21
 
 ### Added
 
-- This fork release includes full transaction support for the Covid Blockchain. Transactions are still disabled until 5/3/2021 at 10:00AM PDT. It is hard to overstate how much work and clean up went into this release.
+- This fork release includes full transaction support for the Olive Blockchain. Transactions are still disabled until 5/3/2021 at 10:00AM PDT. It is hard to overstate how much work and clean up went into this release.
 - This is the 1.0 release of chialisp. Much has been massaged and finalized. We will be putting a focus on updating and expanding the documentation on [chialisp.com](https://chialisp.com) shortly.
 - Farmers now compress blocks using code snippets from previous blocks. This saves storage space and allows larger smart coins to have a library of sorts on chain.
 - We now support offline signing of coins.
@@ -241,7 +241,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - Timelords are now successfully infusing almost 100% of blocks.
 - Harvester should be a bit more tolerant of some bad plots.
 
-## 1.0.5 Covid Blockchain 2021-04-14
+## 1.0.5 Olive Blockchain 2021-04-14
 
 ### Added
 
@@ -260,7 +260,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - Our estimate for k=32 was about 0.4GiB too low in some cases.
 - Building the GUI in especially ARM64 Linux was painful enough to be considered broken.
 
-## 1.0.4 Covid Blockchain 2021-04-12
+## 1.0.4 Olive Blockchain 2021-04-12
 
 ### Added
 
@@ -284,7 +284,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - Wallet start up would have a race condition that output a harmless error on startup.
 - Thanks for a typo fix from @alfonsoperez.
 
-## 1.0.3 Covid Blockchain 2021-03-30
+## 1.0.3 Olive Blockchain 2021-03-30
 
 ### Added
 
@@ -296,7 +296,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - An incorrect merge brought in unreleased features and broke `olive keys`.
 - Omitted from the 1.0.2 changelog, we fixed one crash in harvester with the release of chiapos 1.0.0 as well.
 
-## 1.0.2 Covid Blockchain 2021-03-30
+## 1.0.2 Olive Blockchain 2021-03-30
 
 ### Added
 
@@ -327,7 +327,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - There was a potential node locking issue that could have prevented a Timelord from getting a new peak and cause a chain stall.
 - We did not correctly support some Crowdin locales. Pirate English was starting to overwrite US English for example.
 
-## 1.0.1 Covid Blockchain 2021-03-23
+## 1.0.1 Olive Blockchain 2021-03-23
 
 ### Added
 
@@ -348,11 +348,11 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - Users can now pip install e.g. olive-blockchain==1.0.1 on most platforms.
 - Sometimes the GUI had an error regarding MainWindow.
 
-## 1.0.0 First Release of Covid Blockchain 2021-03-17
+## 1.0.0 First Release of Olive Blockchain 2021-03-17
 
 ### Added
 
-- This is the first production release of the Covid Blockchain. This can be installed and will wait for the green flag that will be dropped at approximately 7AM PDST (14:00 UTC) on Friday March 19, 2021. All farming rewards from that point forward will be considered valid and valuable COV. There is a six week lock on all transactions. During those six weeks farmers will be earning their farming rewards but those rewards can not be spent.
+- This is the first production release of the Olive Blockchain. This can be installed and will wait for the green flag that will be dropped at approximately 7AM PDST (14:00 UTC) on Friday March 19, 2021. All farming rewards from that point forward will be considered valid and valuable COV. There is a six week lock on all transactions. During those six weeks farmers will be earning their farming rewards but those rewards can not be spent.
 - Initial difficulty will be set for 100PB. This may mean the initial epoch may be slow. Mainnet difficulty resets are targeted for 24 hours so this difficulty will adjust to the actual space brought online in 24 to 48 hours after launch.
 - Transactions are not enabled in the 1.0.0 version and will be soft forked in during the six week period via a 1.1.0 release.
 - There will also be a 1.0.1 release after the green flag process is complete to simplify install for new users by removing the green flag alert. In the interim there will be new testnet releases using the 1.1bx version scheme.
@@ -386,7 +386,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - Found and fixed another green flag related issue
 - Fixed an issue with weight proofs where all sub-epochs were sampled, and the size of the weight proof kept growing
 - Fixed an issue with install-gui.sh, where npm audit fix was failing. (Thanks @Depado!)
-- Migration with COVID_ROOT set does not crash olive init
+- Migration with OLIVE_ROOT set does not crash olive init
 
 ## 1.0rc8 aka Release Candidate 8 - 2021-03-15
 
@@ -473,7 +473,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - `requirements-dev.txt` has been removed in favor of the CI actions and test scripts.
 - We have moved to a new and much higher scalability download.oliveblockchain.co to support the mainnet launch flag and additional download demand.
 - To always get the latest testnet and then mainnet installers you can now use a latest URL: [Windows](https://download.oliveblockchain.co/latest/Setup-Win64.exe) and [MacOS x86_64](https://download.oliveblockchain.co/latest/Setup-MacOS.dmg).
-- Covid wheels not on Pypi and some dependecies not found there also are now on pypi.chia.net.
+- Olive wheels not on Pypi and some dependecies not found there also are now on pypi.chia.net.
 - Additional typing has been added to the Python code with thanks to @jespino.
 - Cryptography and Keyring have been bumped to their current releases.
 - PRs and commits to the olive-blockchain-gui repository will automatically have their locales updated.
@@ -529,7 +529,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - Python root CA certificates have issues so we have added the Mozilla certificate store via curl.se and use that to connect to backup.oliveblockchain.co via https, for example.
 - The difficulty adjustment calculation was simplified.
 - All of the olive sub repositories that were attempting to build MacOS Universal wheels were only generating x86_64 wheels internally. We have moved back to only generating x86_64 MacOS wheels on CI.
-- However, we have updated and test compiled all Covid dependencies on Apple Silicon and will be making available a test .dmg for MacOS ARM64 shortly.
+- However, we have updated and test compiled all Olive dependencies on Apple Silicon and will be making available a test .dmg for MacOS ARM64 shortly.
 - Various weight proof edge cases have been fixed.
 - Various typos and style clean ups were made to the Click CLI implementation. `olive -upnp f` was added to disable uPnP.
 - `olive plots check` shouldn't crash when encountering plots that cause RuntimeError. PR again thanks to @eFishCent.
@@ -599,12 +599,12 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 ### Added
 
 - This is the first release in our release candidate series. There are still a few things that will change at the edges but the blockchain, clvm, and chialisp are in release form. We have one major change to chialisp/clvm that we have chosen to schedule for the next release as in this release we're breaking the way q/quote works. We also have one more revision to the VDF that will decrease the sizes of the proofs of time. We expect a few more releases in the release candidate series.
-- Installers will now be of the pattern CovidSetup-0.2.1.exe. `0.2` is release candidate and the final `.1` is the first release candidate.
+- Installers will now be of the pattern OliveSetup-0.2.1.exe. `0.2` is release candidate and the final `.1` is the first release candidate.
 - Use 'olive wallet get_transactions' in the command line to see your transactions.
 - 'olive wallet show' now shows your wallet's height.
 - Last Attempted Proof is now above Latest Block Challenge on the Farm page of the GUI.
 - The GUI now detects duplicate plots and also only counts unique plots and unique plot size.
-- We have integrated with crowdin to make it easier to translate the GUI. Check out [Covid Blockchain GUI](https://crowdin.com/project/olive-blockchain) there.
+- We have integrated with crowdin to make it easier to translate the GUI. Check out [Olive Blockchain GUI](https://crowdin.com/project/olive-blockchain) there.
 - We have added Italian, Russian, and Finnish. More to come soon.
 - There is now remote UI support. [Documents](https://github.com/pinksheetscrypto/olive-blockchain-gui/blob/main/remote.md) will temporarily live in the repository but have moved to the [wiki](https://github.com/pinksheetscrypto/olive-blockchain/wiki/Connecting-the-UI-to-a-remote-daemon). Thanks to @dkackman for this excellent addition!
 - Added the ability to specify an address for the pool when making plots (-c flag), as opposed to a public key. The block
@@ -818,7 +818,7 @@ all fields that referred to sub blocks are changed to blocks.
 
 - Welcome to the new consensus. This release is an all but a full re-write of the blockchain in under 30 days. There is now only one tip of the blockchain but we went from two chains to three. Block times are now a little under a minute but there are a couple of sub blocks between each transaction block. A block is also itself a special kind of sub block and each sub block rewards the farmer who won it 1 TCOV. Sub blocks come, on average, about every 17 to 18 seconds.
 - Starting with this Beta, there are 4608 opportunities per day for a farmer to win 1 TCOV compared to Beta 18 where there were 288 opportunities per day for a farmer to win 16 TCOV.
-- There is a lot more information and explanation of the new consensus algorithm in the New Consensus Working Document linked from [oliveblockchain.co](https://oliveblockchain.co/). Among the improvements this gives the Covid blockchain are a much higher security level against all attacks, more frequent transaction blocks that have less time variation between them and are then buried under confirmations (sub blocks also count towards re-org security) much more quickly.
+- There is a lot more information and explanation of the new consensus algorithm in the New Consensus Working Document linked from [oliveblockchain.co](https://oliveblockchain.co/). Among the improvements this gives the Olive blockchain are a much higher security level against all attacks, more frequent transaction blocks that have less time variation between them and are then buried under confirmations (sub blocks also count towards re-org security) much more quickly.
 - New consensus means this is a very hard fork. All of your TCOV from Beta 17/18 will be gone. Your plots and keys will work just fine however. You will have to sync to the new chain.
 - You now have to sync 16 times more "blocks" for every 5 minutes of historical time so syncing is slower than it was on the old chain. We're aware of this and will be speeding it up and addressing blockchain database growth in the nest couple of releases.
 - Prior to this Beta 19, we had block times that targeted 5 minutes and rewarded 16 TCOV to one farmer. Moving forward we have epoch times that target 10 minutes and reward 32 TCOV to 32 farmers about every 17-18 seconds over that period. This has subtle naming and UI impacts in various places.
@@ -838,7 +838,7 @@ all fields that referred to sub blocks are changed to blocks.
 - The new plots page offers advanced plotting options in the various "Show Advanced Options" fold outs.
 - The plotter supports the new bitfield back propagation method and the old method from Beta 17. To choose the old method add a `-e` to the command line or choose "Disable bitfield plotting" in "Show Advanced Options" of the Plots tab. Bitfield back propagation writes about 13% less total writes and can be faster on some slower hard drive temp spaces. For now, SSD temp space will likely plot faster with bitfield back propagation disabled. We will be returning to speed enhancements to the plotter as we approach and pass our mainnet launch.
 - The Farm tab in the GUI is significantly enhanced. Here you have a dashboard overview of your farm and your activity in response to challenges blockchain challnegs, how long it will take you - on average - to win a block, and how much TCOV you've won so far. Harvester and Full Node connections have moved to Advanced Options.
-- Harvester and farmer will start when the GUI starts instead of waiting for key selection if there are already keys available. This means you will start farming on reboot if you have the Covid application set to launch on start.
+- Harvester and farmer will start when the GUI starts instead of waiting for key selection if there are already keys available. This means you will start farming on reboot if you have the Olive application set to launch on start.
 - Testnet is now running at the primary port of 58444. Update your routers appropriately. This opens 8444 for mainnet.
 - All networking code has been refactored and mostly moved to websockets.
 - RPCs and daemon now communicate over TLS with certificates that are generated into `~/.olive/VERSION/config/`
@@ -873,7 +873,7 @@ all fields that referred to sub blocks are changed to blocks.
 
 - F1 generation in the plotter is now fully parallel for a small speedup.
 - We have bitfield optimized phase 2 of plotting. There is only about a 1% increase in speed from this change but there is a 12% decrease in writes with a penalty of 3% more reads. More details in [PR 120](https://github.com/pinksheetscrypto/chiapos/pull/120). Note that some sorts in phase 2 and phase 3 will now appear "out of order" and that is now expected behavior.
-- Partial support for Python 3.9. That includes new versions of Covid dependencies like chiabip158.
+- Partial support for Python 3.9. That includes new versions of Olive dependencies like chiabip158.
 
 ### Changed
 
@@ -906,7 +906,7 @@ all fields that referred to sub blocks are changed to blocks.
 
 ### Added
 
-- The Covid GUI now supports dark and light mode.
+- The Olive GUI now supports dark and light mode.
 - The GUI now supports translations and localizations. If you'd like to add your language you can see the examples in [the locales directory](https://github.com/pinksheetscrypto/olive-blockchain/tree/dev/electron-react/src/locales) of the olive-blockchain repository.
 - `olive check plots` now takes a `-g` option that allows you to specify a matching path string to only check a single plot file, a wild card list of plot files, or all plots in a single directory instead of the default behavior of checking every directory listed in your config.yaml. A big thank you to @eFishCent for this pull request!
 - Better documentation of the various timelord options in the default config.yaml.
@@ -1001,7 +1001,7 @@ all fields that referred to sub blocks are changed to blocks.
 ### Added
 
 - Rate limited wallets can now have unspent and un-spendable funds clawed back by the Admin wallet.
-- You can now backup your wallet related metadata in an encrypted and signed file to a free service from Covid Network at backup.oliveblockchain.co. Simply having a backup of your private key will allow you to fully restore the state of your wallet including coloured coins, rate limited wallets, distributed identity wallets and many more. Your private key is used to automatically restore the last backup you saved to the Covid backup cloud service. This service is open source and ultimately you will be able to configure your backups to go to backup.oliveblockchain.co, your own installation, or a third party's version of it.
+- You can now backup your wallet related metadata in an encrypted and signed file to a free service from Olive Network at backup.oliveblockchain.co. Simply having a backup of your private key will allow you to fully restore the state of your wallet including coloured coins, rate limited wallets, distributed identity wallets and many more. Your private key is used to automatically restore the last backup you saved to the Olive backup cloud service. This service is open source and ultimately you will be able to configure your backups to go to backup.oliveblockchain.co, your own installation, or a third party's version of it.
 - Added a Code of Conduct in CODE_OF_CONDUCT.md.
 - Added a bug report template in `.github/ISSUE_TEMPLATE/bug_report.md`.
 
@@ -1024,13 +1024,13 @@ all fields that referred to sub blocks are changed to blocks.
 - View -> Developer -> Developer Tools now correctly opens the developer tools. Thank you to @roxaaams for this pull request!
 - Fixed 'Receive Address' typo in Wallet. Thanks @meurtn on Keybase.
 - Fixed a typo in `olive show -w` with thanks to @pyl on Keybase.
-- In Windows the start menu item is now Covid Network and the icon in Add/Remove is updated.
+- In Windows the start menu item is now Olive Network and the icon in Add/Remove is updated.
 
 ## [1.0beta11] aka Beta 1.11 - 2020-08-24
 
 ### Added
 
-- The Covid UI now has a proper About menu entry that gives the various component versions and directs people to submit issues on GitHub. Thank you to @freddiecoleman for this pull request!
+- The Olive UI now has a proper About menu entry that gives the various component versions and directs people to submit issues on GitHub. Thank you to @freddiecoleman for this pull request!
 - Ability to run only the farmer, wallet, or timelord services, for more advanced configurations (olive run farmer-only, wallet-only, timelord-only)
 
 ### Changed
@@ -1053,11 +1053,11 @@ all fields that referred to sub blocks are changed to blocks.
 - We've added unhardened HD keys to bls-signatures for the smart wallets that need them. We've added significant cross project testing to our BLS implementation.
 - The python implementation of bls-signatures is now current to the new specification.
 - `olive show -b` now returns plot public key and pool public key for each block.
-- Added cbor2 binary wheels for ARM64 to the Covid simple site. Raspberry Pi should be just a little easier to install.
+- Added cbor2 binary wheels for ARM64 to the Olive simple site. Raspberry Pi should be just a little easier to install.
 
 ### Changed
 
-- Wallet addresses and other key related elements are now expressed in Chech32 which is the Covid implementation of [Bech32](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki). All of your old wallet addresses will be replaced with the new Chech32 addresses. The only thing you can't do is send test olive between 1.8/1.9 and 1.10 software. Anyone who upgrades to 1.10 will keep their transactions and balances of test olive from the earlier two releases however.
+- Wallet addresses and other key related elements are now expressed in Chech32 which is the Olive implementation of [Bech32](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki). All of your old wallet addresses will be replaced with the new Chech32 addresses. The only thing you can't do is send test olive between 1.8/1.9 and 1.10 software. Anyone who upgrades to 1.10 will keep their transactions and balances of test olive from the earlier two releases however.
 - We added a first few enhancements to plotting speed. For a k=30 on a ramdisk with `-b 64 GiB` it results in an 11% speedup in overall plotting speed and a 23% improvement in phase 1 speed. Many more significant increases in plotting speed are in the works.
 - The proof of space document in chiapos has been updated to the new format and edited for clarity. Additionally GitHub actions now has the on demand ability to create the PDF version.
 - Relic has upstreamed our changes required for the IETF BLS standard. We now build directly from the Relic repository for all but Windows and will be migrating Windows in the next release.
@@ -1068,7 +1068,7 @@ all fields that referred to sub blocks are changed to blocks.
 
 - Proof of space plotting now correctly calculates the total working space used in the `-t` directory.
 - `olive show -w` now displays a message when balances cannot be displayed instead of throwing an error. Thanks to @freddiecoleman for this fix!
-- Fix issue with shutting down full node (full node processes remained open, and caused a spinner when launching Covid)
+- Fix issue with shutting down full node (full node processes remained open, and caused a spinner when launching Olive)
 - Various code review alerts for comparing to a wider type in chiapos were fixed. Additionally, unused code was removed from chiapos
 - Benchmarking has been re-enabled in bls-signatures.
 - Various node security vulnerabilities were addressed.
@@ -1154,9 +1154,9 @@ that ci runs successfully complete from PRs or forked repositories.
 we expect to add in future releases.
 - The olive executable is now available if installing from the Windows or MacOS
 Graphical installer. Try `./olive -h` from
-`~\AppData\Local\Covid-Blockchain\app-0.1.8\resources\app.asar.unpacked\daemon\`
+`~\AppData\Local\Olive-Blockchain\app-0.1.8\resources\app.asar.unpacked\daemon\`
 in Windows or
-`/Applications/Covid.app/Contents/Resources/app.asar.unpacked/daemon` on MacOS.
+`/Applications/Olive.app/Contents/Resources/app.asar.unpacked/daemon` on MacOS.
 
 ### Changed
 
@@ -1227,7 +1227,7 @@ relic. We will make a patch available for these systems shortly.
 - Added ability to import private keys in the UI.
 - Added ability to see private keys and mnemonic seeds in the keys menu
 - User can specify log level in the config file (defaults to info.)
-- The Windows installer is now signed by a Covid Network certificate. It may take some time to develop enough reputation to not warn multiple times during install.
+- The Windows installer is now signed by a Olive Network certificate. It may take some time to develop enough reputation to not warn multiple times during install.
 
 ### Changed
 
@@ -1235,12 +1235,12 @@ relic. We will make a patch available for these systems shortly.
 - We have made performance improvements to plotting speed on all platforms.
 - The command line plotter now supports specifying it's memory buffer size.
 - Test plots for the simulation and testing harness now go into `~/.olive/test-plots/`
-- We have completely refactored all networking code towards making each Covid service use the same default networking infrastructure and move to websockets as the default networking wire protocol.
+- We have completely refactored all networking code towards making each Olive service use the same default networking infrastructure and move to websockets as the default networking wire protocol.
 - We added additional improvements and more RPCs to the start daemon and various services to continue to make olive start/stop reliable cross platform.
 - The install.sh script now disxolers if it's running on Ubuntu less than 20.04 and correctly upgrades node.js to the current stable version.
 - For GitHub ci builds of the Windows installer, editbin.exe is more reliably found.
 - All installer ci builds now obtain version information automatically from setuptools_scm and convert it to an installer version number that is appropriate for the platform and type of release (dev versus release.)
-- We now codesign the Apple .dmg installer with the Covid Network developer ID on both GitHub Actions and Azure Pipelines. We will be notarizing and distributing the Azure Pipelines version as it's built on MacOS Mojave (10.14.6) for stronger cross version support.
+- We now codesign the Apple .dmg installer with the Olive Network developer ID on both GitHub Actions and Azure Pipelines. We will be notarizing and distributing the Azure Pipelines version as it's built on MacOS Mojave (10.14.6) for stronger cross version support.
 
 ### Fixed
 
@@ -1318,12 +1318,12 @@ relic. We will make a patch available for these systems shortly.
 
 ### Fixed
 
-- There was a regression in Covid Proof of Space ([chiapos](https://github.com/pinksheetscrypto/chiapos)) that came from our efforts to speed up plotting on Windows native. Now k>=32 plots work correctly. We made additional bug fixes and corrected limiting small k size generation.
+- There was a regression in Olive Proof of Space ([chiapos](https://github.com/pinksheetscrypto/chiapos)) that came from our efforts to speed up plotting on Windows native. Now k>=32 plots work correctly. We made additional bug fixes and corrected limiting small k size generation.
 - There was a bug in Timelord handling that could stop all VDF progress.
 
 ### Deprecated
 
-- We have made significant changes to the full node database to make it more reliable and quicker to restart. This requires re-syncing the current chain. If you use `olive init` then sync on first start will happen automatically. "\$COVID_ROOT" users will need to delete `$COVID_ROOT/db/*` before starting Beta 1.5. This also fixes the simulation issue in Beta 1.4 where tips could go "back in time."
+- We have made significant changes to the full node database to make it more reliable and quicker to restart. This requires re-syncing the current chain. If you use `olive init` then sync on first start will happen automatically. "\$OLIVE_ROOT" users will need to delete `$OLIVE_ROOT/db/*` before starting Beta 1.5. This also fixes the simulation issue in Beta 1.4 where tips could go "back in time."
 
 ### Known issues
 
@@ -1349,7 +1349,7 @@ relic. We will make a patch available for these systems shortly.
 ### Changed
 
 - Most scripts have been removed in favor of olive action commands. You can run `olive version` or `olive start node` for example. Just running `olive` will show you more options. However `olive-create-plots` continues to use the hyphenated form. Also it's now `olive generate keys` as another example.
-- Covid start commands like `olive start farmer` and `olive stop node` now keep track of process IDs in a run/ directory in your configuration directory. `olive stop` is unlikely to work on Windows native for now. If `olive start -r node` doesn't work you can force the run/ directory to be reset with `olive start -f node`.
+- Olive start commands like `olive start farmer` and `olive stop node` now keep track of process IDs in a run/ directory in your configuration directory. `olive stop` is unlikely to work on Windows native for now. If `olive start -r node` doesn't work you can force the run/ directory to be reset with `olive start -f node`.
 - We suggest you take a look at our [Upgrading documentation](https://github.com/pinksheetscrypto/olive-blockchain/wiki/Updating-beta-software) if you aren't performing a new install.
 - blspy now has libsodium included in the MacOS and Linux binary wheels.
 - miniupnpc and setprotitle were dynamically checked for an installed at runtime. Removed those checks and we rely upon the install tools installing them before first run.
@@ -1376,7 +1376,7 @@ relic. We will make a patch available for these systems shortly.
 - Windows, WSL 2, Linux and MacOS installation is significantly streamlined. There is a new Windows installer for the Wallet GUI (huge thanks to @dkackman).
 - All installs can now be from the source repository or just the binary dependencies on WSL 2, most modern Linuxes, and MacOS Catalina. Binary support is for both Python 3.7 and 3.8.
 - There is a new migration tool to move from Beta1 (or 2) to Beta3. It should move everything except your plots.
-- There is a new command `olive init` that will migrate files and generate your initial configuration. If you want to use the Wallet or farm, you will also have to `olive-generate-keys`. You can read step by step instructions for [upgrading from a previous beta release](https://github.com/pinksheetscrypto/olive-blockchain/wiki/Updating-beta-software). If you've set `$COVID_ROOT` you will have to make sure your existing configuration remains compatible manually.
+- There is a new command `olive init` that will migrate files and generate your initial configuration. If you want to use the Wallet or farm, you will also have to `olive-generate-keys`. You can read step by step instructions for [upgrading from a previous beta release](https://github.com/pinksheetscrypto/olive-blockchain/wiki/Updating-beta-software). If you've set `$OLIVE_ROOT` you will have to make sure your existing configuration remains compatible manually.
 - Wallet has improved paper wallet rexolery support.
 - We now also support restoring old wallets with only the wallet_sk and wallet_target. Beta3's Wallet will re-sync from scratch.
 - We've made lots of little improvements that should speed up node syncing
@@ -1413,7 +1413,7 @@ relic. We will make a patch available for these systems shortly.
 
 ### Added
 
-- There is now full transaction support on the Covid blockchain. In this initial Beta 1.0 release, all transaction types are supported though the wallets and UIs currently only directly support basic transactions like coinbase rewards and sending coins while paying fees. UI support for our [smart transactions](https://github.com/pinksheetscrypto/wallets/blob/main/README.md) will be available in the UIs shortly.
+- There is now full transaction support on the Olive blockchain. In this initial Beta 1.0 release, all transaction types are supported though the wallets and UIs currently only directly support basic transactions like coinbase rewards and sending coins while paying fees. UI support for our [smart transactions](https://github.com/pinksheetscrypto/wallets/blob/main/README.md) will be available in the UIs shortly.
 - Wallet and Node GUI’s are available on Windows, Mac, and desktop Linux platforms. We now use an Electron UI that is a full light client wallet that can also serve as a node UI. Our Windows Electron Wallet can run standalone by connecting to other nodes on the network or another node you run. WSL 2 on Windows can run everything except the Wallet but you can run the Wallet on the native Windows side of the same machine. Also the WSL 2 install process is 3 times faster and _much_ easier. Windows native node/farmer/plotting functionality are coming soon.
 - Install is significantly easier with less dependencies on all supported platforms.
 - If you’re a farmer you can use the Wallet to keep track of your earnings. Either use the same keys.yaml on the same machine or copy the keys.yaml to another machine where you want to track of and spend your coins.
@@ -1423,7 +1423,7 @@ relic. We will make a patch available for these systems shortly.
 
 - We have revamped the olive management command line. To start a farmer all you have to do is start the venv with `. ./activate` and then type `olive-start-farmer &`. The [README.md](https://github.com/pinksheetscrypto/olive-blockchain/blob/main/README.md) has been updated to reflect the new commands.
 - We have moved all node to node communication to TLS 1.3 by default. For now, all TLS is unauthenticated but certain types of over the wire node to node communications will have the ability to authenticate both by certificate and by inter protocol signature. Encrypting over the wire by default stops casual snooping of transaction origination, light wallet to trusted node communication, and harvester-farmer-node communication for example. This leaves only the mempool and the chain itself open to casual observation by the public and the various entities around the world.
-- Configuration directories have been moved to a default location of HomeDirectory/.olive/release/config, plots/ db/, wallet/ etc. This can be overridden by `export COVID_ROOT=~/.olive` for example which would then put the plots directory in `HomeDirectory/.olive/plots`.
+- Configuration directories have been moved to a default location of HomeDirectory/.olive/release/config, plots/ db/, wallet/ etc. This can be overridden by `export OLIVE_ROOT=~/.olive` for example which would then put the plots directory in `HomeDirectory/.olive/plots`.
 - The libraries olive-pos, olive-fast-vdf, and olive-bip-158 have been moved to their own repositories: [chiapos](https://github.com/pinksheetscrypto/chiapos), [chiavdf](https://github.com/pinksheetscrypto/chiavdf), and [chaibip158](https://github.com/pinksheetscrypto/chiabip158). They are brought in by olive-blockchain at install time. Our BLS signature library remains at [bls-signatures](https://github.com/pinksheetscrypto/bls-signatures).
 - The install process now brings in chiapos, chiavdf, etc from Pypi where they are auto published via GitHub Actions ci using cibuildwheel. Check out `.github/workflows/build.yml` for build methods in each of the sub repositories.
 - `olive-regenerate-keys` has been renamed `olive-generate-keys`.
@@ -1493,7 +1493,7 @@ relic. We will make a patch available for these systems shortly.
 - Due to changes to the sqlite database that are not backwards compatible, re-synch will be required.
 - Loading the blockchain only loads headers into memory instead of header blocks (header + proofs), speeds up the startup, and reduces normal operation memory usage by 80%.
 - Memory access is now synchronous to reduce use of locks and speed up block processing.
-- Covid fullnode, farmer and harvester now default to logging to olive.log in the olive-blockchain directory. This is configured in config.yaml and due to config.yaml changes it is recommended to edit the new template config instead of using older config.yaml’s from previous versions.
+- Olive fullnode, farmer and harvester now default to logging to olive.log in the olive-blockchain directory. This is configured in config.yaml and due to config.yaml changes it is recommended to edit the new template config instead of using older config.yaml’s from previous versions.
 - uvloop is now an optional add on.
 - Harvester/farmer will not try to farm plots that they don’t have the key for.
 
@@ -1507,7 +1507,7 @@ relic. We will make a patch available for these systems shortly.
 ### Added
 
 - FullNode performance improvements - Syncing up to the blockchain by importing all blocks is faster due to improvements in VDF verification speed and multithreading block verification.
-- VDF improvements - VDF verification and generation speed has increased and dependence on flint2 has been removed. We wish to thank Dr. William Hart (@wbhart) for dual licensing parts of his contributions in FLINT and Antic for inclusion in the Covid blockchain.
+- VDF improvements - VDF verification and generation speed has increased and dependence on flint2 has been removed. We wish to thank Dr. William Hart (@wbhart) for dual licensing parts of his contributions in FLINT and Antic for inclusion in the Olive blockchain.
 - Implemented an RPC interface with JSON serialization for streamables - currently on port 8555.
 - Added details on how to contribute in CONTRIBUTING.md. Thanks @RichardLitt.
 - Added color logging
@@ -1588,7 +1588,7 @@ relic. We will make a patch available for these systems shortly.
 
 ### Added
 
-- This is the first release of the Covid testnet! Blockchain consensus, proof of time, and proof of space are included.
+- This is the first release of the Olive testnet! Blockchain consensus, proof of time, and proof of space are included.
 - More details on the release at [https://www.oliveblockchain.co/developer/](https://www.oliveblockchain.co/developer/)
 
 [unreleased]: https://github.com/pinksheetscrypto/olive-blockchain/compare/1.0beta5...dev

@@ -59,7 +59,7 @@ from olive.wallet.wallet_puzzle_store import WalletPuzzleStore
 from olive.wallet.wallet_sync_store import WalletSyncStore
 from olive.wallet.wallet_transaction_store import WalletTransactionStore
 from olive.wallet.wallet_user_store import WalletUserStore
-from olive.server.server import CovidServer
+from olive.server.server import OliveServer
 from olive.wallet.did_wallet.did_wallet import DIDWallet
 
 
@@ -114,7 +114,7 @@ class WalletStateManager:
     interested_store: WalletInterestedStore
     pool_store: WalletPoolStore
     weight_proof_handler: Any
-    server: CovidServer
+    server: OliveServer
     root_path: Path
 
     @staticmethod
@@ -123,7 +123,7 @@ class WalletStateManager:
         config: Dict,
         db_path: Path,
         constants: ConsensusConstants,
-        server: CovidServer,
+        server: OliveServer,
         root_path: Path,
         name: str = None,
     ):

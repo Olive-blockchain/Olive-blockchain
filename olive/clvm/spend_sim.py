@@ -25,7 +25,7 @@ from olive.consensus.block_rewards import calculate_pool_reward, calculate_base_
 from olive.consensus.cost_calculator import NPCResult
 
 """
-The purpose of this file is to provide a lightweight simulator for the testing of Covidlisp smart contracts.
+The purpose of this file is to provide a lightweight simulator for the testing of Olivelisp smart contracts.
 
 The Node object uses actual MempoolManager, Mempool and CoinStore objects, while substituting FullBlock and
 BlockRecord objects for trimmed down versions.

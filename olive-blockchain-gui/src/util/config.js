@@ -12,10 +12,10 @@ global.key_path = 'config/ssl/daemon/private_daemon.key';
 
 function loadConfig(net) {
   try {
-    // check if COVID_ROOT is set. it overrides 'net'
+    // check if OLIVE_ROOT is set. it overrides 'net'
     const config_root_dir =
-      'COVID_ROOT' in process.env
-        ? process.env.COVID_ROOT
+      'OLIVE_ROOT' in process.env
+        ? process.env.OLIVE_ROOT
         : path.join(os.homedir(), '.olive', net);
     const config = yaml.load(
       fs.readFileSync(path.join(config_root_dir, 'config/config.yaml'), 'utf8'),

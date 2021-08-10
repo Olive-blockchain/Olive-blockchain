@@ -28,7 +28,7 @@ from olive.protocols.pool_protocol import (
 from olive.protocols.protocol_message_types import ProtocolMessageTypes
 from olive.server.outbound_message import NodeType, make_msg
 from olive.server.server import ssl_context_for_root
-from olive.server.ws_connection import WSCovidConnection
+from olive.server.ws_connection import WSOliveConnection
 from olive.ssl.create_ssl import get_mozilla_ca_crt
 from olive.types.blockchain_format.proof_of_space import ProofOfSpace
 from olive.types.blockchain_format.sized_bytes import bytes32
@@ -171,7 +171,7 @@ class Farmer:
     def _set_state_changed_callback(self, callback: Callable):
         self.state_changed_callback = callback
 
-    async def on_connect(self, peer: WSCovidConnection):
+    async def on_connect(self, peer: WSOliveConnection):
         # Sends a handshake to the harvester
         self.state_changed("add_connection", {})
         handshake = harvester_protocol.HarvesterHandshake(
@@ -195,7 +195,7 @@ class Farmer:
             ErrorResponse(uint16(PoolErrorCode.REQUEST_FAILED.value), error_message).to_json_dict()
         )
 
-    def on_disconnect(self, connection: ws.WSCovidConnection):
+    def on_disconnect(self, connection: ws.WSOliveConnection):
         #self.log.info(f"peer disconnected {connection.get_peer_info()}")
         self.state_changed("close_connection", {})
 
@@ -607,7 +607,7 @@ class Farmer:
                     )
         return updated
 
-    async def get_cached_harvesters(self, connection: WSCovidConnection) -> HarvesterCacheEntry:
+    async def get_cached_harvesters(self, connection: WSOliveConnection) -> HarvesterCacheEntry:
         host_cache = self.harvester_cache.get(connection.peer_host)
         if host_cache is None:
             host_cache = {}

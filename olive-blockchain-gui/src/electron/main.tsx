@@ -223,7 +223,7 @@ if (!handleSquirrelEvent()) {
       app.applicationMenu = createMenu();
       // if the daemon isn't local we aren't going to try to start/stop it
       if (oliveConfig.manageDaemonLifetime()) {
-        oliveEnvironment.startCovidDaemon();
+        oliveEnvironment.startOliveDaemon();
       }
     };
 
@@ -355,7 +355,7 @@ if (!handleSquirrelEvent()) {
         role: 'help',
         submenu: [
           {
-            label: i18n._(/* i18n */ { id: 'Covid Blockchain Wiki' }),
+            label: i18n._(/* i18n */ { id: 'Olive Blockchain Wiki' }),
             click: () => {
               openExternal(
                 'https://github.com/pinksheetscrypto/olive-blockchain/wiki',
@@ -414,12 +414,12 @@ if (!handleSquirrelEvent()) {
     ];
 
     if (process.platform === 'darwin') {
-      // Covid Blockchain menu (Mac)
+      // Olive Blockchain menu (Mac)
       template.unshift({
-        label: i18n._(/* i18n */ { id: 'Covid' }),
+        label: i18n._(/* i18n */ { id: 'Olive' }),
         submenu: [
           {
-            label: i18n._(/* i18n */ { id: 'About Covid Blockchain' }),
+            label: i18n._(/* i18n */ { id: 'About Olive Blockchain' }),
             click: () => {
               openAbout();
             },
@@ -506,7 +506,7 @@ if (!handleSquirrelEvent()) {
           type: 'separator',
         },
         {
-          label: i18n._(/* i18n */ { id: 'About Covid Blockchain' }),
+          label: i18n._(/* i18n */ { id: 'About Olive Blockchain' }),
           click() {
             openAbout();
           },

@@ -20,7 +20,7 @@ def init_cmd(ctx: click.Context, create_certs: str):
     - Shut down all olive daemon processes with `olive stop all -d`
     - Run `olive init -c [directory]` on your remote harvester,
       where [directory] is the the copy of your Farming Machine CA directory
-    - Get more details on remote harvester on Covid wiki:
+    - Get more details on remote harvester on Olive wiki:
       https://github.com/pinksheetscrypto/olive-blockchain/wiki/Farming-on-many-machines
     """
     from pathlib import Path

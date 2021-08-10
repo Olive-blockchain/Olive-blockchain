@@ -34,15 +34,15 @@ pip install pyinstaller==4.5
 pip install setuptools_scm
 
 Write-Output "   ---"
-Write-Output "Get COVID_INSTALLER_VERSION"
-# The environment variable COVID_INSTALLER_VERSION needs to be defined
-$env:COVID_INSTALLER_VERSION = python .\build_scripts\installer-version.py -win
+Write-Output "Get OLIVE_INSTALLER_VERSION"
+# The environment variable OLIVE_INSTALLER_VERSION needs to be defined
+$env:OLIVE_INSTALLER_VERSION = python .\build_scripts\installer-version.py -win
 
-if (-not (Test-Path env:COVID_INSTALLER_VERSION)) {
-  $env:COVID_INSTALLER_VERSION = '0.0.0'
-  Write-Output "WARNING: No environment variable COVID_INSTALLER_VERSION set. Using 0.0.0"
+if (-not (Test-Path env:OLIVE_INSTALLER_VERSION)) {
+  $env:OLIVE_INSTALLER_VERSION = '0.0.0'
+  Write-Output "WARNING: No environment variable OLIVE_INSTALLER_VERSION set. Using 0.0.0"
   }
-Write-Output "Covid Version is: $env:COVID_INSTALLER_VERSION"
+Write-Output "Olive Version is: $env:OLIVE_INSTALLER_VERSION"
 Write-Output "   ---"
 
 Write-Output "   ---"
@@ -102,14 +102,14 @@ Write-Output "Increase the stack for olive command for (olive plots create) chia
 editbin.exe /STACK:8000000 daemon\olive.exe
 Write-Output "   ---"
 
-$packageVersion = "$env:COVID_INSTALLER_VERSION"
-$packageName = "Covid-$packageVersion"
+$packageVersion = "$env:OLIVE_INSTALLER_VERSION"
+$packageName = "Olive-$packageVersion"
 
 Write-Output "packageName is $packageName"
 
 Write-Output "   ---"
 Write-Output "electron-packager"
-electron-packager . Covid --asar.unpack="**\daemon\**" --overwrite --icon=.\src\assets\img\olive.ico --app-version=$packageVersion
+electron-packager . Olive --asar.unpack="**\daemon\**" --overwrite --icon=.\src\assets\img\olive.ico --app-version=$packageVersion
 Write-Output "   ---"
 
 Write-Output "   ---"
@@ -123,8 +123,8 @@ If ($env:HAS_SECRET) {
    Write-Output "   ---"
    Write-Output "Add timestamp and verify signature"
    Write-Output "   ---"
-   signtool.exe timestamp /v /t http://timestamp.comodoca.com/ .\release-builds\windows-installer\CovidSetup-$packageVersion.exe
-   signtool.exe verify /v /pa .\release-builds\windows-installer\CovidSetup-$packageVersion.exe
+   signtool.exe timestamp /v /t http://timestamp.comodoca.com/ .\release-builds\windows-installer\OliveSetup-$packageVersion.exe
+   signtool.exe verify /v /pa .\release-builds\windows-installer\OliveSetup-$packageVersion.exe
    }   Else    {
    Write-Output "Skipping timestamp and verify signatures - no authorization to install certificates"
 }
