@@ -334,7 +334,7 @@ export default function Block() {
         title={
           <BlockTitle>
             <Trans>
-              Block at height {blockRecord.height} in the Covid blockchain
+              Block at height {blockRecord.height} in the Olive blockchain
             </Trans>
           </BlockTitle>
         }

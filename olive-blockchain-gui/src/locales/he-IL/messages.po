@@ -23,8 +23,8 @@ msgid "(Optional)"
 msgstr "(אופציונלי)"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:64
-msgid "*Want to explore Covid’s blocks further? Check out <0>Covid Explorer</0> built by an open source developer."
-msgstr "* רוצה לחקור את הבלוקים של Covid עוד? בדוק את </0>Covid Explorer<0> שנבנה על ידי מפתח קוד פתוח."
+msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
+msgstr "* רוצה לחקור את הבלוקים של Olive עוד? בדוק את </0>Olive Explorer<0> שנבנה על ידי מפתח קוד פתוח."
 
 #: src/components/plot/add/PlotAddNFT.tsx:123
 msgid "+ Add New Plot NFT"
@@ -44,8 +44,8 @@ msgstr "חלקה (Harvester) הוא שירות המופעל במחשב בו מא
 
 #: src/electron/main.tsx:422
 #: src/electron/main.tsx:509
-msgid "About Covid Blockchain"
-msgstr "אודות Covid Blockchain"
+msgid "About Olive Blockchain"
+msgstr "אודות Olive Blockchain"
 
 #: src/components/trading/ViewOffer.jsx:74
 msgid "Accept"
@@ -216,7 +216,7 @@ msgid "Block VDF Iterations"
 msgstr "בלוק VDF איטרציות"
 
 #: src/components/block/Block.jsx:336
-msgid "Block at height {0} in the Covid blockchain"
+msgid "Block at height {0} in the Olive blockchain"
 msgstr "בלוק בגובה {0} בבלוקצ'יין צ'יה"
 
 #: src/components/fullNode/FullNode.jsx:331
@@ -310,15 +310,15 @@ msgid "Chat on KeyBase"
 msgstr "צ'אט ב-KeyBase"
 
 #: src/electron/main.tsx:419
-msgid "Covid"
+msgid "Olive"
 msgstr "צ'יה"
 
 #: src/electron/main.tsx:358
-msgid "Covid Blockchain Wiki"
+msgid "Olive Blockchain Wiki"
 msgstr "ארנק צ'יה"
 
 #: src/components/wallet/standard/WalletStandard.tsx:647
-msgid "Covid Wallet"
+msgid "Olive Wallet"
 msgstr "ארנק צ'יה"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:36
@@ -697,8 +697,8 @@ msgid "Edit Payout Instructions"
 msgstr "עריכת הוראות תשלום"
 
 #: src/components/wallet/WalletImport.tsx:147
-msgid "Enter the 24 word mnemonic that you have saved in order to restore your Covid wallet."
-msgstr "הקש את 24 מילות ה-Mnemonic Seed ששמרת על מנת לשחזר את ארנק ה-Covid שלך."
+msgid "Enter the 24 word mnemonic that you have saved in order to restore your Olive wallet."
+msgstr "הקש את 24 מילות ה-Mnemonic Seed ששמרת על מנת לשחזר את ארנק ה-Olive שלך."
 
 #: src/components/farm/FarmerStatus.tsx:21
 #: src/components/farm/FarmerStatus.tsx:22
@@ -712,7 +712,7 @@ msgstr "שגיאה"
 
 #: src/components/wallet/standard/WalletStandard.tsx:456
 msgid "Error: Cannot send olive to coloured address. Please enter a olive address."
-msgstr "שגיאה: לא ניתן לשלוח Covid לכתובת הצבעונית הזו. אנא הקש כתובת Covid."
+msgstr "שגיאה: לא ניתן לשלוח Olive לכתובת הצבעונית הזו. אנא הקש כתובת Olive."
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:20
 msgid "Estimated Network Space"
@@ -1491,8 +1491,8 @@ msgid "Plots Passed Filter"
 msgstr "פלוטים שעברו את המסנן"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:35
-msgid "Plots are allocated space on your hard drive used to farm and earn Covid. <0>Learn more</0>"
-msgstr "לפלוטים מוקצה שטח על הדיסק הקשיח אשר משמש לקצירה ולהרוויח Covid <0>למד עוד</0>"
+msgid "Plots are allocated space on your hard drive used to farm and earn Olive. <0>Learn more</0>"
+msgstr "לפלוטים מוקצה שטח על הדיסק הקשיח אשר משמש לקצירה ולהרוויח Olive <0>למד עוד</0>"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
 msgid "Plotting"
@@ -1931,7 +1931,7 @@ msgstr "אורך משיכה למרווח (מספר בלוקים)"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:401
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:448
 msgid "Spending Limit (olive per interval): {0}"
-msgstr "הגבלת משיכה (Covid לכל מרווח) {0}"
+msgstr "הגבלת משיכה (Olive לכל מרווח) {0}"
 
 #: src/components/fullNode/FullNode.jsx:100
 msgid "State"
@@ -1979,8 +1979,8 @@ msgstr "מצב:"
 #~ msgstr "Sub Block Height"
 
 #: src/components/block/Block.jsx:338
-#~ msgid "Sub Block at height {0} in the Covid blockchain"
-#~ msgstr "Sub Block at height {0} in the Covid blockchain"
+#~ msgid "Sub Block at height {0} in the Olive blockchain"
+#~ msgstr "Sub Block at height {0} in the Olive blockchain"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
@@ -2123,8 +2123,8 @@ msgid "This feature is available only from the GUI."
 msgstr "האפשרות הזו זמינה רק דרך הממשק GUI."
 
 #: src/components/wallet/card/WalletCardSpendableBalance.tsx:26
-msgid "This is the amount of Covid that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Covid that you have just spent but is not yet in the blockchain."
-msgstr "זהו סכום ה-Covid שבהם תוכל להשתמש כעת לביצוע עסקאות. זה לא כולל תגמולים בהמתנה, עסקאות נכנסות בהמתנה ומטבעות Covid שכבר משכת אבל עוד לא הופיע ב-Blockchain."
+msgid "This is the amount of Olive that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Olive that you have just spent but is not yet in the blockchain."
+msgstr "זהו סכום ה-Olive שבהם תוכל להשתמש כעת לביצוע עסקאות. זה לא כולל תגמולים בהמתנה, עסקאות נכנסות בהמתנה ומטבעות Olive שכבר משכת אבל עוד לא הופיע ב-Blockchain."
 
 #: src/components/wallet/card/WalletCardPendingChange.tsx:26
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
@@ -2189,8 +2189,8 @@ msgid "This trade was included on blockchain at this block height"
 msgstr "החלפה זו נכללת ב-Blockchain בגובה הבלוק הזה"
 
 #: src/components/app/AppTimeBombAlert.tsx:19
-msgid "This version of Covid is no longer compatible with the blockchain and can not safely farm."
-msgstr "גרסה זו של Covid כבר אינה תואמת את ה-Blockchain ואינה בטוחה עוד עבור החווה שלך."
+msgid "This version of Olive is no longer compatible with the blockchain and can not safely farm."
+msgstr "גרסה זו של Olive כבר אינה תואמת את ה-Blockchain ואינה בטוחה עוד עבור החווה שלך."
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Time Created"
@@ -2214,8 +2214,8 @@ msgstr "עבור"
 msgid "Total Balance"
 msgstr "יתרה כוללת"
 
-#: src/components/farm/card/FarmCardTotalCovidFarmed.tsx:15
-#~ msgid "Total Covid Farmed"
+#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
+#~ msgid "Total Olive Farmed"
 #~ msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:20
@@ -2424,8 +2424,8 @@ msgid "Want to Join a Pool? Create a Plot NFT"
 msgstr "רוצה להצטרף לבריכה (Pool)? צור/י חלקת NFT"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:139
-msgid "Want to earn more Covid? Add more plots to your farm."
-msgstr "רוצה להרוויח עוד Covid? הוסף/י עוד פלוטים לחווה שלך."
+msgid "Want to earn more Olive? Add more plots to your farm."
+msgstr "רוצה להרוויח עוד Olive? הוסף/י עוד פלוטים לחווה שלך."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:86
 msgid "Want to have a delay before the next plot starts?"
@@ -2452,8 +2452,8 @@ msgid "Weight is the total added difficulty of all sub blocks up to and includin
 msgstr "המשקל הוא הקושי הכולל הנוסף של כל בלוקי המשנה כולל זה"
 
 #: src/components/selectKey/SelectKey.tsx:141
-msgid "Welcome to Covid. Please log in with an existing key, or create a new key."
-msgstr "ברוכים הבאים ל-Covid. בבקשה התחבר עם מפתח קיים, או צור/י לעצמך מפתח חדש."
+msgid "Welcome to Olive. Please log in with an existing key, or create a new key."
+msgstr "ברוכים הבאים ל-Olive. בבקשה התחבר עם מפתח קיים, או צור/י לעצמך מפתח חדש."
 
 #: src/components/wallet/WalletAdd.tsx:66
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -2523,8 +2523,8 @@ msgid "You need to claim your rewards first"
 msgstr "עליך לקבל את הפרסים קודם"
 
 #: src/components/app/AppTimeBomb.tsx:28
-#~ msgid "You need to upgrade the Covid application as this version will stop working soon!"
-#~ msgstr "You need to upgrade the Covid application as this version will stop working soon!"
+#~ msgid "You need to upgrade the Olive application as this version will stop working soon!"
+#~ msgstr "You need to upgrade the Olive application as this version will stop working soon!"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:37
 msgid "You need {currencyCode} to join a pool."
@@ -2611,8 +2611,8 @@ msgstr "{0} נקודות {1} - {2} שעות שחלפו"
 msgid "{currencyCode} Block Rewards"
 msgstr "{currencyCode} תגלומי בלוק"
 
-#: src/components/farm/card/FarmCardTotalCovidFarmed.tsx:29
-msgid "{currencyCode} Total Covid Farmed"
+#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:29
+msgid "{currencyCode} Total Olive Farmed"
 msgstr "{currencyCode} סכום צ'יה כולל שנקצר"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:28

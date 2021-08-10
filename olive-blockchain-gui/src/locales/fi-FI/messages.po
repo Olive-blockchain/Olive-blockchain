@@ -23,8 +23,8 @@ msgid "(Optional)"
 msgstr "(Valinnainen)"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:64
-msgid "*Want to explore Covid’s blocks further? Check out <0>Covid Explorer</0> built by an open source developer."
-msgstr "Haluatko tarkastella lohkoja? Katso avoimen koodin <0>Covid Explorer</0>."
+msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
+msgstr "Haluatko tarkastella lohkoja? Katso avoimen koodin <0>Olive Explorer</0>."
 
 #: src/components/plot/add/PlotAddNFT.tsx:123
 msgid "+ Add New Plot NFT"
@@ -44,8 +44,8 @@ msgstr "Harvesteri on palvelu koneella, jolle plot-tiedostot on tallennettu. Far
 
 #: src/electron/main.tsx:422
 #: src/electron/main.tsx:509
-msgid "About Covid Blockchain"
-msgstr "Covid Lohkoketjusta"
+msgid "About Olive Blockchain"
+msgstr "Olive Lohkoketjusta"
 
 #: src/components/trading/ViewOffer.jsx:74
 msgid "Accept"
@@ -216,8 +216,8 @@ msgid "Block VDF Iterations"
 msgstr "Lohkon VDF-iteraatiot"
 
 #: src/components/block/Block.jsx:336
-msgid "Block at height {0} in the Covid blockchain"
-msgstr "Lohko korkeudessa {0} Covidn lohkoketjussa"
+msgid "Block at height {0} in the Olive blockchain"
+msgstr "Lohko korkeudessa {0} Oliven lohkoketjussa"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
@@ -310,16 +310,16 @@ msgid "Chat on KeyBase"
 msgstr "Keskustele KeyBasessa"
 
 #: src/electron/main.tsx:419
-msgid "Covid"
-msgstr "Covid"
+msgid "Olive"
+msgstr "Olive"
 
 #: src/electron/main.tsx:358
-msgid "Covid Blockchain Wiki"
-msgstr "Covid Wiki"
+msgid "Olive Blockchain Wiki"
+msgstr "Olive Wiki"
 
 #: src/components/wallet/standard/WalletStandard.tsx:647
-msgid "Covid Wallet"
-msgstr "Covid-lompakko"
+msgid "Olive Wallet"
+msgstr "Olive-lompakko"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:36
 msgid "Choose Number of Plots"
@@ -697,8 +697,8 @@ msgid "Edit Payout Instructions"
 msgstr "Muokkaa Maksuohjeita"
 
 #: src/components/wallet/WalletImport.tsx:147
-msgid "Enter the 24 word mnemonic that you have saved in order to restore your Covid wallet."
-msgstr "Anna tallentamasi 24 muistisanaa palauttaaksesi Covid-lompakon."
+msgid "Enter the 24 word mnemonic that you have saved in order to restore your Olive wallet."
+msgstr "Anna tallentamasi 24 muistisanaa palauttaaksesi Olive-lompakon."
 
 #: src/components/farm/FarmerStatus.tsx:21
 #: src/components/farm/FarmerStatus.tsx:22
@@ -712,7 +712,7 @@ msgstr "Virhe"
 
 #: src/components/wallet/standard/WalletStandard.tsx:456
 msgid "Error: Cannot send olive to coloured address. Please enter a olive address."
-msgstr "Virhe: Chioja ei voi lähettää värikolikko-osoitteeseen. Anna Covidlompakon osoite."
+msgstr "Virhe: Chioja ei voi lähettää värikolikko-osoitteeseen. Anna Olivelompakon osoite."
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:20
 msgid "Estimated Network Space"
@@ -1491,7 +1491,7 @@ msgid "Plots Passed Filter"
 msgstr "Plotteja Päässyt Filtteristä"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:35
-msgid "Plots are allocated space on your hard drive used to farm and earn Covid. <0>Learn more</0>"
+msgid "Plots are allocated space on your hard drive used to farm and earn Olive. <0>Learn more</0>"
 msgstr "Plotit ovat levyn tilavarauksia, joilla tuotetaan ja ansaitaan Chioja. <0>Katso lisää</0>"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
@@ -1930,7 +1930,7 @@ msgstr "Käyttöajanjakson pituus (lohkojen määrä)"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:401
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:448
 msgid "Spending Limit (olive per interval): {0}"
-msgstr "Käyttöraja (Covida/ajanjakso):{0}"
+msgstr "Käyttöraja (Olivea/ajanjakso):{0}"
 
 #: src/components/fullNode/FullNode.jsx:100
 msgid "State"
@@ -1978,8 +1978,8 @@ msgstr "Tila:"
 #~ msgstr "Sub Block Height"
 
 #: src/components/block/Block.jsx:338
-#~ msgid "Sub Block at height {0} in the Covid blockchain"
-#~ msgstr "Sub Block at height {0} in the Covid blockchain"
+#~ msgid "Sub Block at height {0} in the Olive blockchain"
+#~ msgstr "Sub Block at height {0} in the Olive blockchain"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
@@ -2122,7 +2122,7 @@ msgid "This feature is available only from the GUI."
 msgstr "Tämä ominaisuus käytettävissä ainoastaan graafisessa käyttöliittymässä."
 
 #: src/components/wallet/card/WalletCardSpendableBalance.tsx:26
-msgid "This is the amount of Covid that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Covid that you have just spent but is not yet in the blockchain."
+msgid "This is the amount of Olive that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Olive that you have just spent but is not yet in the blockchain."
 msgstr "Transaktioihin käytettävissä oleva Chiojen määrä. Ei sisällä avoimia farmarin palkkioita, avoimia saapuvia transaktioita eikä lähetettyjä, mutta vahvistamattomia transaktioita."
 
 #: src/components/wallet/card/WalletCardPendingChange.tsx:26
@@ -2188,8 +2188,8 @@ msgid "This trade was included on blockchain at this block height"
 msgstr "Kauppa on sisällytetty lohkoketjuun tässä lohkokorkeudessa"
 
 #: src/components/app/AppTimeBombAlert.tsx:19
-msgid "This version of Covid is no longer compatible with the blockchain and can not safely farm."
-msgstr "Tämä Covidn versio ei ole enää yhteensopiva lohkoketjun kanssa."
+msgid "This version of Olive is no longer compatible with the blockchain and can not safely farm."
+msgstr "Tämä Oliven versio ei ole enää yhteensopiva lohkoketjun kanssa."
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Time Created"
@@ -2213,8 +2213,8 @@ msgstr "Osoitteeseen"
 msgid "Total Balance"
 msgstr "Kokonaissaldo"
 
-#: src/components/farm/card/FarmCardTotalCovidFarmed.tsx:15
-#~ msgid "Total Covid Farmed"
+#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
+#~ msgid "Total Olive Farmed"
 #~ msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:20
@@ -2423,7 +2423,7 @@ msgid "Want to Join a Pool? Create a Plot NFT"
 msgstr "Haluatko liittyä pooliin? Luo Plot-NFT"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:139
-msgid "Want to earn more Covid? Add more plots to your farm."
+msgid "Want to earn more Olive? Add more plots to your farm."
 msgstr "Haluatko ansaita Chioja? Lisää plot-tiedostoja farmiisi."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:86
@@ -2451,8 +2451,8 @@ msgid "Weight is the total added difficulty of all sub blocks up to and includin
 msgstr "Paino on kaikkien tähänastisten lohkojen vaikeuskerroin"
 
 #: src/components/selectKey/SelectKey.tsx:141
-msgid "Welcome to Covid. Please log in with an existing key, or create a new key."
-msgstr "Tervetuloa Covidan. Kirjaudu sisään avaimella tai luo uusi avain."
+msgid "Welcome to Olive. Please log in with an existing key, or create a new key."
+msgstr "Tervetuloa Olivean. Kirjaudu sisään avaimella tai luo uusi avain."
 
 #: src/components/wallet/WalletAdd.tsx:66
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -2522,8 +2522,8 @@ msgid "You need to claim your rewards first"
 msgstr "Sinun täytyy lunastaa ensin palkkiosi"
 
 #: src/components/app/AppTimeBomb.tsx:28
-#~ msgid "You need to upgrade the Covid application as this version will stop working soon!"
-#~ msgstr "You need to upgrade the Covid application as this version will stop working soon!"
+#~ msgid "You need to upgrade the Olive application as this version will stop working soon!"
+#~ msgstr "You need to upgrade the Olive application as this version will stop working soon!"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:37
 msgid "You need {currencyCode} to join a pool."
@@ -2610,8 +2610,8 @@ msgstr "{0} pistettä {1} - {2} tuntia sitten"
 msgid "{currencyCode} Block Rewards"
 msgstr "{currencyCode} Lohkopalkkiot"
 
-#: src/components/farm/card/FarmCardTotalCovidFarmed.tsx:29
-msgid "{currencyCode} Total Covid Farmed"
+#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:29
+msgid "{currencyCode} Total Olive Farmed"
 msgstr "{currencyCode} Chioja Farmaroitu"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:28

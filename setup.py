@@ -44,7 +44,7 @@ kwargs = dict(
     name="olive-blockchain",
     author="Mariano Sorgente",
     author_email="admin@pinksheetscrypto.com",
-    description="Covid blockchain full node, farmer, timelord, and wallet.",
+    description="Olive blockchain full node, farmer, timelord, and wallet.",
     url="https://oliveblockchain.co/",
     license="Apache License",
     python_requires=">=3.7, <4",

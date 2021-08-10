@@ -146,7 +146,7 @@ export default function WalletImport() {
           <Typography variant="subtitle1" align="center">
             <Trans>
               Enter the 24 word mnemonic that you have saved in order to restore
-              your Covid wallet.
+              your Olive wallet.
             </Trans>
           </Typography>
           <Grid container spacing={2}>

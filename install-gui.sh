@@ -10,7 +10,7 @@ if [ -z "$VIRTUAL_ENV" ]; then
 fi
 
 if [ "$(id -u)" = 0 ]; then
-  echo "The Covid Blockchain GUI can not be installed or run by the root user."
+  echo "The Olive Blockchain GUI can not be installed or run by the root user."
 	exit 1
 fi
 
@@ -100,6 +100,6 @@ else
 fi
 
 echo ""
-echo "Covid blockchain install-gui.sh completed."
+echo "Olive blockchain install-gui.sh completed."
 echo ""
 echo "Type 'cd olive-blockchain-gui' and then 'npm run electron &' to start the GUI."

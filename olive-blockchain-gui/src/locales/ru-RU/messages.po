@@ -23,8 +23,8 @@ msgid "(Optional)"
 msgstr "(Необязательно)"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:64
-msgid "*Want to explore Covid’s blocks further? Check out <0>Covid Explorer</0> built by an open source developer."
-msgstr "*Хотите посмотреть больше информации о блоках Чиа? Загляните в обозреватель блоков <0>Covid Explorer</0>, созданный на основе открытого исходного кода."
+msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
+msgstr "*Хотите посмотреть больше информации о блоках Чиа? Загляните в обозреватель блоков <0>Olive Explorer</0>, созданный на основе открытого исходного кода."
 
 #: src/components/plot/add/PlotAddNFT.tsx:123
 msgid "+ Add New Plot NFT"
@@ -44,8 +44,8 @@ msgstr "Комбайн - это служба, работающая на маши
 
 #: src/electron/main.tsx:422
 #: src/electron/main.tsx:509
-msgid "About Covid Blockchain"
-msgstr "О программе Covid Blockchain"
+msgid "About Olive Blockchain"
+msgstr "О программе Olive Blockchain"
 
 #: src/components/trading/ViewOffer.jsx:74
 msgid "Accept"
@@ -216,8 +216,8 @@ msgid "Block VDF Iterations"
 msgstr "VDF итераций блока"
 
 #: src/components/block/Block.jsx:336
-msgid "Block at height {0} in the Covid blockchain"
-msgstr "Блок на высоте {0} в блокчейне Covid"
+msgid "Block at height {0} in the Olive blockchain"
+msgstr "Блок на высоте {0} в блокчейне Olive"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
@@ -310,31 +310,31 @@ msgid "Chat on KeyBase"
 msgstr "Чат в KeyBase"
 
 #: src/electron/main.tsx:419
-msgid "Covid"
+msgid "Olive"
 msgstr "Чиа"
 
 #: src/electron/main.tsx:358
-msgid "Covid Blockchain Wiki"
+msgid "Olive Blockchain Wiki"
 msgstr ""
-"Блокчейн Covid на Wiki                           Covid coin\n"
+"Блокчейн Olive на Wiki                           Olive coin\n"
 "\n"
 "Мы считаем, что криптовалютой должно быть проще пользоваться, чем наличными, ее сложнее потерять и почти невозможно украсть. Любой, кто хочет подтверждать транзакции, должен иметь возможность заниматься майнингом без одноразового оборудования или больших счетов за электроэнергию.\n"
 "9 февраля мы выпустили наш бизнес-документ и запустили основную сеть для получения вознаграждений в пятницу, 19 марта 2021 года. Транзакции будут активированы 3 мая 2021 года около 10:00 по тихоокеанскому времени. Вас также может заинтересовать наш новый согласованный рабочий документ, который впервые был реализован в бета-версии 19 12 января 2021 года.\n"
 "\n"
-"Covid Network разрабатывает блокчейн и платформу интеллектуальных транзакций, созданную изобретателем BitTorrent Брэмом Коэном. Он реализует первый новый алгоритм консенсуса Накамото со времен Биткойна в 2008 году. Доказательства пространства и времени заменяют энергоемкие «доказательства работы».\n"
+"Olive Network разрабатывает блокчейн и платформу интеллектуальных транзакций, созданную изобретателем BitTorrent Брэмом Коэном. Он реализует первый новый алгоритм консенсуса Накамото со времен Биткойна в 2008 году. Доказательства пространства и времени заменяют энергоемкие «доказательства работы».\n"
 "\n"
-"Covidlisp - это новый язык программирования Covid, который является мощным, легким для аудита и безопасным. Это упростит использование криптовалюты, чем наличные деньги или кредит. В настоящее время доступны следующие эталонные смарт-транзакции: атомарные свопы, авторизованные получатели, восстанавливаемые кошельки, кошельки с несколькими подписями, кошельки с ограничением скорости и цветные монеты. Брэм представляет Covidlisp в нашем блоге.\n"
-"Вам следует ознакомиться с примечаниями к выпуску, а затем установить блокчейн Covid.\n"
+"Olivelisp - это новый язык программирования Olive, который является мощным, легким для аудита и безопасным. Это упростит использование криптовалюты, чем наличные деньги или кредит. В настоящее время доступны следующие эталонные смарт-транзакции: атомарные свопы, авторизованные получатели, восстанавливаемые кошельки, кошельки с несколькими подписями, кошельки с ограничением скорости и цветные монеты. Брэм представляет Olivelisp в нашем блоге.\n"
+"Вам следует ознакомиться с примечаниями к выпуску, а затем установить блокчейн Olive.\n"
 "\n"
 "Руководство для начинающих\n"
 "\n"
 "\n"
 "Основная информация о Чиа для начала\n"
-"Covid - это новый тип криптовалюты, основанный на емкости предварительно сохраненных случайных данных, которые пользователь создает и хранит в файлах, называемых графиками, что делает консенсус блокчейна чрезвычайно быстрым и экологически чистым. Это улучшение по сравнению с блокчейнами доказательства работы, которые полагаются на быстрые графические карты и специальные машины, выполняющие миллионы вычислений в секунду и тратящие много электроэнергии. Covid также внесла множество улучшений в сценарии, среду сценариев, криптографию, удобство использования и масштабируемость и стремится быть простым, безопасным и мощным блокчейном.\n"
+"Olive - это новый тип криптовалюты, основанный на емкости предварительно сохраненных случайных данных, которые пользователь создает и хранит в файлах, называемых графиками, что делает консенсус блокчейна чрезвычайно быстрым и экологически чистым. Это улучшение по сравнению с блокчейнами доказательства работы, которые полагаются на быстрые графические карты и специальные машины, выполняющие миллионы вычислений в секунду и тратящие много электроэнергии. Olive также внесла множество улучшений в сценарии, среду сценариев, криптографию, удобство использования и масштабируемость и стремится быть простым, безопасным и мощным блокчейном.\n"
 "\n"
 "Как это работает\n"
 "\n"
-"Вы можете загрузить программное обеспечение Covid на Windows, Mac или Linux. Версия для Windows автоматически запускается при установке, и Mac просто нужно открыть из каталога приложений - он загружается и начинает синхронизацию с остальной сетью и блокчейном. Полная синхронизация может занять 4–6 часов, хотя со временем эта цифра увеличивается. По сути, вы синхронизируетсь со всеми в сети, загружая всю цепочку блоков, которая включает все транзакции, когда-либо обработанные в сети. Копия базы данных блокчейна olive будет храниться на вашем компьютере. У всех остальных есть копия.\n"
+"Вы можете загрузить программное обеспечение Olive на Windows, Mac или Linux. Версия для Windows автоматически запускается при установке, и Mac просто нужно открыть из каталога приложений - он загружается и начинает синхронизацию с остальной сетью и блокчейном. Полная синхронизация может занять 4–6 часов, хотя со временем эта цифра увеличивается. По сути, вы синхронизируетсь со всеми в сети, загружая всю цепочку блоков, которая включает все транзакции, когда-либо обработанные в сети. Копия базы данных блокчейна olive будет храниться на вашем компьютере. У всех остальных есть копия.\n"
 "\n"
 "После того, как olive заработала, ее концепция: пользователи создают графики (каждый размером 101 гигабайт), пользователь сохраняет эти графики на компьютерном оборудовании, а затем обрабатывает созданные участки для потенциального заработка монет.\n"
 "\n"
@@ -354,10 +354,10 @@ msgstr ""
 "Руководство для начинающих\n"
 "lon12 отредактировал эту страницу 10 дней назад • 57 редакций\n"
 "Основная информация о Чиа для начала\n"
-"Covid - это новый тип криптовалюты, основанный на емкости предварительно сохраненных случайных данных, которые пользователь создает и хранит в файлах, называемых графиками, что делает консенсус блокчейна чрезвычайно быстрым и экологически чистым. Это улучшение по сравнению с блокчейнами доказательства работы, которые полагаются на быстрые графические карты и специальные машины, выполняющие миллионы вычислений в секунду и тратящие много электроэнергии. Covid также внесла множество улучшений в сценарии, среду сценариев, криптографию, удобство использования и масштабируемость и стремится быть простым, безопасным и мощным блокчейном.\n"
+"Olive - это новый тип криптовалюты, основанный на емкости предварительно сохраненных случайных данных, которые пользователь создает и хранит в файлах, называемых графиками, что делает консенсус блокчейна чрезвычайно быстрым и экологически чистым. Это улучшение по сравнению с блокчейнами доказательства работы, которые полагаются на быстрые графические карты и специальные машины, выполняющие миллионы вычислений в секунду и тратящие много электроэнергии. Olive также внесла множество улучшений в сценарии, среду сценариев, криптографию, удобство использования и масштабируемость и стремится быть простым, безопасным и мощным блокчейном.\n"
 "\n"
 "Как это работает\n"
-"Вы можете загрузить программное обеспечение Covid на Windows, Mac или Linux. Версия для Windows автоматически запускается при установке, и Mac просто нужно открыть из каталога приложений - он загружается и начинает синхронизацию с остальной сетью и блокчейном. Полная синхронизация может занять 4–6 часов, хотя со временем эта цифра увеличивается. По сути, вы синхронизируете со всеми в сети, загружая всю цепочку блоков, которая включает все транзакции, когда-либо обработанные в сети. Копия базы данных блокчейна olive будет храниться на вашем компьютере. У всех остальных есть копия.\n"
+"Вы можете загрузить программное обеспечение Olive на Windows, Mac или Linux. Версия для Windows автоматически запускается при установке, и Mac просто нужно открыть из каталога приложений - он загружается и начинает синхронизацию с остальной сетью и блокчейном. Полная синхронизация может занять 4–6 часов, хотя со временем эта цифра увеличивается. По сути, вы синхронизируете со всеми в сети, загружая всю цепочку блоков, которая включает все транзакции, когда-либо обработанные в сети. Копия базы данных блокчейна olive будет храниться на вашем компьютере. У всех остальных есть копия.\n"
 "\n"
 "После того, как olive заработала, ее концепция: пользователи создают графики (каждый размером 101 гигабайт), пользователь сохраняет эти графики на компьютерном оборудовании, а затем обрабатывает созданные участки для потенциального заработка монет.\n"
 "\n"
@@ -385,7 +385,7 @@ msgstr ""
 "Вот почему транзакции такие зеленые /\n"
 "\n"
 "Вкладка \"Ферма\"\n"
-"Это покажет вам, сколько PLOTS-полей вы создали. Вверху будет показано, сколько Covids было выращено. Также он показывает, сколько гигов участков у вас в сети. Если у вас есть 2 участка по 101 ГиБ. Затем в левом верхнем углу отображается «Общий размер участков» .\n"
+"Это покажет вам, сколько PLOTS-полей вы создали. Вверху будет показано, сколько Olives было выращено. Также он показывает, сколько гигов участков у вас в сети. Если у вас есть 2 участка по 101 ГиБ. Затем в левом верхнем углу отображается «Общий размер участков» .\n"
 "2 TIB означает, что вы предлагаете такой объем хранилища для формул сети olive. Рассчитано, как если бы у вас 101 ГиБ x 2 = 202 ГиБ.\n"
 "\n"
 "Последние испытания блоков: здесь показаны последние испытания и указатели, которые можно рассматривать как мини-лотереи. Каждые 9 секунд появляется новая вывеска, а это означает, что у вас есть новая возможность проверить свои участки и узнать, выиграли ли вы. Любая другая точка вывески будет выигрышной для кого-то в сети, поэтому каждые 18 секунд создается новый блок.\n"
@@ -472,7 +472,7 @@ msgstr ""
 "В Windows вы можете использовать olive CLI из Windows PowerShell, что обеспечивает большую гибкость и контроль. PowerShell - это программа, в которой вы вводите команды, нажимаете клавишу ВВОД и выполняете такие действия, как изменение папок, перемещение файлов или запуск программ, таких как olive.\n"
 "\n"
 "1. Параллельное построение с использованием PowerShell\n"
-"    cd C:\\Users\\yourUserName\\AppData\\Local\\Covid-Blockchain\\app-1.0.5\\resources\\app.asar.unpacked\\daemon\\\n"
+"    cd C:\\Users\\yourUserName\\AppData\\Local\\Olive-Blockchain\\app-1.0.5\\resources\\app.asar.unpacked\\daemon\\\n"
 "    start-process .\\olive.exe -argumentlist \"plots create yourParametersGoHere\"\n"
 "    start-process ....\n"
 "\n"
@@ -484,14 +484,14 @@ msgstr ""
 "Чтобы добавить задержку между вашими параллельными процессами, вы можете поместить sleep <seconds> между каждой командой создания полей olive olive plots create , например чтобы отложить следующий процесс на час sleep 3600\n"
 "\n"
 "Конкретный пример:\n"
-"    cd C:\\Users\\yourUserName\\AppData\\Local\\Covid-Blockchain\\app-1.0.5\\resources\\app.asar.unpacked\\daemon\\\n"
+"    cd C:\\Users\\yourUserName\\AppData\\Local\\Olive-Blockchain\\app-1.0.5\\resources\\app.asar.unpacked\\daemon\\\n"
 "    start-process ./olive.exe -argumentlist \"plots create -k 32 -b 4000 -u 128 -r 4 -t d:\\tempdrive1 -2 e:\\tempdrive2 -d F:\\plots -n 1\"\n"
 "\n"
 "Приведенная выше команда создает одио поле (указывается -n 1), для параллельного построения вам нужно повторить команду (не закрывая первую). Увеличьте значение -n для последовательного построения, то есть после завершения первого участка запускается следующий."
 
 #: src/components/wallet/standard/WalletStandard.tsx:647
-msgid "Covid Wallet"
-msgstr "Кошелек Covid"
+msgid "Olive Wallet"
+msgstr "Кошелек Olive"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:36
 msgid "Choose Number of Plots"
@@ -869,8 +869,8 @@ msgid "Edit Payout Instructions"
 msgstr "Редактировать инструкции выплат"
 
 #: src/components/wallet/WalletImport.tsx:147
-msgid "Enter the 24 word mnemonic that you have saved in order to restore your Covid wallet."
-msgstr "Введите мнемонику из 24 слов, которую вы сохранили, чтобы восстановить свой кошелек Covid."
+msgid "Enter the 24 word mnemonic that you have saved in order to restore your Olive wallet."
+msgstr "Введите мнемонику из 24 слов, которую вы сохранили, чтобы восстановить свой кошелек Olive."
 
 #: src/components/farm/FarmerStatus.tsx:21
 #: src/components/farm/FarmerStatus.tsx:22
@@ -1663,7 +1663,7 @@ msgid "Plots Passed Filter"
 msgstr "Участки, прошедшие фильтр"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:35
-msgid "Plots are allocated space on your hard drive used to farm and earn Covid. <0>Learn more</0>"
+msgid "Plots are allocated space on your hard drive used to farm and earn Olive. <0>Learn more</0>"
 msgstr "Участки - это выделенное пространство на вашем жестком диске. Участки используются для фарминга и приносят доход в чиа. <0>Подробности</0>"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
@@ -2150,8 +2150,8 @@ msgstr "Статус:"
 #~ msgstr "Sub Block Height"
 
 #: src/components/block/Block.jsx:338
-#~ msgid "Sub Block at height {0} in the Covid blockchain"
-#~ msgstr "Sub Block at height {0} in the Covid blockchain"
+#~ msgid "Sub Block at height {0} in the Olive blockchain"
+#~ msgstr "Sub Block at height {0} in the Olive blockchain"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
@@ -2294,7 +2294,7 @@ msgid "This feature is available only from the GUI."
 msgstr "Эта функция доступна только из графического интерфейса."
 
 #: src/components/wallet/card/WalletCardSpendableBalance.tsx:26
-msgid "This is the amount of Covid that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Covid that you have just spent but is not yet in the blockchain."
+msgid "This is the amount of Olive that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Olive that you have just spent but is not yet in the blockchain."
 msgstr "Это количество монет Чиа, которое в настоящее время вы можете использовать для совершения транзакций. Баланс не включает ожидающие вознаграждения за фармиг, ожидающие входящие транзакции и монеты, которые вы только что потратили, но они еще не попали в блокчейн."
 
 #: src/components/wallet/card/WalletCardPendingChange.tsx:26
@@ -2360,8 +2360,8 @@ msgid "This trade was included on blockchain at this block height"
 msgstr "Сделка была включена в блокчейн на указанной высоте блока"
 
 #: src/components/app/AppTimeBombAlert.tsx:19
-msgid "This version of Covid is no longer compatible with the blockchain and can not safely farm."
-msgstr "Эта версия Covid больше не совместима с блокчейном и не может безопасно фармить."
+msgid "This version of Olive is no longer compatible with the blockchain and can not safely farm."
+msgstr "Эта версия Olive больше не совместима с блокчейном и не может безопасно фармить."
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Time Created"
@@ -2385,8 +2385,8 @@ msgstr "Кому"
 msgid "Total Balance"
 msgstr "Итоговый баланс"
 
-#: src/components/farm/card/FarmCardTotalCovidFarmed.tsx:15
-#~ msgid "Total Covid Farmed"
+#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
+#~ msgid "Total Olive Farmed"
 #~ msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:20
@@ -2595,7 +2595,7 @@ msgid "Want to Join a Pool? Create a Plot NFT"
 msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:139
-msgid "Want to earn more Covid? Add more plots to your farm."
+msgid "Want to earn more Olive? Add more plots to your farm."
 msgstr "Хотите получать больше дохода в Чиа? Добавьте больше участков к своей ферме."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:86
@@ -2623,7 +2623,7 @@ msgid "Weight is the total added difficulty of all sub blocks up to and includin
 msgstr "Вес - это общая добавленная сложность всех подблоков, включая этот"
 
 #: src/components/selectKey/SelectKey.tsx:141
-msgid "Welcome to Covid. Please log in with an existing key, or create a new key."
+msgid "Welcome to Olive. Please log in with an existing key, or create a new key."
 msgstr "Добро пожаловать в Чиа. Пожалуйста, войдите в систему с существующим ключом или создайте новый ключ."
 
 #: src/components/wallet/WalletAdd.tsx:66
@@ -2694,8 +2694,8 @@ msgid "You need to claim your rewards first"
 msgstr ""
 
 #: src/components/app/AppTimeBomb.tsx:28
-#~ msgid "You need to upgrade the Covid application as this version will stop working soon!"
-#~ msgstr "You need to upgrade the Covid application as this version will stop working soon!"
+#~ msgid "You need to upgrade the Olive application as this version will stop working soon!"
+#~ msgstr "You need to upgrade the Olive application as this version will stop working soon!"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:37
 msgid "You need {currencyCode} to join a pool."
@@ -2782,8 +2782,8 @@ msgstr ""
 msgid "{currencyCode} Block Rewards"
 msgstr "{currencyCode} Награда за блок"
 
-#: src/components/farm/card/FarmCardTotalCovidFarmed.tsx:29
-msgid "{currencyCode} Total Covid Farmed"
+#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:29
+msgid "{currencyCode} Total Olive Farmed"
 msgstr "{currencyCode} Всего Чиа выращено"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:28

@@ -23,8 +23,8 @@ msgid "(Optional)"
 msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:64
-msgid "*Want to explore Covid’s blocks further? Check out <0>Covid Explorer</0> built by an open source developer."
-msgstr "Wil je Covid verder verkennen? Kijk dan zeker even naar <0>Covid Explorer</0> dat werd gemaakt door een open-source ontwikkelaar."
+msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
+msgstr "Wil je Olive verder verkennen? Kijk dan zeker even naar <0>Olive Explorer</0> dat werd gemaakt door een open-source ontwikkelaar."
 
 #: src/components/plot/add/PlotAddNFT.tsx:123
 msgid "+ Add New Plot NFT"
@@ -44,8 +44,8 @@ msgstr "Een 'harvester' is een service op een machine waar plot bestanden opgesl
 
 #: src/electron/main.tsx:422
 #: src/electron/main.tsx:509
-msgid "About Covid Blockchain"
-msgstr "Over Covid Blockchain"
+msgid "About Olive Blockchain"
+msgstr "Over Olive Blockchain"
 
 #: src/components/trading/ViewOffer.jsx:74
 msgid "Accept"
@@ -216,8 +216,8 @@ msgid "Block VDF Iterations"
 msgstr "Blok VDF iteraties"
 
 #: src/components/block/Block.jsx:336
-msgid "Block at height {0} in the Covid blockchain"
-msgstr "Block op hoogte {0} in de Covid blockchain"
+msgid "Block at height {0} in the Olive blockchain"
+msgstr "Block op hoogte {0} in de Olive blockchain"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
@@ -310,16 +310,16 @@ msgid "Chat on KeyBase"
 msgstr "Chat op KeyBase"
 
 #: src/electron/main.tsx:419
-msgid "Covid"
-msgstr "Covid"
+msgid "Olive"
+msgstr "Olive"
 
 #: src/electron/main.tsx:358
-msgid "Covid Blockchain Wiki"
-msgstr "Covid Blockchain Wiki"
+msgid "Olive Blockchain Wiki"
+msgstr "Olive Blockchain Wiki"
 
 #: src/components/wallet/standard/WalletStandard.tsx:647
-msgid "Covid Wallet"
-msgstr "Covid Portemonnee"
+msgid "Olive Wallet"
+msgstr "Olive Portemonnee"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:36
 msgid "Choose Number of Plots"
@@ -697,8 +697,8 @@ msgid "Edit Payout Instructions"
 msgstr ""
 
 #: src/components/wallet/WalletImport.tsx:147
-msgid "Enter the 24 word mnemonic that you have saved in order to restore your Covid wallet."
-msgstr "Vul de 24 mnemonic woorden in dat die je bewaard hebt om je Covid portemonnee te herstellen."
+msgid "Enter the 24 word mnemonic that you have saved in order to restore your Olive wallet."
+msgstr "Vul de 24 mnemonic woorden in dat die je bewaard hebt om je Olive portemonnee te herstellen."
 
 #: src/components/farm/FarmerStatus.tsx:21
 #: src/components/farm/FarmerStatus.tsx:22
@@ -712,7 +712,7 @@ msgstr "Fout"
 
 #: src/components/wallet/standard/WalletStandard.tsx:456
 msgid "Error: Cannot send olive to coloured address. Please enter a olive address."
-msgstr "Fout: Kan Covid niet naar gekleurd adres verzenden. Gelieve een Covid adres in te geven."
+msgstr "Fout: Kan Olive niet naar gekleurd adres verzenden. Gelieve een Olive adres in te geven."
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:20
 msgid "Estimated Network Space"
@@ -1491,8 +1491,8 @@ msgid "Plots Passed Filter"
 msgstr "Plots Doorgegeven aan Filter"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:35
-msgid "Plots are allocated space on your hard drive used to farm and earn Covid. <0>Learn more</0>"
-msgstr "Plots zijn bestanden op uw harde schijf, die gebruikt worden om Covid te farmen en om Chie te verdienen. <0>Leer meer hierover</0>"
+msgid "Plots are allocated space on your hard drive used to farm and earn Olive. <0>Learn more</0>"
+msgstr "Plots zijn bestanden op uw harde schijf, die gebruikt worden om Olive te farmen en om Chie te verdienen. <0>Leer meer hierover</0>"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
 msgid "Plotting"
@@ -1930,7 +1930,7 @@ msgstr "Bestedingsinterval Lengte (aantal Blocks)"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:401
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:448
 msgid "Spending Limit (olive per interval): {0}"
-msgstr "Bestedingslimiet (Covid per Interval): {0}"
+msgstr "Bestedingslimiet (Olive per Interval): {0}"
 
 #: src/components/fullNode/FullNode.jsx:100
 msgid "State"
@@ -1978,8 +1978,8 @@ msgstr "Status:"
 #~ msgstr "Sub Block Height"
 
 #: src/components/block/Block.jsx:338
-#~ msgid "Sub Block at height {0} in the Covid blockchain"
-#~ msgstr "Sub Block at height {0} in the Covid blockchain"
+#~ msgid "Sub Block at height {0} in the Olive blockchain"
+#~ msgstr "Sub Block at height {0} in the Olive blockchain"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
@@ -2122,7 +2122,7 @@ msgid "This feature is available only from the GUI."
 msgstr "Deze functie is alleen in de grafische omgeving beschikbaar."
 
 #: src/components/wallet/card/WalletCardSpendableBalance.tsx:26
-msgid "This is the amount of Covid that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Covid that you have just spent but is not yet in the blockchain."
+msgid "This is the amount of Olive that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Olive that you have just spent but is not yet in the blockchain."
 msgstr ""
 
 #: src/components/wallet/card/WalletCardPendingChange.tsx:26
@@ -2188,8 +2188,8 @@ msgid "This trade was included on blockchain at this block height"
 msgstr "Deze transactie is opgenomen in de blockchain op de hoogte van deze blok"
 
 #: src/components/app/AppTimeBombAlert.tsx:19
-msgid "This version of Covid is no longer compatible with the blockchain and can not safely farm."
-msgstr "Deze versie van Covid is niet langer compatibel met de blockchain, en je kan niet meer veilig farmen."
+msgid "This version of Olive is no longer compatible with the blockchain and can not safely farm."
+msgstr "Deze versie van Olive is niet langer compatibel met de blockchain, en je kan niet meer veilig farmen."
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Time Created"
@@ -2213,8 +2213,8 @@ msgstr "Aan"
 msgid "Total Balance"
 msgstr "Totaal saldo"
 
-#: src/components/farm/card/FarmCardTotalCovidFarmed.tsx:15
-#~ msgid "Total Covid Farmed"
+#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
+#~ msgid "Total Olive Farmed"
 #~ msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:20
@@ -2423,8 +2423,8 @@ msgid "Want to Join a Pool? Create a Plot NFT"
 msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:139
-msgid "Want to earn more Covid? Add more plots to your farm."
-msgstr "Wil je meer Covid verdienen? Voeg meer plotbestanden toe aan je farm."
+msgid "Want to earn more Olive? Add more plots to your farm."
+msgstr "Wil je meer Olive verdienen? Voeg meer plotbestanden toe aan je farm."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:86
 msgid "Want to have a delay before the next plot starts?"
@@ -2451,7 +2451,7 @@ msgid "Weight is the total added difficulty of all sub blocks up to and includin
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:141
-msgid "Welcome to Covid. Please log in with an existing key, or create a new key."
+msgid "Welcome to Olive. Please log in with an existing key, or create a new key."
 msgstr ""
 
 #: src/components/wallet/WalletAdd.tsx:66
@@ -2522,8 +2522,8 @@ msgid "You need to claim your rewards first"
 msgstr ""
 
 #: src/components/app/AppTimeBomb.tsx:28
-#~ msgid "You need to upgrade the Covid application as this version will stop working soon!"
-#~ msgstr "You need to upgrade the Covid application as this version will stop working soon!"
+#~ msgid "You need to upgrade the Olive application as this version will stop working soon!"
+#~ msgstr "You need to upgrade the Olive application as this version will stop working soon!"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:37
 msgid "You need {currencyCode} to join a pool."
@@ -2610,9 +2610,9 @@ msgstr ""
 msgid "{currencyCode} Block Rewards"
 msgstr "{currencyCode} Block beloning"
 
-#: src/components/farm/card/FarmCardTotalCovidFarmed.tsx:29
-msgid "{currencyCode} Total Covid Farmed"
-msgstr "{currencyCode} Totaal Covid gefarmed"
+#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:29
+msgid "{currencyCode} Total Olive Farmed"
+msgstr "{currencyCode} Totaal Olive gefarmed"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:28
 msgid "{currencyCode} User Transaction Fees"

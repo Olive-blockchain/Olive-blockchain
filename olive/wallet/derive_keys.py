@@ -7,7 +7,7 @@ from olive.util.ints import uint32
 # EIP 2334 bls key derivation
 # https://eips.ethereum.org/EIPS/eip-2334
 # 12381 = bls spec number
-# 19180 = Covid blockchain number and port number
+# 19180 = Olive blockchain number and port number
 # 0, 1, 2, 3, 4, 5, 6 farmer, pool, wallet, local, backup key, singleton, pooling authentication key numbers
 
 

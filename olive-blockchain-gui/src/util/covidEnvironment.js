@@ -45,7 +45,7 @@ const getExecutablePath = (dist_file) => {
   return path.join(__dirname, PY_MAC_DIST_FOLDER, dist_file);
 };
 
-const getCovidVersion = () => {
+const getOliveVersion = () => {
   let version = null;
   const exePath = getExecutablePath('olive');
   // first see if we can get a olive exe in a standard location relative to where we are
@@ -71,7 +71,7 @@ const getCovidVersion = () => {
   return version;
 };
 
-const startCovidDaemon = () => {
+const startOliveDaemon = () => {
   let script = getScriptPath(PY_DIST_FILE);
   let processOptions = {};
   //processOptions.detached = true;
@@ -138,7 +138,7 @@ const startCovidDaemon = () => {
 };
 
 module.exports = {
-  startCovidDaemon,
-  getCovidVersion,
+  startOliveDaemon,
+  getOliveVersion,
   guessPackaged,
 };

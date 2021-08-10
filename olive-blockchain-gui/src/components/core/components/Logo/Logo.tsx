@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Box, BoxProps } from '@material-ui/core';
-import { Covid } from '@olive/icons';
+import { Olive } from '@olive/icons';
 
-const StyledCovid = styled(Covid)`
+const StyledOlive = styled(Olive)`
   max-width: 100%;
   width: auto;
   height: auto;
@@ -12,7 +12,7 @@ const StyledCovid = styled(Covid)`
 export default function Logo(props: BoxProps) {
   return (
     <Box {...props}>
-      <StyledCovid />
+      <StyledOlive />
     </Box>
   );
 }

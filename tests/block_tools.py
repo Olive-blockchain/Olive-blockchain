@@ -1218,7 +1218,7 @@ def get_challenges(
 
 
 def get_plot_dir() -> Path:
-    cache_path = Path(os.path.expanduser(os.getenv("COVID_ROOT", "~/.olive/"))) / "test-plots"
+    cache_path = Path(os.path.expanduser(os.getenv("OLIVE_ROOT", "~/.olive/"))) / "test-plots"
     mkdir(cache_path)
     return cache_path
 

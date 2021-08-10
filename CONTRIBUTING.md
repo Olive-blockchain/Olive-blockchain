@@ -1,13 +1,13 @@
 # Introduction
 
 Welcome to the olive-blockchain project!
-We are happy that you are taking a look at the code for Covid, a proof of space and time cryptocurrency.
+We are happy that you are taking a look at the code for Olive, a proof of space and time cryptocurrency.
 
 A lot of fascinating new cryptography and blockchain concepts are used and implemented here.
-This repo includes the code for the Covid full node, farmer, and timelord (in olive folder), which are all written in python.
+This repo includes the code for the Olive full node, farmer, and timelord (in olive folder), which are all written in python.
 It also includes a verifiable delay function implementation that it imports from the [chiavdf repo](https://github.com/pinksheetscrypto/chiavdf) (in c/c++), and a proof of space implementation that it imports from the [chiapos repo](https://github.com/pinksheetscrypto/chiapos). BLS signatures are imported from the [bls-signatures repo](https://github.com/pinksheetscrypto/bls-signatures) as blspy. There is an additional dependency on the [chiabip158 repo](https://github.com/pinksheetscrypto/chiabip158). For major platforms, binary and source wheels are shipped to PyPI from each dependent repo. Then olive-blockchain can pip install those from PyPI or they can be prepackaged as is done for the Windows installer. On unsupported platforms, pip will fall back to the source distributions, to be compiled locally.
 
-If you want to learn more about this project, read the [wiki](https://github.com/pinksheetscrypto/olive-blockchain/wiki), or check out the [green paper](https://www.oliveblockchain.co/assets/CovidGreenPaper.pdf).
+If you want to learn more about this project, read the [wiki](https://github.com/pinksheetscrypto/olive-blockchain/wiki), or check out the [green paper](https://www.oliveblockchain.co/assets/OliveGreenPaper.pdf).
 
 ## Contributions
 
@@ -23,9 +23,9 @@ Contact any of the team members on [Keybase](https://keybase.io/team/olive_netwo
 
 We ask that external contributors create a fork of the `main` branch for any feature work they wish to take on.
 
-Members of the Covid organization may create feature branches from the `main` branch.
+Members of the Olive organization may create feature branches from the `main` branch.
 
-In the event an emergency fix is required for the release version of Covid, members of the Covid organization will create a feature branch from the current release branch `1.0.0`.
+In the event an emergency fix is required for the release version of Olive, members of the Olive organization will create a feature branch from the current release branch `1.0.0`.
 
 ## Branching Strategy
 
@@ -34,7 +34,7 @@ In the event an emergency fix is required for the release version of Covid, memb
 1. All changes go into the main branch.
 2. Main is stable at all times, all tests pass.
 3. Features (with tests) are developed and fully tested on feature branches, and reviewed before landing in main.
-4. Covid Network's nodes on the public testnet are running the latest version `x.y.z`.
+4. Olive Network's nodes on the public testnet are running the latest version `x.y.z`.
 5. The `main` branch will have a long running `beta testnet` to allow previewing of changes.
 6. Pull Request events may require a `beta testnet` review environment. At the moment this is at the discretion of the reviewer.
 7. Hotfixes land in the release branch they fix, and all later versions. (This will be achieved by regularly merging from `1.0.x` to main).
@@ -63,7 +63,7 @@ If you want verbose logging for tests, edit the `tests/pytest.ini` file.
 
 ## Pre-Commit
 
-We provide a [pre-commit configuration](https://github.com/Covid-Network/olive-blockchain/blob/main/.pre-commit-config.yaml) which triggers several useful
+We provide a [pre-commit configuration](https://github.com/Olive-Network/olive-blockchain/blob/main/.pre-commit-config.yaml) which triggers several useful
 hooks (including linters/formatter) before each commit you make if you installed and set up [pre-commit](https://pre-commit.com/). This will help
 to reduce the time you spend on failed CI jobs.
 
@@ -102,14 +102,14 @@ Following the release of `1.1.0`, the official `testnet` will include all change
 
 Prior to proposing changes to `main`, proposers should consider if running a `beta testnet` review environment will make the reviewer more effective when evaluating a change.
 Changes that impact the blockchain could require a review environment before acceptance into `main`. This is at the discretion of the reviewer.
-Covid organization members have been granted CI access to deploy `beta testnets`.
-If you are not a Covid organization member, you can enquire about deploying a `beta testnet` in the public dev Keybase channel.
+Olive organization members have been granted CI access to deploy `beta testnets`.
+If you are not a Olive organization member, you can enquire about deploying a `beta testnet` in the public dev Keybase channel.
 
 ## Submit changes
 
 To propose changes, please make a pull request to the `main` branch. See Branching Strategy above.
 
-To propose changes for the production releases of Covid, please make a pull request to the latest release branch.
+To propose changes for the production releases of Olive, please make a pull request to the latest release branch.
 
 ## Copyright
 

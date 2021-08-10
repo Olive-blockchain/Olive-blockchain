@@ -62,13 +62,13 @@ export default function FarmLatestBlockChallenges() {
       />
       <Typography variant="caption">
         <Trans>
-          *Want to explore Covid’s blocks further? Check out{' '}
+          *Want to explore Olive’s blocks further? Check out{' '}
           <Link
             color="primary"
             href="https://alltheblocks.net/olive/"
             target="_blank"
           >
-            Covid Explorer
+            Olive Explorer
           </Link>{' '}
           built by an open source developer.
         </Trans>

@@ -137,7 +137,7 @@ export default function PlotOverviewPlots() {
           <Flex flexGrow={1}>
             <Typography variant="body2">
               <Trans>
-                Want to earn more Covid? Add more plots to your farm.
+                Want to earn more Olive? Add more plots to your farm.
               </Trans>
             </Typography>
           </Flex>

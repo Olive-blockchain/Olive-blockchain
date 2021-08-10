@@ -12,7 +12,7 @@ from olive.protocols.shared_protocol import Handshake
 from olive.server.outbound_message import make_msg, Message
 from olive.server.rate_limits import RateLimiter
 from olive.server.server import ssl_context_for_client
-from olive.server.ws_connection import WSCovidConnection
+from olive.server.ws_connection import WSOliveConnection
 from olive.types.peer_info import PeerInfo
 from olive.util.ints import uint16, uint64
 from olive.util.errors import Err
@@ -188,8 +188,8 @@ class TestDos:
 
         assert len(server_1.all_connections) == 1
 
-        ws_con: WSCovidConnection = list(server_1.all_connections.values())[0]
-        ws_con_2: WSCovidConnection = list(server_2.all_connections.values())[0]
+        ws_con: WSOliveConnection = list(server_1.all_connections.values())[0]
+        ws_con_2: WSOliveConnection = list(server_2.all_connections.values())[0]
 
         ws_con.peer_host = "1.2.3.4"
         ws_con_2.peer_host = "1.2.3.4"
@@ -241,8 +241,8 @@ class TestDos:
 
         assert len(server_1.all_connections) == 1
 
-        ws_con: WSCovidConnection = list(server_1.all_connections.values())[0]
-        ws_con_2: WSCovidConnection = list(server_2.all_connections.values())[0]
+        ws_con: WSOliveConnection = list(server_1.all_connections.values())[0]
+        ws_con_2: WSOliveConnection = list(server_2.all_connections.values())[0]
 
         ws_con.peer_host = "1.2.3.4"
         ws_con_2.peer_host = "1.2.3.4"
@@ -290,8 +290,8 @@ class TestDos:
 
         assert len(server_1.all_connections) == 1
 
-        ws_con: WSCovidConnection = list(server_1.all_connections.values())[0]
-        ws_con_2: WSCovidConnection = list(server_2.all_connections.values())[0]
+        ws_con: WSOliveConnection = list(server_1.all_connections.values())[0]
+        ws_con_2: WSOliveConnection = list(server_2.all_connections.values())[0]
 
         ws_con.peer_host = "1.2.3.4"
         ws_con_2.peer_host = "1.2.3.4"
