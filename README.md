@@ -4,4 +4,4 @@ Discord Channel: https://discord.gg/Tr2uxdHTxM
 
 Website: https://www.pinksheetscrypto.com (coming soon)
 
-Introducer: dns-introducer.olive.pinksheetscrypto.com:19180
+Introducer: dns-introducer.oliveblockchain.co:19180
