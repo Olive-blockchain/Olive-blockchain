@@ -5,9 +5,10 @@ import logging
 import time
 from concurrent.futures.process import ProcessPoolExecutor
 from typing import Dict, List, Optional, Set, Tuple
-from blspy import AugSchemeMPL, G1Element
+from blspy import G1Element
 from chiabip158 import PyBIP158
 
+from olive.util import cached_bls
 from olive.consensus.block_record import BlockRecord
 from olive.consensus.constants import ConsensusConstants
 from olive.consensus.cost_calculator import NPCResult, calculate_cost_of_program
@@ -38,10 +39,10 @@ from olive.util.streamable import recurse_jsonify
 log = logging.getLogger(__name__)
 
 
-def get_npc_multiprocess(spend_bundle_bytes: bytes, max_cost: int) -> bytes:
+def get_npc_multiprocess(spend_bundle_bytes: bytes, max_cost: int, cost_per_byte: int) -> bytes:
     program = simple_solution_generator(SpendBundle.from_bytes(spend_bundle_bytes))
     # npc contains names of the coins removed, puzzle_hashes and their spend conditions
-    return bytes(get_name_puzzle_conditions(program, max_cost, True))
+    return bytes(get_name_puzzle_conditions(program, max_cost, cost_per_byte=cost_per_byte, safe_mode=True))
 
 
 class MempoolManager:
@@ -57,7 +58,7 @@ class MempoolManager:
         self.coin_store = coin_store
 
         # The fee per cost must be above this amount to consider the fee "nonzero", and thus able to kick out other
-        # transactions. This prevents spam. This is equivalent to 0.055 XKA per block, or about 0.00005 XKA for two
+        # transactions. This prevents spam. This is equivalent to 0.055 COV per block, or about 0.00005 COV for two
         # spends.
         self.nonzero_fee_minimum_fpc = 5
 
@@ -83,11 +84,7 @@ class MempoolManager:
         Returns aggregated spendbundle that can be used for creating new block,
         additions and removals in that spend_bundle
         """
-        if (
-            self.peak is None
-            or self.peak.header_hash != last_tb_header_hash
-            or int(time.time()) <= self.constants.INITIAL_FREEZE_END_TIMESTAMP
-        ):
+        if self.peak is None or self.peak.header_hash != last_tb_header_hash:
             return None
 
         cost_sum = 0  # Checks that total cost does not exceed block maximum
@@ -167,7 +164,7 @@ class MempoolManager:
 
     @staticmethod
     def get_min_fee_increase() -> int:
-        # 0.00001 XKA
+        # 0.00001 COV
         return 10000000
 
     def can_replace(
@@ -215,7 +212,11 @@ class MempoolManager:
         """
         start_time = time.time()
         cached_result_bytes = await asyncio.get_running_loop().run_in_executor(
-            self.pool, get_npc_multiprocess, bytes(new_spend), self.constants.MAX_BLOCK_COST_CLVM
+            self.pool,
+            get_npc_multiprocess,
+            bytes(new_spend),
+            int(self.limit_factor * self.constants.MAX_BLOCK_COST_CLVM),
+            self.constants.COST_PER_BYTE,
         )
         end_time = time.time()
         log.info(f"It took {end_time - start_time} to pre validate transaction")
@@ -245,6 +246,8 @@ class MempoolManager:
         log.debug(f"Cost: {cost}")
 
         if cost > int(self.limit_factor * self.constants.MAX_BLOCK_COST_CLVM):
+            # we shouldn't ever end up here, since the cost is limited when we
+            # execute the CLVM program.
             return None, MempoolInclusionStatus.FAILED, Err.BLOCK_COST_EXCEEDS_MAX
 
         if npc_result.error is not None:
@@ -388,7 +391,7 @@ class MempoolManager:
                 log.warning(f"{npc.puzzle_hash} != {coin_record.coin.puzzle_hash}")
                 return None, MempoolInclusionStatus.FAILED, Err.WRONG_PUZZLE_HASH
 
-            olivelisp_height = (
+            chialisp_height = (
                 self.peak.prev_transaction_block_height if not self.peak.is_transaction_block else self.peak.height
             )
             assert self.peak.timestamp is not None
@@ -397,7 +400,7 @@ class MempoolManager:
                 coin_announcements_in_spend,
                 puzzle_announcements_in_spend,
                 npc.condition_dict,
-                uint32(olivelisp_height),
+                uint32(chialisp_height),
                 self.peak.timestamp,
             )
 
@@ -421,7 +424,7 @@ class MempoolManager:
 
         if validate_signature:
             # Verify aggregated signature
-            if not AugSchemeMPL.aggregate_verify(pks, msgs, new_spend.aggregated_signature):
+            if not cached_bls.aggregate_verify(pks, msgs, new_spend.aggregated_signature, True):
                 log.warning(f"Aggsig validation error {pks} {msgs} {new_spend}")
                 return None, MempoolInclusionStatus.FAILED, Err.BAD_AGGREGATE_SIGNATURE
         # Remove all conflicting Coins and SpendBundles
@@ -501,8 +504,6 @@ class MempoolManager:
         if self.peak == new_peak:
             return []
         assert new_peak.timestamp is not None
-        if new_peak.timestamp <= self.constants.INITIAL_FREEZE_END_TIMESTAMP:
-            return []
 
         self.peak = new_peak
 

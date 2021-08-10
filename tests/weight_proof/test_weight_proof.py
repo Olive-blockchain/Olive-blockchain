@@ -18,7 +18,7 @@ from olive.server.start_full_node import SERVICE_NAME
 from olive.types.blockchain_format.sized_bytes import bytes32
 from olive.types.blockchain_format.sub_epoch_summary import SubEpochSummary
 from olive.util.block_cache import BlockCache
-from olive.util.block_tools import test_constants
+from tests.block_tools import test_constants
 from olive.util.config import load_config
 from olive.util.default_root import DEFAULT_ROOT_PATH
 from olive.util.generator_tools import get_block_header
@@ -505,7 +505,8 @@ class TestWeightProof:
     async def test_weight_proof_from_database(self):
         connection = await aiosqlite.connect("path to db")
         block_store: BlockStore = await BlockStore.create(connection)
-        blocks, peak = await block_store.get_block_records()
+        blocks = await block_store.get_block_records_in_range(0, 0xFFFFFFFF)
+        peak = len(blocks) - 1
         peak_height = blocks[peak].height
         headers = await block_store.get_header_blocks_in_range(0, peak_height)
         sub_height_to_hash = {}

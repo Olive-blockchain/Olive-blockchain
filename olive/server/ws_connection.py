@@ -23,7 +23,7 @@ from olive.util.network import class_for_type, is_localhost
 LENGTH_BYTES: int = 4
 
 
-class WSOliveConnection:
+class WSCovidConnection:
     """
     Represents a connection to another node. Local host and port are ours, while peer host and
     port are the host and port of the peer that we are connected to. Node_id and connection_type are
@@ -56,7 +56,7 @@ class WSOliveConnection:
 
         peername = self.ws._writer.transport.get_extra_info("peername")
         if peername is None:
-            raise ValueError(f"Was not able to get peername from {self.ws_witer} at {self.peer_host}")
+            raise ValueError(f"Was not able to get peername from {self.peer_host}")
 
         connection_port = peername[1]
         self.peer_port = connection_port
@@ -69,7 +69,7 @@ class WSOliveConnection:
         self.is_outbound = is_outbound
         self.is_feeler = is_feeler
 
-        # OliveConnection metrics
+        # CovidConnection metrics
         self.creation_time = time.time()
         self.bytes_read = 0
         self.bytes_written = 0
@@ -122,8 +122,16 @@ class WSOliveConnection:
             if inbound_handshake_msg is None:
                 raise ProtocolError(Err.INVALID_HANDSHAKE)
             inbound_handshake = Handshake.from_bytes(inbound_handshake_msg.data)
-            if ProtocolMessageTypes(inbound_handshake_msg.type) != ProtocolMessageTypes.handshake:
+
+            # Handle case of invalid ProtocolMessageType
+            try:
+                message_type: ProtocolMessageTypes = ProtocolMessageTypes(inbound_handshake_msg.type)
+            except Exception:
                 raise ProtocolError(Err.INVALID_HANDSHAKE)
+
+            if message_type != ProtocolMessageTypes.handshake:
+                raise ProtocolError(Err.INVALID_HANDSHAKE)
+
             if inbound_handshake.network_id != 'olive-' + network_id:
                 raise ProtocolError(Err.INCOMPATIBLE_NETWORK_ID)
 
@@ -138,9 +146,17 @@ class WSOliveConnection:
 
             if message is None:
                 raise ProtocolError(Err.INVALID_HANDSHAKE)
-            inbound_handshake = Handshake.from_bytes(message.data)
-            if ProtocolMessageTypes(message.type) != ProtocolMessageTypes.handshake:
+
+            # Handle case of invalid ProtocolMessageType
+            try:
+                message_type = ProtocolMessageTypes(message.type)
+            except Exception:
                 raise ProtocolError(Err.INVALID_HANDSHAKE)
+
+            if message_type != ProtocolMessageTypes.handshake:
+                raise ProtocolError(Err.INVALID_HANDSHAKE)
+
+            inbound_handshake = Handshake.from_bytes(message.data)
             if inbound_handshake.network_id != 'olive-' + network_id:
                 raise ProtocolError(Err.INCOMPATIBLE_NETWORK_ID)
             outbound_handshake = make_msg(

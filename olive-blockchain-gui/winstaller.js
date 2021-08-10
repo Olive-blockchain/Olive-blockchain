@@ -14,16 +14,16 @@ function getInstallerConfig () {
   const outPath = path.join(rootPath, 'release-builds')
 
   return Promise.resolve({
-    appDirectory: path.join(rootPath, 'Olive-win32-x64'),
-    authors: 'Olive Network',
-    version: process.env.OLIVE_INSTALLER_VERSION,
+    appDirectory: path.join(rootPath, 'Covid-win32-x64'),
+    authors: 'Covid Network',
+    version: process.env.COVID_INSTALLER_VERSION,
     noMsi: true,
-    iconUrl: 'https://raw.githubusercontent.com/Olive-Network/olive-blockchain/master/electron-react/src/assets/img/olive.ico',
+    iconUrl: 'https://raw.githubusercontent.com/pinksheetscrypto/olive-blockchain/master/electron-react/src/assets/img/olive.ico',
     outputDirectory: path.join(outPath, 'windows-installer'),
     certificateFile: 'win_code_sign_cert.p12',
     certificatePassword: process.env.WIN_CODE_SIGN_PASS,
-    exe: 'Olive.exe',
-    setupExe: 'OliveSetup-' + process.env.OLIVE_INSTALLER_VERSION + '.exe',
+    exe: 'Covid.exe',
+    setupExe: 'CovidSetup-' + process.env.COVID_INSTALLER_VERSION + '.exe',
     setupIcon: path.join(rootPath, 'src', 'assets', 'img', 'olive.ico')
   })
 }

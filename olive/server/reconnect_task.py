@@ -1,11 +1,11 @@
 import asyncio
 import socket
 
-from olive.server.server import OliveServer
+from olive.server.server import CovidServer
 from olive.types.peer_info import PeerInfo
 
 
-def start_reconnect_task(server: OliveServer, peer_info_arg: PeerInfo, log, auth: bool):
+def start_reconnect_task(server: CovidServer, peer_info_arg: PeerInfo, log, auth: bool):
     """
     Start a background task that checks connection and reconnects periodically to a peer.
     """

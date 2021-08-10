@@ -5,6 +5,7 @@ import type { RootState } from '../../../modules/rootReducer';
 import FarmCard from './FarmCard';
 import { mojo_to_olive } from '../../../util/olive';
 import useCurrencyCode from '../../../hooks/useCurrencyCode';
+import { FormatLargeNumber } from '@olive/core';
 
 export default function FarmCardBlockRewards() {
   const currencyCode = useCurrencyCode();
@@ -13,7 +14,8 @@ export default function FarmCardBlockRewards() {
   );
 
   const farmerRewardAmount = useSelector(
-    (state: RootState) => state.wallet_state.farmed_amount?.farmer_reward_amount,
+    (state: RootState) =>
+      state.wallet_state.farmed_amount?.farmer_reward_amount,
   );
 
   const poolRewardAmount = useSelector(
@@ -22,7 +24,9 @@ export default function FarmCardBlockRewards() {
 
   const blockRewards = useMemo(() => {
     if (farmerRewardAmount !== undefined && poolRewardAmount !== undefined) {
-      const val = BigInt(farmerRewardAmount.toString()) + BigInt(poolRewardAmount.toString());
+      const val =
+        BigInt(farmerRewardAmount.toString()) +
+        BigInt(poolRewardAmount.toString());
       return mojo_to_olive(val);
     }
   }, [farmerRewardAmount, poolRewardAmount]);
@@ -31,7 +35,7 @@ export default function FarmCardBlockRewards() {
     <FarmCard
       title={<Trans>{currencyCode} Block Rewards</Trans>}
       description={<Trans>Without fees</Trans>}
-      value={blockRewards}
+      value={<FormatLargeNumber value={blockRewards} />}
       loading={loading}
     />
   );

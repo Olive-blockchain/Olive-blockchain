@@ -22,6 +22,16 @@ class TesKeychain(unittest.TestCase):
         assert bytes_to_mnemonic(entropy) == mnemonic
         mnemonic_2 = generate_mnemonic()
 
+        # misspelled words in the mnemonic
+        bad_mnemonic = mnemonic.split(" ")
+        bad_mnemonic[6] = "ZZZZZZ"
+        self.assertRaisesRegex(
+            ValueError,
+            "'ZZZZZZ' is not in the mnemonic dictionary; may be misspelled",
+            bytes_from_mnemonic,
+            " ".join(bad_mnemonic),
+        )
+
         kc.add_private_key(mnemonic, "")
         assert kc._get_free_private_key_index() == 1
         assert len(kc.get_all_private_keys()) == 1
@@ -76,7 +86,7 @@ class TesKeychain(unittest.TestCase):
         print("entropy to seed:", mnemonic_to_seed(mnemonic, passphrase).hex())
         master_sk = kc.add_private_key(mnemonic, passphrase)
         tv_master_int = 5399117110774477986698372024995405256382522670366369834617409486544348441851
-        tv_child_int = 11812940737387919040225825939013910852517748782307378293770044673328955938106
+        tv_child_int = 11912940737387919040225825939013910852517748782307378293770044673328955938106
         assert master_sk == PrivateKey.from_bytes(tv_master_int.to_bytes(32, "big"))
         child_sk = AugSchemeMPL.derive_child_sk(master_sk, 0)
         assert child_sk == PrivateKey.from_bytes(tv_child_int.to_bytes(32, "big"))

@@ -11,6 +11,7 @@ from olive.cmds.show import show_cmd
 from olive.cmds.start import start_cmd
 from olive.cmds.stop import stop_cmd
 from olive.cmds.wallet import wallet_cmd
+from olive.cmds.plotnft import plotnft_cmd
 from olive.util.default_root import DEFAULT_ROOT_PATH
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
@@ -63,6 +64,7 @@ def run_daemon_cmd(ctx: click.Context) -> None:
 cli.add_command(keys_cmd)
 cli.add_command(plots_cmd)
 cli.add_command(wallet_cmd)
+cli.add_command(plotnft_cmd)
 cli.add_command(configure_cmd)
 cli.add_command(init_cmd)
 cli.add_command(show_cmd)

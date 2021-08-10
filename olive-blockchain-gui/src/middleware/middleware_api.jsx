@@ -14,7 +14,7 @@ import {
   get_connection_info,
   get_colour_info,
   get_colour_name,
-  did_get_recovery_list,
+  did_get_rexolery_list,
   did_get_did,
   pingWallet,
   get_farmed_amount,
@@ -42,9 +42,9 @@ import {
   getLatestChallenges,
   getFarmerConnections,
   pingFarmer,
+  getHarvesters,
 } from '../modules/farmerMessages';
 import {
-  getPlots,
   getPlotDirectories,
   pingHarvester,
   refreshPlots,
@@ -182,7 +182,7 @@ export function refreshAllState() {
     dispatch(getFullNodeConnections());
     dispatch(getLatestChallenges());
     dispatch(getFarmerConnections());
-    dispatch(getPlots());
+    dispatch(getHarvesters());
     dispatch(getPlotDirectories());
     dispatch(get_all_trades());
   };
@@ -217,10 +217,10 @@ export const handle_message = async (store, payload, errorProcessed) => {
       store.dispatch(getLatestChallenges());
       store.dispatch(getFarmerConnections());
     } else if (payload.origin === service_harvester) {
-      // get plots is working only when harcester is connected
+      // get plots is working only when harvester is connected
       const state = store.getState();
       if (!state.farming_state.harvester?.plots) {
-        store.dispatch(getPlots());
+        store.dispatch(getHarvesters());
       }
       if (!state.farming_state.harvester?.plot_directories) {
         store.dispatch(getPlotDirectories());
@@ -271,6 +271,22 @@ export const handle_message = async (store, payload, errorProcessed) => {
               </StyledTypographyDD>
             </Grid>
             <Grid item>
+              <Typography component="dt" variant="subtitle2">
+                <Trans>Farmer public key: </Trans>
+              </Typography>
+              <StyledTypographyDD component="dd" variant="body2">
+                {payload.data.private_key.farmer_pk}
+              </StyledTypographyDD>
+            </Grid>
+            <Grid item>
+              <Typography component="dt" variant="subtitle2">
+                <Trans>Pool public key: </Trans>
+              </Typography>
+              <StyledTypographyDD component="dd" variant="body2">
+                {payload.data.private_key.pool_pk}
+              </StyledTypographyDD>
+            </Grid>
+            <Grid item>
               {payload.data.private_key.seed ? (
                 <>
                   <Typography component="dt" variant="subtitle2">
@@ -293,7 +309,7 @@ export const handle_message = async (store, payload, errorProcessed) => {
   } else if (payload.command === 'delete_plot') {
     store.dispatch(refreshPlots());
   } else if (payload.command === 'refresh_plots') {
-    store.dispatch(getPlots());
+    store.dispatch(getHarvesters());
   } else if (payload.command === 'get_wallets') {
     if (payload.data.success) {
       const { wallets } = payload.data;
@@ -318,7 +334,7 @@ export const handle_message = async (store, payload, errorProcessed) => {
           store.dispatch(get_colour_info(wallet.id));
         }
         if (wallet.type === DISTRIBUTED_ID) {
-          store.dispatch(did_get_recovery_list(wallet.id));
+          store.dispatch(did_get_rexolery_list(wallet.id));
           store.dispatch(did_get_did(wallet.id));
         }
       }

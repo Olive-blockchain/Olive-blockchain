@@ -3,45 +3,46 @@
 $ErrorActionPreference = "Stop"
 
 mkdir build_scripts\win_build
-Set-Location -Path ".\build_scripts\win_build\" -PassThru
+Set-Location -Path ".\build_scripts\win_build" -PassThru
 
 git status
 
 Write-Output "   ---"
 Write-Output "curl miniupnpc"
 Write-Output "   ---"
-Invoke-WebRequest -Uri "https://pypi.chia.net/simple/miniupnpc/miniupnpc-2.1-cp37-cp37m-win_amd64.whl" -OutFile "miniupnpc-2.1-cp37-cp37m-win_amd64.whl"
-Write-Output "Using win_amd64 python 3.7 wheel from https://github.com/miniupnp/miniupnp/pull/475 (2.2.0-RC1)"
+Invoke-WebRequest -Uri "https://pypi.chia.net/simple/miniupnpc/miniupnpc-2.2.2-cp39-cp39-win_amd64.whl" -OutFile "miniupnpc-2.2.2-cp39-cp39-win_amd64.whl"
+Write-Output "Using win_amd64 python 3.9 wheel from https://github.com/miniupnp/miniupnp/pull/475 (2.2.0-RC1)"
+Write-Output "Actual build from https://github.com/miniupnp/miniupnp/commit/7783ac1545f70e3341da5866069bde88244dd848"
 If ($LastExitCode -gt 0){
     Throw "Failed to download miniupnpc!"
 }
 else
 {
-    Set-Location -Path "..\..\" -PassThru
+    Set-Location -Path - -PassThru
     Write-Output "miniupnpc download successful."
 }
 
 Write-Output "   ---"
-Write-Output "Create venv - python3.7 or 3.8 is required in PATH"
+Write-Output "Create venv - python3.9 is required in PATH"
 Write-Output "   ---"
 python -m venv venv
 . .\venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 pip install wheel pep517
 pip install pywin32
-pip install pyinstaller==4.2
+pip install pyinstaller==4.5
 pip install setuptools_scm
 
 Write-Output "   ---"
-Write-Output "Get OLIVE_INSTALLER_VERSION"
-# The environment variable OLIVE_INSTALLER_VERSION needs to be defined
-$env:OLIVE_INSTALLER_VERSION = python .\build_scripts\installer-version.py -win
+Write-Output "Get COVID_INSTALLER_VERSION"
+# The environment variable COVID_INSTALLER_VERSION needs to be defined
+$env:COVID_INSTALLER_VERSION = python .\build_scripts\installer-version.py -win
 
-if (-not (Test-Path env:OLIVE_INSTALLER_VERSION)) {
-  $env:OLIVE_INSTALLER_VERSION = '0.0.0'
-  Write-Output "WARNING: No environment variable OLIVE_INSTALLER_VERSION set. Using 0.0.0"
+if (-not (Test-Path env:COVID_INSTALLER_VERSION)) {
+  $env:COVID_INSTALLER_VERSION = '0.0.0'
+  Write-Output "WARNING: No environment variable COVID_INSTALLER_VERSION set. Using 0.0.0"
   }
-Write-Output "Olive Version is: $env:OLIVE_INSTALLER_VERSION"
+Write-Output "Covid Version is: $env:COVID_INSTALLER_VERSION"
 Write-Output "   ---"
 
 Write-Output "   ---"
@@ -79,6 +80,7 @@ git status
 Write-Output "   ---"
 Write-Output "Prepare Electron packager"
 Write-Output "   ---"
+$Env:NODE_OPTIONS = "--max-old-space-size=3000"
 npm install --save-dev electron-winstaller
 npm install -g electron-packager
 npm install
@@ -100,14 +102,14 @@ Write-Output "Increase the stack for olive command for (olive plots create) chia
 editbin.exe /STACK:8000000 daemon\olive.exe
 Write-Output "   ---"
 
-$packageVersion = "$env:OLIVE_INSTALLER_VERSION"
-$packageName = "Olive-$packageVersion"
+$packageVersion = "$env:COVID_INSTALLER_VERSION"
+$packageName = "Covid-$packageVersion"
 
 Write-Output "packageName is $packageName"
 
 Write-Output "   ---"
 Write-Output "electron-packager"
-electron-packager . Olive --asar.unpack="**\daemon\**" --overwrite --icon=.\src\assets\img\olive.ico --app-version=$packageVersion
+electron-packager . Covid --asar.unpack="**\daemon\**" --overwrite --icon=.\src\assets\img\olive.ico --app-version=$packageVersion
 Write-Output "   ---"
 
 Write-Output "   ---"
@@ -121,8 +123,8 @@ If ($env:HAS_SECRET) {
    Write-Output "   ---"
    Write-Output "Add timestamp and verify signature"
    Write-Output "   ---"
-   signtool.exe timestamp /v /t http://timestamp.comodoca.com/ .\release-builds\windows-installer\OliveSetup-$packageVersion.exe
-   signtool.exe verify /v /pa .\release-builds\windows-installer\OliveSetup-$packageVersion.exe
+   signtool.exe timestamp /v /t http://timestamp.comodoca.com/ .\release-builds\windows-installer\CovidSetup-$packageVersion.exe
+   signtool.exe verify /v /pa .\release-builds\windows-installer\CovidSetup-$packageVersion.exe
    }   Else    {
    Write-Output "Skipping timestamp and verify signatures - no authorization to install certificates"
 }

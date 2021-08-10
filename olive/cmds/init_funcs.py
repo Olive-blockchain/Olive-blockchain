@@ -243,8 +243,13 @@ def init(create_certs: Optional[Path], root_path: Path):
             else:
                 print(f"** Directory {create_certs} does not exist **")
         else:
-            print(f"** {root_path} does not exist **")
-            print("** Please run `olive init` to migrate or create new config files **")
+            print(f"** {root_path} does not exist. Executing core init **")
+            # sanity check here to prevent infinite recursion
+            if olive_init(root_path) == 0 and root_path.exists():
+                return init(create_certs, root_path)
+
+            print(f"** {root_path} was not created. Exiting **")
+            return -1
     else:
         return olive_init(root_path)
 
@@ -309,16 +314,16 @@ def olive_full_version_str() -> str:
 
 
 def olive_init(root_path: Path):
-    if os.environ.get("OLIVE_ROOT", None) is not None:
+    if os.environ.get("COVID_ROOT", None) is not None:
         print(
-            f"warning, your OLIVE_ROOT is set to {os.environ['OLIVE_ROOT']}. "
+            f"warning, your COVID_ROOT is set to {os.environ['COVID_ROOT']}. "
             f"Please unset the environment variable and run olive init again\n"
             f"or manually migrate config.yaml"
         )
 
-    print(f"Olive directory {root_path}")
+    print(f"Covid directory {root_path}")
     if root_path.is_dir() and Path(root_path / "config" / "config.yaml").exists():
-        # This is reached if OLIVE_ROOT is set, or if user has run olive init twice
+        # This is reached if COVID_ROOT is set, or if user has run olive init twice
         # before a new update.
         check_keys(root_path)
         print(f"{root_path} already exists, no migration action taken")

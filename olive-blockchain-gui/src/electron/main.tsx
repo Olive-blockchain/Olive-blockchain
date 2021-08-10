@@ -195,8 +195,7 @@ if (!handleSquirrelEvent()) {
             title: i18n._(/* i18n */ { id: 'Confirm' }),
             message: i18n._(
               /* i18n */ {
-                id:
-                  'Are you sure you want to quit? GUI Plotting and farming will stop.',
+                id: 'Are you sure you want to quit? GUI Plotting and farming will stop.',
               },
             ),
           });
@@ -224,7 +223,7 @@ if (!handleSquirrelEvent()) {
       app.applicationMenu = createMenu();
       // if the daemon isn't local we aren't going to try to start/stop it
       if (oliveConfig.manageDaemonLifetime()) {
-        oliveEnvironment.startOliveDaemon();
+        oliveEnvironment.startCovidDaemon();
       }
     };
 
@@ -356,10 +355,10 @@ if (!handleSquirrelEvent()) {
         role: 'help',
         submenu: [
           {
-            label: i18n._(/* i18n */ { id: 'Olive Blockchain Wiki' }),
+            label: i18n._(/* i18n */ { id: 'Covid Blockchain Wiki' }),
             click: () => {
               openExternal(
-                'https://github.com/Olive-Network/olive-blockchain/wiki',
+                'https://github.com/pinksheetscrypto/olive-blockchain/wiki',
               );
             },
           },
@@ -367,7 +366,7 @@ if (!handleSquirrelEvent()) {
             label: i18n._(/* i18n */ { id: 'Frequently Asked Questions' }),
             click: () => {
               openExternal(
-                'https://github.com/Olive-Network/olive-blockchain/wiki/FAQ',
+                'https://github.com/pinksheetscrypto/olive-blockchain/wiki/FAQ',
               );
             },
           },
@@ -375,7 +374,7 @@ if (!handleSquirrelEvent()) {
             label: i18n._(/* i18n */ { id: 'Release Notes' }),
             click: () => {
               openExternal(
-                'https://github.com/Olive-Network/olive-blockchain/releases',
+                'https://github.com/pinksheetscrypto/olive-blockchain/releases',
               );
             },
           },
@@ -383,7 +382,7 @@ if (!handleSquirrelEvent()) {
             label: i18n._(/* i18n */ { id: 'Contribute on GitHub' }),
             click: () => {
               openExternal(
-                'https://github.com/Olive-Network/olive-blockchain/blob/master/CONTRIBUTING.md',
+                'https://github.com/pinksheetscrypto/olive-blockchain/blob/master/CONTRIBUTING.md',
               );
             },
           },
@@ -394,20 +393,20 @@ if (!handleSquirrelEvent()) {
             label: i18n._(/* i18n */ { id: 'Report an Issue...' }),
             click: () => {
               openExternal(
-                'https://github.com/Olive-Network/olive-blockchain/issues',
+                'https://github.com/pinksheetscrypto/olive-blockchain/issues',
               );
             },
           },
           {
-            label: i18n._(/* i18n */ { id: 'Chat on Discord' }),
+            label: i18n._(/* i18n */ { id: 'Chat on KeyBase' }),
             click: () => {
-              openExternal('https://discord.gg/cSrV78ye');
+              openExternal('https://keybase.io/team/olive_network.public');
             },
           },
           {
             label: i18n._(/* i18n */ { id: 'Follow on Twitter' }),
             click: () => {
-              openExternal('https://twitter.com/olivecrypto1');
+              openExternal('https://twitter.com/olive_project');
             },
           },
         ],
@@ -415,12 +414,12 @@ if (!handleSquirrelEvent()) {
     ];
 
     if (process.platform === 'darwin') {
-      // Olive Blockchain menu (Mac)
+      // Covid Blockchain menu (Mac)
       template.unshift({
-        label: i18n._(/* i18n */ { id: 'Olive' }),
+        label: i18n._(/* i18n */ { id: 'Covid' }),
         submenu: [
           {
-            label: i18n._(/* i18n */ { id: 'About Olive Blockchain' }),
+            label: i18n._(/* i18n */ { id: 'About Covid Blockchain' }),
             click: () => {
               openAbout();
             },
@@ -507,7 +506,7 @@ if (!handleSquirrelEvent()) {
           type: 'separator',
         },
         {
-          label: i18n._(/* i18n */ { id: 'About Olive Blockchain' }),
+          label: i18n._(/* i18n */ { id: 'About Covid Blockchain' }),
           click() {
             openAbout();
           },

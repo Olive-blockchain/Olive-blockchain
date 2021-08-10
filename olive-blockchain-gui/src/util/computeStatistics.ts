@@ -2,10 +2,9 @@ import Big from 'big.js';
 import TransactionType from '../constants/TransactionType';
 import type Wallet from '../types/Wallet';
 
-export default function computeStatistics(
-  wallets: Wallet[],
-): {
-  totalOliveFarmed: Big;
+// deprecated
+export default function computeStatistics(wallets: Wallet[]): {
+  totalCovidFarmed: Big;
   biggestHeight: number;
   biggestRewardHeight: number;
   poolCoins: Big;
@@ -56,7 +55,7 @@ export default function computeStatistics(
     });
   });
 
-  const totalOliveFarmed = poolCoins.plus(farmerCoins);
+  const totalCovidFarmed = poolCoins.plus(farmerCoins);
   const totalBlockRewards = Big(poolCoins).times(8).div(7);
   const userTransactionFees = Big(farmerCoins).minus(
     Big(totalBlockRewards).div(8),
@@ -66,7 +65,7 @@ export default function computeStatistics(
     .minus(userTransactionFees);
 
   return {
-    totalOliveFarmed,
+    totalCovidFarmed,
     biggestHeight,
     biggestRewardHeight,
     poolCoins,
