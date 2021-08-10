@@ -11,9 +11,9 @@ network_overrides: &network_overrides
   constants:
     mainnet:
       NETWORK_TYPE: 0
-      GENESIS_CHALLENGE: 4adf0fe70cfbd24286695e105624a92e44c083eca84ee2906106e51566f5ae4d
-      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: "642e4098cd8dd161741868060bd8f0eabab8dcbe6e984c5a2c4bb00a69cc96d2"
-      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: "642e4098cd8dd161741868060bd8f0eabab8dcbe6e984c5a2c4bb00a69cc96d2"
+      GENESIS_CHALLENGE: c4f786df139502927bbb2c168ebee11ace05a8a5610026d724488fbf9b9280ce
+      GENESIS_PRE_FARM_POOL_PUZZLE_HASH: "204501a855259d130eabfc36adb105e8aa7ed4f9888e42fb2857f31b89d254e6"
+      GENESIS_PRE_FARM_FARMER_PUZZLE_HASH: "204501a855259d130eabfc36adb105e8aa7ed4f9888e42fb2857f31b89d254e6"
     testnet0:
       GENESIS_CHALLENGE: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
       NETWORK_TYPE: 1
@@ -192,7 +192,7 @@ full_node:
 
   # If True, starts an RPC server at the following port
   start_rpc_server: True
-  rpc_port: 6355
+  rpc_port: 7355
 
   # Use UPnP to attempt to allow other full nodes to reach your node behind a gateway
   enable_upnp: True
@@ -265,7 +265,7 @@ ui:
   port: 6337
 
   # Which port to use to communicate with the full node
-  rpc_port: 6355
+  rpc_port: 7355
 
   # This SSH key is for the ui SSH server
   ssh_filename: config/ssh_host_key
