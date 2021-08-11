@@ -1,4 +1,4 @@
-from olive.util.ints import uint64
+from flax.util.ints import uint64
 
 from .constants import ConsensusConstants
 
@@ -10,8 +10,8 @@ testnet_kwargs = {
     "SUB_SLOT_ITERS_STARTING": 2 ** 27,
     # DIFFICULTY_STARTING is the starting difficulty for the first epoch, which is then further
     # multiplied by another factor of DIFFICULTY_CONSTANT_FACTOR, to be used in the VDF iter calculation formula.
-    "DIFFICULTY_CONSTANT_FACTOR": 2 ** 64,
-    "DIFFICULTY_STARTING": 12,
+    "DIFFICULTY_CONSTANT_FACTOR": 2 ** 57,
+    "DIFFICULTY_STARTING": 7,
     "DIFFICULTY_CHANGE_MAX_FACTOR": 3,  # The next difficulty is truncated to range [prev / FACTOR, prev * FACTOR]
     # These 3 constants must be changed at the same time
     "SUB_EPOCH_BLOCKS": 384,  # The number of blocks per sub-epoch, mainnet 384
@@ -28,14 +28,14 @@ testnet_kwargs = {
     # Used as the initial cc rc challenges, as well as first block back pointers, and first SES back pointer
     # We override this value based on the chain being run (testnet0, testnet1, mainnet, etc)
     # Default used for tests is std_hash(b'')
-    "GENESIS_CHALLENGE": bytes.fromhex("c7e84e1f4f1bf4a4aa79b461957baf1fe02d5b9f3be7201230b91df728d20430"),
-    # Forks of olive should change this value to provide replay attack protection. This is set to mainnet genesis chall
-    "AGG_SIG_ME_ADDITIONAL_DATA": bytes.fromhex("11d8513356cee3cd17832ecfcb3ad6a3cea24971f6b6f9699e0dfa1e090a8cf0"),
+    "GENESIS_CHALLENGE": bytes.fromhex("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"),
+    # Forks of flax should change this value to provide replay attack protection. This is set to mainnet genesis chall
+    "AGG_SIG_ME_ADDITIONAL_DATA": bytes.fromhex("9b9ffca948750d8b41ac755da213461e9d2253ec7bfce80695d78f7fe7d55112"),
     "GENESIS_PRE_FARM_POOL_PUZZLE_HASH": bytes.fromhex(
-        "210836d3c99ecbe716647dcee23c4b124ccbc7881007014d490c7e31ff613af2"
+        "e8e245e2e6536e17fd7cbc2e3bd90de06f55362ee3c84cea5a68391e5bad7ef6"
     ),
     "GENESIS_PRE_FARM_FARMER_PUZZLE_HASH": bytes.fromhex(
-        "210836d3c99ecbe716647dcee23c4b124ccbc7881007014d490c7e31ff613af2"
+        "e8e245e2e6536e17fd7cbc2e3bd90de06f55362ee3c84cea5a68391e5bad7ef6"
     ),
     "MAX_VDF_WITNESS_SIZE": 64,
     # Size of mempool = 50x the size of block
@@ -50,6 +50,7 @@ testnet_kwargs = {
     "BLOCKS_CACHE_SIZE": 4608 + (128 * 4),
     "WEIGHT_PROOF_RECENT_BLOCKS": 1000,
     "MAX_BLOCK_COUNT_PER_REQUESTS": 32,  # Allow up to 32 blocks per request
+    "INITIAL_FREEZE_END_TIMESTAMP": 0,
     "NETWORK_TYPE": 0,
     "MAX_GENERATOR_SIZE": 1000000,
     "MAX_GENERATOR_REF_LIST_SIZE": 512,  # Number of references allowed in the block generator ref list

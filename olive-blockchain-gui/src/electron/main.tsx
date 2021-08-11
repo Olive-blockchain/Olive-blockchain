@@ -358,7 +358,7 @@ if (!handleSquirrelEvent()) {
             label: i18n._(/* i18n */ { id: 'Olive Blockchain Wiki' }),
             click: () => {
               openExternal(
-                'https://github.com/pinksheetscrypto/olive-blockchain/wiki',
+                'https://github.com/Olive-Network/olive-blockchain/wiki',
               );
             },
           },
@@ -366,7 +366,7 @@ if (!handleSquirrelEvent()) {
             label: i18n._(/* i18n */ { id: 'Frequently Asked Questions' }),
             click: () => {
               openExternal(
-                'https://github.com/pinksheetscrypto/olive-blockchain/wiki/FAQ',
+                'https://github.com/Olive-Network/olive-blockchain/wiki/FAQ',
               );
             },
           },
@@ -374,7 +374,7 @@ if (!handleSquirrelEvent()) {
             label: i18n._(/* i18n */ { id: 'Release Notes' }),
             click: () => {
               openExternal(
-                'https://github.com/pinksheetscrypto/olive-blockchain/releases',
+                'https://github.com/Olive-Network/olive-blockchain/releases',
               );
             },
           },
@@ -382,7 +382,7 @@ if (!handleSquirrelEvent()) {
             label: i18n._(/* i18n */ { id: 'Contribute on GitHub' }),
             click: () => {
               openExternal(
-                'https://github.com/pinksheetscrypto/olive-blockchain/blob/master/CONTRIBUTING.md',
+                'https://github.com/Olive-Network/olive-blockchain/blob/master/CONTRIBUTING.md',
               );
             },
           },
@@ -393,14 +393,14 @@ if (!handleSquirrelEvent()) {
             label: i18n._(/* i18n */ { id: 'Report an Issue...' }),
             click: () => {
               openExternal(
-                'https://github.com/pinksheetscrypto/olive-blockchain/issues',
+                'https://github.com/Olive-Network/olive-blockchain/issues',
               );
             },
           },
           {
-            label: i18n._(/* i18n */ { id: 'Chat on KeyBase' }),
+            label: i18n._(/* i18n */ { id: 'Chat on Discord' }),
             click: () => {
-              openExternal('https://keybase.io/team/olive_network.public');
+              openExternal('https://discord.gg/TgJyxsEFFc');
             },
           },
           {

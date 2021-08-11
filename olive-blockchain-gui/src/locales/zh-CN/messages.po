@@ -8,14 +8,14 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: olive-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-07-26 15:12\n"
+"PO-Revision-Date: 2021-07-17 00:01\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: olive-blockchain\n"
 "X-Crowdin-Project-ID: 440660\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /[pinksheetscrypto.olive-blockchain-gui] main/src/locales/en-US/messages.po\n"
+"X-Crowdin-File: /[Olive-Network.olive-blockchain-gui] main/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 118\n"
 
 #: src/components/plot/add/PlotAddNFT.tsx:62
@@ -24,7 +24,7 @@ msgstr "（可选）"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:64
 msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
-msgstr "* 想要进一步了解奇亚？来看看一位开源开发者创建的 <0>奇亚区块浏览器</0>。"
+msgstr "* 想要进一步了解Olive？来看看一位开源开发者创建的 <0>Olive区块浏览器</0>。"
 
 #: src/components/plot/add/PlotAddNFT.tsx:123
 msgid "+ Add New Plot NFT"
@@ -45,7 +45,7 @@ msgstr "收割机是一个在存有农田文件的机器上运行的服务。农
 #: src/electron/main.tsx:422
 #: src/electron/main.tsx:509
 msgid "About Olive Blockchain"
-msgstr "关于奇亚Olive区块链项目"
+msgstr "关于OliveOlive区块链项目"
 
 #: src/components/trading/ViewOffer.jsx:74
 msgid "Accept"
@@ -140,7 +140,7 @@ msgstr "初始币数量"
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
-msgid "Are you sure you want to delete the plot? The plot cannot be rexolered."
+msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "你确定要删除这个农田吗？删除后将不可恢复。"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:125
@@ -217,7 +217,7 @@ msgstr "区块可验证延迟函数迭代"
 
 #: src/components/block/Block.jsx:336
 msgid "Block at height {0} in the Olive blockchain"
-msgstr "奇亚区块链上高度为 {0} 的区块"
+msgstr "Olive区块链上高度为 {0} 的区块"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
@@ -306,20 +306,20 @@ msgid "Change Pool"
 msgstr "更换农业合作社"
 
 #: src/electron/main.tsx:401
-msgid "Chat on KeyBase"
-msgstr "在Keybase上参与讨论"
+msgid "Chat on Discord"
+msgstr "在Discord上参与讨论"
 
 #: src/electron/main.tsx:419
 msgid "Olive"
-msgstr "奇亚"
+msgstr "Olive"
 
 #: src/electron/main.tsx:358
 msgid "Olive Blockchain Wiki"
-msgstr "奇亚区块链项目维基"
+msgstr "Olive区块链项目维基"
 
 #: src/components/wallet/standard/WalletStandard.tsx:647
 msgid "Olive Wallet"
-msgstr "奇亚钱包"
+msgstr "Olive钱包"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:36
 msgid "Choose Number of Plots"
@@ -678,7 +678,7 @@ msgid "Does your machine support parallel plotting?"
 msgstr "您的机器是否支持并行开垦？"
 
 #: src/components/trading/ViewOffer.jsx:39
-#: src/components/wallet/create/rexolerDIDWallet.js:294
+#: src/components/wallet/create/recoverDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr "拖放报价文件"
 
@@ -694,11 +694,11 @@ msgstr "编辑"
 #: src/components/plotNFT/PlotNFTCard.tsx:301
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:76
 msgid "Edit Payout Instructions"
-msgstr "编辑支付指令"
+msgstr ""
 
 #: src/components/wallet/WalletImport.tsx:147
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Olive wallet."
-msgstr "请输入你保存的24个助记词来恢复奇亚钱包"
+msgstr "请输入你保存的24个助记词来恢复Olive钱包"
 
 #: src/components/farm/FarmerStatus.tsx:21
 #: src/components/farm/FarmerStatus.tsx:22
@@ -712,7 +712,7 @@ msgstr "错误"
 
 #: src/components/wallet/standard/WalletStandard.tsx:456
 msgid "Error: Cannot send olive to coloured address. Please enter a olive address."
-msgstr "错误：无法发送奇亚到染色地址。请输入奇亚钱包地址。"
+msgstr "错误：无法发送Olive到染色地址。请输入Olive钱包地址。"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:20
 msgid "Estimated Network Space"
@@ -822,7 +822,7 @@ msgid "Fee"
 msgstr "费用"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
-#~ msgid "Fee (TXCH)"
+#~ msgid "Fee (TXOL)"
 #~ msgstr ""
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
@@ -1026,16 +1026,16 @@ msgid "Join a Pool"
 msgstr "加入农业合作社"
 
 #: src/components/plot/add/PlotAddNFT.tsx:44
-msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-msgstr "加入农业合作社来获得持续的XCH耕种收益。平均回报是相同的，但是收益会更加稳定。"
+msgid "Join a pool and get consistent XOL farming rewards. The average returns are the same, but it is much less volatile."
+msgstr "加入农业合作社来获得持续的XOL耕种收益。平均回报是相同的，但是收益会更加稳定。"
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:59
-msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
-msgstr "加入农业合作社来获得持续的XCH耕种收益。平均回报是相同的，但是收益会更加稳定。为已开垦的农田分配农田NFT。你可以轻松切换耕种池，而不比重新开垦现有农田。"
+msgid "Join a pool and get consistent XOL farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
+msgstr "加入农业合作社来获得持续的XOL耕种收益。平均回报是相同的，但是收益会更加稳定。为已开垦的农田分配农田NFT。你可以轻松切换耕种池，而不比重新开垦现有农田。"
 
 #: src/components/plot/add/PlotAddNFT.tsx:133
-msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
-msgstr "加入农业合作社来获得持续的XCH耕种收益。创建一个农田NFT，然后将新农田分配到组。"
+msgid "Join a pool and get more consistent XOL farming rewards. Create a plot NFT and assign your new plots to a group."
+msgstr "加入农业合作社来获得持续的XOL耕种收益。创建一个农田NFT，然后将新农田分配到组。"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:63
 msgid "K-Size"
@@ -1133,7 +1133,7 @@ msgstr "正在登录"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:334
-#~ msgid "MainWalletList.rexolerDIDWallet"
+#~ msgid "MainWalletList.recoverDIDWallet"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:112
@@ -1269,8 +1269,8 @@ msgid "Not found Plots"
 msgstr "未找到农田"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:184
-msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
-msgstr "请注意，这将不会改变你的合作社耕作支付地址。这只会影响旧农田文件，以及0.25XCH的合作社耕作奖励。"
+msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XOL reward for pooling plots."
+msgstr "请注意，这将不会改变你的合作社耕作支付地址。这只会影响旧农田文件，以及0.25XOL的合作社耕作奖励。"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:118
 #: src/components/plotNFT/PlotNFTCard.tsx:160
@@ -1492,7 +1492,7 @@ msgstr "通过初筛的农田"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:35
 msgid "Plots are allocated space on your hard drive used to farm and earn Olive. <0>Learn more</0>"
-msgstr "农田就是在你的硬盘上分配的一块空间，用来收获奇亚币。<0>了解更多</0>"
+msgstr "农田就是在你的硬盘上分配的一块空间，用来收获Olive。<0>了解更多</0>"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
 msgid "Plotting"
@@ -1713,7 +1713,7 @@ msgid "Receive Address"
 msgstr "接收地址"
 
 #: src/components/wallet/create/WalletCreate.jsx:282
-msgid "Rexoler DID wallet"
+msgid "Recover DID wallet"
 msgstr "恢复DID钱包"
 
 #: src/components/plot/PlotHeader.tsx:78
@@ -1840,8 +1840,8 @@ msgid "Self Pooling"
 msgstr "自耕种"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:105
-msgid "Self pool. When you win a block you will earn XCH rewards."
-msgstr "自耕种。一旦发现新区块，你将得到全部XCH区块奖励。"
+msgid "Self pool. When you win a block you will earn XOL rewards."
+msgstr "自耕种。一旦发现新区块，你将得到全部XOL区块奖励。"
 
 #: src/components/trading/CreateOffer.jsx:164
 #: src/components/trading/TradesTable.tsx:47
@@ -1893,8 +1893,8 @@ msgid "Skips adding a final directory to harvester for farming"
 msgstr "勾选此项，将不会自动把最终目录添加到收割机进行耕种"
 
 #: src/components/pool/PoolHero.tsx:26
-msgid "Smooth out your XCH farming rewards by joining a pool."
-msgstr "加入农业合作社来稳定XCH耕作收益。"
+msgid "Smooth out your XOL farming rewards by joining a pool."
+msgstr "加入农业合作社来稳定XOL耕作收益。"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:60
 msgid "Something went wrong"
@@ -1930,7 +1930,7 @@ msgstr "支出迭代长度(区块数)"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:401
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:448
 msgid "Spending Limit (olive per interval): {0}"
-msgstr "消费限额（单位时间可消费的奇亚币）：{0}"
+msgstr "消费限额（单位时间可消费的Olive）：{0}"
 
 #: src/components/fullNode/FullNode.jsx:100
 msgid "State"
@@ -2006,23 +2006,23 @@ msgstr "正在同步 <0/> / <1/>"
 #~ msgstr "Syncing {progress}/{tip}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
-#~ msgid "TXCH Block Rewards"
+#~ msgid "TXOL Block Rewards"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardCoinbaseRewards.tsx:12
-#~ msgid "TXCH Farming Rewards"
+#~ msgid "TXOL Farming Rewards"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardFeesReward.tsx:12
-#~ msgid "TXCH Fees Collected"
+#~ msgid "TXOL Fees Collected"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardUserFees.tsx:12
-#~ msgid "TXCH User Fees"
-#~ msgstr "TXCH User Fees"
+#~ msgid "TXOL User Fees"
+#~ msgstr "TXOL User Fees"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:15
-#~ msgid "TXCH User Transaction Fees"
+#~ msgid "TXOL User Transaction Fees"
 #~ msgstr ""
 
 #: src/components/pool/PoolInfo.tsx:37
@@ -2099,8 +2099,8 @@ msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "本区块上奖励给农民的全部交易费用。"
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:102
-msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
-msgstr "这是农民耕种奖励的支付方式。默认情况下，这将是一个XCH钱包地址，但是你可以设置任意长度小于1024的字符串，也就是说，你可以指定其它区块链或者支付系统标识。"
+msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XOL address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
+msgstr "这是农民耕种奖励的支付方式。默认情况下，这将是一个XOL钱包地址，但是你可以设置任意长度小于1024的字符串，也就是说，你可以指定其它区块链或者支付系统标识。"
 
 #: src/components/plot/PlotsFailed.tsx:40
 msgid "These plots are invalid, you might want to delete them."
@@ -2123,7 +2123,7 @@ msgstr "此功能只在图形界面中提供。"
 
 #: src/components/wallet/card/WalletCardSpendableBalance.tsx:26
 msgid "This is the amount of Olive that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Olive that you have just spent but is not yet in the blockchain."
-msgstr "这是你目前可以交易的奇亚币数额。该数额不包含处理中的农场奖励、收入交易，以及未经区块链确认的支付交易。"
+msgstr "这是你目前可以交易的Olive数额。该数额不包含处理中的农场奖励、收入交易，以及未经区块链确认的支付交易。"
 
 #: src/components/wallet/card/WalletCardPendingChange.tsx:26
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
@@ -2143,7 +2143,7 @@ msgstr "此时间是该区块被农民创建的时间，因此，此时间会早
 
 #: src/components/wallet/card/WalletCardTotalBalance.tsx:34
 msgid "This is the total amount of olive in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
-msgstr "这里是你的私钥所控制的, 到目前最新子块高度为止的全部奇亚数. 包含被冻结的耕种奖励, 但不包含待处理的收入与支出."
+msgstr "这里是你的私钥所控制的, 到目前最新子块高度为止的全部Olive数. 包含被冻结的耕种奖励, 但不包含待处理的收入与支出."
 
 #: src/components/wallet/card/WalletCardPendingTotalBalance.tsx:29
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
@@ -2189,7 +2189,7 @@ msgstr "该交易在链上的区块高度"
 
 #: src/components/app/AppTimeBombAlert.tsx:19
 msgid "This version of Olive is no longer compatible with the blockchain and can not safely farm."
-msgstr "此版本的奇亚客户端与区块链已经不再兼容，无法安全地种植。"
+msgstr "此版本的Olive客户端与区块链已经不再兼容，无法安全地种植。"
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Time Created"
@@ -2424,7 +2424,7 @@ msgstr "想要加入农业合作社？创建一个农田NFT"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:139
 msgid "Want to earn more Olive? Add more plots to your farm."
-msgstr "想要获得更多奇亚币？ 给你的农场多开垦一些农田吧。"
+msgstr "想要获得更多Olive？ 给你的农场多开垦一些农田吧。"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:86
 msgid "Want to have a delay before the next plot starts?"
@@ -2452,11 +2452,11 @@ msgstr "权重是施加给所有子块包括目前这块的额外的困难度."
 
 #: src/components/selectKey/SelectKey.tsx:141
 msgid "Welcome to Olive. Please log in with an existing key, or create a new key."
-msgstr "欢迎来到奇亚。请用已有的密钥登录，或者创建一个新的密钥。"
+msgstr "欢迎来到Olive。请用已有的密钥登录，或者创建一个新的密钥。"
 
 #: src/components/wallet/WalletAdd.tsx:66
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
-msgstr "欢迎使用奇亚! 下面的词语列表是你的钱包密语, 请务必严格完整的把它们记下来(保持顺序). 没有这段密语的话, 你就没办法找回钱包里的币. 千万也不要透露给别人."
+msgstr "欢迎使用Olive! 下面的词语列表是你的钱包密语, 请务必严格完整的把它们记下来(保持顺序). 没有这段密语的话, 你就没办法找回钱包里的币. 千万也不要透露给别人."
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:316
 msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
@@ -2612,7 +2612,7 @@ msgstr "{currencyCode} 区块奖励"
 
 #: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:29
 msgid "{currencyCode} Total Olive Farmed"
-msgstr "{currencyCode} 收获的奇亚币总计"
+msgstr "{currencyCode} 收获的Olive总计"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:28
 msgid "{currencyCode} User Transaction Fees"
@@ -2621,3 +2621,4 @@ msgstr "{currencyCode} 用户交易费用"
 #: src/components/core/components/Amount/Amount.tsx:80
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr "{mojo, plural, one {mojo} other {mojos}}"
+

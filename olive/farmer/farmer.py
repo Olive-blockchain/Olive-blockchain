@@ -105,7 +105,6 @@ class Farmer:
         # A dictionary of keys to time added. These keys refer to keys in the above 4 dictionaries. This is used
         # to periodically clear the memory
         self.cache_add_time: Dict[bytes32, uint64] = {}
-        self.lastChannageTime = 0
 
         self.cache_clear_task: asyncio.Task
         self.update_pool_state_task: asyncio.Task
@@ -196,7 +195,7 @@ class Farmer:
         )
 
     def on_disconnect(self, connection: ws.WSOliveConnection):
-        #self.log.info(f"peer disconnected {connection.get_peer_info()}")
+        self.log.info(f"peer disconnected {connection.get_peer_info()}")
         self.state_changed("close_connection", {})
 
     async def _pool_get_pool_info(self, pool_config: PoolWalletConfig) -> Optional[Dict]:
@@ -450,7 +449,7 @@ class Farmer:
                                 #     self.log.info(
                                 #         f"Farmer information successfully updated on the pool {pool_config.pool_url}"
                                 #     )
-                                # TODO: Fix Streamable implementation and rexoler the above.
+                                # TODO: Fix Streamable implementation and recover the above.
                                 if put_farmer_response_dict["payout_instructions"]:
                                     self.log.info(
                                         f"Farmer information successfully updated on the pool {pool_config.pool_url}"

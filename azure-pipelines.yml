@@ -109,7 +109,7 @@ steps:
       export AWS_ACCESS_KEY_ID=$(AccessKey)
       export AWS_SECRET_ACCESS_KEY=$(SecretKey)
       export AWS_DEFAULT_REGION=us-west-2
-      aws s3 cp $(System.DefaultWorkingDirectory)/build_scripts/final_installer/*.dmg s3://download-olive-net/builds/
+      aws s3 cp $(System.DefaultWorkingDirectory)/build_scripts/final_installer/*.dmg s3://download-olivenetwork-org/builds/
     displayName: "Upload to S3"
 
   - bash: |
@@ -128,9 +128,9 @@ steps:
       export AWS_DEFAULT_REGION=us-west-2
       cd $(System.DefaultWorkingDirectory)/build_scripts/
       export OLIVE_VERSION="Olive-"$(<version.txt)
-      aws s3 cp $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$OLIVE_VERSION.dmg s3://download-olive-net/install/
-      aws s3 cp $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$OLIVE_VERSION.dmg.sha256 s3://download-olive-net/install/
-      aws s3 cp $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$OLIVE_VERSION.dmg.torrent s3://download-olive-net/torrents/
+      aws s3 cp $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$OLIVE_VERSION.dmg s3://download-olivenetwork-org/install/
+      aws s3 cp $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$OLIVE_VERSION.dmg.sha256 s3://download-olivenetwork-org/install/
+      aws s3 cp $(System.DefaultWorkingDirectory)/build_scripts/final_installer/$OLIVE_VERSION.dmg.torrent s3://download-olivenetwork-org/torrents/
     displayName: "Upload Release Files"
     condition: and(succeeded(), contains(variables['build.sourceBranch'], 'refs/tags/'))
 

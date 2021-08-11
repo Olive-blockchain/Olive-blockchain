@@ -8,14 +8,14 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: olive-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-07-26 15:12\n"
+"PO-Revision-Date: 2021-07-17 13:17\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: olive-blockchain\n"
 "X-Crowdin-Project-ID: 440660\n"
 "X-Crowdin-Language: ja\n"
-"X-Crowdin-File: /[pinksheetscrypto.olive-blockchain-gui] main/src/locales/en-US/messages.po\n"
+"X-Crowdin-File: /[Olive-Network.olive-blockchain-gui] main/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 118\n"
 
 #: src/components/plot/add/PlotAddNFT.tsx:62
@@ -24,7 +24,7 @@ msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:64
 msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
-msgstr "*チアのブロックをさらに調べたいですか？オープンソース開発者に提供していただいた <0>Olive Explorer</0> を是非ご覧ください。"
+msgstr "*Oliveのブロックをさらに調べたいですか？オープンソース開発者に提供していただいた <0>Olive Explorer</0> を是非ご覧ください。"
 
 #: src/components/plot/add/PlotAddNFT.tsx:123
 msgid "+ Add New Plot NFT"
@@ -45,7 +45,7 @@ msgstr "収穫機は耕地が実際に保存されているデバイス上に走
 #: src/electron/main.tsx:422
 #: src/electron/main.tsx:509
 msgid "About Olive Blockchain"
-msgstr "チアブロックチェーンについて"
+msgstr "Oliveブロックチェーンについて"
 
 #: src/components/trading/ViewOffer.jsx:74
 msgid "Accept"
@@ -140,7 +140,7 @@ msgstr "最初にコインに充てる金額"
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
-msgid "Are you sure you want to delete the plot? The plot cannot be rexolered."
+msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "本当にこの耕地を削除しますか？耕地は削除すると復元できません。"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:125
@@ -217,7 +217,7 @@ msgstr "ブロック VDF 評価回数"
 
 #: src/components/block/Block.jsx:336
 msgid "Block at height {0} in the Olive blockchain"
-msgstr "チアブロックチェーン内の高さ {0} のブロック"
+msgstr "Oliveブロックチェーン内の高さ {0} のブロック"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
@@ -306,20 +306,20 @@ msgid "Change Pool"
 msgstr ""
 
 #: src/electron/main.tsx:401
-msgid "Chat on KeyBase"
-msgstr "Keybase でチャット"
+msgid "Chat on Discord"
+msgstr "Discord でチャット"
 
 #: src/electron/main.tsx:419
 msgid "Olive"
-msgstr "チア"
+msgstr "Olive"
 
 #: src/electron/main.tsx:358
 msgid "Olive Blockchain Wiki"
-msgstr "チアブロックチェーンの Wiki"
+msgstr "Oliveブロックチェーンの Wiki"
 
 #: src/components/wallet/standard/WalletStandard.tsx:647
 msgid "Olive Wallet"
-msgstr "チアウォレット"
+msgstr "Oliveウォレット"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:36
 msgid "Choose Number of Plots"
@@ -678,7 +678,7 @@ msgid "Does your machine support parallel plotting?"
 msgstr "お使いのデバイスは並列で耕せますか？"
 
 #: src/components/trading/ViewOffer.jsx:39
-#: src/components/wallet/create/rexolerDIDWallet.js:294
+#: src/components/wallet/create/recoverDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr "注文ファイルをここにドラッグ&ドロップ"
 
@@ -694,11 +694,11 @@ msgstr "編集"
 #: src/components/plotNFT/PlotNFTCard.tsx:301
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:76
 msgid "Edit Payout Instructions"
-msgstr "支払い指示を編集"
+msgstr ""
 
 #: src/components/wallet/WalletImport.tsx:147
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Olive wallet."
-msgstr "チアウォレットを復元するには、24語の合言葉を入力してください。"
+msgstr "Oliveウォレットを復元するには、24語の合言葉を入力してください。"
 
 #: src/components/farm/FarmerStatus.tsx:21
 #: src/components/farm/FarmerStatus.tsx:22
@@ -712,7 +712,7 @@ msgstr "エラー"
 
 #: src/components/wallet/standard/WalletStandard.tsx:456
 msgid "Error: Cannot send olive to coloured address. Please enter a olive address."
-msgstr "エラー: チアは色付きのアドレスには送れません。チアのアドレスを入力してください。"
+msgstr "エラー: Oliveは色付きのアドレスには送れません。Oliveのアドレスを入力してください。"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:20
 msgid "Estimated Network Space"
@@ -822,7 +822,7 @@ msgid "Fee"
 msgstr "手数料"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
-#~ msgid "Fee (TXCH)"
+#~ msgid "Fee (TXOL)"
 #~ msgstr ""
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
@@ -1026,15 +1026,15 @@ msgid "Join a Pool"
 msgstr ""
 
 #: src/components/plot/add/PlotAddNFT.tsx:44
-msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
+msgid "Join a pool and get consistent XOL farming rewards. The average returns are the same, but it is much less volatile."
 msgstr ""
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:59
-msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
+msgid "Join a pool and get consistent XOL farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
 msgstr ""
 
 #: src/components/plot/add/PlotAddNFT.tsx:133
-msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
+msgid "Join a pool and get more consistent XOL farming rewards. Create a plot NFT and assign your new plots to a group."
 msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:63
@@ -1133,7 +1133,7 @@ msgstr "ログイン中"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:334
-#~ msgid "MainWalletList.rexolerDIDWallet"
+#~ msgid "MainWalletList.recoverDIDWallet"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:112
@@ -1269,7 +1269,7 @@ msgid "Not found Plots"
 msgstr "見つからない耕地"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:184
-msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
+msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XOL reward for pooling plots."
 msgstr ""
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:118
@@ -1492,7 +1492,7 @@ msgstr "フィルターを通過した耕地数"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:35
 msgid "Plots are allocated space on your hard drive used to farm and earn Olive. <0>Learn more</0>"
-msgstr "耕地とは、チアを収穫し、得るためにハードドライブ上に確保する領域です。<0>詳しく</0>"
+msgstr "耕地とは、Oliveを収穫し、得るためにハードドライブ上に確保する領域です。<0>詳しく</0>"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
 msgid "Plotting"
@@ -1713,7 +1713,7 @@ msgid "Receive Address"
 msgstr "受取アドレス"
 
 #: src/components/wallet/create/WalletCreate.jsx:282
-msgid "Rexoler DID wallet"
+msgid "Recover DID wallet"
 msgstr "DID ウォレットを復元"
 
 #: src/components/plot/PlotHeader.tsx:78
@@ -1840,7 +1840,7 @@ msgid "Self Pooling"
 msgstr ""
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:105
-msgid "Self pool. When you win a block you will earn XCH rewards."
+msgid "Self pool. When you win a block you will earn XOL rewards."
 msgstr ""
 
 #: src/components/trading/CreateOffer.jsx:164
@@ -1893,7 +1893,7 @@ msgid "Skips adding a final directory to harvester for farming"
 msgstr "最終ディレクトリを収穫機に追加せず、ディレクトリ内の耕地で耕作しません。"
 
 #: src/components/pool/PoolHero.tsx:26
-msgid "Smooth out your XCH farming rewards by joining a pool."
+msgid "Smooth out your XOL farming rewards by joining a pool."
 msgstr ""
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:60
@@ -1930,7 +1930,7 @@ msgstr "支払いインターバル長 (ブロック数)"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:401
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:448
 msgid "Spending Limit (olive per interval): {0}"
-msgstr "支払い額上限 (チア毎インターバル): {0}"
+msgstr "支払い額上限 (Olive毎インターバル): {0}"
 
 #: src/components/fullNode/FullNode.jsx:100
 msgid "State"
@@ -2006,23 +2006,23 @@ msgstr "同期中 <0/>/<1/>"
 #~ msgstr "Syncing {progress}/{tip}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
-#~ msgid "TXCH Block Rewards"
+#~ msgid "TXOL Block Rewards"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardCoinbaseRewards.tsx:12
-#~ msgid "TXCH Farming Rewards"
+#~ msgid "TXOL Farming Rewards"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardFeesReward.tsx:12
-#~ msgid "TXCH Fees Collected"
+#~ msgid "TXOL Fees Collected"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardUserFees.tsx:12
-#~ msgid "TXCH User Fees"
-#~ msgstr "TXCH User Fees"
+#~ msgid "TXOL User Fees"
+#~ msgstr "TXOL User Fees"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:15
-#~ msgid "TXCH User Transaction Fees"
+#~ msgid "TXOL User Transaction Fees"
 #~ msgstr ""
 
 #: src/components/pool/PoolInfo.tsx:37
@@ -2099,7 +2099,7 @@ msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "このブロック内の取引手数料の合計。農家への報酬となります。"
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:102
-msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
+msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XOL address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
 msgstr ""
 
 #: src/components/plot/PlotsFailed.tsx:40
@@ -2123,7 +2123,7 @@ msgstr "この機能は GUI 限定です。"
 
 #: src/components/wallet/card/WalletCardSpendableBalance.tsx:26
 msgid "This is the amount of Olive that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Olive that you have just spent but is not yet in the blockchain."
-msgstr "取引に使用できるチアの額です。承認待ちの耕作報酬、承認待ちの入金取引、及びブロックチェーンにまだ含まれていない消費チアはいずれも含まれていません。"
+msgstr "取引に使用できるOliveの額です。承認待ちの耕作報酬、承認待ちの入金取引、及びブロックチェーンにまだ含まれていない消費Oliveはいずれも含まれていません。"
 
 #: src/components/wallet/card/WalletCardPendingChange.tsx:26
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
@@ -2143,7 +2143,7 @@ msgstr "これが農家がブロックを作成した日時です。時間証明
 
 #: src/components/wallet/card/WalletCardTotalBalance.tsx:34
 msgid "This is the total amount of olive in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
-msgstr "現在の先端サブブロックにおいて、あなたの秘密鍵が所有している全チアの額です。凍結中の耕作報酬は含まれますが、承認待ちの入出金取引は反映されていません。"
+msgstr "現在の先端サブブロックにおいて、あなたの秘密鍵が所有している全Oliveの額です。凍結中の耕作報酬は含まれますが、承認待ちの入出金取引は反映されていません。"
 
 #: src/components/wallet/card/WalletCardPendingTotalBalance.tsx:29
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
@@ -2189,7 +2189,7 @@ msgstr "このトレードはこのブロック高でブロックチェーンに
 
 #: src/components/app/AppTimeBombAlert.tsx:19
 msgid "This version of Olive is no longer compatible with the blockchain and can not safely farm."
-msgstr "ご使用のバージョンのチアアプリはブロックチェーンと互換性が無く、安全に耕作できません。"
+msgstr "ご使用のバージョンのOliveアプリはブロックチェーンと互換性が無く、安全に耕作できません。"
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Time Created"
@@ -2424,7 +2424,7 @@ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:139
 msgid "Want to earn more Olive? Add more plots to your farm."
-msgstr "畑に耕地を増やしましょう。さらにチアを得られますよ。"
+msgstr "畑に耕地を増やしましょう。さらにOliveを得られますよ。"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:86
 msgid "Want to have a delay before the next plot starts?"
@@ -2452,7 +2452,7 @@ msgstr "ブロック重とはこのブロックを含めた全てのブロック
 
 #: src/components/selectKey/SelectKey.tsx:141
 msgid "Welcome to Olive. Please log in with an existing key, or create a new key."
-msgstr "チアにようこそ。お持ちの鍵でログインするか、新しく鍵を作成してください。"
+msgstr "Oliveにようこそ。お持ちの鍵でログインするか、新しく鍵を作成してください。"
 
 #: src/components/wallet/WalletAdd.tsx:66
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -2612,7 +2612,7 @@ msgstr "{currencyCode} ブロック報酬"
 
 #: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:29
 msgid "{currencyCode} Total Olive Farmed"
-msgstr "{currencyCode} 全収穫チア"
+msgstr "{currencyCode} 全収穫Olive"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:28
 msgid "{currencyCode} User Transaction Fees"
@@ -2621,3 +2621,4 @@ msgstr "{currencyCode} ユーザー取引手数料"
 #: src/components/core/components/Amount/Amount.tsx:80
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr ""
+

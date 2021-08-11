@@ -5,7 +5,6 @@ import multiprocessing
 import time
 from dataclasses import replace
 from secrets import token_bytes
-from typing import Optional
 
 import pytest
 from blspy import AugSchemeMPL, G2Element
@@ -1812,6 +1811,33 @@ class TestBodyValidation:
 
         err = (await b.receive_block(block_2))[1]
         assert err == Err.INVALID_REWARD_COINS
+
+    @pytest.mark.asyncio
+    async def test_initial_freeze(self, empty_blockchain):
+        # 6
+        b = empty_blockchain
+        blocks = bt.get_consecutive_blocks(
+            3,
+            guarantee_transaction_block=True,
+            pool_reward_puzzle_hash=bt.pool_ph,
+            farmer_reward_puzzle_hash=bt.pool_ph,
+            genesis_timestamp=0,
+        )
+        assert (await b.receive_block(blocks[0]))[0] == ReceiveBlockResult.NEW_PEAK
+        assert (await b.receive_block(blocks[1]))[0] == ReceiveBlockResult.NEW_PEAK
+        assert (await b.receive_block(blocks[2]))[0] == ReceiveBlockResult.NEW_PEAK
+        wt: WalletTool = bt.get_pool_wallet_tool()
+        tx: SpendBundle = wt.generate_signed_transaction(
+            10, wt.get_new_puzzlehash(), list(blocks[2].get_included_reward_coins())[0]
+        )
+        blocks = bt.get_consecutive_blocks(
+            1,
+            block_list_input=blocks,
+            guarantee_transaction_block=True,
+            transaction_data=tx,
+        )
+        err = (await b.receive_block(blocks[-1]))[1]
+        assert err == Err.INITIAL_TRANSACTION_FREEZE
 
     @pytest.mark.asyncio
     async def test_invalid_transactions_generator_hash(self, empty_blockchain):

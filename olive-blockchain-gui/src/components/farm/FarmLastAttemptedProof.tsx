@@ -10,7 +10,7 @@ import { RootState } from '../../modules/rootReducer';
 
 const cols = [
   {
-    minWidth: '180px',
+    minWidth: '200px',
     field: 'challenge_hash',
     tooltip: true,
     title: <Trans>Challenge</Trans>,
@@ -24,12 +24,6 @@ const cols = [
   {
     field: 'proofs',
     title: <Trans>Proofs Found</Trans>,
-  },
-  {
-    field(row: Row) {
-      return `${row.timeconsuming} ms`
-    },
-    title: <Trans>Plot Response Time</Trans>,
   },
   {
     field(row: Row) {
@@ -57,7 +51,7 @@ export default function FarmLastAttemptedProof() {
           challenge.{' '}
           <Link
             target="_blank"
-            href="https://github.com/pinksheetscrypto/olive-blockchain/wiki/FAQ#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it"
+            href="https://github.com/Olive-Network/olive-blockchain/wiki/FAQ#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it"
           >
             Learn more
           </Link>

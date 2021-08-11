@@ -268,7 +268,7 @@ export default function Block() {
       value: (
         <Link
           target="_blank"
-          href={`https://alltheblocks.net/olive/puzzlehash/${blockRecord.farmer_puzzle_hash}`}
+          href={`https://www.oliveexplorer.org/blockchain/puzzlehash/${blockRecord.farmer_puzzle_hash}`}
         >
           {currencyCode
             ? toBech32m(
@@ -284,7 +284,7 @@ export default function Block() {
       value: (
         <Link
           target="_blank"
-          href={`https://alltheblocks.net/olive/puzzlehash/${blockRecord.pool_puzzle_hash}`}
+          href={`https://www.oliveexplorer.org/blockchain/puzzlehash/${blockRecord.pool_puzzle_hash}`}
         >
           {currencyCode
             ? toBech32m(

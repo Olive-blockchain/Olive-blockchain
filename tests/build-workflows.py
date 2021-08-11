@@ -85,11 +85,11 @@ def generate_replacements(defaults, conf, dir, test_files):
     if not conf["checkout_blocks_and_plots"]:
         replacements[
             "CHECKOUT_TEST_BLOCKS_AND_PLOTS"
-        ] = "# Omitted checking out blocks and plots repo pinksheetscrypto/test-cache"
+        ] = "# Omitted checking out blocks and plots repo Olive-Network/test-cache"
     if not conf["install_timelord"]:
         replacements["INSTALL_TIMELORD"] = "# Omitted installing Timelord"
     if conf["parallel"]:
-        replacements["PYTEST_PARALLEL_ARGS"] = " -n auto"
+        replacements["PYTEST_PARALLEL_ARGS"] = "-n auto"
     if conf["job_timeout"]:
         replacements["JOB_TIMEOUT"] = str(conf["job_timeout"])
     test_paths = ["tests/" + str(f) for f in test_files]

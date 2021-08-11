@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import time
+from datetime import datetime
 from pathlib import Path
 from typing import Callable, Dict, List, Optional, Tuple
 
@@ -64,8 +65,6 @@ class WalletRpcApi:
             "/get_sync_status": self.get_sync_status,
             "/get_height_info": self.get_height_info,
             "/farm_block": self.farm_block,  # Only when node simulator is running
-            # this function is just here for backwards-compatibility. It will probably
-            # be removed in the future
             "/get_initial_freeze_period": self.get_initial_freeze_period,
             "/get_network_info": self.get_network_info,
             # Wallet management
@@ -95,14 +94,14 @@ class WalletRpcApi:
             "/get_all_trades": self.get_all_trades,
             "/cancel_trade": self.cancel_trade,
             # DID Wallet
-            "/did_update_rexolery_ids": self.did_update_rexolery_ids,
+            "/did_update_recovery_ids": self.did_update_recovery_ids,
             "/did_spend": self.did_spend,
             "/did_get_pubkey": self.did_get_pubkey,
             "/did_get_did": self.did_get_did,
-            "/did_rexolery_spend": self.did_rexolery_spend,
-            "/did_get_rexolery_list": self.did_get_rexolery_list,
+            "/did_recovery_spend": self.did_recovery_spend,
+            "/did_get_recovery_list": self.did_get_recovery_list,
             "/did_create_attest": self.did_create_attest,
-            "/did_get_information_needed_for_rexolery": self.did_get_information_needed_for_rexolery,
+            "/did_get_information_needed_for_recovery": self.did_get_information_needed_for_recovery,
             "/did_create_backup_file": self.did_create_backup_file,
             # RL wallet
             "/rl_set_user_info": self.rl_set_user_info,
@@ -156,7 +155,7 @@ class WalletRpcApi:
 
         await self._stop_wallet()
         log_in_type = request["type"]
-        rexolery_host = request["host"]
+        recovery_host = request["host"]
         testing = False
 
         if "testing" in self.service.config and self.service.config["testing"] is True:
@@ -179,13 +178,13 @@ class WalletRpcApi:
             backup_path = None
             try:
                 private_key = self.service.get_key_for_fingerprint(fingerprint)
-                last_rexolery = await download_backup(rexolery_host, private_key)
-                backup_path = path_from_root(self.service.root_path, "last_rexolery")
+                last_recovery = await download_backup(recovery_host, private_key)
+                backup_path = path_from_root(self.service.root_path, "last_recovery")
                 if backup_path.exists():
                     backup_path.unlink()
-                backup_path.write_text(last_rexolery)
+                backup_path.write_text(last_recovery)
                 backup_info = get_backup_info(backup_path, private_key)
-                backup_info["backup_host"] = rexolery_host
+                backup_info["backup_host"] = recovery_host
                 backup_info["downloaded"] = True
             except Exception as e:
                 log.error(f"error {e}")
@@ -508,9 +507,9 @@ class WalletRpcApi:
                     "wallet_id": did_wallet.id(),
                 }
 
-            elif request["did_type"] == "rexolery":
+            elif request["did_type"] == "recovery":
                 async with self.service.wallet_state_manager.lock:
-                    did_wallet = await DIDWallet.create_new_did_wallet_from_rexolery(
+                    did_wallet = await DIDWallet.create_new_did_wallet_from_recovery(
                         wallet_state_manager, main_wallet, request["filename"]
                     )
                 assert did_wallet.did_info.temp_coin is not None
@@ -575,8 +574,8 @@ class WalletRpcApi:
                         "launcher_id": launcher_id.hex(),
                         "p2_singleton_puzzle_hash": p2_singleton_puzzle_hash.hex(),
                     }
-            elif request["mode"] == "rexolery":
-                raise ValueError("Need upgraded singleton for on-chain rexolery")
+            elif request["mode"] == "recovery":
+                raise ValueError("Need upgraded singleton for on-chain recovery")
 
             else:  # undefined did_type
                 pass
@@ -642,7 +641,7 @@ class WalletRpcApi:
         if "end" in request:
             end = request["end"]
         else:
-            end = 200
+            end = 50
 
         transactions = await self.service.wallet_state_manager.tx_store.get_transactions_between(wallet_id, start, end)
         formatted_transactions = []
@@ -658,11 +657,9 @@ class WalletRpcApi:
             "wallet_id": wallet_id,
         }
 
-    # this function is just here for backwards-compatibility. It will probably
-    # be removed in the future
     async def get_initial_freeze_period(self, _: Dict):
-        # Mon May 03 2021 17:00:00 GMT+0000
-        return {"INITIAL_FREEZE_END_TIMESTAMP": 1620061200}
+        freeze_period = self.service.constants.INITIAL_FREEZE_END_TIMESTAMP
+        return {"INITIAL_FREEZE_END_TIMESTAMP": freeze_period}
 
     async def get_next_address(self, request: Dict) -> Dict:
         """
@@ -698,6 +695,10 @@ class WalletRpcApi:
         if await self.service.wallet_state_manager.synced() is False:
             raise ValueError("Wallet needs to be fully synced before sending transactions")
 
+        if int(time.time()) < self.service.constants.INITIAL_FREEZE_END_TIMESTAMP:
+            end_date = datetime.fromtimestamp(float(self.service.constants.INITIAL_FREEZE_END_TIMESTAMP))
+            raise ValueError(f"No transactions before: {end_date}")
+
         wallet_id = int(request["wallet_id"])
         wallet = self.service.wallet_state_manager.wallets[wallet_id]
 
@@ -724,6 +725,10 @@ class WalletRpcApi:
 
         if await self.service.wallet_state_manager.synced() is False:
             raise ValueError("Wallet needs to be fully synced before sending transactions")
+
+        if int(time.time()) < self.service.constants.INITIAL_FREEZE_END_TIMESTAMP:
+            end_date = datetime.fromtimestamp(float(self.service.constants.INITIAL_FREEZE_END_TIMESTAMP))
+            raise ValueError(f"No transactions before: {end_date}")
 
         wallet_id = uint32(request["wallet_id"])
         wallet = self.service.wallet_state_manager.wallets[wallet_id]
@@ -922,18 +927,18 @@ class WalletRpcApi:
     # Distributed Identities
     ##########################################################################################
 
-    async def did_update_rexolery_ids(self, request):
+    async def did_update_recovery_ids(self, request):
         wallet_id = int(request["wallet_id"])
         wallet: DIDWallet = self.service.wallet_state_manager.wallets[wallet_id]
-        rexolery_list = []
+        recovery_list = []
         for _ in request["new_list"]:
-            rexolery_list.append(hexstr_to_bytes(_))
+            recovery_list.append(hexstr_to_bytes(_))
         if "num_verifications_required" in request:
             new_amount_verifications_required = uint64(request["num_verifications_required"])
         else:
-            new_amount_verifications_required = len(rexolery_list)
+            new_amount_verifications_required = len(recovery_list)
         async with self.service.wallet_state_manager.lock:
-            update_success = await wallet.update_rexolery_list(rexolery_list, new_amount_verifications_required)
+            update_success = await wallet.update_recovery_list(recovery_list, new_amount_verifications_required)
             # Update coin with new ID info
             updated_puz = await wallet.get_new_puzzle()
             spend_bundle = await wallet.create_spend(updated_puz.get_tree_hash())
@@ -962,21 +967,21 @@ class WalletRpcApi:
             coin = coins.pop()
             return {"success": True, "wallet_id": wallet_id, "my_did": my_did, "coin_id": coin.name()}
 
-    async def did_get_rexolery_list(self, request):
+    async def did_get_recovery_list(self, request):
         wallet_id = int(request["wallet_id"])
         wallet: DIDWallet = self.service.wallet_state_manager.wallets[wallet_id]
-        rexolery_list = wallet.did_info.backup_ids
-        rexoler_hex_list = []
-        for _ in rexolery_list:
-            rexoler_hex_list.append(_.hex())
+        recovery_list = wallet.did_info.backup_ids
+        recover_hex_list = []
+        for _ in recovery_list:
+            recover_hex_list.append(_.hex())
         return {
             "success": True,
             "wallet_id": wallet_id,
-            "rexoler_list": rexoler_hex_list,
+            "recover_list": recover_hex_list,
             "num_required": wallet.did_info.num_of_backup_ids_needed,
         }
 
-    async def did_rexolery_spend(self, request):
+    async def did_recovery_spend(self, request):
         wallet_id = int(request["wallet_id"])
         wallet: DIDWallet = self.service.wallet_state_manager.wallets[wallet_id]
         if len(request["attest_filenames"]) < wallet.did_info.num_of_backup_ids_needed:
@@ -986,7 +991,7 @@ class WalletRpcApi:
             (
                 info_list,
                 message_spend_bundle,
-            ) = await wallet.load_attest_files_for_rexolery_spend(request["attest_filenames"])
+            ) = await wallet.load_attest_files_for_recovery_spend(request["attest_filenames"])
 
             if "pubkey" in request:
                 pubkey = G1Element.from_bytes(hexstr_to_bytes(request["pubkey"]))
@@ -1000,7 +1005,7 @@ class WalletRpcApi:
                 assert wallet.did_info.temp_puzhash is not None
                 puzhash = wallet.did_info.temp_puzhash
 
-            success = await wallet.rexolery_spend(
+            success = await wallet.recovery_spend(
                 wallet.did_info.temp_coin,
                 puzhash,
                 info_list,
@@ -1019,7 +1024,7 @@ class WalletRpcApi:
         wallet_id = int(request["wallet_id"])
         wallet: DIDWallet = self.service.wallet_state_manager.wallets[wallet_id]
         async with self.service.wallet_state_manager.lock:
-            info = await wallet.get_info_for_rexolery()
+            info = await wallet.get_info_for_recovery()
             coin = hexstr_to_bytes(request["coin_name"])
             pubkey = G1Element.from_bytes(hexstr_to_bytes(request["pubkey"]))
             spend_bundle = await wallet.create_attestment(
@@ -1034,7 +1039,7 @@ class WalletRpcApi:
         else:
             return {"success": False}
 
-    async def did_get_information_needed_for_rexolery(self, request):
+    async def did_get_information_needed_for_recovery(self, request):
         wallet_id = int(request["wallet_id"])
         did_wallet: DIDWallet = self.service.wallet_state_manager.wallets[wallet_id]
         my_did = did_wallet.get_my_DID()

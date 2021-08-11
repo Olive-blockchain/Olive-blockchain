@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Callable, Dict, List, Optional, Tuple, Any
 
 from blspy import AugSchemeMPL, G1Element, G2Element, PrivateKey
-from olivebip158 import PyBIP158
+from chiabip158 import PyBIP158
 
 from olive.cmds.init_funcs import create_all_ssl, create_default_olive_config
 from olive.full_node.bundle_tools import (
@@ -108,6 +108,7 @@ test_constants = DEFAULT_CONSTANTS.replace(
         * 10,  # Allows creating blockchains with timestamps up to 10 days in the future, for testing
         "COST_PER_BYTE": 1337,
         "MEMPOOL_BLOCK_BUFFER": 6,
+        "INITIAL_FREEZE_END_TIMESTAMP": 1000,
         "NETWORK_TYPE": 1,
     }
 )

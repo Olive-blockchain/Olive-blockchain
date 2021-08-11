@@ -394,7 +394,7 @@ country
 couple
 course
 cousin
-xoler
+cover
 coyote
 crack
 cradle
@@ -501,7 +501,7 @@ dinosaur
 direct
 dirt
 disagree
-disxoler
+discover
 disease
 dish
 dismiss
@@ -1891,7 +1891,7 @@ umbrella
 unable
 unaware
 uncle
-unxoler
+uncover
 under
 undo
 unfair

@@ -1,7 +1,5 @@
-Olive is a cryptocurrency forked from Taco forked from Chia and uses the Proof of Space and Time consensus algorithm
+# olive-blockchain
 
-Discord Channel: https://discord.gg/Tr2uxdHTxM
+**Olive** is a modern community-centric green cryptocurrency based on a proof-of-space-and-time consensus algorithm. It is a community-supported fork of the [Chia Network](https://github.com/Chia-Network/chia-blockchain) codebase.
 
-Website: https://www.pinksheetscrypto.com (coming soon)
-
-Introducer: dns-introducer.oliveblockchain.co:19180
+For more information, see our website and downloads at https://oliveblockchain.co.

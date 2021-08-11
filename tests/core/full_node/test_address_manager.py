@@ -565,7 +565,7 @@ class TestPeerManager:
             ExtendedPeerInfo(t_peer2, source),
             ExtendedPeerInfo(t_peer3, source),
         ]
-        rexolered = 0
+        recovered = 0
         for target_peer in wanted_peers:
             for current_peer in retrieved_peers:
                 if (
@@ -573,8 +573,8 @@ class TestPeerManager:
                     and current_peer.src == target_peer.src
                     and current_peer.timestamp == target_peer.timestamp
                 ):
-                    rexolered += 1
-        assert rexolered == 3
+                    recovered += 1
+        assert recovered == 3
         await connection.close()
         db_filename.unlink()
 

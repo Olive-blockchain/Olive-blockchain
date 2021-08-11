@@ -120,7 +120,7 @@ msgstr "Bedrag vir die aanvanklike muntstuk"
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:32
-msgid "Are you sure you want to delete the plot? The plot cannot be rexolered."
+msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "Is jy seker jy wil die landery verwyder? Die landery kan nie weer herwin word nie."
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:23
@@ -264,7 +264,7 @@ msgid "Challenge Hash"
 msgstr ""
 
 #: src/electron/main.tsx:345
-msgid "Chat on KeyBase"
+msgid "Chat on Discord"
 msgstr ""
 
 #: src/electron/main.tsx:362
@@ -578,7 +578,7 @@ msgid "Does your machine support parallel plotting?"
 msgstr ""
 
 #: src/components/trading/ViewOffer.jsx:41
-#: src/components/wallet/create/rexolerDIDWallet.js:294
+#: src/components/wallet/create/recoverDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr ""
 
@@ -688,7 +688,7 @@ msgid "Fee"
 msgstr ""
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
-#~ msgid "Fee (TXCH)"
+#~ msgid "Fee (TXOL)"
 #~ msgstr ""
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
@@ -922,7 +922,7 @@ msgstr ""
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:334
-#~ msgid "MainWalletList.rexolerDIDWallet"
+#~ msgid "MainWalletList.recoverDIDWallet"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:112
@@ -1359,7 +1359,7 @@ msgid "Receive Address"
 msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:320
-msgid "Rexoler DID wallet"
+msgid "Recover DID wallet"
 msgstr ""
 
 #: src/components/plot/PlotHeader.tsx:43
@@ -1606,23 +1606,23 @@ msgid "Syncing {progress}/{tip}"
 msgstr ""
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
-#~ msgid "TXCH Block Rewards"
+#~ msgid "TXOL Block Rewards"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardCoinbaseRewards.tsx:12
-#~ msgid "TXCH Farming Rewards"
+#~ msgid "TXOL Farming Rewards"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardFeesReward.tsx:12
-#~ msgid "TXCH Fees Collected"
+#~ msgid "TXOL Fees Collected"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardUserFees.tsx:12
-#~ msgid "TXCH User Fees"
-#~ msgstr "TXCH User Fees"
+#~ msgid "TXOL User Fees"
+#~ msgstr "TXOL User Fees"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:15
-#~ msgid "TXCH User Transaction Fees"
+#~ msgid "TXOL User Transaction Fees"
 #~ msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:18

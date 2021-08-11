@@ -38,7 +38,7 @@ export default function PlotOverviewHero() {
               }
               <Link
                 target="_blank"
-                href="https://github.com/pinksheetscrypto/olive-blockchain/wiki/Network-Architecture"
+                href="https://github.com/Olive-Network/olive-blockchain/wiki/Network-Architecture"
               >
                 Learn more
               </Link>

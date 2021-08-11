@@ -42,8 +42,6 @@ dev_dependencies = [
 
 kwargs = dict(
     name="olive-blockchain",
-    author="Mariano Sorgente",
-    author_email="admin@pinksheetscrypto.com",
     description="Olive blockchain full node, farmer, timelord, and wallet.",
     url="https://oliveblockchain.co/",
     license="Apache License",

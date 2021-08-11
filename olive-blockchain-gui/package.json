@@ -1,6 +1,6 @@
 {
   "name": "olive-blockchain",
-  "author": "Pink Sheets Crypto <admin@pinksheetscrypto.com> (https://www.pinksheetscrypto.com/)",
+  "author": "Olive Network <hello@oliveblockchain.co> (https://oliveblockchain.co/)",
   "description": "GUI for Olive Blockchain",
   "productName": "Olive Blockchain",
   "private": true,
@@ -47,7 +47,6 @@
     "crypto-browserify": "^3.12.0",
     "dotenv": "^10.0.0",
     "es6-promise": "^4.2.8",
-    "geoip-lite": "^1.4.2",
     "history": "^4.10.1",
     "is-electron": "^2.2.0",
     "isomorphic-fetch": "^3.0.0",
@@ -56,7 +55,6 @@
     "make-plural": "^6.2.2",
     "match-sorter": "^6.3.0",
     "moment": "^2.29.1",
-    "node-emoji": "^1.10.0",
     "normalize-url": "^6.1.0",
     "npm-audit-resolver": "^2.3.1",
     "polished": "^4.1.3",

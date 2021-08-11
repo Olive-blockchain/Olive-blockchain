@@ -70,7 +70,7 @@ const Spacer = styled.div`
   margin-bottom: 1rem;
 `;
 
-const url = 'https://chia.net';
+const url = 'https://oliveblockchain.co';
 
 type Props = {
   version: string;
@@ -114,7 +114,7 @@ export default function About(props: Props) {
         </StyledLink>
         <StyledSubTitle>{description}</StyledSubTitle>
         <Spacer />
-        <div className="copyright">Copyright (c) 2021 Pink Sheets Crypto</div>
+        <div className="copyright">Copyright (c) 2021 Chia Network, Olive Network</div>
         <Spacer />
         <VersionsTable>
           {versions?.electron && (
@@ -144,7 +144,7 @@ export default function About(props: Props) {
         </VersionsTable>
 
         <BugReport
-          href="https://github.com/pinksheetscrypto/olive-blockchain/issues"
+          href="https://github.com/Olive-Network/olive-blockchain/issues"
           target="_blank"
         >
           Report an issue

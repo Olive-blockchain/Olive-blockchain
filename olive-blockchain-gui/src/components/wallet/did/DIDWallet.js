@@ -20,7 +20,7 @@ import { AlertDialog, Card, Dropzone, Flex } from '@olive/core';
 import {
   did_generate_backup_file,
   did_spend,
-  did_update_rexolery_ids_action,
+  did_update_recovery_ids_action,
   did_create_attest,
 } from '../../../modules/message';
 import {
@@ -273,7 +273,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RexoleryCard = (props) => {
+const RecoveryCard = (props) => {
   const id = props.wallet_id;
   console.log(id);
   const mydid = useSelector((state) => state.wallet_state.wallets[id].mydid);
@@ -287,7 +287,7 @@ const RexoleryCard = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  let rexolery_files = [];
+  let recovery_files = [];
 
   function handleDrop(acceptedFiles) {
     if (acceptedFiles.length === 0) {
@@ -295,8 +295,8 @@ const RexoleryCard = (props) => {
     }
     console.log('FILE: ', acceptedFiles);
     const offer_file_path = acceptedFiles[0].path;
-    rexolery_files.push(offer_file_path);
-    console.log('RECOVERY FILES', rexolery_files);
+    recovery_files.push(offer_file_path);
+    console.log('RECOVERY FILES', recovery_files);
 
     const offer_name = offer_file_path.replace(/^.*[/\\]/, '');
 
@@ -311,7 +311,7 @@ const RexoleryCard = (props) => {
         <Grid item xs={12}>
           <div className={classes.cardTitle}>
             <Typography component="h6" variant="h6">
-              Rexoler DID Wallet
+              Recover DID Wallet
             </Typography>
           </div>
         </Grid>
@@ -351,10 +351,10 @@ const RexoleryCard = (props) => {
         <Grid item xs={12}>
           <Dropzone onDrop={handleDrop}>
             {({ isDragActive, isDragReject, acceptedFiles, rejectedFiles }) => {
-              if (rexolery_files.length === 0) {
+              if (recovery_files.length === 0) {
                 return <p>Try dragging a file here!</p>;
               }
-              return rexolery_files.map((file) => file);
+              return recovery_files.map((file) => file);
             }}
           </Dropzone>
         </Grid>
@@ -587,7 +587,7 @@ const ViewDIDsSubsection = (props) => {
               >
                 <Typography className={classes.heading}>
                   View backup DID list ({dids_num_req}/{dids_length} required
-                  for rexolery)
+                  for recovery)
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
@@ -647,7 +647,7 @@ const ManageDIDsCard = (props) => {
     });
     const num_verifications_required = parseInt(1);
     dispatch(
-      did_update_rexolery_ids_action(
+      did_update_recovery_ids_action(
         id,
         cleanDidArray,
         num_verifications_required,
@@ -661,7 +661,7 @@ const ManageDIDsCard = (props) => {
         <Grid item xs={12}>
           <div className={classes.cardTitle}>
             <Typography component="h6" variant="h6">
-              Manage Rexolery DIDs
+              Manage Recovery DIDs
             </Typography>
           </div>
         </Grid>
@@ -1002,7 +1002,7 @@ export default function DistributedWallet(props) {
       console.log('YES TEMP COIN');
       return wallets.length > props.wallet_id ? (
         <Grid className={classes.walletContainer} item xs={12}>
-          <RexoleryCard wallet_id={id}></RexoleryCard>
+          <RecoveryCard wallet_id={id}></RecoveryCard>
         </Grid>
       ) : (
         ''

@@ -17,7 +17,7 @@ MAX_COST = int(1e15)
 COST_PER_BYTE = int(12000)
 
 
-DESERIALIZE_MOD = load_clvm("chialisp_deserialisation.clvm", package_or_requirement="olive.wallet.puzzles")
+DESERIALIZE_MOD = load_clvm("olivelisp_deserialisation.clvm", package_or_requirement="olive.wallet.puzzles")
 
 
 GENERATOR_CODE = """
