@@ -21,7 +21,7 @@ def init_cmd(ctx: click.Context, create_certs: str):
     - Run `olive init -c [directory]` on your remote harvester,
       where [directory] is the the copy of your Farming Machine CA directory
     - Get more details on remote harvester on Olive wiki:
-      https://github.com/pinksheetscrypto/olive-blockchain/wiki/Farming-on-many-machines
+      https://github.com/Olive-Network/olive-blockchain/wiki/Farming-on-many-machines
     """
     from pathlib import Path
     from .init_funcs import init

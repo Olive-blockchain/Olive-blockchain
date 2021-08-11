@@ -73,7 +73,7 @@ class DIDWallet:
         if self.wallet_info is None:
             raise ValueError("Internal Error")
         self.wallet_id = self.wallet_info.id
-        bal = await self.wallet_state_manager.get_confirmed_balance_for_wallet(self.standard_wallet.id())
+        bal = await self.standard_wallet.get_confirmed_balance()
         if amount > bal:
             raise ValueError("Not enough balance")
 
@@ -125,7 +125,7 @@ class DIDWallet:
         return self
 
     @staticmethod
-    async def create_new_did_wallet_from_rexolery(
+    async def create_new_did_wallet_from_recovery(
         wallet_state_manager: Any,
         wallet: Wallet,
         filename: str,
@@ -274,7 +274,7 @@ class DIDWallet:
         self.log.info(f"Successfully selected coins: {used_coins}")
         return used_coins
 
-    # This will be used in the rexolery case where we don't have the parent info already
+    # This will be used in the recovery case where we don't have the parent info already
     async def coin_added(self, coin: Coin, _: uint32):
         """Notification from wallet state manager that wallet has been received."""
         self.log.info("DID wallet has been notified that coin was added")
@@ -625,16 +625,16 @@ class DIDWallet:
         return spend_bundle
 
     # Pushes the a SpendBundle to create a message coin on the blockchain
-    # Returns a SpendBundle for the rexolerer to spend the message coin
+    # Returns a SpendBundle for the recoverer to spend the message coin
     async def create_attestment(
-        self, rexolering_coin_name: bytes32, newpuz: bytes32, pubkey: G1Element, filename=None
+        self, recovering_coin_name: bytes32, newpuz: bytes32, pubkey: G1Element, filename=None
     ) -> SpendBundle:
         assert self.did_info.current_inner is not None
         assert self.did_info.origin_coin is not None
         coins = await self.select_coins(1)
         assert coins is not None and coins != set()
         coin = coins.pop()
-        message = did_wallet_puzzles.create_rexolery_message_puzzle(rexolering_coin_name, newpuz, pubkey)
+        message = did_wallet_puzzles.create_recovery_message_puzzle(recovering_coin_name, newpuz, pubkey)
         innermessage = message.get_tree_hash()
         innerpuz: Program = self.did_info.current_inner
         # innerpuz solution is (mode, amount, message, new_inner_puzhash)
@@ -660,7 +660,7 @@ class DIDWallet:
             ]
         )
         list_of_solutions = [CoinSpend(coin, full_puzzle, fullsol)]
-        message_spend = did_wallet_puzzles.create_spend_for_message(coin.name(), rexolering_coin_name, newpuz, pubkey)
+        message_spend = did_wallet_puzzles.create_spend_for_message(coin.name(), recovering_coin_name, newpuz, pubkey)
         message_spend_bundle = SpendBundle([message_spend], AugSchemeMPL.aggregate([]))
         # sign for AGG_SIG_ME
         to_sign = Program.to([innerpuz.get_tree_hash(), coin.amount, [innermessage]]).get_tree_hash()
@@ -707,7 +707,7 @@ class DIDWallet:
         return message_spend_bundle
 
     # this is just for testing purposes, API should use create_attestment_now
-    async def get_info_for_rexolery(self):
+    async def get_info_for_recovery(self):
         coins = await self.select_coins(1)
         coin = coins.pop()
         parent = coin.parent_coin_info
@@ -715,7 +715,7 @@ class DIDWallet:
         amount = coin.amount
         return [parent, innerpuzhash, amount]
 
-    async def load_attest_files_for_rexolery_spend(self, filenames):
+    async def load_attest_files_for_recovery_spend(self, filenames):
         spend_bundle_list = []
         info_dict = {}
         try:
@@ -732,11 +732,11 @@ class DIDWallet:
                 spend_bundle_list.append(new_sb)
                 f.close()
             # info_dict {0xidentity: "(0xparent_info 0xinnerpuz amount)"}
-            my_rexolery_list: List[bytes] = self.did_info.backup_ids
+            my_recovery_list: List[bytes] = self.did_info.backup_ids
 
-            # convert info dict into rexolery list - same order as wallet
+            # convert info dict into recovery list - same order as wallet
             info_list = []
-            for entry in my_rexolery_list:
+            for entry in my_recovery_list:
                 if entry.hex() in info_dict:
                     info_list.append(
                         [
@@ -752,24 +752,24 @@ class DIDWallet:
         except Exception:
             raise
 
-    async def rexolery_spend(
+    async def recovery_spend(
         self,
         coin: Coin,
         puzhash: bytes,
-        parent_innerpuzhash_amounts_for_rexolery_ids: List[Tuple[bytes, bytes, int]],
+        parent_innerpuzhash_amounts_for_recovery_ids: List[Tuple[bytes, bytes, int]],
         pubkey: G1Element,
         spend_bundle: SpendBundle,
     ) -> SpendBundle:
         assert self.did_info.origin_coin is not None
 
-        # innersol is (mode amount new_puz my_puzhash parent_innerpuzhash_amounts_for_rexolery_ids pubkey rexolery_list_reveal)  # noqa
+        # innersol is (mode amount new_puz my_puzhash parent_innerpuzhash_amounts_for_recovery_ids pubkey recovery_list_reveal)  # noqa
         innersol = Program.to(
             [
                 2,
                 coin.amount,
                 puzhash,
                 puzhash,
-                parent_innerpuzhash_amounts_for_rexolery_ids,
+                parent_innerpuzhash_amounts_for_recovery_ids,
                 bytes(pubkey),
                 self.did_info.backup_ids,
             ]
@@ -993,12 +993,12 @@ class DIDWallet:
         )
         await self.save_info(did_info, in_transaction)
 
-    async def update_rexolery_list(self, rexoler_list: List[bytes], num_of_backup_ids_needed: uint64):
-        if num_of_backup_ids_needed > len(rexoler_list):
+    async def update_recovery_list(self, recover_list: List[bytes], num_of_backup_ids_needed: uint64):
+        if num_of_backup_ids_needed > len(recover_list):
             return False
         did_info: DIDInfo = DIDInfo(
             self.did_info.origin_coin,
-            rexoler_list,
+            recover_list,
             num_of_backup_ids_needed,
             self.did_info.parent_info,
             self.did_info.current_inner,

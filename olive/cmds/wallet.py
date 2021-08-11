@@ -66,17 +66,17 @@ def get_transactions_cmd(wallet_rpc_port: Optional[int], fingerprint: int, id: i
 )
 @click.option("-f", "--fingerprint", help="Set the fingerprint to specify which wallet to use", type=int)
 @click.option("-i", "--id", help="Id of the wallet to use", type=int, default=1, show_default=True, required=True)
-@click.option("-a", "--amount", help="How much olive to send, in COV", type=str, required=True)
+@click.option("-a", "--amount", help="How much olive to send, in XOL", type=str, required=True)
 @click.option(
     "-m",
     "--fee",
-    help="Set the fees for the transaction, in COV",
+    help="Set the fees for the transaction, in XOL",
     type=str,
     default="0",
     show_default=True,
     required=True,
 )
-@click.option("-t", "--address", help="Address to send the COV", type=str, required=True)
+@click.option("-t", "--address", help="Address to send the XOL", type=str, required=True)
 @click.option(
     "-o", "--override", help="Submits transaction without checking for unusual values", is_flag=True, default=False
 )

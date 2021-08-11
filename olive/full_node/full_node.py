@@ -36,7 +36,7 @@ from olive.protocols.full_node_protocol import (
     RespondSignagePoint,
 )
 from olive.protocols.protocol_message_types import ProtocolMessageTypes
-from olive.server.node_disxolery import FullNodePeers
+from olive.server.node_discovery import FullNodePeers
 from olive.server.outbound_message import Message, NodeType, make_msg
 from olive.server.server import OliveServer
 from olive.types.blockchain_format.classgroup import ClassgroupElement
@@ -185,7 +185,7 @@ class FullNode:
             default_port = None
         if "dns_servers" in self.config:
             dns_servers = self.config["dns_servers"]
-        elif self.config["port"] == 19180:
+        elif self.config["port"] == 3882:
             # If `dns_servers` misses from the `config`, hardcode it if we're running mainnet.
             dns_servers.append("dns-introducer.oliveblockchain.co")
         try:
@@ -205,7 +205,7 @@ class FullNode:
         except Exception as e:
             error_stack = traceback.format_exc()
             self.log.error(f"Exception: {e}")
-            self.log.error(f"Exception in peer disxolery: {e}")
+            self.log.error(f"Exception in peer discovery: {e}")
             self.log.error(f"Exception Stack: {error_stack}")
 
     def _state_changed(self, change: str):
@@ -507,7 +507,8 @@ class FullNode:
             # Send filter to node and request mempool items that are not in it (Only if we are currently synced)
             synced = await self.synced()
             peak_height = self.blockchain.get_peak_height()
-            if synced and peak_height is not None:
+            current_time = int(time.time())
+            if synced and peak_height is not None and current_time > self.constants.INITIAL_FREEZE_END_TIMESTAMP:
                 my_filter = self.mempool_manager.get_filter()
                 mempool_request = full_node_protocol.RequestMempoolTransactions(my_filter)
 
@@ -1229,7 +1230,7 @@ class FullNode:
                     f"Received orphan block of height {block.height} rh " f"{block.reward_chain_block.get_hash()}"
                 )
             else:
-                # Should never reach here, all the cases are xolered
+                # Should never reach here, all the cases are covered
                 raise RuntimeError(f"Invalid result from receive_block {added}")
         percent_full_str = (
             (
@@ -1621,6 +1622,10 @@ class FullNode:
             return MempoolInclusionStatus.FAILED, Err.NO_TRANSACTIONS_WHILE_SYNCING
         if not test and not (await self.synced()):
             return MempoolInclusionStatus.FAILED, Err.NO_TRANSACTIONS_WHILE_SYNCING
+
+        # No transactions in mempool in initial client. Remove 6 weeks after launch
+        if int(time.time()) <= self.constants.INITIAL_FREEZE_END_TIMESTAMP:
+            return MempoolInclusionStatus.FAILED, Err.INITIAL_TRANSACTION_FREEZE
 
         if self.mempool_manager.seen(spend_name):
             return MempoolInclusionStatus.FAILED, Err.ALREADY_INCLUDING_TRANSACTION

@@ -8,14 +8,14 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: olive-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-07-29 09:05\n"
+"PO-Revision-Date: 2021-07-17 00:01\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: olive-blockchain\n"
 "X-Crowdin-Project-ID: 440660\n"
 "X-Crowdin-Language: sv-SE\n"
-"X-Crowdin-File: /[pinksheetscrypto.olive-blockchain-gui] main/src/locales/en-US/messages.po\n"
+"X-Crowdin-File: /[Olive-Network.olive-blockchain-gui] main/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 118\n"
 
 #: src/components/plot/add/PlotAddNFT.tsx:62
@@ -140,7 +140,7 @@ msgstr "Belopp för ursprungligt mynt"
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
-msgid "Are you sure you want to delete the plot? The plot cannot be rexolered."
+msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "Är det säkert att du vill ta bort plotten? Den kan inte återställas."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:125
@@ -306,8 +306,8 @@ msgid "Change Pool"
 msgstr "Byt pool"
 
 #: src/electron/main.tsx:401
-msgid "Chat on KeyBase"
-msgstr "Chatta på KeyBase"
+msgid "Chat on Discord"
+msgstr "Chatta på Discord"
 
 #: src/electron/main.tsx:419
 msgid "Olive"
@@ -678,7 +678,7 @@ msgid "Does your machine support parallel plotting?"
 msgstr "Stöder din maskin parallell plottning?"
 
 #: src/components/trading/ViewOffer.jsx:39
-#: src/components/wallet/create/rexolerDIDWallet.js:294
+#: src/components/wallet/create/recoverDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr "Dra och släpp erbjudandefil"
 
@@ -694,7 +694,7 @@ msgstr "Redigera"
 #: src/components/plotNFT/PlotNFTCard.tsx:301
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:76
 msgid "Edit Payout Instructions"
-msgstr "Redigera utbetalningsinstruktioner"
+msgstr ""
 
 #: src/components/wallet/WalletImport.tsx:147
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Olive wallet."
@@ -822,7 +822,7 @@ msgid "Fee"
 msgstr "Avgift"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
-#~ msgid "Fee (TXCH)"
+#~ msgid "Fee (TXOL)"
 #~ msgstr ""
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
@@ -1026,16 +1026,16 @@ msgid "Join a Pool"
 msgstr "Gå med i en pool"
 
 #: src/components/plot/add/PlotAddNFT.tsx:44
-msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-msgstr "Gå med i en pool och få konsekventa XCH-odlingsbelöningar. Genomsnittlig avkastning är densamma, men den är mycket mindre variabel."
+msgid "Join a pool and get consistent XOL farming rewards. The average returns are the same, but it is much less volatile."
+msgstr "Gå med i en pool och få konsekventa XOL-odlingsbelöningar. Genomsnittlig avkastning är densamma, men den är mycket mindre variabel."
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:59
-msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
-msgstr "Gå med i en pool och få konsekventa XCH-odlingsbelöningar. Genomsnittlig avkastning är densamma, men den är mycket mindre variabel. Tilldela plottar till en plott-NFT. Du kan enkelt byta pool utan att behöva plotta om."
+msgid "Join a pool and get consistent XOL farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
+msgstr "Gå med i en pool och få konsekventa XOL-odlingsbelöningar. Genomsnittlig avkastning är densamma, men den är mycket mindre variabel. Tilldela plottar till en plott-NFT. Du kan enkelt byta pool utan att behöva plotta om."
 
 #: src/components/plot/add/PlotAddNFT.tsx:133
-msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
-msgstr "Gå med i en pool och få mer konsekventa XCH-odlingsbelöningar. Skapa en plott-NFT och tilldela dina nya plottar till en grupp."
+msgid "Join a pool and get more consistent XOL farming rewards. Create a plot NFT and assign your new plots to a group."
+msgstr "Gå med i en pool och få mer konsekventa XOL-odlingsbelöningar. Skapa en plott-NFT och tilldela dina nya plottar till en grupp."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:63
 msgid "K-Size"
@@ -1065,7 +1065,7 @@ msgstr "Senaste blockverifieringar"
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:295
 #: src/components/plotNFT/PlotNFTCard.tsx:350
 msgid "Launcher Id"
-msgstr "Launcher-ID"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:100
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:114
@@ -1133,7 +1133,7 @@ msgstr "Loggar in"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:334
-#~ msgid "MainWalletList.rexolerDIDWallet"
+#~ msgid "MainWalletList.recoverDIDWallet"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:112
@@ -1269,8 +1269,8 @@ msgid "Not found Plots"
 msgstr "Ej hittade plottar"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:184
-msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
-msgstr "Observera att detta inte ändrar dina poolutbetalningsadresser. Detta påverkar endast plottar med det gamla formatet och belöningen 0,25XCH för poolplotter."
+msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XOL reward for pooling plots."
+msgstr "Observera att detta inte ändrar dina poolutbetalningsadresser. Detta påverkar endast plottar med det gamla formatet och belöningen 0.25XOL för poolplotter."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:118
 #: src/components/plotNFT/PlotNFTCard.tsx:160
@@ -1532,7 +1532,7 @@ msgstr "Pool"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:100
 msgid "Pool Contract Address"
-msgstr "Poolens kontraktsadress"
+msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:81
 msgid "Pool Key"
@@ -1713,7 +1713,7 @@ msgid "Receive Address"
 msgstr "Mottagaradress"
 
 #: src/components/wallet/create/WalletCreate.jsx:282
-msgid "Rexoler DID wallet"
+msgid "Recover DID wallet"
 msgstr "Återställ DID-plånbok"
 
 #: src/components/plot/PlotHeader.tsx:78
@@ -1840,8 +1840,8 @@ msgid "Self Pooling"
 msgstr "Självpoolning"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:105
-msgid "Self pool. When you win a block you will earn XCH rewards."
-msgstr "Självpoolning. När du vinner ett block tjänar du XCH-belöningar."
+msgid "Self pool. When you win a block you will earn XOL rewards."
+msgstr "Självpoolning. När du vinner ett block tjänar du XOL-belöningar."
 
 #: src/components/trading/CreateOffer.jsx:164
 #: src/components/trading/TradesTable.tsx:47
@@ -1893,8 +1893,8 @@ msgid "Skips adding a final directory to harvester for farming"
 msgstr "Hoppar över steget att lägga till en slutlig mapp till skördaren för odling"
 
 #: src/components/pool/PoolHero.tsx:26
-msgid "Smooth out your XCH farming rewards by joining a pool."
-msgstr "Jämna ut dina XCH-odlarbelöningar genom att gå med i en pool."
+msgid "Smooth out your XOL farming rewards by joining a pool."
+msgstr "Jämna ut dina XOL-odlarbelöningar genom att gå med i en pool."
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:60
 msgid "Something went wrong"
@@ -2006,23 +2006,23 @@ msgstr "Synkar <0/>/<1/>"
 #~ msgstr "Syncing {progress}/{tip}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
-#~ msgid "TXCH Block Rewards"
+#~ msgid "TXOL Block Rewards"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardCoinbaseRewards.tsx:12
-#~ msgid "TXCH Farming Rewards"
+#~ msgid "TXOL Farming Rewards"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardFeesReward.tsx:12
-#~ msgid "TXCH Fees Collected"
+#~ msgid "TXOL Fees Collected"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardUserFees.tsx:12
-#~ msgid "TXCH User Fees"
-#~ msgstr "TXCH User Fees"
+#~ msgid "TXOL User Fees"
+#~ msgstr "TXOL User Fees"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:15
-#~ msgid "TXCH User Transaction Fees"
+#~ msgid "TXOL User Transaction Fees"
 #~ msgstr ""
 
 #: src/components/pool/PoolInfo.tsx:37
@@ -2099,8 +2099,8 @@ msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "Summan av transaktionsavgifterna i detta block. Utbetalda till odlaren."
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:102
-msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
-msgstr "Det här är instruktionerna för hur odlaren vill få betalt. Som standard är det en XCH-adress, men det kan ställas in till vilken sträng som helst med en storlek på färrre än 1024 tecken, så det kan representera en identifierare för en annan blockkedja eller betalningssystem."
+msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XOL address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
+msgstr "Det här är instruktionerna för hur du vill få betalt. Som standard kommer detta att vara en XOL-adress, men det kan ställas in till vilken sträng som helst med en storlek på mindre än 1024 tecken, så att det kan representera en annan blockkedja eller betalningssystem identifierare."
 
 #: src/components/plot/PlotsFailed.tsx:40
 msgid "These plots are invalid, you might want to delete them."
@@ -2152,12 +2152,12 @@ msgstr "Detta är totalt saldo + väntande saldo: det är vad ditt saldo kommer 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:149
 #: src/components/plotNFT/PlotNFTCard.tsx:191
 msgid "This is the total number of points this plotNFT has with this pool, since the last payout. The pool will reset the points after making a payout."
-msgstr "Detta är det sammanlagda antalet poäng denna plot-NFT har hos denna pool, sedan den senaste utbetalningen. Poolen kommer att återställa poängen efter att ha gjort en utbetalning."
+msgstr "Detta är det sammanlagda antalet poäng denna plot-NFT har med denna pool, sedan den senaste utbetalningen. Poolen kommer att återställa poängen efter att ha gjort en utbetalning."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:166
 #: src/components/plotNFT/PlotNFTCard.tsx:208
 msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, should should expect around 1000 points per day, or 41 points per hour."
-msgstr "Detta är det totala antalet poäng som din odlare har hittat för denna plott-NFT. Varje k32-plott får cirka 10 poäng per dag, så om du har 10 TiB, kan du förvänta dig cirka 1000 poäng per dag, eller 41 poäng per timme."
+msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:46
 msgid "This node is fully caught up and validating the network"
@@ -2495,8 +2495,7 @@ msgstr "Du kan fortfarande skapa plottar för denna plot-NFT, men du kan inte g�
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:63
 msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr ""
-"Du behöver inte ha synkat eller vara uppkopplad för att plotta. \n"
+msgstr "Du behöver inte ha synkat eller vara uppkopplad för att plotta. \n"
 "Under plottningen skapas tillfälliga filer som är större än den färdiga plottfilen. Se till att du har tillräckligt med utrymme. <0>Läs mer</0>"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:29
@@ -2623,3 +2622,4 @@ msgstr "{currencyCode} Transaktionsavgifter för användare"
 #: src/components/core/components/Amount/Amount.tsx:80
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr "{mojo, plural, one {mojo} other {mojo}}"
+

@@ -1,6 +1,6 @@
 import pytest
 
-from olive.wallet.chialisp import (
+from olive.wallet.olivelisp import (
     apply,
     args,
     cons,
@@ -17,7 +17,7 @@ from olive.wallet.chialisp import (
 )
 
 
-class TestChialisp:
+class TestOlivelisp:
     def test_sexp(self):
         assert sexp() == "()"
         assert sexp(1) == "(1)"

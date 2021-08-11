@@ -7,6 +7,7 @@ import { DeleteForever as DeleteForeverIcon } from '@material-ui/icons';
 import { deletePlot } from '../../modules/harvesterMessages';
 import type Plot from '../../types/Plot';
 import useOpenDialog from '../../hooks/useOpenDialog';
+import isWindows from '../../util/isWindows';
 
 type Props = {
   plot: Plot;
@@ -29,7 +30,7 @@ export default function PlotAction(props: Props) {
       >
         <Trans>
           Are you sure you want to delete the plot? The plot cannot be
-          rexolered.
+          recovered.
         </Trans>
       </ConfirmDialog>,
     );

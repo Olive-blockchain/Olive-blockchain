@@ -66,7 +66,7 @@ export default function PlotAddChooseSize() {
           }
           <Link
             target="_blank"
-            href="https://github.com/pinksheetscrypto/olive-blockchain/wiki/k-sizes"
+            href="https://github.com/Olive-Network/olive-blockchain/wiki/k-sizes"
           >
             Learn more
           </Link>

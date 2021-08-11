@@ -45,7 +45,7 @@ export default function PlotQueueAction(props: Props) {
       >
         <Trans>
           Are you sure you want to delete the plot? The plot cannot be
-          rexolered.
+          recovered.
         </Trans>
       </ConfirmDialog>,
     );

@@ -20,7 +20,7 @@ if [ "$(uname -m)" = "armv7l" ]; then
 	echo "WARNING:"
 	echo "The Olive Blockchain requires a 64 bit OS and this is 32 bit armv7l"
 	echo "For more information, see"
-	echo "https://github.com/pinksheetscrypto/olive-blockchain/wiki/Raspberry-Pi"
+	echo "https://github.com/Olive-Network/olive-blockchain/wiki/Raspberry-Pi"
 	echo "Exiting."
 	exit 1
 fi
@@ -116,16 +116,16 @@ python -m pip install --upgrade pip
 python -m pip install wheel
 #if [ "$INSTALL_PYTHON_VERSION" = "3.8" ]; then
 # This remains in case there is a diversion of binary wheels
-python -m pip install --extra-index-url https://pypi.chia.net/simple/ miniupnpc==2.1
+python -m pip install --extra-index-url https://pypi.chia.net/simple/ miniupnpc==2.2.2
 python -m pip install -e . --extra-index-url https://pypi.chia.net/simple/
 
 echo ""
 echo "Olive blockchain install.sh complete."
-echo "For assistance join us on Discord in the #testnet chat channel:"
+echo "For assistance join us on Discord in the #support chat channel:"
 echo "https://discord.gg/TgJyxsEFFc"
 echo ""
 echo "Try the Quick Start Guide to running olive-blockchain:"
-echo "https://github.com/pinksheetscrypto/olive-blockchain/wiki/Quick-Start-Guide"
+echo "https://github.com/Olive-Network/olive-blockchain/wiki/Quick-Start-Guide"
 echo ""
 echo "To install the GUI type 'sh install-gui.sh' after '. ./activate'."
 echo ""

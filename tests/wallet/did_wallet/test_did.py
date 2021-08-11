@@ -105,8 +105,8 @@ class XTestDIDWallet:
         filename = "test.backup"
         did_wallet_1.create_backup(filename)
 
-        # Wallet2 rexolers DIDWallet2 to a new set of keys
-        did_wallet_2 = await DIDWallet.create_new_did_wallet_from_rexolery(
+        # Wallet2 recovers DIDWallet2 to a new set of keys
+        did_wallet_2 = await DIDWallet.create_new_did_wallet_from_recovery(
             wallet_node_1.wallet_state_manager, wallet_1, filename
         )
         coins = await did_wallet_1.select_coins(1)
@@ -127,10 +127,10 @@ class XTestDIDWallet:
         (
             test_info_list,
             test_message_spend_bundle,
-        ) = await did_wallet_2.load_attest_files_for_rexolery_spend(["test.attest"])
+        ) = await did_wallet_2.load_attest_files_for_recovery_spend(["test.attest"])
         assert message_spend_bundle == test_message_spend_bundle
 
-        await did_wallet_2.rexolery_spend(
+        await did_wallet_2.recovery_spend(
             did_wallet_2.did_info.temp_coin,
             newpuzhash,
             test_info_list,
@@ -158,7 +158,7 @@ class XTestDIDWallet:
         await time_out_assert(45, did_wallet_2.get_unconfirmed_balance, 0)
 
     @pytest.mark.asyncio
-    async def test_did_rexolery_with_multiple_backup_dids(self, two_wallet_nodes):
+    async def test_did_recovery_with_multiple_backup_dids(self, two_wallet_nodes):
         num_blocks = 5
         full_nodes, wallets = two_wallet_nodes
         full_node_1 = full_nodes[0]
@@ -196,10 +196,10 @@ class XTestDIDWallet:
         await time_out_assert(15, did_wallet.get_confirmed_balance, 101)
         await time_out_assert(15, did_wallet.get_unconfirmed_balance, 101)
 
-        rexolery_list = [bytes.fromhex(did_wallet.get_my_DID())]
+        recovery_list = [bytes.fromhex(did_wallet.get_my_DID())]
 
         did_wallet_2: DIDWallet = await DIDWallet.create_new_did_wallet(
-            wallet_node_2.wallet_state_manager, wallet2, uint64(101), rexolery_list
+            wallet_node_2.wallet_state_manager, wallet2, uint64(101), recovery_list
         )
 
         for i in range(1, num_blocks):
@@ -208,19 +208,19 @@ class XTestDIDWallet:
         await time_out_assert(15, did_wallet_2.get_confirmed_balance, 101)
         await time_out_assert(15, did_wallet_2.get_unconfirmed_balance, 101)
 
-        assert did_wallet_2.did_info.backup_ids == rexolery_list
+        assert did_wallet_2.did_info.backup_ids == recovery_list
 
-        rexolery_list.append(bytes.fromhex(did_wallet_2.get_my_DID()))
+        recovery_list.append(bytes.fromhex(did_wallet_2.get_my_DID()))
 
         did_wallet_3: DIDWallet = await DIDWallet.create_new_did_wallet(
-            wallet_node_2.wallet_state_manager, wallet2, uint64(201), rexolery_list
+            wallet_node_2.wallet_state_manager, wallet2, uint64(201), recovery_list
         )
 
         ph2 = await wallet.get_new_puzzlehash()
         for i in range(1, num_blocks):
             await full_node_1.farm_new_transaction_block(FarmNewBlockProtocol(ph2))
 
-        assert did_wallet_3.did_info.backup_ids == rexolery_list
+        assert did_wallet_3.did_info.backup_ids == recovery_list
         await time_out_assert(15, did_wallet_3.get_confirmed_balance, 201)
         await time_out_assert(15, did_wallet_3.get_unconfirmed_balance, 201)
         coins = await did_wallet_3.select_coins(1)
@@ -229,7 +229,7 @@ class XTestDIDWallet:
         filename = "test.backup"
         did_wallet_3.create_backup(filename)
 
-        did_wallet_4 = await DIDWallet.create_new_did_wallet_from_rexolery(
+        did_wallet_4 = await DIDWallet.create_new_did_wallet_from_recovery(
             wallet_node.wallet_state_manager,
             wallet,
             filename,
@@ -245,13 +245,13 @@ class XTestDIDWallet:
         (
             test_info_list,
             test_message_spend_bundle,
-        ) = await did_wallet_4.load_attest_files_for_rexolery_spend(["test1.attest", "test2.attest"])
+        ) = await did_wallet_4.load_attest_files_for_recovery_spend(["test1.attest", "test2.attest"])
         assert message_spend_bundle == test_message_spend_bundle
 
         for i in range(1, num_blocks):
             await full_node_1.farm_new_transaction_block(FarmNewBlockProtocol(ph2))
 
-        await did_wallet_4.rexolery_spend(coin, new_ph, test_info_list, pubkey, message_spend_bundle)
+        await did_wallet_4.recovery_spend(coin, new_ph, test_info_list, pubkey, message_spend_bundle)
 
         for i in range(1, num_blocks):
             await full_node_1.farm_new_transaction_block(FarmNewBlockProtocol(ph2))
@@ -262,7 +262,7 @@ class XTestDIDWallet:
         await time_out_assert(15, did_wallet_3.get_unconfirmed_balance, 0)
 
     @pytest.mark.asyncio
-    async def test_did_rexolery_with_empty_set(self, two_wallet_nodes):
+    async def test_did_recovery_with_empty_set(self, two_wallet_nodes):
         num_blocks = 5
         full_nodes, wallets = two_wallet_nodes
         full_node_1 = full_nodes[0]
@@ -301,14 +301,14 @@ class XTestDIDWallet:
         coin = coins.pop()
         info = Program.to([])
         pubkey = (await did_wallet.wallet_state_manager.get_unused_derivation_record(did_wallet.wallet_info.id)).pubkey
-        spend_bundle = await did_wallet.rexolery_spend(
+        spend_bundle = await did_wallet.recovery_spend(
             coin, ph, info, pubkey, SpendBundle([], AugSchemeMPL.aggregate([]))
         )
         additions = spend_bundle.additions()
         assert additions == []
 
     @pytest.mark.asyncio
-    async def test_did_attest_after_rexolery(self, two_wallet_nodes):
+    async def test_did_attest_after_recovery(self, two_wallet_nodes):
         num_blocks = 5
         full_nodes, wallets = two_wallet_nodes
         full_node_1 = full_nodes[0]
@@ -343,22 +343,22 @@ class XTestDIDWallet:
 
         await time_out_assert(15, did_wallet.get_confirmed_balance, 101)
         await time_out_assert(15, did_wallet.get_unconfirmed_balance, 101)
-        rexolery_list = [bytes.fromhex(did_wallet.get_my_DID())]
+        recovery_list = [bytes.fromhex(did_wallet.get_my_DID())]
 
         did_wallet_2: DIDWallet = await DIDWallet.create_new_did_wallet(
-            wallet_node_2.wallet_state_manager, wallet2, uint64(101), rexolery_list
+            wallet_node_2.wallet_state_manager, wallet2, uint64(101), recovery_list
         )
         ph = await wallet.get_new_puzzlehash()
         for i in range(1, num_blocks):
             await full_node_1.farm_new_transaction_block(FarmNewBlockProtocol(ph))
         await time_out_assert(15, did_wallet_2.get_confirmed_balance, 101)
         await time_out_assert(15, did_wallet_2.get_unconfirmed_balance, 101)
-        assert did_wallet_2.did_info.backup_ids == rexolery_list
+        assert did_wallet_2.did_info.backup_ids == recovery_list
 
         # Update coin with new ID info
-        rexolery_list = [bytes.fromhex(did_wallet_2.get_my_DID())]
-        await did_wallet.update_rexolery_list(rexolery_list, uint64(1))
-        assert did_wallet.did_info.backup_ids == rexolery_list
+        recovery_list = [bytes.fromhex(did_wallet_2.get_my_DID())]
+        await did_wallet.update_recovery_list(recovery_list, uint64(1))
+        assert did_wallet.did_info.backup_ids == recovery_list
         await did_wallet.create_update_spend()
 
         for i in range(1, num_blocks):
@@ -367,7 +367,7 @@ class XTestDIDWallet:
         await time_out_assert(15, did_wallet.get_confirmed_balance, 101)
         await time_out_assert(15, did_wallet.get_unconfirmed_balance, 101)
 
-        # DID Wallet 2 rexolers into itself with new innerpuz
+        # DID Wallet 2 recovers into itself with new innerpuz
         new_ph = await did_wallet_2.get_new_inner_hash()
         coins = await did_wallet_2.select_coins(1)
         coin = coins.pop()
@@ -381,8 +381,8 @@ class XTestDIDWallet:
         (
             info,
             message_spend_bundle,
-        ) = await did_wallet_2.load_attest_files_for_rexolery_spend(["test.attest"])
-        await did_wallet_2.rexolery_spend(coin, new_ph, info, pubkey, message_spend_bundle)
+        ) = await did_wallet_2.load_attest_files_for_recovery_spend(["test.attest"])
+        await did_wallet_2.recovery_spend(coin, new_ph, info, pubkey, message_spend_bundle)
 
         for i in range(1, num_blocks):
             await full_node_1.farm_new_transaction_block(FarmNewBlockProtocol(ph))
@@ -390,7 +390,7 @@ class XTestDIDWallet:
         await time_out_assert(15, did_wallet_2.get_confirmed_balance, 101)
         await time_out_assert(15, did_wallet_2.get_unconfirmed_balance, 101)
 
-        # Rexolery spend
+        # Recovery spend
         coins = await did_wallet.select_coins(1)
         coin = coins.pop()
 
@@ -401,8 +401,8 @@ class XTestDIDWallet:
         (
             test_info_list,
             test_message_spend_bundle,
-        ) = await did_wallet.load_attest_files_for_rexolery_spend(["test.attest"])
-        await did_wallet.rexolery_spend(coin, ph, test_info_list, pubkey, test_message_spend_bundle)
+        ) = await did_wallet.load_attest_files_for_recovery_spend(["test.attest"])
+        await did_wallet.recovery_spend(coin, ph, test_info_list, pubkey, test_message_spend_bundle)
 
         for i in range(1, num_blocks):
             await full_node_1.farm_new_transaction_block(FarmNewBlockProtocol(ph))

@@ -18,7 +18,7 @@ function getInstallerConfig () {
     authors: 'Olive Network',
     version: process.env.OLIVE_INSTALLER_VERSION,
     noMsi: true,
-    iconUrl: 'https://raw.githubusercontent.com/pinksheetscrypto/olive-blockchain/master/electron-react/src/assets/img/olive.ico',
+    iconUrl: 'https://raw.githubusercontent.com/Olive-Network/olive-blockchain/master/electron-react/src/assets/img/olive.ico',
     outputDirectory: path.join(outPath, 'windows-installer'),
     certificateFile: 'win_code_sign_cert.p12',
     certificatePassword: process.env.WIN_CODE_SIGN_PASS,

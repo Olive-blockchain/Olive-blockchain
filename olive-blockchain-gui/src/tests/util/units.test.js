@@ -112,14 +112,14 @@ describe('units', () => {
     });
     it('updates an existing display', () => {
       units.setDisplay('olive', {
-        format: '{amount} TCOV',
+        format: '{amount} TXOL',
         fractionDigits: 0,
       });
 
       const result = units.getDisplay('olive');
 
       expect(result).toEqual({
-        format: '{amount} TCOV',
+        format: '{amount} TXOL',
         fractionDigits: 0,
       });
     });

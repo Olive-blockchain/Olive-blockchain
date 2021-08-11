@@ -75,14 +75,14 @@ def get_innerpuzzle_from_puzzle(puzzle: Program) -> Optional[Program]:
     return inner_puzzle
 
 
-def create_rexolery_message_puzzle(rexolering_coin_id: bytes32, newpuz: bytes32, pubkey: G1Element):
-    puzstring = f"(q . ((0x{ConditionOpcode.CREATE_COIN_ANNOUNCEMENT.hex()} 0x{rexolering_coin_id.hex()}) (0x{ConditionOpcode.AGG_SIG_UNSAFE.hex()} 0x{bytes(pubkey).hex()} 0x{newpuz.hex()})))"  # noqa
+def create_recovery_message_puzzle(recovering_coin_id: bytes32, newpuz: bytes32, pubkey: G1Element):
+    puzstring = f"(q . ((0x{ConditionOpcode.CREATE_COIN_ANNOUNCEMENT.hex()} 0x{recovering_coin_id.hex()}) (0x{ConditionOpcode.AGG_SIG_UNSAFE.hex()} 0x{bytes(pubkey).hex()} 0x{newpuz.hex()})))"  # noqa
     puz = binutils.assemble(puzstring)
     return Program.to(puz)
 
 
-def create_spend_for_message(parent_of_message, rexolering_coin, newpuz, pubkey):
-    puzzle = create_rexolery_message_puzzle(rexolering_coin, newpuz, pubkey)
+def create_spend_for_message(parent_of_message, recovering_coin, newpuz, pubkey):
+    puzzle = create_recovery_message_puzzle(recovering_coin, newpuz, pubkey)
     coin = Coin(parent_of_message, puzzle.get_tree_hash(), uint64(0))
     solution = Program.to([])
     coinsol = CoinSpend(coin, puzzle, solution)

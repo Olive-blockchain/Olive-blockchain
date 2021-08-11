@@ -65,7 +65,7 @@ export default function FarmLatestBlockChallenges() {
           *Want to explore Olive’s blocks further? Check out{' '}
           <Link
             color="primary"
-            href="https://alltheblocks.net/olive/"
+            href="https://www.oliveexplorer.org/"
             target="_blank"
           >
             Olive Explorer

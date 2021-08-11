@@ -23,7 +23,7 @@ import {
   CREATE_DID_WALLET_OPTIONS,
 } from '../../../modules/createWallet';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import { rexoler_did_action } from '../../../modules/message';
+import { recover_did_action } from '../../../modules/message';
 import { olive_to_mojo } from '../../../util/olive';
 import { openDialog } from '../../../modules/dialog';
 import { useForm, Controller, useFieldArray } from 'react-hook-form';
@@ -260,14 +260,14 @@ export const customStyles = makeStyles((theme) => ({
 
 */
 
-export const RexolerDIDWallet = () => {
+export const RecoverDIDWallet = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
   function handleDrop(acceptedFiles) {
-    const rexolery_file_path = acceptedFiles[0].path;
-    const rexolery_name = rexolery_file_path.replace(/^.*[\\/]/, '');
-    dispatch(rexoler_did_action(rexolery_file_path));
+    const recovery_file_path = acceptedFiles[0].path;
+    const recovery_name = recovery_file_path.replace(/^.*[\\/]/, '');
+    dispatch(recover_did_action(recovery_file_path));
   }
 
   function goBack() {
@@ -285,7 +285,7 @@ export const RexolerDIDWallet = () => {
           </Box>
           <Box flexGrow={1} style={{ verticalAlign: 'bottom' }}>
             <Typography component="h6" variant="h6">
-              Rexoler Distributed Identity Wallet
+              Recover Distributed Identity Wallet
             </Typography>
           </Box>
         </Box>
@@ -309,7 +309,7 @@ export const RexolerDIDWallet = () => {
       </Box>
       <Box flexGrow={1} className={classes.title}>
         <Typography component="h6" variant="h6">
-          View DID Rexolery File
+          View DID Recovery File
         </Typography>
       </Box>
     </Box>

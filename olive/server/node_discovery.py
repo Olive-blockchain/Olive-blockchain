@@ -26,13 +26,13 @@ MAX_PEERS_RECEIVED_PER_REQUEST = 1000
 MAX_TOTAL_PEERS_RECEIVED = 3000
 MAX_CONCURRENT_OUTBOUND_CONNECTIONS = 70
 NETWORK_ID_DEFAULT_PORTS = {
-    "mainnet": 19180,
+    "mainnet": 3882,
     "testnet7": 58444,
     "testnet8": 58445,
 }
 
 
-class FullNodeDisxolery:
+class FullNodeDiscovery:
     resolver: Optional[dns.asyncresolver.Resolver]
 
     def __init__(
@@ -489,7 +489,7 @@ class FullNodeDisxolery:
             await self.address_manager.add_to_new_table(peers_adjusted_timestamp, None, 0)
 
 
-class FullNodePeers(FullNodeDisxolery):
+class FullNodePeers(FullNodeDiscovery):
     self_advertise_task: Optional[asyncio.Task] = None
     address_relay_task: Optional[asyncio.Task] = None
 
@@ -623,7 +623,7 @@ class FullNodePeers(FullNodeDisxolery):
                 relay_peer_info = PeerInfo(relay_peer.host, relay_peer.port)
                 if not relay_peer_info.is_valid():
                     continue
-                # https://en.bitcoin.it/wiki/Satoshi_Client_Node_Disxolery#Address_Relay
+                # https://en.bitcoin.it/wiki/Satoshi_Client_Node_Discovery#Address_Relay
                 connections = self.server.get_full_node_connections()
                 hashes = []
                 cur_day = int(time.time()) // (24 * 60 * 60)
@@ -666,7 +666,7 @@ class FullNodePeers(FullNodeDisxolery):
                 self.log.error(f"Traceback: {traceback.format_exc()}")
 
 
-class WalletPeers(FullNodeDisxolery):
+class WalletPeers(FullNodeDiscovery):
     def __init__(
         self,
         server,

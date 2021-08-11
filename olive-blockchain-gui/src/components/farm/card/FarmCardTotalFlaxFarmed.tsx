@@ -5,7 +5,6 @@ import type { RootState } from '../../../modules/rootReducer';
 import FarmCard from './FarmCard';
 import { mojo_to_olive } from '../../../util/olive';
 import useCurrencyCode from '../../../hooks/useCurrencyCode';
-import { FormatLargeNumber } from '@olive/core';
 
 export default function FarmCardTotalOliveFarmed() {
   const currencyCode = useCurrencyCode();
@@ -28,7 +27,7 @@ export default function FarmCardTotalOliveFarmed() {
   return (
     <FarmCard
       title={<Trans>{currencyCode} Total Olive Farmed</Trans>}
-      value={<FormatLargeNumber value={totalOliveFarmed} />}
+      value={totalOliveFarmed}
       loading={loading}
     />
   );

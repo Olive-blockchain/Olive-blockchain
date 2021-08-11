@@ -392,10 +392,10 @@ export default function incomingReducer(
             },
           ),
         };
-      } else if (command === 'did_get_rexolery_list') {
+      } else if (command === 'did_get_recovery_list') {
         const {
           wallet_id,
-          rexoler_list: backup_dids,
+          recover_list: backup_dids,
           num_required: dids_num_req,
         } = data;
         const { wallets, ...rest } = state;

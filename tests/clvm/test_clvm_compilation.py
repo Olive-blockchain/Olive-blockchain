@@ -9,7 +9,7 @@ wallet_program_files = set(
     [
         "olive/wallet/puzzles/calculate_synthetic_public_key.clvm",
         "olive/wallet/puzzles/cc.clvm",
-        "olive/wallet/puzzles/chialisp_deserialisation.clvm",
+        "olive/wallet/puzzles/olivelisp_deserialisation.clvm",
         "olive/wallet/puzzles/rom_bootstrap_generator.clvm",
         "olive/wallet/puzzles/generator_for_single_coin.clvm",
         "olive/wallet/puzzles/genesis-by-coin-id-with-0.clvm",

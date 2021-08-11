@@ -8,11 +8,11 @@
   amount
   message
   new_inner_puzhash
-  parent_innerpuzhash_amounts_for_rexolery_ids
+  parent_innerpuzhash_amounts_for_recovery_ids
   pubkey
-  rexolery_list_reveal
+  recovery_list_reveal
   )
-  ;message is the new puzzle in the rexolery and standard spend cases
+  ;message is the new puzzle in the recovery and standard spend cases
 
   ;MOD_HASH, MY_PUBKEY, RECOVERY_DID_LIST_HASH are curried into the puzzle
   ;EXAMPLE SOLUTION (0xcafef00d 0x12341234 0x923bf9a7856b19d335a65f12d68957d497e1f0c16c0e14baf6d120e60753a1ce 2 1 100 (q "source code") 0xdeadbeef 0xcafef00d ((0xdadadada 0xdad5dad5 200) () (0xfafafafa 0xfaf5faf5 200)) 0xfadeddab (0x22222222 0x33333333 0x44444444))
@@ -40,17 +40,17 @@
       )
   )
 
-  ;rexolery message module - gets values curried in to make the puzzle
+  ;recovery message module - gets values curried in to make the puzzle
   ;TODO - this should probably be imported
-  (defun make_message_puzzle (rexolering_coin newpuz pubkey)
-    (qq (q . (((unquote CREATE_COIN_ANNOUNCEMENT) (unquote rexolering_coin)) ((unquote AGG_SIG_UNSAFE) (unquote pubkey) (unquote newpuz)))))
+  (defun make_message_puzzle (recovering_coin newpuz pubkey)
+    (qq (q . (((unquote CREATE_COIN_ANNOUNCEMENT) (unquote recovering_coin)) ((unquote AGG_SIG_UNSAFE) (unquote pubkey) (unquote newpuz)))))
   )
 
   (defun-inline create_consume_message (coin_id my_id new_innerpuz pubkey)
     (list ASSERT_COIN_ANNOUNCEMENT (sha256 (sha256 coin_id (sha256tree1 (make_message_puzzle my_id new_innerpuz pubkey))) my_id))
   )
 
-(defun-inline create_coin_ID_for_rexolery (MOD_HASH LAUNCHER_ID LAUNCHER_PUZZLE_HASH parent innerpuzhash amount)
+(defun-inline create_coin_ID_for_recovery (MOD_HASH LAUNCHER_ID LAUNCHER_PUZZLE_HASH parent innerpuzhash amount)
     (sha256 parent (calculate_full_puzzle_hash MOD_HASH LAUNCHER_ID LAUNCHER_PUZZLE_HASH innerpuzhash) amount)
   )
 
@@ -64,9 +64,9 @@
     (qq (c CREATE_COIN (c (unquote new_puz) (c (unquote amount) ()))))
   )
 
-  (defun check_messages_from_identities (MOD_HASH LAUNCHER_PUZZLE_HASH num_verifications_required identities my_id output new_puz parent_innerpuzhash_amounts_for_rexolery_ids pubkey num_verifications)
+  (defun check_messages_from_identities (MOD_HASH LAUNCHER_PUZZLE_HASH num_verifications_required identities my_id output new_puz parent_innerpuzhash_amounts_for_recovery_ids pubkey num_verifications)
     (if identities
-      (if (f parent_innerpuzhash_amounts_for_rexolery_ids)
+      (if (f parent_innerpuzhash_amounts_for_recovery_ids)
         (check_messages_from_identities
           MOD_HASH
           LAUNCHER_PUZZLE_HASH
@@ -76,19 +76,19 @@
           (c
             (create_consume_message
               ; create coin_id from DID
-              (create_coin_ID_for_rexolery
+              (create_coin_ID_for_recovery
                 MOD_HASH
                 (f identities)
                 LAUNCHER_PUZZLE_HASH
-                (f (f parent_innerpuzhash_amounts_for_rexolery_ids))
-                (f (r (f parent_innerpuzhash_amounts_for_rexolery_ids)))
-                (f (r (r (f parent_innerpuzhash_amounts_for_rexolery_ids)))))
+                (f (f parent_innerpuzhash_amounts_for_recovery_ids))
+                (f (r (f parent_innerpuzhash_amounts_for_recovery_ids)))
+                (f (r (r (f parent_innerpuzhash_amounts_for_recovery_ids)))))
               my_id
               new_puz
               pubkey)
             output)
           new_puz
-          (r parent_innerpuzhash_amounts_for_rexolery_ids)
+          (r parent_innerpuzhash_amounts_for_recovery_ids)
           pubkey
           (+ num_verifications 1)
         )
@@ -99,7 +99,7 @@
           my_id
           output
           new_puz
-          (r parent_innerpuzhash_amounts_for_rexolery_ids)
+          (r parent_innerpuzhash_amounts_for_recovery_ids)
           pubkey
           num_verifications
         )
@@ -125,7 +125,7 @@
   ;Spend modes:
   ;0 = exit spend
   ;1 = create messages and recreate singleton
-  ;2 = rexolery
+  ;2 = recovery
 
   ;MAIN
 
@@ -133,11 +133,11 @@
     (if (= mode 1)
       ; mode one - create messages and recreate singleton
       (c (list CREATE_COIN new_inner_puzhash amount) (c (list AGG_SIG_ME MY_PUBKEY (sha256tree1 (list new_inner_puzhash amount message))) (create_messages message)))
-    ; mode two - rexolery
-    ; check that rexolery list is not empty
-      (if rexolery_list_reveal
-        (if (= (sha256tree1 rexolery_list_reveal) RECOVERY_DID_LIST_HASH)
-          (check_messages_from_identities (singleton_mod_hash_truth Truths) (singleton_launcher_puzzle_hash_truth Truths) NUM_VERIFICATIONS_REQUIRED rexolery_list_reveal (my_id_truth Truths) (list (create_new_coin amount message)) message parent_innerpuzhash_amounts_for_rexolery_ids pubkey 0)
+    ; mode two - recovery
+    ; check that recovery list is not empty
+      (if recovery_list_reveal
+        (if (= (sha256tree1 recovery_list_reveal) RECOVERY_DID_LIST_HASH)
+          (check_messages_from_identities (singleton_mod_hash_truth Truths) (singleton_launcher_puzzle_hash_truth Truths) NUM_VERIFICATIONS_REQUIRED recovery_list_reveal (my_id_truth Truths) (list (create_new_coin amount message)) message parent_innerpuzhash_amounts_for_recovery_ids pubkey 0)
           (x)
         )
         (x)

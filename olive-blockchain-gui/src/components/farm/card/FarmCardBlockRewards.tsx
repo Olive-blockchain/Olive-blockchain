@@ -5,7 +5,6 @@ import type { RootState } from '../../../modules/rootReducer';
 import FarmCard from './FarmCard';
 import { mojo_to_olive } from '../../../util/olive';
 import useCurrencyCode from '../../../hooks/useCurrencyCode';
-import { FormatLargeNumber } from '@olive/core';
 
 export default function FarmCardBlockRewards() {
   const currencyCode = useCurrencyCode();
@@ -35,7 +34,7 @@ export default function FarmCardBlockRewards() {
     <FarmCard
       title={<Trans>{currencyCode} Block Rewards</Trans>}
       description={<Trans>Without fees</Trans>}
-      value={<FormatLargeNumber value={blockRewards} />}
+      value={blockRewards}
       loading={loading}
     />
   );
