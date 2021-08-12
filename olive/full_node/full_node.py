@@ -185,7 +185,7 @@ class FullNode:
             default_port = None
         if "dns_servers" in self.config:
             dns_servers = self.config["dns_servers"]
-        elif self.config["port"] == 3882:
+        elif self.config["port"] == 9888:
             # If `dns_servers` misses from the `config`, hardcode it if we're running mainnet.
             dns_servers.append("dns-introducer.oliveblockchain.co")
         try:

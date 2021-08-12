@@ -8,8 +8,8 @@ from olive.util.bech32m import decode_puzzle_hash, encode_puzzle_hash
 from olive.util.condition_tools import parse_sexp_to_conditions
 from olive.util.ints import uint32
 
-address1 = "txol15gx26ndmacfaqlq8m0yajeggzceu7cvmaz4df0hahkukes695rss6lej7h"  # Gene wallet (m/12381/8444/2/42):
-address2 = "txol1c2cguswhvmdyz9hr3q6hak2h6p9dw4rz82g4707k2xy2sarv705qcce4pn"  # Mariano address (m/12381/8444/2/0)
+address1 = "txol1ypzsr2z4ykw3xr4tlsm2mvg9az48a48e3z8y97eg2le3hzwj2nnqulw346"  # Gene wallet (m/12381/8444/2/42):
+address2 = "txol1ypzsr2z4ykw3xr4tlsm2mvg9az48a48e3z8y97eg2le3hzwj2nnqulw346"  # Mariano address (m/12381/8444/2/0)
 
 ph1 = decode_puzzle_hash(address1)
 ph2 = decode_puzzle_hash(address2)

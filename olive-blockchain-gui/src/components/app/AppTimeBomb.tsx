@@ -4,7 +4,7 @@ import { t } from '@lingui/macro';
 import { RootState } from '../../modules/rootReducer';
 
 const RESET_TIMEOUT = 4 * 60 * 60 * 1000; // 4 hours
-const INFO_HEIGHT = 143210; // 32 days
+const INFO_HEIGHT = 166000; // 32 days
 
 export default function AppTimeBomb() {
   const [showed, setShowed] = useState<boolean>(false);
