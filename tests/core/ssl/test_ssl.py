@@ -9,7 +9,7 @@ from olive.server.server import OliveServer, ssl_context_for_client
 from olive.server.ws_connection import WSOliveConnection
 from olive.ssl.create_ssl import generate_ca_signed_cert
 from olive.types.peer_info import PeerInfo
-from tests.block_tools import test_constants
+from olive.util.block_tools import test_constants
 from olive.util.ints import uint16
 from tests.setup_nodes import (
     bt,

@@ -400,13 +400,13 @@ if (!handleSquirrelEvent()) {
           {
             label: i18n._(/* i18n */ { id: 'Chat on Discord' }),
             click: () => {
-              openExternal('https://discord.gg/TgJyxsEFFc');
+              openExternal('https://discord.gg/cSrV78ye');
             },
           },
           {
             label: i18n._(/* i18n */ { id: 'Follow on Twitter' }),
             click: () => {
-              openExternal('https://twitter.com/olive_project');
+              openExternal('https://twitter.com/olivecrypto1');
             },
           },
         ],

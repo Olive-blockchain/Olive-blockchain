@@ -122,7 +122,7 @@ python -m pip install -e . --extra-index-url https://pypi.chia.net/simple/
 echo ""
 echo "Olive blockchain install.sh complete."
 echo "For assistance join us on Discord in the #support chat channel:"
-echo "https://discord.gg/TgJyxsEFFc"
+echo "https://discord.gg/jEuZsNMD5c"
 echo ""
 echo "Try the Quick Start Guide to running olive-blockchain:"
 echo "https://github.com/Olive-Network/olive-blockchain/wiki/Quick-Start-Guide"

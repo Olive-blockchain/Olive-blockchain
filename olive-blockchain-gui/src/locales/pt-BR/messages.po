@@ -822,7 +822,7 @@ msgid "Fee"
 msgstr "Taxa"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
-#~ msgid "Fee (TXOL)"
+#~ msgid "Fee (TXFX)"
 #~ msgstr ""
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
@@ -1026,16 +1026,16 @@ msgid "Join a Pool"
 msgstr "Juntar-se ao bolão"
 
 #: src/components/plot/add/PlotAddNFT.tsx:44
-msgid "Join a pool and get consistent XOL farming rewards. The average returns are the same, but it is much less volatile."
-msgstr "Junte-se a um bolão e obtenha recompensas consistentes de cultivo em XOL. Os retornos médios são iguais, mas são muito menos voláteis."
+msgid "Join a pool and get consistent XFX farming rewards. The average returns are the same, but it is much less volatile."
+msgstr "Junte-se a um bolão e obtenha recompensas consistentes de cultivo em XFX. Os retornos médios são iguais, mas são muito menos voláteis."
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:59
-msgid "Join a pool and get consistent XOL farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
-msgstr "Junte-se a um bolão e obtenha recompensas consistentes de cultivo em XOL. Os retornos médios são iguais, mas são muito menos voláteis. Atribua seus lotes a um lote NFT. Você pode facilmente trocar de bolão sem precisar recriar seus lotes."
+msgid "Join a pool and get consistent XFX farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
+msgstr "Junte-se a um bolão e obtenha recompensas consistentes de cultivo em XFX. Os retornos médios são iguais, mas são muito menos voláteis. Atribua seus lotes a um lote NFT. Você pode facilmente trocar de bolão sem precisar recriar seus lotes."
 
 #: src/components/plot/add/PlotAddNFT.tsx:133
-msgid "Join a pool and get more consistent XOL farming rewards. Create a plot NFT and assign your new plots to a group."
-msgstr "Junte-se a um bolão e obtenha recompensas de cultivo XOL mais consistentes. Crie um lote NFT e atribua seu lote a um bolão."
+msgid "Join a pool and get more consistent XFX farming rewards. Create a plot NFT and assign your new plots to a group."
+msgstr "Junte-se a um bolão e obtenha recompensas de cultivo XFX mais consistentes. Crie um lote NFT e atribua seu lote a um bolão."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:63
 msgid "K-Size"
@@ -1269,8 +1269,8 @@ msgid "Not found Plots"
 msgstr "Lotes não encontrados"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:184
-msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XOL reward for pooling plots."
-msgstr "Note que isso não muda seus endereços de pagamento no bolão. Isso afeta apenas os lotes de formato antigo e a recompensa 0.25XOL em lotes de bolão."
+msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XFX reward for pooling plots."
+msgstr "Note que isso não muda seus endereços de pagamento no bolão. Isso afeta apenas os lotes de formato antigo e a recompensa 0.25XFX em lotes de bolão."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:118
 #: src/components/plotNFT/PlotNFTCard.tsx:160
@@ -1840,8 +1840,8 @@ msgid "Self Pooling"
 msgstr "Bolão próprio"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:105
-msgid "Self pool. When you win a block you will earn XOL rewards."
-msgstr "Bolão próprio. Quando você ganhar um bloco, você receberá recompensas em XOL."
+msgid "Self pool. When you win a block you will earn XFX rewards."
+msgstr "Bolão próprio. Quando você ganhar um bloco, você receberá recompensas em XFX."
 
 #: src/components/trading/CreateOffer.jsx:164
 #: src/components/trading/TradesTable.tsx:47
@@ -1893,8 +1893,8 @@ msgid "Skips adding a final directory to harvester for farming"
 msgstr "Ignorar adicionando um diretório final para os coletores da fazenda"
 
 #: src/components/pool/PoolHero.tsx:26
-msgid "Smooth out your XOL farming rewards by joining a pool."
-msgstr "Suavize suas recompensas de coleta XOL ao se juntar a um bolão."
+msgid "Smooth out your XFX farming rewards by joining a pool."
+msgstr "Suavize suas recompensas de coleta XFX ao se juntar a um bolão."
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:60
 msgid "Something went wrong"
@@ -2006,23 +2006,23 @@ msgstr "Sincronizando <0/>/<1/>"
 #~ msgstr "Syncing {progress}/{tip}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
-#~ msgid "TXOL Block Rewards"
+#~ msgid "TXFX Block Rewards"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardCoinbaseRewards.tsx:12
-#~ msgid "TXOL Farming Rewards"
+#~ msgid "TXFX Farming Rewards"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardFeesReward.tsx:12
-#~ msgid "TXOL Fees Collected"
+#~ msgid "TXFX Fees Collected"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardUserFees.tsx:12
-#~ msgid "TXOL User Fees"
-#~ msgstr "TXOL User Fees"
+#~ msgid "TXFX User Fees"
+#~ msgstr "TXFX User Fees"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:15
-#~ msgid "TXOL User Transaction Fees"
+#~ msgid "TXFX User Transaction Fees"
 #~ msgstr ""
 
 #: src/components/pool/PoolInfo.tsx:37
@@ -2099,8 +2099,8 @@ msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "As taxas de transações totais neste bloco. Recompensado ao fazendeiro."
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:102
-msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XOL address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
-msgstr "Estas são as instruções sobre como o fazendeiro quer ser pago. Por padrão este será um endereço XOL, mas pode ser definido como qualquer sequência de caracteres com menos de 1024 caracteres, assim, ele pode representar outro blockchain ou identificador do sistema de pagamento."
+msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XFX address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
+msgstr "Estas são as instruções sobre como o fazendeiro quer ser pago. Por padrão este será um endereço XFX, mas pode ser definido como qualquer sequência de caracteres com menos de 1024 caracteres, assim, ele pode representar outro blockchain ou identificador do sistema de pagamento."
 
 #: src/components/plot/PlotsFailed.tsx:40
 msgid "These plots are invalid, you might want to delete them."
