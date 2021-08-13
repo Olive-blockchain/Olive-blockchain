@@ -4,4 +4,4 @@
 
 For more information, see our website and downloads at https://oliveblockchain.co.
 
-Discord: https://discord.gg/cSrV78ye
+Discord: https://discord.gg/pCd75ram
