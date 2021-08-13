@@ -116,7 +116,7 @@ def configure(
 
         elif testnet == "false" or testnet == "f":
             print("Setting Mainnet")
-            mainnet_port = "6333"
+            mainnet_port = "7333"
             mainnet_introducer = "introducer.oliveblockchain.co"
             net = "mainnet"
             config["full_node"]["port"] = int(mainnet_port)
