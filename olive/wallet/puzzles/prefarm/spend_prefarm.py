@@ -29,7 +29,7 @@ def print_conditions(spend_bundle: SpendBundle):
 
 
 async def main() -> None:
-    rpc_port: uint16 = uint16(8555)
+    rpc_port: uint16 = uint16(6355)
     self_hostname = "localhost"
     path = DEFAULT_ROOT_PATH
     config = load_config(path, "config.yaml")
@@ -58,8 +58,8 @@ async def main() -> None:
 
         print(f"Ph1: {ph1.hex()}")
         print(f"Ph2: {ph2.hex()}")
-        assert ph1.hex() == "1b7ab2079fa635554ad9bd4812c622e46ee3b1875a7813afba127bb0cc9794f9"
-        assert ph2.hex() == "6f184a7074c925ef8688ce56941eb8929be320265f824ec7e351356cc745d38a"
+        assert ph1.hex() == "204501a855259d130eabfc36adb105e8aa7ed4f9888e42fb2857f31b89d254e6"
+        assert ph2.hex() == "204501a855259d130eabfc36adb105e8aa7ed4f9888e42fb2857f31b89d254e6"
 
         p_solution = Program.to(binutils.assemble("()"))
 

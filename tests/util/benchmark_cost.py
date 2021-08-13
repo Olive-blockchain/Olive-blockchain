@@ -9,7 +9,7 @@ from olive.types.blockchain_format.program import Program, INFINITE_COST
 from olive.types.condition_opcodes import ConditionOpcode
 from olive.types.condition_with_args import ConditionWithArgs
 from olive.util.ints import uint32
-from tests.wallet_tools import WalletTool
+from olive.util.wallet_tools import WalletTool
 from olive.wallet.derive_keys import master_sk_to_wallet_sk
 from olive.wallet.puzzles.p2_delegated_puzzle import puzzle_for_pk
 

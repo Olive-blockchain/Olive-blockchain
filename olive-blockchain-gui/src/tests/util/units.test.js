@@ -112,14 +112,14 @@ describe('units', () => {
     });
     it('updates an existing display', () => {
       units.setDisplay('olive', {
-        format: '{amount} TXOL',
+        format: '{amount} TXFX',
         fractionDigits: 0,
       });
 
       const result = units.getDisplay('olive');
 
       expect(result).toEqual({
-        format: '{amount} TXOL',
+        format: '{amount} TXFX',
         fractionDigits: 0,
       });
     });

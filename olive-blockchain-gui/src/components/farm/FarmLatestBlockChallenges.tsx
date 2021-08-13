@@ -60,19 +60,6 @@ export default function FarmLatestBlockChallenges() {
         rowsPerPage={5}
         pages
       />
-      <Typography variant="caption">
-        <Trans>
-          *Want to explore Olive’s blocks further? Check out{' '}
-          <Link
-            color="primary"
-            href="https://www.oliveexplorer.org/"
-            target="_blank"
-          >
-            Olive Explorer
-          </Link>{' '}
-          built by an open source developer.
-        </Trans>
-      </Typography>
     </Card>
   );
 }

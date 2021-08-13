@@ -18,7 +18,7 @@ from olive.simulator.start_simulator import service_kwargs_for_full_node_simulat
 from olive.timelord.timelord_launcher import kill_processes, spawn_process
 from olive.types.peer_info import PeerInfo
 from olive.util.bech32m import encode_puzzle_hash
-from tests.block_tools import BlockTools, test_constants
+from olive.util.block_tools import BlockTools, test_constants
 from olive.util.hash import std_hash
 from olive.util.ints import uint16, uint32
 from olive.util.keychain import Keychain, bytes_to_mnemonic
@@ -445,7 +445,7 @@ async def setup_full_system(
         setup_introducer(21233),
         setup_harvester(21234, 21235, consensus_constants, b_tools),
         setup_farmer(21235, consensus_constants, b_tools, uint16(21237)),
-        setup_vdf_clients(8000),
+        setup_vdf_clients(6500),
         setup_timelord(21236, 21237, False, consensus_constants, b_tools),
         setup_full_node(
             consensus_constants, "blockchain_test.db", 21237, b_tools, 21233, False, 10, True, connect_to_daemon
