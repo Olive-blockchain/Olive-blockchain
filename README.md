@@ -5,3 +5,12 @@
 For more information, see our website and downloads at https://oliveblockchain.co.
 
 Discord: https://discord.gg/pCd75ram
+
+Linux install instructions
+git clone https://github.com/Olive-blockchain/Olive-blockchain.git
+cd Olive-blockchain
+sh install.sh
+. ./activate
+olive init
+sh install-timelord.sh
+olive start all
