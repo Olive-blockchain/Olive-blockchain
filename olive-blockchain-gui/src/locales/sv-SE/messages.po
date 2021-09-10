@@ -23,8 +23,8 @@ msgid "(Optional)"
 msgstr "(Valfritt)"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:64
-msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
-msgstr "*Vill du utforska Olives block lite mer? Ta en titt på <0>Olive Explorer</0> som har skapats som öppen källkod av en utvecklare."
+#~ msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
+#~ msgstr "*Vill du utforska Olives block lite mer? Ta en titt på <0>Olive Explorer</0> som har skapats som öppen källkod av en utvecklare."
 
 #: src/components/plot/add/PlotAddNFT.tsx:123
 msgid "+ Add New Plot NFT"
@@ -138,7 +138,7 @@ msgstr "Belopp ({cc_unit})"
 msgid "Amount For Initial Coin"
 msgstr "Belopp för ursprungligt mynt"
 
-#: src/components/plot/PlotAction.tsx:30
+#: src/components/plot/PlotAction.tsx:31
 #: src/components/plot/queue/PlotQueueActions.tsx:46
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "Är det säkert att du vill ta bort plotten? Den kan inte återställas."
@@ -309,18 +309,6 @@ msgstr "Byt pool"
 msgid "Chat on Discord"
 msgstr "Chatta på Discord"
 
-#: src/electron/main.tsx:419
-msgid "Olive"
-msgstr "Olive"
-
-#: src/electron/main.tsx:358
-msgid "Olive Blockchain Wiki"
-msgstr "Olive Blockchains wiki"
-
-#: src/components/wallet/standard/WalletStandard.tsx:647
-msgid "Olive Wallet"
-msgstr "Olive-plånbok"
-
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:36
 msgid "Choose Number of Plots"
 msgstr "Välj antal plottar"
@@ -454,7 +442,7 @@ msgid "Copy to Clipboard"
 msgstr "Kopiera till Urklipp"
 
 #: src/components/backup/BackupCreate.tsx:78
-#: src/components/plot/add/PlotAdd.tsx:177
+#: src/components/plot/add/PlotAdd.tsx:176
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:175
 #: src/components/wallet/create/createExistingColouredCoin.jsx:133
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
@@ -589,8 +577,8 @@ msgstr "Datum"
 msgid "Delay"
 msgstr "Fördröjning"
 
-#: src/components/plot/PlotAction.tsx:27
-#: src/components/plot/PlotAction.tsx:57
+#: src/components/plot/PlotAction.tsx:28
+#: src/components/plot/PlotAction.tsx:58
 #: src/components/plot/queue/PlotQueueActions.tsx:43
 #: src/components/plot/queue/PlotQueueActions.tsx:97
 #: src/components/plotNFT/PlotNFTCard.tsx:122
@@ -600,7 +588,7 @@ msgstr "Fördröjning"
 msgid "Delete"
 msgstr "Ta bort"
 
-#: src/components/plot/PlotAction.tsx:26
+#: src/components/plot/PlotAction.tsx:27
 #: src/components/plot/queue/PlotQueueActions.tsx:42
 msgid "Delete Plot"
 msgstr "Ta bort plott"
@@ -747,6 +735,7 @@ msgstr "Det gick inte att öppna (ogiltiga plottar)"
 #: src/components/dashboard/DashboardSideBar.tsx:55
 #: src/components/wallet/coloured/WalletColoured.tsx:610
 #: src/components/wallet/standard/WalletStandard.tsx:532
+#: src/dashboard/DashboardSideBar.tsx:55
 msgid "Farm"
 msgstr "Odling"
 
@@ -871,6 +860,7 @@ msgstr "Vanliga frågor"
 
 #: src/components/dashboard/DashboardSideBar.tsx:39
 #: src/components/fullNode/FullNode.jsx:323
+#: src/dashboard/DashboardSideBar.tsx:39
 msgid "Full Node"
 msgstr "Fullständig nod"
 
@@ -1042,6 +1032,7 @@ msgid "K-Size"
 msgstr "K-storlek"
 
 #: src/components/dashboard/DashboardSideBar.tsx:66
+#: src/dashboard/DashboardSideBar.tsx:66
 msgid "Keys"
 msgstr "Nycklar"
 
@@ -1080,7 +1071,7 @@ msgstr "Lämnar poolen"
 msgid "List view"
 msgstr "Listvy"
 
-#: src/components/pool/Pool.tsx:21
+#: src/components/pool/Pool.tsx:22
 msgid "Loading Plot NFTs"
 msgstr "Läser in plott-NFT:er"
 
@@ -1298,6 +1289,18 @@ msgstr "Erbjudande"
 msgid "Offers Created"
 msgstr "Skapade erbjudanden"
 
+#: src/electron/main.tsx:419
+msgid "Olive"
+msgstr "Olive"
+
+#: src/electron/main.tsx:358
+msgid "Olive Blockchain Wiki"
+msgstr "Olive Blockchains wiki"
+
+#: src/components/wallet/standard/WalletStandard.tsx:647
+msgid "Olive Wallet"
+msgstr "Olive-plånbok"
+
 #: src/components/wallet/standard/WalletStandard.tsx:485
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "Vanligtvis är det en minut mellan varje transaktionsblock. Om det inte är någon form av köbildning kan du räkna med att en transaktion inkluderas i blockkedjan på under en minut."
@@ -1483,6 +1486,7 @@ msgid "PlotNFT is transitioning to (target state). This can take a while. Please
 msgstr "PlotNFT håller på att byta status till (target state). Detta kan ta ett tag. Stäng inte programmet förrän detta är slutfört."
 
 #: src/components/dashboard/DashboardSideBar.tsx:50
+#: src/dashboard/DashboardSideBar.tsx:50
 msgid "Plots"
 msgstr "Plottar"
 
@@ -1526,7 +1530,8 @@ msgid "Points Successful in Last 24 Hours"
 msgstr "Poäng lyckade under de senaste 24 timmarna"
 
 #: src/components/dashboard/DashboardSideBar.tsx:60
-#: src/components/pool/Pool.tsx:25
+#: src/components/pool/Pool.tsx:26
+#: src/dashboard/DashboardSideBar.tsx:60
 msgid "Pool"
 msgstr "Pool"
 
@@ -2213,10 +2218,6 @@ msgstr "Till"
 msgid "Total Balance"
 msgstr "Totalt saldo"
 
-#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
-#~ msgid "Total Olive Farmed"
-#~ msgstr ""
-
 #: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:20
 msgid "Total Iterations"
 msgstr "Totalt antal iterationer"
@@ -2224,6 +2225,10 @@ msgstr "Totalt antal iterationer"
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:15
 msgid "Total Network Space"
 msgstr "Sammanlagt nätverksutrymme"
+
+#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
+#~ msgid "Total Olive Farmed"
+#~ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:146
 msgid "Total Plot Size:"
@@ -2385,12 +2390,12 @@ msgstr "Plånboksstatus:"
 #~ msgid "WalletItem.ccWallet"
 #~ msgstr ""
 
-#: src/components/wallet/Wallets.tsx:30
-#~ msgid "WalletItem.oliveWallet"
-#~ msgstr ""
-
 #: src/components/wallet/Wallets.tsx:48
 #~ msgid "WalletItem.didWallet"
+#~ msgstr ""
+
+#: src/components/wallet/Wallets.tsx:30
+#~ msgid "WalletItem.oliveWallet"
 #~ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:41
@@ -2411,6 +2416,7 @@ msgstr "Plånboksstatus:"
 
 #: src/components/dashboard/DashboardSideBar.tsx:45
 #: src/components/wallet/Wallets.tsx:173
+#: src/dashboard/DashboardSideBar.tsx:45
 msgid "Wallets"
 msgstr "Plånböcker"
 
@@ -2495,7 +2501,8 @@ msgstr "Du kan fortfarande skapa plottar för denna plot-NFT, men du kan inte g�
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:63
 msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr "Du behöver inte ha synkat eller vara uppkopplad för att plotta. \n"
+msgstr ""
+"Du behöver inte ha synkat eller vara uppkopplad för att plotta. \n"
 "Under plottningen skapas tillfälliga filer som är större än den färdiga plottfilen. Se till att du har tillräckligt med utrymme. <0>Läs mer</0>"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:29
@@ -2622,4 +2629,3 @@ msgstr "{currencyCode} Transaktionsavgifter för användare"
 #: src/components/core/components/Amount/Amount.tsx:80
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr "{mojo, plural, one {mojo} other {mojo}}"
-

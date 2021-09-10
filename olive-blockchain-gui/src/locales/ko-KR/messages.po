@@ -23,8 +23,8 @@ msgid "(Optional)"
 msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:64
-msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
-msgstr "Olive의 블록을 더 탐험하고 싶으십니까? 오픈 소스 개발자가 만든 <0>Olive Explorer</0>를 확인하세요."
+#~ msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
+#~ msgstr "Olive의 블록을 더 탐험하고 싶으십니까? 오픈 소스 개발자가 만든 <0>Olive Explorer</0>를 확인하세요."
 
 #: src/components/plot/add/PlotAddNFT.tsx:123
 msgid "+ Add New Plot NFT"
@@ -138,7 +138,7 @@ msgstr "금액 ({cc_unit})"
 msgid "Amount For Initial Coin"
 msgstr "초기 코인의 양"
 
-#: src/components/plot/PlotAction.tsx:30
+#: src/components/plot/PlotAction.tsx:31
 #: src/components/plot/queue/PlotQueueActions.tsx:46
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "정말로 플롯을 삭제하시겠습니까? 삭제된 플롯은 복구되지 않습니다."
@@ -309,18 +309,6 @@ msgstr ""
 msgid "Chat on Discord"
 msgstr "키베이스에서 채팅하기"
 
-#: src/electron/main.tsx:419
-msgid "Olive"
-msgstr "Olive"
-
-#: src/electron/main.tsx:358
-msgid "Olive Blockchain Wiki"
-msgstr "Olive 블록체인 위키"
-
-#: src/components/wallet/standard/WalletStandard.tsx:647
-msgid "Olive Wallet"
-msgstr "Olive 지갑"
-
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:36
 msgid "Choose Number of Plots"
 msgstr "몇 개의 플롯을 만들까요?"
@@ -454,7 +442,7 @@ msgid "Copy to Clipboard"
 msgstr "클립보드에 복사"
 
 #: src/components/backup/BackupCreate.tsx:78
-#: src/components/plot/add/PlotAdd.tsx:177
+#: src/components/plot/add/PlotAdd.tsx:176
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:175
 #: src/components/wallet/create/createExistingColouredCoin.jsx:133
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
@@ -589,8 +577,8 @@ msgstr "날짜"
 msgid "Delay"
 msgstr "지연"
 
-#: src/components/plot/PlotAction.tsx:27
-#: src/components/plot/PlotAction.tsx:57
+#: src/components/plot/PlotAction.tsx:28
+#: src/components/plot/PlotAction.tsx:58
 #: src/components/plot/queue/PlotQueueActions.tsx:43
 #: src/components/plot/queue/PlotQueueActions.tsx:97
 #: src/components/plotNFT/PlotNFTCard.tsx:122
@@ -600,7 +588,7 @@ msgstr "지연"
 msgid "Delete"
 msgstr "삭제"
 
-#: src/components/plot/PlotAction.tsx:26
+#: src/components/plot/PlotAction.tsx:27
 #: src/components/plot/queue/PlotQueueActions.tsx:42
 msgid "Delete Plot"
 msgstr "플롯 삭제"
@@ -747,6 +735,7 @@ msgstr "플롯 열기에 실패했습니다. (사유: 유효하지 않은 플롯
 #: src/components/dashboard/DashboardSideBar.tsx:55
 #: src/components/wallet/coloured/WalletColoured.tsx:610
 #: src/components/wallet/standard/WalletStandard.tsx:532
+#: src/dashboard/DashboardSideBar.tsx:55
 msgid "Farm"
 msgstr "농장"
 
@@ -871,6 +860,7 @@ msgstr "자주 묻는 질문"
 
 #: src/components/dashboard/DashboardSideBar.tsx:39
 #: src/components/fullNode/FullNode.jsx:323
+#: src/dashboard/DashboardSideBar.tsx:39
 msgid "Full Node"
 msgstr "전체 노드"
 
@@ -1042,6 +1032,7 @@ msgid "K-Size"
 msgstr "K-크기"
 
 #: src/components/dashboard/DashboardSideBar.tsx:66
+#: src/dashboard/DashboardSideBar.tsx:66
 msgid "Keys"
 msgstr "키"
 
@@ -1080,7 +1071,7 @@ msgstr ""
 msgid "List view"
 msgstr ""
 
-#: src/components/pool/Pool.tsx:21
+#: src/components/pool/Pool.tsx:22
 msgid "Loading Plot NFTs"
 msgstr ""
 
@@ -1298,6 +1289,18 @@ msgstr "거래 제안"
 msgid "Offers Created"
 msgstr "거래 주문이 생성되었습니다."
 
+#: src/electron/main.tsx:419
+msgid "Olive"
+msgstr "Olive"
+
+#: src/electron/main.tsx:358
+msgid "Olive Blockchain Wiki"
+msgstr "Olive 블록체인 위키"
+
+#: src/components/wallet/standard/WalletStandard.tsx:647
+msgid "Olive Wallet"
+msgstr "Olive 지갑"
+
 #: src/components/wallet/standard/WalletStandard.tsx:485
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "당신이 보낸 트랜잭션(이체) 주문이 1분 이내로 처리된다고 느끼겠지만, 평균적으로는 각 트랜잭션 블록은 1분 정도의 차이를 두고 있습니다."
@@ -1483,6 +1486,7 @@ msgid "PlotNFT is transitioning to (target state). This can take a while. Please
 msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:50
+#: src/dashboard/DashboardSideBar.tsx:50
 msgid "Plots"
 msgstr "플롯"
 
@@ -1526,7 +1530,8 @@ msgid "Points Successful in Last 24 Hours"
 msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:60
-#: src/components/pool/Pool.tsx:25
+#: src/components/pool/Pool.tsx:26
+#: src/dashboard/DashboardSideBar.tsx:60
 msgid "Pool"
 msgstr ""
 
@@ -2213,10 +2218,6 @@ msgstr "수신"
 msgid "Total Balance"
 msgstr "총 잔고"
 
-#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
-#~ msgid "Total Olive Farmed"
-#~ msgstr ""
-
 #: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:20
 msgid "Total Iterations"
 msgstr "총 반복"
@@ -2224,6 +2225,10 @@ msgstr "총 반복"
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:15
 msgid "Total Network Space"
 msgstr "총 네트워크 공간"
+
+#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
+#~ msgid "Total Olive Farmed"
+#~ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:146
 msgid "Total Plot Size:"
@@ -2385,12 +2390,12 @@ msgstr ""
 #~ msgid "WalletItem.ccWallet"
 #~ msgstr ""
 
-#: src/components/wallet/Wallets.tsx:30
-#~ msgid "WalletItem.oliveWallet"
-#~ msgstr ""
-
 #: src/components/wallet/Wallets.tsx:48
 #~ msgid "WalletItem.didWallet"
+#~ msgstr ""
+
+#: src/components/wallet/Wallets.tsx:30
+#~ msgid "WalletItem.oliveWallet"
 #~ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:41
@@ -2411,6 +2416,7 @@ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:45
 #: src/components/wallet/Wallets.tsx:173
+#: src/dashboard/DashboardSideBar.tsx:45
 msgid "Wallets"
 msgstr "지갑"
 
@@ -2621,4 +2627,3 @@ msgstr "{currencyCode} 사용자 거래 수수료"
 #: src/components/core/components/Amount/Amount.tsx:80
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr ""
-

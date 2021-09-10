@@ -23,8 +23,8 @@ msgid "(Optional)"
 msgstr "(Opcional)"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:64
-msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
-msgstr "*¿Quieres explorar más los bloques de Olive? Échale un vistazo a <0>Olive Explorer</0> construido en código abierto."
+#~ msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
+#~ msgstr "*¿Quieres explorar más los bloques de Olive? Échale un vistazo a <0>Olive Explorer</0> construido en código abierto."
 
 #: src/components/plot/add/PlotAddNFT.tsx:123
 msgid "+ Add New Plot NFT"
@@ -138,7 +138,7 @@ msgstr "Cantidad ({cc_unit})"
 msgid "Amount For Initial Coin"
 msgstr "Cantidad Para Moneda Inicial"
 
-#: src/components/plot/PlotAction.tsx:30
+#: src/components/plot/PlotAction.tsx:31
 #: src/components/plot/queue/PlotQueueActions.tsx:46
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "¿Está seguro de que desea eliminar la parcela? La parcela no se puede recuperar."
@@ -309,18 +309,6 @@ msgstr "Cambiar Fondo"
 msgid "Chat on Discord"
 msgstr "Chat en Discord"
 
-#: src/electron/main.tsx:419
-msgid "Olive"
-msgstr "Olive"
-
-#: src/electron/main.tsx:358
-msgid "Olive Blockchain Wiki"
-msgstr "Wiki de la Blockchain de Olive"
-
-#: src/components/wallet/standard/WalletStandard.tsx:647
-msgid "Olive Wallet"
-msgstr "Cartera Olive"
-
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:36
 msgid "Choose Number of Plots"
 msgstr "Elegir la cantidad de Parcelas"
@@ -454,7 +442,7 @@ msgid "Copy to Clipboard"
 msgstr "Copiar al porta-papeles"
 
 #: src/components/backup/BackupCreate.tsx:78
-#: src/components/plot/add/PlotAdd.tsx:177
+#: src/components/plot/add/PlotAdd.tsx:176
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:175
 #: src/components/wallet/create/createExistingColouredCoin.jsx:133
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
@@ -589,8 +577,8 @@ msgstr "Fecha"
 msgid "Delay"
 msgstr "Retraso"
 
-#: src/components/plot/PlotAction.tsx:27
-#: src/components/plot/PlotAction.tsx:57
+#: src/components/plot/PlotAction.tsx:28
+#: src/components/plot/PlotAction.tsx:58
 #: src/components/plot/queue/PlotQueueActions.tsx:43
 #: src/components/plot/queue/PlotQueueActions.tsx:97
 #: src/components/plotNFT/PlotNFTCard.tsx:122
@@ -600,7 +588,7 @@ msgstr "Retraso"
 msgid "Delete"
 msgstr "Eliminar"
 
-#: src/components/plot/PlotAction.tsx:26
+#: src/components/plot/PlotAction.tsx:27
 #: src/components/plot/queue/PlotQueueActions.tsx:42
 msgid "Delete Plot"
 msgstr "Borrar Parcela"
@@ -747,6 +735,7 @@ msgstr "Error al abrir (parcelas inválidas)"
 #: src/components/dashboard/DashboardSideBar.tsx:55
 #: src/components/wallet/coloured/WalletColoured.tsx:610
 #: src/components/wallet/standard/WalletStandard.tsx:532
+#: src/dashboard/DashboardSideBar.tsx:55
 msgid "Farm"
 msgstr "Granja"
 
@@ -871,6 +860,7 @@ msgstr "Preguntas Frecuentes"
 
 #: src/components/dashboard/DashboardSideBar.tsx:39
 #: src/components/fullNode/FullNode.jsx:323
+#: src/dashboard/DashboardSideBar.tsx:39
 msgid "Full Node"
 msgstr "Nodo Completo"
 
@@ -1042,6 +1032,7 @@ msgid "K-Size"
 msgstr "Tamaño-K"
 
 #: src/components/dashboard/DashboardSideBar.tsx:66
+#: src/dashboard/DashboardSideBar.tsx:66
 msgid "Keys"
 msgstr "Llaves"
 
@@ -1080,7 +1071,7 @@ msgstr "Abandonar Fondo"
 msgid "List view"
 msgstr "Vista de la lista"
 
-#: src/components/pool/Pool.tsx:21
+#: src/components/pool/Pool.tsx:22
 msgid "Loading Plot NFTs"
 msgstr "Cargando NFTs de parcela"
 
@@ -1298,6 +1289,18 @@ msgstr "Oferta"
 msgid "Offers Created"
 msgstr "Oferta creada"
 
+#: src/electron/main.tsx:419
+msgid "Olive"
+msgstr "Olive"
+
+#: src/electron/main.tsx:358
+msgid "Olive Blockchain Wiki"
+msgstr "Wiki de la Blockchain de Olive"
+
+#: src/components/wallet/standard/WalletStandard.tsx:647
+msgid "Olive Wallet"
+msgstr "Cartera Olive"
+
 #: src/components/wallet/standard/WalletStandard.tsx:485
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "Por término medio, hay un minuto entre cada bloque de transacción. A menos que haya congestión, puede esperar que su transacción sea incluida en menos de un minuto."
@@ -1483,6 +1486,7 @@ msgid "PlotNFT is transitioning to (target state). This can take a while. Please
 msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:50
+#: src/dashboard/DashboardSideBar.tsx:50
 msgid "Plots"
 msgstr "Parcelas"
 
@@ -1526,7 +1530,8 @@ msgid "Points Successful in Last 24 Hours"
 msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:60
-#: src/components/pool/Pool.tsx:25
+#: src/components/pool/Pool.tsx:26
+#: src/dashboard/DashboardSideBar.tsx:60
 msgid "Pool"
 msgstr "Fondo"
 
@@ -2213,10 +2218,6 @@ msgstr "A"
 msgid "Total Balance"
 msgstr "Saldo Total"
 
-#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
-#~ msgid "Total Olive Farmed"
-#~ msgstr ""
-
 #: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:20
 msgid "Total Iterations"
 msgstr "Total de iteraciones"
@@ -2224,6 +2225,10 @@ msgstr "Total de iteraciones"
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:15
 msgid "Total Network Space"
 msgstr "Espacio Total de Red"
+
+#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
+#~ msgid "Total Olive Farmed"
+#~ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:146
 msgid "Total Plot Size:"
@@ -2385,12 +2390,12 @@ msgstr "Estado de la cartera:"
 #~ msgid "WalletItem.ccWallet"
 #~ msgstr ""
 
-#: src/components/wallet/Wallets.tsx:30
-#~ msgid "WalletItem.oliveWallet"
-#~ msgstr ""
-
 #: src/components/wallet/Wallets.tsx:48
 #~ msgid "WalletItem.didWallet"
+#~ msgstr ""
+
+#: src/components/wallet/Wallets.tsx:30
+#~ msgid "WalletItem.oliveWallet"
 #~ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:41
@@ -2411,6 +2416,7 @@ msgstr "Estado de la cartera:"
 
 #: src/components/dashboard/DashboardSideBar.tsx:45
 #: src/components/wallet/Wallets.tsx:173
+#: src/dashboard/DashboardSideBar.tsx:45
 msgid "Wallets"
 msgstr "Carteras"
 
@@ -2621,4 +2627,3 @@ msgstr "{currencyCode} Tarifas de Transacción del Usuario"
 #: src/components/core/components/Amount/Amount.tsx:80
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr ""
-

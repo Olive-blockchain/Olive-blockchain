@@ -232,3 +232,16 @@ class WalletRpcClient(RpcClient):
             PoolWalletInfo.from_json_dict(json_dict["state"]),
             [TransactionRecord.from_json_dict(tr) for tr in json_dict["unconfirmed_transactions"]],
         )
+        
+    async def recover_pool_nft(self, launcher_hash: str, contract_hash: str, coins: List[Coin]) -> SpendBundle:
+        return (
+            await self.fetch(
+                "pw_status",
+                {
+                    "launcher_hash": launcher_hash,
+                    "contract_hash": contract_hash,
+                    "coins": coins,
+                },
+            )
+        )["spend_bundle"]
+

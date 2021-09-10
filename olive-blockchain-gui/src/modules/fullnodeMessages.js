@@ -214,3 +214,40 @@ export function getBlockRecord(headerHash) {
     return response?.data?.block_record;
   };
 }
+
+export function get_coin_records_by_puzzle_hash(puzzle_hash) {
+  return async (dispatch) => {
+    const response = await async_api(
+      dispatch,
+      fullNodeMessage({
+        command: 'get_coin_records_by_puzzle_hash',
+        data: {
+          puzzle_hash: puzzle_hash,
+          include_spend_coins: false
+        },
+      }),
+      false,
+      true,
+    );
+
+    return response?.data
+  };
+}
+
+export function push_tx(spend_bundle) {
+  return async (dispatch) => {
+    const response = await async_api(
+      dispatch,
+      fullNodeMessage({
+        command: 'push_tx',
+        data: {
+          spend_bundle: spend_bundle,
+        },
+      }),
+      false,
+      true,
+    );
+
+    return response?.data
+  };
+}

@@ -10,6 +10,7 @@ import PlotNFTAbsorbRewards from '../plotNFT/PlotNFTAbsorbRewards';
 import { PoolHeaderTarget } from './PoolHeader';
 import usePlotNFTs from '../../hooks/usePlotNFTs';
 import { PoolHeaderSource } from './PoolHeader';
+import PoolCollection from './PoolCollection';
 
 export default function Pool() {
   const { path } = useRouteMatch();
@@ -28,22 +29,9 @@ export default function Pool() {
         </>
       }
     >
-      <Flex flexDirection="column" gap={3}>
-        <Switch>
-          <Route path={path} exact>
-            <PoolOverview />
-          </Route>
-          <Route path={`${path}/add`} exact>
-            <PlotNFTAdd headerTag={PoolHeaderSource} />
-          </Route>
-          <Route path={`${path}/:plotNFTId/change-pool`} exact>
-            <PlotNFTChangePool headerTag={PoolHeaderSource} />
-          </Route>
-          <Route path={`${path}/:plotNFTId/absorb-rewards`} exact>
-            <PlotNFTAbsorbRewards headerTag={PoolHeaderSource} />
-          </Route>
-        </Switch>
-      </Flex>
+      <PoolCollection />
+
     </LayoutMain>
   );
 }
+
