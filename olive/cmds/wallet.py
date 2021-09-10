@@ -142,3 +142,50 @@ def delete_unconfirmed_transactions_cmd(wallet_rpc_port: Optional[int], id, fing
     from .wallet_funcs import execute_with_wallet, delete_unconfirmed_transactions
 
     asyncio.run(execute_with_wallet(wallet_rpc_port, fingerprint, extra_params, delete_unconfirmed_transactions))
+    
+async def do_recover_pool_nft(contract_hash: str, launcher_hash: str, fingerprint: int):
+    from .wallet_funcs import get_wallet
+
+    contract_hash_bytes32 = hexstr_to_bytes(contract_hash)
+    delay = 604800
+
+    config = load_config(DEFAULT_ROOT_PATH, "config.yaml")
+    self_hostname = config["self_hostname"]
+    rpc_port = config["full_node"]["rpc_port"]
+    wallet_rpc_port = config["wallet"]["rpc_port"]
+    node_client = await FullNodeRpcClient.create(self_hostname, uint16(rpc_port), DEFAULT_ROOT_PATH, config)
+    wallet_client = await WalletRpcClient.create(self_hostname, uint16(wallet_rpc_port), DEFAULT_ROOT_PATH, config)
+
+    coin_records = await node_client.get_coin_records_by_puzzle_hash(contract_hash_bytes32, False)
+
+    # expired coins
+    coins = [coin_record.coin for coin_record in coin_records if coin_record.timestamp <= int(time.time()) - delay]
+    if not coins:
+        print("no expired coins")
+        return
+    print("found", len(coins), "expired coins, total amount:", sum(coin.amount for coin in coins))
+    wallet_client_f = await get_wallet(wallet_client, fingerprint=fingerprint)
+    tx = await wallet_client_f.recover_pool_nft(launcher_hash, contract_hash, coins)
+    await node_client.push_tx(tx)
+    print("tx pushed")
+
+
+@wallet_cmd.command("recover_pool_nft", short_help="Recover coins in pool nft contract")
+@click.option(
+    "--contract-hash",
+    help="Set the nft contract hash",
+    type=str,
+    default=None,
+)
+@click.option(
+    "--launcher-hash",
+    help="Set the launcher hash, you should get it from chia wallet",
+    type=str,
+    default=None,
+)
+@click.option("-f", "--fingerprint", help="Set the fingerprint to specify which wallet to use", type=int)
+def recover_pool_nft(contract_hash: str, launcher_hash: str, fingerprint: int):
+    import asyncio
+
+    asyncio.run(do_recover_pool_nft(contract_hash, launcher_hash, fingerprint))
+
