@@ -23,8 +23,8 @@ msgid "(Optional)"
 msgstr "(Pilihan)"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:64
-#~ msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
-#~ msgstr "*Ingin tahu soal blok Olive lebih jauh? Periksa laman <0>Olive Explorer</0> yang dibuat oleh software sumber terbuka."
+msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
+msgstr "*Ingin tahu soal blok Olive lebih jauh? Periksa laman <0>Olive Explorer</0> yang dibuat oleh software sumber terbuka."
 
 #: src/components/plot/add/PlotAddNFT.tsx:123
 msgid "+ Add New Plot NFT"
@@ -138,7 +138,7 @@ msgstr "Jumlah ({cc_unit})"
 msgid "Amount For Initial Coin"
 msgstr "Jumlah Untuk Koin Inisial"
 
-#: src/components/plot/PlotAction.tsx:31
+#: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "Anda yakin ingin menghapus plot ini? Plot ini tidak akan dapat dipulihkan."
@@ -309,6 +309,18 @@ msgstr "Ubah Pool"
 msgid "Chat on Discord"
 msgstr "Hubung Chat di Discord"
 
+#: src/electron/main.tsx:419
+msgid "Olive"
+msgstr "Olive"
+
+#: src/electron/main.tsx:358
+msgid "Olive Blockchain Wiki"
+msgstr "Wiki Olive Blockchain"
+
+#: src/components/wallet/standard/WalletStandard.tsx:647
+msgid "Olive Wallet"
+msgstr "Wallet Olive"
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:36
 msgid "Choose Number of Plots"
 msgstr "Pilih Jumlah Plot"
@@ -442,7 +454,7 @@ msgid "Copy to Clipboard"
 msgstr "Salin ke Clipboard"
 
 #: src/components/backup/BackupCreate.tsx:78
-#: src/components/plot/add/PlotAdd.tsx:176
+#: src/components/plot/add/PlotAdd.tsx:177
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:175
 #: src/components/wallet/create/createExistingColouredCoin.jsx:133
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
@@ -577,8 +589,8 @@ msgstr "Tanggal"
 msgid "Delay"
 msgstr "Tunda"
 
-#: src/components/plot/PlotAction.tsx:28
-#: src/components/plot/PlotAction.tsx:58
+#: src/components/plot/PlotAction.tsx:27
+#: src/components/plot/PlotAction.tsx:57
 #: src/components/plot/queue/PlotQueueActions.tsx:43
 #: src/components/plot/queue/PlotQueueActions.tsx:97
 #: src/components/plotNFT/PlotNFTCard.tsx:122
@@ -588,7 +600,7 @@ msgstr "Tunda"
 msgid "Delete"
 msgstr "Hapus"
 
-#: src/components/plot/PlotAction.tsx:27
+#: src/components/plot/PlotAction.tsx:26
 #: src/components/plot/queue/PlotQueueActions.tsx:42
 msgid "Delete Plot"
 msgstr "Hapus Plot"
@@ -735,7 +747,6 @@ msgstr "Gagal membuka (plot tidak valid)"
 #: src/components/dashboard/DashboardSideBar.tsx:55
 #: src/components/wallet/coloured/WalletColoured.tsx:610
 #: src/components/wallet/standard/WalletStandard.tsx:532
-#: src/dashboard/DashboardSideBar.tsx:55
 msgid "Farm"
 msgstr "Farm"
 
@@ -860,7 +871,6 @@ msgstr "Frequently Asked Questions"
 
 #: src/components/dashboard/DashboardSideBar.tsx:39
 #: src/components/fullNode/FullNode.jsx:323
-#: src/dashboard/DashboardSideBar.tsx:39
 msgid "Full Node"
 msgstr "Full Node"
 
@@ -1032,7 +1042,6 @@ msgid "K-Size"
 msgstr "Ukuran-K"
 
 #: src/components/dashboard/DashboardSideBar.tsx:66
-#: src/dashboard/DashboardSideBar.tsx:66
 msgid "Keys"
 msgstr "Keys"
 
@@ -1071,7 +1080,7 @@ msgstr "Meninggalkan Pool"
 msgid "List view"
 msgstr "Tampilan daftar"
 
-#: src/components/pool/Pool.tsx:22
+#: src/components/pool/Pool.tsx:21
 msgid "Loading Plot NFTs"
 msgstr "Memuat Plot NFT"
 
@@ -1289,18 +1298,6 @@ msgstr "Tawaran"
 msgid "Offers Created"
 msgstr "Tawaran dicipta"
 
-#: src/electron/main.tsx:419
-msgid "Olive"
-msgstr "Olive"
-
-#: src/electron/main.tsx:358
-msgid "Olive Blockchain Wiki"
-msgstr "Wiki Olive Blockchain"
-
-#: src/components/wallet/standard/WalletStandard.tsx:647
-msgid "Olive Wallet"
-msgstr "Wallet Olive"
-
 #: src/components/wallet/standard/WalletStandard.tsx:485
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "Rata rata ada jarak 1 menit antara masing masing blok transaksi. Kecuali ada kebanyakan transaksi, transaksi biasanya akan di ikutkan dalam waktu kurang dari 1 menit."
@@ -1486,7 +1483,6 @@ msgid "PlotNFT is transitioning to (target state). This can take a while. Please
 msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:50
-#: src/dashboard/DashboardSideBar.tsx:50
 msgid "Plots"
 msgstr "Plot-Plot"
 
@@ -1496,8 +1492,7 @@ msgstr "Plot Diterima Seleksi"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:35
 msgid "Plots are allocated space on your hard drive used to farm and earn Olive. <0>Learn more</0>"
-msgstr ""
-"Plot adalah penempatan ruang dalam hard drive yang digunakan untuk disewakan dan memperoleh Olive\n"
+msgstr "Plot adalah penempatan ruang dalam hard drive yang digunakan untuk disewakan dan memperoleh Olive\n"
 "<0>Pelajari lebih lanjut</0>"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
@@ -1532,8 +1527,7 @@ msgid "Points Successful in Last 24 Hours"
 msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:60
-#: src/components/pool/Pool.tsx:26
-#: src/dashboard/DashboardSideBar.tsx:60
+#: src/components/pool/Pool.tsx:25
 msgid "Pool"
 msgstr ""
 
@@ -2220,6 +2214,10 @@ msgstr "Ke"
 msgid "Total Balance"
 msgstr "Jumlah Saldo"
 
+#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
+#~ msgid "Total Olive Farmed"
+#~ msgstr ""
+
 #: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:20
 msgid "Total Iterations"
 msgstr "Jumlah iterasi"
@@ -2227,10 +2225,6 @@ msgstr "Jumlah iterasi"
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:15
 msgid "Total Network Space"
 msgstr "Jumlah Jarak Rangkaian"
-
-#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
-#~ msgid "Total Olive Farmed"
-#~ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:146
 msgid "Total Plot Size:"
@@ -2392,12 +2386,12 @@ msgstr "Status Dompet:"
 #~ msgid "WalletItem.ccWallet"
 #~ msgstr ""
 
-#: src/components/wallet/Wallets.tsx:48
-#~ msgid "WalletItem.didWallet"
-#~ msgstr ""
-
 #: src/components/wallet/Wallets.tsx:30
 #~ msgid "WalletItem.oliveWallet"
+#~ msgstr ""
+
+#: src/components/wallet/Wallets.tsx:48
+#~ msgid "WalletItem.didWallet"
 #~ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:41
@@ -2418,7 +2412,6 @@ msgstr "Status Dompet:"
 
 #: src/components/dashboard/DashboardSideBar.tsx:45
 #: src/components/wallet/Wallets.tsx:173
-#: src/dashboard/DashboardSideBar.tsx:45
 msgid "Wallets"
 msgstr "Wallets"
 
@@ -2629,3 +2622,4 @@ msgstr "{currencyCode} Biaya Transaksi User"
 #: src/components/core/components/Amount/Amount.tsx:80
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr "{mojo, plural, other {mojo}}"
+

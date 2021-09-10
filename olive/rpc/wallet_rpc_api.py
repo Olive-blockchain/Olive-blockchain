@@ -9,14 +9,12 @@ from blspy import PrivateKey, G1Element
 
 from olive.cmds.init_funcs import check_keys
 from olive.consensus.block_rewards import calculate_base_farmer_reward
-from olive.pools.pool_puzzles import SINGLETON_MOD_HASH, create_p2_singleton_puzzle
 from olive.pools.pool_wallet import PoolWallet
 from olive.pools.pool_wallet_info import create_pool_state, FARMING_TO_POOL, PoolWalletInfo, PoolState
 from olive.protocols.protocol_message_types import ProtocolMessageTypes
 from olive.server.outbound_message import NodeType, make_msg
 from olive.simulator.simulator_protocol import FarmNewBlockProtocol
 from olive.types.blockchain_format.coin import Coin
-from olive.types.blockchain_format.program import Program, SerializedProgram
 from olive.types.blockchain_format.sized_bytes import bytes32
 from olive.util.bech32m import decode_puzzle_hash, encode_puzzle_hash
 from olive.util.byte_types import hexstr_to_bytes
@@ -114,8 +112,6 @@ class WalletRpcApi:
             "/pw_self_pool": self.pw_self_pool,
             "/pw_absorb_rewards": self.pw_absorb_rewards,
             "/pw_status": self.pw_status,
-            # Pool NFT
-            "/recover_pool_nft": self.recover_pool_nft,
         }
 
     async def _state_changed(self, *args) -> List[WsRpcMessage]:
@@ -1244,32 +1240,3 @@ class WalletRpcApi:
             "state": state.to_json_dict(),
             "unconfirmed_transactions": unconfirmed_transactions,
         }
-        
-    async def recover_pool_nft(self, request):
-        aggregated_signature: str = "0xc00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-        launcher_hash = bytes32(hexstr_to_bytes(request["launcher_hash"]))
-        contract_hash = bytes32(hexstr_to_bytes(request["contract_hash"]))
-        delay = uint64(604800)
-        puzzle_hashes = await self.service.wallet_state_manager.puzzle_store.get_all_puzzle_hashes()
-        for puzzle_hash_b32 in puzzle_hashes:
-            puzzle = create_p2_singleton_puzzle(SINGLETON_MOD_HASH, launcher_hash, delay, puzzle_hash_b32)
-
-            if contract_hash == puzzle.get_tree_hash():
-                program_puzzle = bytes(SerializedProgram.from_program(puzzle))
-                break
-        else:
-            assert False, "the nft doesn't belong to you"
-        solutions = []
-        for coin in request["coins"]:
-            coin = Coin.from_json_dict(coin)
-            assert coin.puzzle_hash == contract_hash, "invalid coin"
-            coin_solution_hex: str = bytes(SerializedProgram.from_program(Program.to([uint64(coin.amount), 0]))).hex()
-            solutions.append({"coin": coin, "puzzle_reveal": program_puzzle.hex(), "solution": coin_solution_hex})
-
-        return {
-            "spend_bundle": {
-                "aggregated_signature": aggregated_signature,
-                "coin_solutions": solutions,
-            }
-        }
-

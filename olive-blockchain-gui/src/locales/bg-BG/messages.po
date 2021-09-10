@@ -23,8 +23,8 @@ msgid "(Optional)"
 msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:64
-#~ msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
-#~ msgstr "Olive Explorer"
+msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
+msgstr "Olive Explorer"
 
 #: src/components/plot/add/PlotAddNFT.tsx:123
 msgid "+ Add New Plot NFT"
@@ -138,7 +138,7 @@ msgstr "Количество ({cc_unit})"
 msgid "Amount For Initial Coin"
 msgstr "Сума за първоначална монета"
 
-#: src/components/plot/PlotAction.tsx:31
+#: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "Сигурни ли сте, че желаете да изтриете този Плот?"
@@ -309,6 +309,18 @@ msgstr ""
 msgid "Chat on Discord"
 msgstr "Чат в Discord"
 
+#: src/electron/main.tsx:419
+msgid "Olive"
+msgstr "Чиа"
+
+#: src/electron/main.tsx:358
+msgid "Olive Blockchain Wiki"
+msgstr "Чиа блокчейн Wiki"
+
+#: src/components/wallet/standard/WalletStandard.tsx:647
+msgid "Olive Wallet"
+msgstr "Olive Портфейл"
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:36
 msgid "Choose Number of Plots"
 msgstr "Избери брой на полета"
@@ -442,7 +454,7 @@ msgid "Copy to Clipboard"
 msgstr "Копиране в клипборда"
 
 #: src/components/backup/BackupCreate.tsx:78
-#: src/components/plot/add/PlotAdd.tsx:176
+#: src/components/plot/add/PlotAdd.tsx:177
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:175
 #: src/components/wallet/create/createExistingColouredCoin.jsx:133
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
@@ -577,8 +589,8 @@ msgstr "Дата"
 msgid "Delay"
 msgstr "Закъснение"
 
-#: src/components/plot/PlotAction.tsx:28
-#: src/components/plot/PlotAction.tsx:58
+#: src/components/plot/PlotAction.tsx:27
+#: src/components/plot/PlotAction.tsx:57
 #: src/components/plot/queue/PlotQueueActions.tsx:43
 #: src/components/plot/queue/PlotQueueActions.tsx:97
 #: src/components/plotNFT/PlotNFTCard.tsx:122
@@ -588,7 +600,7 @@ msgstr "Закъснение"
 msgid "Delete"
 msgstr "Изтриване"
 
-#: src/components/plot/PlotAction.tsx:27
+#: src/components/plot/PlotAction.tsx:26
 #: src/components/plot/queue/PlotQueueActions.tsx:42
 msgid "Delete Plot"
 msgstr "Изтрий поле"
@@ -735,7 +747,6 @@ msgstr "Неуспешно отваряне(невалидни полета)"
 #: src/components/dashboard/DashboardSideBar.tsx:55
 #: src/components/wallet/coloured/WalletColoured.tsx:610
 #: src/components/wallet/standard/WalletStandard.tsx:532
-#: src/dashboard/DashboardSideBar.tsx:55
 msgid "Farm"
 msgstr "Ферма"
 
@@ -860,7 +871,6 @@ msgstr "Често задавани въпроси"
 
 #: src/components/dashboard/DashboardSideBar.tsx:39
 #: src/components/fullNode/FullNode.jsx:323
-#: src/dashboard/DashboardSideBar.tsx:39
 msgid "Full Node"
 msgstr "Цялостен възен"
 
@@ -1032,7 +1042,6 @@ msgid "K-Size"
 msgstr "К-размер"
 
 #: src/components/dashboard/DashboardSideBar.tsx:66
-#: src/dashboard/DashboardSideBar.tsx:66
 msgid "Keys"
 msgstr "Ключове"
 
@@ -1071,7 +1080,7 @@ msgstr ""
 msgid "List view"
 msgstr ""
 
-#: src/components/pool/Pool.tsx:22
+#: src/components/pool/Pool.tsx:21
 msgid "Loading Plot NFTs"
 msgstr ""
 
@@ -1289,18 +1298,6 @@ msgstr "Предложи"
 msgid "Offers Created"
 msgstr "Създадени оферти"
 
-#: src/electron/main.tsx:419
-msgid "Olive"
-msgstr "Чиа"
-
-#: src/electron/main.tsx:358
-msgid "Olive Blockchain Wiki"
-msgstr "Чиа блокчейн Wiki"
-
-#: src/components/wallet/standard/WalletStandard.tsx:647
-msgid "Olive Wallet"
-msgstr "Olive Портфейл"
-
 #: src/components/wallet/standard/WalletStandard.tsx:485
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "Обикновенно има една минута между всеки блок с транзакции. Те могат да се осъществяват за по- малко от минута, в случай че няма натоварване."
@@ -1366,8 +1363,7 @@ msgstr "Моля, въведете валидна първоначална су�
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:639
 #: src/components/wallet/standard/WalletStandard.tsx:432
 msgid "Please enter a valid numeric amount"
-msgstr ""
-"35 / 5000\n"
+msgstr "35 / 5000\n"
 "Моля, въведете валидна числова сума"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:70
@@ -1488,7 +1484,6 @@ msgid "PlotNFT is transitioning to (target state). This can take a while. Please
 msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:50
-#: src/dashboard/DashboardSideBar.tsx:50
 msgid "Plots"
 msgstr "Полета"
 
@@ -1532,8 +1527,7 @@ msgid "Points Successful in Last 24 Hours"
 msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:60
-#: src/components/pool/Pool.tsx:26
-#: src/dashboard/DashboardSideBar.tsx:60
+#: src/components/pool/Pool.tsx:25
 msgid "Pool"
 msgstr ""
 
@@ -2220,6 +2214,10 @@ msgstr "Към"
 msgid "Total Balance"
 msgstr "Общ баланс"
 
+#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
+#~ msgid "Total Olive Farmed"
+#~ msgstr ""
+
 #: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:20
 msgid "Total Iterations"
 msgstr "Общи повторения"
@@ -2227,10 +2225,6 @@ msgstr "Общи повторения"
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:15
 msgid "Total Network Space"
 msgstr "Общо пространство на мрежата"
-
-#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
-#~ msgid "Total Olive Farmed"
-#~ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:146
 msgid "Total Plot Size:"
@@ -2392,12 +2386,12 @@ msgstr ""
 #~ msgid "WalletItem.ccWallet"
 #~ msgstr ""
 
-#: src/components/wallet/Wallets.tsx:48
-#~ msgid "WalletItem.didWallet"
-#~ msgstr ""
-
 #: src/components/wallet/Wallets.tsx:30
 #~ msgid "WalletItem.oliveWallet"
+#~ msgstr ""
+
+#: src/components/wallet/Wallets.tsx:48
+#~ msgid "WalletItem.didWallet"
 #~ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:41
@@ -2418,7 +2412,6 @@ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:45
 #: src/components/wallet/Wallets.tsx:173
-#: src/dashboard/DashboardSideBar.tsx:45
 msgid "Wallets"
 msgstr "Портфейли"
 
@@ -2629,3 +2622,4 @@ msgstr "{currencyCode} Такси на потребителя за транза�
 #: src/components/core/components/Amount/Amount.tsx:80
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr ""
+

@@ -23,8 +23,8 @@ msgid "(Optional)"
 msgstr "（可选）"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:64
-#~ msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
-#~ msgstr "* 想要进一步了解Olive？来看看一位开源开发者创建的 <0>Olive区块浏览器</0>。"
+msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
+msgstr "* 想要进一步了解Olive？来看看一位开源开发者创建的 <0>Olive区块浏览器</0>。"
 
 #: src/components/plot/add/PlotAddNFT.tsx:123
 msgid "+ Add New Plot NFT"
@@ -138,7 +138,7 @@ msgstr "数量 ({cc_unit})"
 msgid "Amount For Initial Coin"
 msgstr "初始币数量"
 
-#: src/components/plot/PlotAction.tsx:31
+#: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "你确定要删除这个农田吗？删除后将不可恢复。"
@@ -309,6 +309,18 @@ msgstr "更换农业合作社"
 msgid "Chat on Discord"
 msgstr "在Discord上参与讨论"
 
+#: src/electron/main.tsx:419
+msgid "Olive"
+msgstr "Olive"
+
+#: src/electron/main.tsx:358
+msgid "Olive Blockchain Wiki"
+msgstr "Olive区块链项目维基"
+
+#: src/components/wallet/standard/WalletStandard.tsx:647
+msgid "Olive Wallet"
+msgstr "Olive钱包"
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:36
 msgid "Choose Number of Plots"
 msgstr "选择要开垦的数量"
@@ -442,7 +454,7 @@ msgid "Copy to Clipboard"
 msgstr "复制到剪贴板"
 
 #: src/components/backup/BackupCreate.tsx:78
-#: src/components/plot/add/PlotAdd.tsx:176
+#: src/components/plot/add/PlotAdd.tsx:177
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:175
 #: src/components/wallet/create/createExistingColouredCoin.jsx:133
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
@@ -577,8 +589,8 @@ msgstr "日期"
 msgid "Delay"
 msgstr "延迟"
 
-#: src/components/plot/PlotAction.tsx:28
-#: src/components/plot/PlotAction.tsx:58
+#: src/components/plot/PlotAction.tsx:27
+#: src/components/plot/PlotAction.tsx:57
 #: src/components/plot/queue/PlotQueueActions.tsx:43
 #: src/components/plot/queue/PlotQueueActions.tsx:97
 #: src/components/plotNFT/PlotNFTCard.tsx:122
@@ -588,7 +600,7 @@ msgstr "延迟"
 msgid "Delete"
 msgstr "删除"
 
-#: src/components/plot/PlotAction.tsx:27
+#: src/components/plot/PlotAction.tsx:26
 #: src/components/plot/queue/PlotQueueActions.tsx:42
 msgid "Delete Plot"
 msgstr "删除农田"
@@ -735,7 +747,6 @@ msgstr "打开失败（农田无效）"
 #: src/components/dashboard/DashboardSideBar.tsx:55
 #: src/components/wallet/coloured/WalletColoured.tsx:610
 #: src/components/wallet/standard/WalletStandard.tsx:532
-#: src/dashboard/DashboardSideBar.tsx:55
 msgid "Farm"
 msgstr "农场"
 
@@ -860,7 +871,6 @@ msgstr "常见问题解答"
 
 #: src/components/dashboard/DashboardSideBar.tsx:39
 #: src/components/fullNode/FullNode.jsx:323
-#: src/dashboard/DashboardSideBar.tsx:39
 msgid "Full Node"
 msgstr "全节点"
 
@@ -1032,7 +1042,6 @@ msgid "K-Size"
 msgstr "K值大小"
 
 #: src/components/dashboard/DashboardSideBar.tsx:66
-#: src/dashboard/DashboardSideBar.tsx:66
 msgid "Keys"
 msgstr "密钥"
 
@@ -1071,7 +1080,7 @@ msgstr "退出农业合作社"
 msgid "List view"
 msgstr "列表视图"
 
-#: src/components/pool/Pool.tsx:22
+#: src/components/pool/Pool.tsx:21
 msgid "Loading Plot NFTs"
 msgstr "正在加载农田NFT"
 
@@ -1289,18 +1298,6 @@ msgstr "出价"
 msgid "Offers Created"
 msgstr "已创建的出价"
 
-#: src/electron/main.tsx:419
-msgid "Olive"
-msgstr "Olive"
-
-#: src/electron/main.tsx:358
-msgid "Olive Blockchain Wiki"
-msgstr "Olive区块链项目维基"
-
-#: src/components/wallet/standard/WalletStandard.tsx:647
-msgid "Olive Wallet"
-msgstr "Olive钱包"
-
 #: src/components/wallet/standard/WalletStandard.tsx:485
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "每个交易区块平均打包时间为一分钟。通常您的交易将在一分钟内被确认，除非出现拥堵。"
@@ -1486,7 +1483,6 @@ msgid "PlotNFT is transitioning to (target state). This can take a while. Please
 msgstr "农田NFT正在过渡到（目标状态）。这可能需要一段时间。请在完成之前不要关闭应用程序。"
 
 #: src/components/dashboard/DashboardSideBar.tsx:50
-#: src/dashboard/DashboardSideBar.tsx:50
 msgid "Plots"
 msgstr "农田"
 
@@ -1530,8 +1526,7 @@ msgid "Points Successful in Last 24 Hours"
 msgstr "最近24小时成功获取的积点"
 
 #: src/components/dashboard/DashboardSideBar.tsx:60
-#: src/components/pool/Pool.tsx:26
-#: src/dashboard/DashboardSideBar.tsx:60
+#: src/components/pool/Pool.tsx:25
 msgid "Pool"
 msgstr "农业合作社"
 
@@ -2218,6 +2213,10 @@ msgstr "目标地址"
 msgid "Total Balance"
 msgstr "总余额"
 
+#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
+#~ msgid "Total Olive Farmed"
+#~ msgstr ""
+
 #: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:20
 msgid "Total Iterations"
 msgstr "总迭代次数"
@@ -2225,10 +2224,6 @@ msgstr "总迭代次数"
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:15
 msgid "Total Network Space"
 msgstr "全网占用空间"
-
-#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
-#~ msgid "Total Olive Farmed"
-#~ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:146
 msgid "Total Plot Size:"
@@ -2390,12 +2385,12 @@ msgstr "钱包状态："
 #~ msgid "WalletItem.ccWallet"
 #~ msgstr ""
 
-#: src/components/wallet/Wallets.tsx:48
-#~ msgid "WalletItem.didWallet"
-#~ msgstr ""
-
 #: src/components/wallet/Wallets.tsx:30
 #~ msgid "WalletItem.oliveWallet"
+#~ msgstr ""
+
+#: src/components/wallet/Wallets.tsx:48
+#~ msgid "WalletItem.didWallet"
 #~ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:41
@@ -2416,7 +2411,6 @@ msgstr "钱包状态："
 
 #: src/components/dashboard/DashboardSideBar.tsx:45
 #: src/components/wallet/Wallets.tsx:173
-#: src/dashboard/DashboardSideBar.tsx:45
 msgid "Wallets"
 msgstr "钱包"
 
@@ -2627,3 +2621,4 @@ msgstr "{currencyCode} 用户交易费用"
 #: src/components/core/components/Amount/Amount.tsx:80
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr "{mojo, plural, one {mojo} other {mojos}}"
+

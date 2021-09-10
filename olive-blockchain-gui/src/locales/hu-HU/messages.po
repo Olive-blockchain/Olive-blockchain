@@ -23,8 +23,8 @@ msgid "(Optional)"
 msgstr "(nem kötelező)"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:64
-#~ msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
-#~ msgstr "Fel szeretnéd fedezni a Olive rendszerét bővebben? Nézd meg a <0> Olive Explorert</0> amit egy nyílt forráskóddal foglalkozó fejlesztő készített."
+msgid "*Want to explore Olive’s blocks further? Check out <0>Olive Explorer</0> built by an open source developer."
+msgstr "Fel szeretnéd fedezni a Olive rendszerét bővebben? Nézd meg a <0> Olive Explorert</0> amit egy nyílt forráskóddal foglalkozó fejlesztő készített."
 
 #: src/components/plot/add/PlotAddNFT.tsx:123
 msgid "+ Add New Plot NFT"
@@ -138,7 +138,7 @@ msgstr "Mennyiség ({cc_unit})"
 msgid "Amount For Initial Coin"
 msgstr "Az aktuális érme mennyiség"
 
-#: src/components/plot/PlotAction.tsx:31
+#: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "Biztos vagy benne, hogy törlöd ezt a parcellát? A törölt parcella nem visszaállítható."
@@ -309,6 +309,18 @@ msgstr "Pool Váltás"
 msgid "Chat on Discord"
 msgstr "Csevegés a Discord-n"
 
+#: src/electron/main.tsx:419
+msgid "Olive"
+msgstr "Olive"
+
+#: src/electron/main.tsx:358
+msgid "Olive Blockchain Wiki"
+msgstr "Olive Blokklánc Wiki"
+
+#: src/components/wallet/standard/WalletStandard.tsx:647
+msgid "Olive Wallet"
+msgstr "Olive Pénztárca"
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:36
 msgid "Choose Number of Plots"
 msgstr "Válaszd ki a parcelláid számát"
@@ -442,7 +454,7 @@ msgid "Copy to Clipboard"
 msgstr "Másolás a vágólapra"
 
 #: src/components/backup/BackupCreate.tsx:78
-#: src/components/plot/add/PlotAdd.tsx:176
+#: src/components/plot/add/PlotAdd.tsx:177
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:175
 #: src/components/wallet/create/createExistingColouredCoin.jsx:133
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
@@ -577,8 +589,8 @@ msgstr "Dátum"
 msgid "Delay"
 msgstr "Késleltetés"
 
-#: src/components/plot/PlotAction.tsx:28
-#: src/components/plot/PlotAction.tsx:58
+#: src/components/plot/PlotAction.tsx:27
+#: src/components/plot/PlotAction.tsx:57
 #: src/components/plot/queue/PlotQueueActions.tsx:43
 #: src/components/plot/queue/PlotQueueActions.tsx:97
 #: src/components/plotNFT/PlotNFTCard.tsx:122
@@ -588,7 +600,7 @@ msgstr "Késleltetés"
 msgid "Delete"
 msgstr "Törlés"
 
-#: src/components/plot/PlotAction.tsx:27
+#: src/components/plot/PlotAction.tsx:26
 #: src/components/plot/queue/PlotQueueActions.tsx:42
 msgid "Delete Plot"
 msgstr "Parcella törlése"
@@ -735,7 +747,6 @@ msgstr "Nem sikerült megnyitni (érvénytelen parcella)"
 #: src/components/dashboard/DashboardSideBar.tsx:55
 #: src/components/wallet/coloured/WalletColoured.tsx:610
 #: src/components/wallet/standard/WalletStandard.tsx:532
-#: src/dashboard/DashboardSideBar.tsx:55
 msgid "Farm"
 msgstr "Farm"
 
@@ -860,7 +871,6 @@ msgstr "Gyakran Ismételt Kérdések"
 
 #: src/components/dashboard/DashboardSideBar.tsx:39
 #: src/components/fullNode/FullNode.jsx:323
-#: src/dashboard/DashboardSideBar.tsx:39
 msgid "Full Node"
 msgstr "Teljes csomópont"
 
@@ -1032,7 +1042,6 @@ msgid "K-Size"
 msgstr "K-méret"
 
 #: src/components/dashboard/DashboardSideBar.tsx:66
-#: src/dashboard/DashboardSideBar.tsx:66
 msgid "Keys"
 msgstr "Kulcsok"
 
@@ -1071,7 +1080,7 @@ msgstr ""
 msgid "List view"
 msgstr ""
 
-#: src/components/pool/Pool.tsx:22
+#: src/components/pool/Pool.tsx:21
 msgid "Loading Plot NFTs"
 msgstr ""
 
@@ -1289,18 +1298,6 @@ msgstr "Ajánlat"
 msgid "Offers Created"
 msgstr "Az ajánlatok elkészültek"
 
-#: src/electron/main.tsx:419
-msgid "Olive"
-msgstr "Olive"
-
-#: src/electron/main.tsx:358
-msgid "Olive Blockchain Wiki"
-msgstr "Olive Blokklánc Wiki"
-
-#: src/components/wallet/standard/WalletStandard.tsx:647
-msgid "Olive Wallet"
-msgstr "Olive Pénztárca"
-
 #: src/components/wallet/standard/WalletStandard.tsx:485
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "Az egyes tranzakciós blokkok között átlagosan egy perc van. Hacsak nincs torlódás, akkor számíthat arra, hogy a tranzakciót kevesebb, mint egy perc alatt bekapcsolja."
@@ -1486,7 +1483,6 @@ msgid "PlotNFT is transitioning to (target state). This can take a while. Please
 msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:50
-#: src/dashboard/DashboardSideBar.tsx:50
 msgid "Plots"
 msgstr "Parcellák"
 
@@ -1530,8 +1526,7 @@ msgid "Points Successful in Last 24 Hours"
 msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:60
-#: src/components/pool/Pool.tsx:26
-#: src/dashboard/DashboardSideBar.tsx:60
+#: src/components/pool/Pool.tsx:25
 msgid "Pool"
 msgstr ""
 
@@ -2136,8 +2131,7 @@ msgstr "Ez a függőben lévő változás, amely olyan pénzérme, amelyet Ön k
 
 #: src/components/wallet/card/WalletCardPendingBalance.tsx:26
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
-msgstr ""
-"Ez a függőben lévő, bejövő és kimenő ügyletek összesítése. (Még nem a blokklánc részei)\n"
+msgstr "Ez a függőben lévő, bejövő és kimenő ügyletek összesítése. (Még nem a blokklánc részei)\n"
 "Nem tartalmazza a termesztési díjakat."
 
 #: src/components/fullNode/card/FullNodeCardPeakTime.tsx:24
@@ -2220,6 +2214,10 @@ msgstr "Címzett"
 msgid "Total Balance"
 msgstr "Teljes egyenleg"
 
+#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
+#~ msgid "Total Olive Farmed"
+#~ msgstr ""
+
 #: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:20
 msgid "Total Iterations"
 msgstr "Összes ismétlések száma"
@@ -2227,10 +2225,6 @@ msgstr "Összes ismétlések száma"
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:15
 msgid "Total Network Space"
 msgstr "Teljes hálózati tárhely kapacitás"
-
-#: src/components/farm/card/FarmCardTotalOliveFarmed.tsx:15
-#~ msgid "Total Olive Farmed"
-#~ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:146
 msgid "Total Plot Size:"
@@ -2392,12 +2386,12 @@ msgstr ""
 #~ msgid "WalletItem.ccWallet"
 #~ msgstr ""
 
-#: src/components/wallet/Wallets.tsx:48
-#~ msgid "WalletItem.didWallet"
-#~ msgstr ""
-
 #: src/components/wallet/Wallets.tsx:30
 #~ msgid "WalletItem.oliveWallet"
+#~ msgstr ""
+
+#: src/components/wallet/Wallets.tsx:48
+#~ msgid "WalletItem.didWallet"
 #~ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:41
@@ -2418,7 +2412,6 @@ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:45
 #: src/components/wallet/Wallets.tsx:173
-#: src/dashboard/DashboardSideBar.tsx:45
 msgid "Wallets"
 msgstr "Tárcák"
 
@@ -2629,3 +2622,4 @@ msgstr "Felhasználói tranzakciós díjak {currencyCode}"
 #: src/components/core/components/Amount/Amount.tsx:80
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr ""
+
