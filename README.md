@@ -5,3 +5,6 @@
 For more information, see our website and downloads at https://oliveblockchain.co.
 
 Discord: https://discord.gg/pCd75ram
+
+Linux install instructions
+please refer to Wiki section of the page 

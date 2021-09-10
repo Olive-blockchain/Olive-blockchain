@@ -904,3 +904,23 @@ export const did_generate_backup_file = (wallet_id, filename) => {
   };
   return action;
 };
+
+export function recover_pool_nft(contract_hash, launcher_hash, coins) {
+  return async (dispatch) => {
+    const response = await async_api(
+      dispatch,
+      walletMessage({
+        command: 'recover_pool_nft',
+        data: {
+          contract_hash: contract_hash,
+          launcher_hash: launcher_hash,
+          coins: coins
+        },
+      }),
+      false,
+      true,
+    );
+
+    return response?.data
+  };
+}
