@@ -5,6 +5,7 @@ from olive.pools.pool_wallet_info import PoolWalletInfo
 from olive.rpc.rpc_client import RpcClient
 from olive.types.blockchain_format.coin import Coin
 from olive.types.blockchain_format.sized_bytes import bytes32
+from olive.types.spend_bundle import SpendBundle
 from olive.util.bech32m import decode_puzzle_hash
 from olive.util.ints import uint32, uint64
 from olive.wallet.transaction_record import TransactionRecord
